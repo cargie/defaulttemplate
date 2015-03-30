@@ -1,0 +1,26 @@
+/*
+*		renders the categories links in the footer area.
+*
+*/
+
+<div class="footer-categories-links">
+	<ul class="media-list">
+		[Website.TopCategories=
+			<li class="media flow-inline-block">
+				<div class="media-body">
+					<h4 class="media-heading font14">[Category.Name]</h4>
+					<!-- Nested media object -->
+					<div class="media footer-link-items">
+						<ul>
+							[Category.ChildCategories=
+								<li class="font12"><a href="http://[Url.DomainName]/[Category.UrlKey]">[Category.Name]</a></li>
+							]
+						</ul>
+					</div>
+				</div>
+		  	</li>
+		]
+	</ul>
+</div>
+
+

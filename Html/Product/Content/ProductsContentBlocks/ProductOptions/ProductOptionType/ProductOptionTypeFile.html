@@ -1,0 +1,30 @@
+/*
+* Renders a file control to enable the customer to upload images or file needed in product options.
+*
+*/
+
+[:ProductOptionTypeText]
+<dd>
+   <!-- if file exists -->
+       <!-- <span class="<?php echo $_fileNamed ?>"><?php echo $_fileInfo->getTitle(); ?></span>
+        <a href="javascript:void(0)" class="label" onclick="opFile<?php echo $_rand; ?>.toggleFileChange($(this).next('.input-box'))">
+            <?php echo Mage::helper('catalog')->__('Change') ?>
+        </a>&nbsp;
+        <?php if (!$_option->getIsRequire()): ?>
+           <input type="checkbox" onclick="opFile<?php echo $_rand; ?>.toggleFileDelete($(this), $(this).next('.input-box'))" />
+           <span class="label"><?php echo Mage::helper('catalog')->__('Delete') ?></span>
+        <?php endif; ?>-->
+   <!-- end if -->
+    <div class="input-box" >
+      	<input type="file" onchange="" class="product-custom-option [?ProductOption.Required|yes=required]" name="options_[ProductOption.Id]_file">
+        <input type="hidden" value="save_new" name="options_[ProductOption.Id]">
+      
+        [?ProductOption.ExtensionSet|yes=<p class="no-margin">[_Allowed file extensions to upload <strong>%1</strong>, [ProductOption.FileExtention]]</p>]
+       
+        [?ProductOption.ImageSizeXSet|yes=<p class="no-margin">[_Maximum image width <strong>%1px</strong>, [ProductOption.ImageSizeX]]</p>]
+    
+        [?ProductOption.ImageSizeYSet|yes=<p class="no-margin">[_Maximum image height <strong>%1px</strong>, [ProductOption.ImageSizeY]]</p>]
+      
+    </div>
+</dd>
+

@@ -1,0 +1,76 @@
+/*
+*		Renders a page for customers confirmation during registration.
+*	
+*/
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	[:MetaData,[_Customer Account Confirmation]]
+	[:head]
+	<style type="text/css">
+		.content{
+			background: #EFEBE6;
+			padding: 14px 21px;
+			border: 1px solid #C9B7AA;
+			width:60%;
+			margin: 0 auto;
+		}
+		.buttons-set{
+			text-align:left;
+			border-top:1px solid #D2CFCB;
+			padding-top:10px;
+		}
+		.buttons-set button{
+			padding-right:5px;
+		}
+	</style>
+</head>
+<body>
+</body>
+	[:header]
+	<div class="one-column">
+		[:breadcrumb]
+		<div class="main-container">
+			<div class="main ">
+				<form id="form-confirmation" method="post">
+					<div class="content">
+						<div class="page-title">
+							<h2>[_Registration Confirmation] </h2>
+						</div>
+						[:notification]
+						<div>
+							<h5>[_Thank you for creating an account with us.]</h5>
+							
+							<ul class="form-list">
+							 	<li>
+							 		<p for="confirmation_code">[_To complete your registration please enter the confirmation code that we sent in your email.]</p>
+									<div class="input-box">
+										<input type="text" value="" size="30" class="input-text required" id="confirmation_code" alt="confirmation code" name="confirmation_code" placeholder="confirmation code">
+									</div>
+								</li>
+							</ul>
+							<div class="buttons-set">
+								<button type="submit" class="button btn[Design.DesignSelectionName,ButtonStyle]" title="Confirm"><span><span>[_Confirm]</span></span></button>
+								<button type="button" class="button btn-secondary[Design.DesignSelectionName,ButtonStyle]" title="Send Email"><span><span>[_Send the e-mail again]</span></span></button>
+								<button type="button" class="button btn-secondary[Design.DesignSelectionName,ButtonStyle]" title="Already Confirmed"><span><span>[_Already Confirmed]</span></span></button>
+							</div>
+						</div>
+						<p>[Website.GetUrl,Customer,Confirm/[Customer.Id]/[Customer.EmailConfirmationCode]]</p>
+					</div>
+				</form>
+				<script type="text/javascript">
+				jQuery("#form-confirmation").validate({
+					submitHandler: function(form) {
+						//setLocationAjaxAction('form-confirmation','[Website.GetUrl,magento,Login]','[Website.GetUrl,Login,Login]',true,'',jQuery('#form-login').serialize(),'[Website.GetUrl,Customer,Account]');
+						
+						window.location.href="[Website.GetUrl,Customer,Confirm/[Customer.UserName]/]"+jQuery('#confirmation_code').val();
+					 }	
+				});
+				</script>
+			</div>
+		</div>
+	</div>
+	[:footer]
+</html>
+

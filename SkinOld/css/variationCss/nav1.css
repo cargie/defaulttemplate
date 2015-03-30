@@ -1,0 +1,25 @@
+/** nav style 1 **/
+.topmenu-block.nav1 {
+  background-image: url("../../images/menu_bg2.png"); }
+
+.topmenu-block.nav1 div.menu ul li a:hover {
+  color: #ff0000; }
+
+.topmenu-block.nav1 div.menu ul li ul.menu-popup {
+  width: 500px;
+  background: black url(../../images/submenu_bg.png) repeat-x;
+  padding: 5px 20px;
+  opacity: .95;
+  height: 207px; }
+
+div.topmenu-block.nav1 div.menu ul li ul.menu-popup li a {
+  line-height: 1.75em; }
+
+.topmenu-block.nav1 div.menu ul li ul.menu-popup li.level1 {
+  width: 120px; }
+
+.topmenu-block.nav1 div.menu ul#main-menu li span.current {
+  color: #ff0000; }
+
+div.topmenu-block.nav1 div.menu ul li ul.menu-popup li.level1 ul {
+  margin: 0px 0px 5px 10px; }

@@ -1,0 +1,27 @@
+/*
+*	Renders the product review container.
+*
+*/
+
+<div class="product-reviews" id="read_review">
+	<h2>[_Customer Reviews] </h2>
+	<div class="tab-content">
+		<div id="">[:ProductReviewListBlock]</div>
+		<div id="write_review">
+			<h2 class="write-review-title">[_Write Your Own Review]</h2>
+			[?Customer.LoggedIn|LoggedIn=
+			
+				[:ProductReviewFormBlock]
+			|= 
+				[?Configuration.ReviewAllowGuests|Yes=
+				
+					[:ProductReviewFormBlock]
+				|=
+					<p class="review-nologged" id="review-form">
+					[_Only registered users can write reviews. Please,] <a href="[Website.GetUrl,Login,Login]">[_log in]</a> [_or] <a href="[Website.GetUrl,Login,Login]">[_register]</a>.
+					</p>
+				]
+			]
+		</div>
+	</div>
+</div>

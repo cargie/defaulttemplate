@@ -1,0 +1,40 @@
+/*
+*		Renders the forum footer information for forumgroup content.  This displays links, totals, social icons.
+*
+*/
+
+<div class="fdata-footer">
+	<ul class="fdata-f">
+		<li class="tag-details">[_TAGS]<ul class="tag-list"><li class="tag">[Thread.Tags]</li></ul>
+		</li>
+		<li class="tag-likes">
+			[_%1 like this | %2 dislike this , [Thread.NrLikes], [Thread.NrDislikes]]
+		</li>
+		<li class="sep">|</li>
+		<li class="tag-like-icon">
+			<ul class="tag-like-icon-container">
+				<li>
+					<a class="like" href="[Website.GetUrl,forum,like/[Thread.Id]]">
+						<span class="t_icon">&nbsp;</span>
+					</a>
+				</li>
+				<li>
+					[?ForumGroup.AllowDislikes|Yes=
+					<a class="unlike" href="[Website.GetUrl,forum,dislike/[Thread.Id]]">
+						<span class="t_icon">&nbsp;</span>
+					</a>
+					]
+				</li>
+				<li>
+					<a class="report" href="#"><span class="t_icon">&nbsp;</span></a>
+				</li>
+			</ul>
+			
+			
+		</li>
+		<li class="sep">|</li>
+		<li class="tag-create">
+			<a href="[Website.GetUrl,forum,newthread/[ForumGroup.Id]]">[_Post a reply]</a>
+		</li>
+	</ul>
+</div>

@@ -1,0 +1,64 @@
+/*
+*		Renders the listings of products of the current category.  
+*		Can be list as Grid type or List type.
+*
+*/
+
+<li class="product-item simple-list">
+	<div class=" item-wrapper "  id="prd[Product.Id]">
+		[?Product.Sale|sale=<div class="product-ribbon sale"></div>]
+		<div class="product-title">
+			<a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]" alt="[Product.Name]">
+				<span class="product-name">[Product.Name] [SimpleProduct.Id]</span>
+			</a>
+		</div>
+		<div class="product-image">
+		   <a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]"><img src="/[Product.ThumbnailImage=[ProductImage.ImageUrl,140,150]]" alt="[Product.Name]" width="100%"/></a>
+		</div>
+		 <div class="product-details clearfix">
+			<div class="price-block">
+				[?Product.ProductType|Simple=
+					[?Product.Sale|sale=
+						<span class="price special"><s>[Product.Price] </s>[Product.SpecialPrice]</span>
+						|=
+						<span class="price">
+							[Product.Price]
+						</span>
+						]
+					|Configurable=
+						[?SimpleProduct.Sale|sale=
+						<span class="price special"><s>[SimpleProduct.Price] </s>[SimpleProduct.SpecialPrice]</span>
+						|=
+						<span class="price">
+							[SimpleProduct.Price]
+						</span>
+						]
+				]
+			</div>
+			[:ProductListItemAttributeColor]
+			<div class="availability">[?Product.InStock|Yes=<span class="in-stock">In stock<span>|No=<span class="out-of-stock">Out of stock</span>]</div>
+			<div class="add-to-cart">
+				[?Product.ProductType|Configurable=
+				<button  class="button btn[Design.DesignSelectionName,ButtonStyle]" onclick="window.location.href='[Website.GetUrl,Product,[Product.Id]]'" class="button btn-cart" title="[_Configure]" type="button">
+					<span><span>[_Configure]</span></span>
+					</button>
+				|=
+					[?Product.HasRequiredOptions|Yes=
+						<button  class="button btn[Design.DesignSelectionName,ButtonStyle]" onclick="window.location.href='[Website.GetUrl,Product,[Product.Id]]'" class="button btn-cart" title="[_Configure]" type="button">
+						<span><span>[_Configure]</span></span>
+						</button>
+					|=
+				  	<button  class="button btn[Design.DesignSelectionName,ButtonStyle]" onclick="actionCart('product_addtocart_form','[Website.GetUrl,Magento,AddToCart]','[UserInput.DefaultUrlPart]/',true,'[Product.Id]','[Website.GetUrl,ShoppingCart]',jQuery('#conf-attributes[Product.Id]').find('select').serialize()+'&qty=[Product.MinInShoppingCart]')" class="button btn-cart" title="[_Add to Cart]" type="button">
+						<span><span>[_Add to Cart]</span></span>
+					</button>
+					]
+				]
+			</div>
+			<div class="add-to">
+				
+			</div>
+		</div>
+		
+	</div>
+</li>
+

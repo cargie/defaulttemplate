@@ -1,0 +1,31 @@
+<div id="opc-order-review" class="checkout-block order-review last">
+	<div class="title">
+		<div class="circle-number">6</div><div class="label">[_Review Your Order]</div>
+	</div>
+	<div class="content ">
+		<table class="data-table" id="checkout-review-table">
+			<col />
+			<col width="" />
+			<col width="20%" />
+			<thead>
+				<tr>
+					<th rowspan="1">[_Product]</th>
+		
+					<th rowspan="1" class="a-right">[_Qty]</th>
+					<th colspan="1" class="a-right">[_Subtotal]</th>
+				</tr>
+			</thead>
+			[:MOrderReviewTotals]
+			<tbody>
+				[:MOrderReviewItem]
+			</tbody>
+		</table>
+		<div class="additional-content">
+			[:MOrderReviewCoupon]
+			[:MCheckoutAgreements]
+		</div>
+		<div class="a-right">
+		[:MOrderReviewButton]
+		</div>
+	</div>
+</div>

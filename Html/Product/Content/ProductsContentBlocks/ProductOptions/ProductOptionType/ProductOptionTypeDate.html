@@ -1,0 +1,18 @@
+/*
+* Renders a date control to enable the customer to select date needed in product options.
+*
+*/
+
+[:ProductOptionTypeText]
+   
+<dd>
+	[?ProductOption.Type	
+	|Date=
+		[:DateBlock]
+	
+	|Time=
+   		[:ProductOptionTypeDateTime]
+	|DateTime=
+		[:DateBlock][:ProductOptionTypeDateTime]
+	]
+</dd>

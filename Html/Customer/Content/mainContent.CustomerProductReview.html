@@ -1,0 +1,16 @@
+/*
+*		Renders the main content information of the CustomerProductReviewPage.
+*							
+*/
+
+<div class="my-account">
+	<div class="table-v1">
+		<div class="page-title">
+			<h2>[_My Reviews]</h2>
+		</div>
+		<ul>[Customer.Reviews=
+			<li> <a href="[Website.GetUrl,Customer,ProductReviewDetails/[ProductReview.Id]]">[ProductReview.Title] - <em>[ProductReview.CreatedAt]</em> </a> </li>
+		]</ul>
+	</div>
+
+</div>

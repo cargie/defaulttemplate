@@ -1,0 +1,31 @@
+/*
+*	Renders a block containing promoheader block.
+*/
+<div class="header-slider">
+	[Website.Promoheader,Test =
+		[?PromoHeader.Enabled|Yes=
+			[PromoHeader.Blocks=  
+				[?PromoHeaderBlock.Type
+				|slider=
+				<div class="slideshow blocks-preview" id="header_slides[PromoHeader.Id]" > 
+					<div class="slides_container">	
+						[PromoHeaderBlock.Sliders= 
+							[:PromoHeaderSlider]
+						]
+					</div>
+					<script type="text/javascript">
+						$j(function(){
+							$j("#header_slides[PromoHeader.Id]").slides({
+								generateNextPrev: false,
+								play: 10500,
+								effect: 'slide, fade',
+							});
+						});		
+					</script>
+				</div>
+				]
+			]
+		]
+	]
+</div>
+

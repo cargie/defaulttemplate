@@ -1,0 +1,45 @@
+<script type="text/javascript">
+
+var setSort=function(){
+	if ('[UserInput.PageAscending]'=='Ascending'){
+		$j(".asc-direction").css('display','block');
+		$j(".desc-direction").css('display','none');
+	}else{
+		
+		$j(".desc-direction").css('display','block');
+		$j(".asc-direction").css('display','none');
+	}
+
+};
+	
+var setLimit=function(tmpval){
+	
+	var total=[Filter.Count];
+	
+	if (tmpval>=total){
+		selectaction('[Website.GetUrl,Ajax,Update]','[UserInput.DefaultUrlPart]','Page/1/'+tmpval+'/[UserInput.PageSort]/[UserInput.PageAscending]/[UserInput.FilterUrl]');
+	}else{
+		var res=Math.floor(total/tmpval);
+		if ([UserInput.PageFrom]>res) var p_from=res; else var p_from=[UserInput.PageFrom];
+		
+		selectaction('[Website.GetUrl,Ajax,Update]','[UserInput.DefaultUrlPart]','Page/'+p_from+'/'+tmpval+'/[UserInput.PageSort]/[UserInput.PageAscending]/[UserInput.FilterUrl]');
+	}
+	$j("#limiter option").each(function(i) {
+		var optval=$j(this).val();
+	
+		if (optval=='[UserInput.PageNrOn]'){
+			$j(this).attr('selected','selected');
+		}
+	});
+};
+
+var paging =function(pagenr){
+	
+	selectaction('[Website.GetUrl,Ajax,Update]','[UserInput.DefaultUrlPart]','Page/'+pagenr+'/[UserInput.PageNrOn]/[UserInput.PageSort]/[UserInput.PageAscending]/[UserInput.FilterUrl]');
+	setSort();
+};
+
+setSort();
+
+</script>
+

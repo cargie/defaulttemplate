@@ -1,0 +1,49 @@
+<ul class="small-12 columns" id="main-menu">
+ 	<li><a href="[Website.GetUrl,Home]">[_Home]</a></li>
+ 	
+[Website.TopCategories=
+	[?Category.IsActive|Yes=
+		[?Category.InTopMenu|Yes=
+			<li>
+				<a class="level-1-link" href="[Website.GetUrl,Category,[Category.Id]]" >
+					<span class="[?Category.IsCurrent|same= current|different=|parent= current]">[Category.Name]</span>
+				</a>
+				[?Category.HasChildren|yes=
+					<ul class="menu-popup dropdown-hover">
+						[Category.ChildCategories=
+							[?Category.IsActive|Yes=
+								[?Category.InTopMenu|Yes=
+									<li class="level1">
+										<a href="[Website.GetUrl,Category,[Category.Id]]" class="[?Category.IsCurrent|same= current|different=|parent= current]"><span class="[?Category.IsCurrent|same= current|different=|parent= current]">[Category.Name]</span></a> 
+										[?Category.HasChildren|yes=<span class="toggle">+</span>|no=]
+										[?Category.HasChildren|yes=
+											<div class="panel">
+												<ul>
+													[Category.ChildCategories=
+														[?Category.IsActive|Yes=
+															[?Category.InTopMenu|Yes=
+																<li>
+																	<a href="[Website.GetUrl,Category,[Category.Id]]" class="[?Category.IsCurrent|same= current|different=|parent= current]">
+																		<span class="[?Category.IsCurrent|same= current|different=|parent= current]">[Category.Name]
+																		</span>
+																	</a>
+																</li>
+															]
+														]
+													]
+												</ul>
+											</div>
+										]
+									</li>
+								]
+							]
+						]
+					</ul>
+				]
+			</li>
+		]
+	]
+]
+	<li><a class="level-1-link" href="#"><span>[_Specials]</span></a>[:SpecialsPopUpMenu]</li>
+	<li><a class="level-1-link" href="#"><span>[_Brands]</span></a>[:BrandPopUp]</li>
+</ul>

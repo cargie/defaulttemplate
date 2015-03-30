@@ -1,0 +1,105 @@
+/*
+*		Renders the order mutations of the customer order.
+*							
+*/
+
+[Order.Mutations=
+
+<div id="om_[OrderMutation.Id]" class="order-info-con mutation-info well well-small">
+	<div class="mutation-details-head"><h3 class="order-label in-block"><span class="entypo downarrowsmall"></span> [_Mutation] - [OrderMutation.Status]</h3>
+		<p class="order-date in-block">[_Mutation Date] : [OrderMutation.Date] <br>
+		[_Mutation Type] : [OrderMutation.Type] </p>
+	</div>
+	<div class="mutation-details" style="display:none">
+		<div class="col2-set order-info-box">
+			
+		    <div class="col-1 in-block">
+			<div class="box">
+			    <div class="box-title">
+				<h4>[_Shipping Address]</h4>
+			    </div>
+			    <div class="box-content">
+				<address>
+				[OrderMutation.ShippingAddress=
+					[OrderAddress.FirstName] [OrderAddress.MiddleName] [OrderAddress.LastName]<br>
+					[OrderAddress.Street]<br>
+					[OrderAddress.City],  [OrderAddress.PostalCode]<br>
+					[OrderAddress.State] [OrderAddress.Country]<br>
+					T: [OrderAddress.TelNumber]
+				]</address>
+			
+			    </div>
+			</div>
+		    </div>
+		    <div class="col-2 in-block">
+			<div class="box">
+			    <div class="box-title">
+				<h4>[_Billing Address]</h4>
+			    </div>
+			    <div class="box-content">
+				<address>
+				[OrderMutation.BillingAddress=
+					[OrderAddress.FirstName] [OrderAddress.MiddleName] [OrderAddress.LastName]<br>
+					[OrderAddress.Street]<br>
+					[OrderAddress.City],  [OrderAddress.PostalCode]<br>
+					[OrderAddress.State] [OrderAddress.Country]<br>
+					T: [OrderAddress.TelNumber]
+				]
+				</address>
+				
+			    </div>
+			</div>
+		    </div>
+		</div>
+
+	
+		<h4 class="order-label items">[_Items]</h4>
+	
+		<div class="order-items-con">
+			<table class="data-table">
+			    <thead>
+				<tr>
+				    <th class="a-left" >[_Product Name]</th>
+				    <th class="a-right" width="15%">[_SKU]</th>
+				    <th class="a-center" width="15%">[_Price]</th>
+				    <th class="a-center" width="15%">[_Qty]</th>
+				    <th class="a-right" width="20%">[_Subtotal]</th>
+				</tr>
+			    </thead>
+			    <tbody>
+			
+				[OrderMutation.Items=
+				<tr>
+				    <td>[OrderItem.Name]<br></td>
+				    <td class="a-right">[OrderItem.Sku]</td>
+				    <td class="a-center">[OrderItem.PriceEach]</td>
+				    <td class="a-center">[OrderItem.Quantity]</td>
+				    <td class="a-right">[OrderItem.Price]</td>
+		
+				</tr>
+				]
+			
+			    </tbody>
+			    <tfoot>
+				[OrderMutation.TaxesAndCosts=
+				<tr><td colspan="4" class="a-right">[OrderTaxAndCost.Code]</td>
+				<td class="a-right">[OrderTaxAndCost.Amount]</td></tr>
+				]
+				[OrderMutation.Discount=
+				<tr><td colspan="4" class="a-right">[OrderDiscount.Name]</td>
+				<td class="a-right">[OrderDiscount.Amount]</td></tr>
+				]
+			    </tfoot>
+			</table>
+		</div>
+	</div>
+</div>
+]
+
+<script type="text/javascript">
+	$j('.mutation-details-head').click(function() {
+		var details = $j(this).siblings('.mutation-details');	
+	  	details.slideToggle('slow', function() { 
+	  });
+	});
+</script>

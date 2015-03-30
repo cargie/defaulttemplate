@@ -1,0 +1,104 @@
+/*
+*	Renders the main content of the WishListPage.  This will list products that is added to wishlist.
+*/
+
+<div class="my-account">
+	<div class="wishlist-container">
+		<div class="page-title">
+			<h2>[_My Wishlist]</h2>
+		</div>
+		[?WishList.Empty|WishListFilled=
+		<div class="my-wishlist">
+			<form id="form-wishlist" method="post">
+				<table class="data-table">
+					<colgroup>
+						<col width="190"/>
+						<col/>
+						<col width="150"/>
+						<col width="50"/>
+					</colgroup>
+					<thead>
+						<tr>
+							<th>[_Product Image]</th>
+							<th>[_Product Details and Comment]</th>
+							<th>[_Add to Cart]</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						[WishList.Items=
+						<tr>
+							<td>
+								<div class="image-holder">
+									<a class="product-image" href="[Website.GetUrl,Product,[Product.Id]]">
+										<img src="/[Product.ThumbnailImage=[ProductImage.ImageUrl,205,220]]" alt="[Product.Name]"  />
+									</a>
+								</div>
+							</td>
+							<td>
+								<a href="[Website.GetUrl,Product,[Product.Id]]" class="product-name">[Product.Name]</a>
+							
+								<ul>[WishListItem.Attributes=<li>[WishListItemAttribute.Value]</li>]</ul>
+								<dl>[WishListItem.Options=
+									<dt> [ProductOption.Label]</dt> 
+									<dd>[WishListOption.ValueAsText]</dd>
+									]
+								</dl>
+								<p>[Product.Description]</p>
+								<textarea title="[_Comment]" cols="30" rows="8" name="description\\\[[WishListItem.Id]\\\]" onfocus="focusComment(this)" onblur="focusComment(this)">[?WishListItem.CommentEmpty|Set=[WishListItem.Description] |Empty=[_Please enter your comments...]]</textarea>
+							</td>
+						
+							<td>
+								<p>[:ProductPriceBlock?Product.Sale]</p>
+								<input type="text" name="qty\\\[[WishListItem.Id]\\\]" value="[WishListItem.Quantity]" size="2" class="qty" id="qty[WishListItem.Id]">
+								[?Product.ProductType|Configurable=
+									<button  class="button btn[Design.DesignSelectionName,ButtonStyle]" onclick="window.location.href='[Website.GetUrl,Product,[Product.Id]]'" class="button btn-cart" title="[_Configure]" type="button">
+										<span><span>[_Configure]</span></span>
+									</button>
+								|=
+									[?Product.HasRequiredOptions|Yes=
+										<button  class="button btn[Design.DesignSelectionName,ButtonStyle]" onclick="window.location.href='[Website.GetUrl,Product,[Product.Id]]'" class="button btn-cart" title="[_Configure]" type="button">
+											<span><span>[_Configure]</span></span>
+										</button>
+									|=
+									<p><button type="button" class="button btn[Design.DesignSelectionName,ButtonStyle]" title="[_add to cart]" onclick="actionCart('form-wishlist','[Website.GetUrl,Magento,AddFromWishlistToCart]','[Url.FullUrl]',true,'[WishListItem.Id]','[Website.GetUrl,Cart]','qty='+jQuery('#qty[WishListItem.Id]').val())"><span><span>[_Add to Cart]</span></span></button></p>
+									]
+								]
+								
+								<p><a href="#" class="edit">[_Edit]</a></p>
+							</td>
+							<td>
+								<button value="[_Remove Item]" onclick="setLocationAjax('[Website.GetUrl,Magento,RemoveFromWishList]','[Url.FullUrl]',true,[WishListItem.Id]);" class="button btn-remove" title="[_Remove Item]" type="button"><img src="[File:/images/closev1.png]"/></button>
+							</td>
+						</tr>
+
+						]
+					</tbody>
+				</table>
+				<div class="buttons-set a-right">
+					<button type="button" class="button btn[Design.DesignSelectionName,ButtonStyle]"><span><span>[_SHARE THIS WISHLIST]</span></SPAN></button>
+					<button type="button" class="button btn[Design.DesignSelectionName,ButtonStyle]" onclick="setLocationAjax('[Website.GetUrl,Magento,ClearWishList]','[Url.FullUrl]',true,'');"><span><span>[_Clear Wishlist]</span></SPAN></button>
+					<button type="button" class="button btn[Design.DesignSelectionName,ButtonStyle]" onclick="setLocationAjax('[Website.GetUrl,Magento,AddAllToCart]','[Url.FullUrl]',true,'');"><span><span>[_ADD ALL TO CART]</span></SPAN></button>
+					<button type="submit" class="button btn[Design.DesignSelectionName,ButtonStyle]"><span><span>[_UPDATE WISHLIST]</span></SPAN></button>
+				</div>
+			</form>
+		</div>
+		<script type="text/javascript">
+	
+		function focusComment(obj) {
+			if( obj.value == '[_Please enter your comments...]' ) {
+			    obj.value = '';
+			} else if( obj.value == '' ) {
+			    obj.value = '[_Please enter your comments...]';
+			}
+		}
+		jQuery("#form-wishlist").validate({
+			submitHandler: function(form) {
+				setLocationAjaxAction('form-wishlist','[Website.GetUrl,Magento,UpdateWishList]','[Url.FullUrl]',true,'',jQuery('#form-wishlist').serialize(),'[Website.GetUrl,WishList]');
+			 }	
+		});
+		</script>
+		|WishListEmpty=[_Your wishlist is empty.]]
+	
+	</div>
+</div>

@@ -1,0 +1,130 @@
+
+/*
+*		Renders the listings of products of the current category.
+*		Can be list as Grid type or List type.
+*/
+
+[?UserInput.CatalogMode|List=
+	<div class="item-wrapper styleA">
+		<div class="product-ribbon [?Product.Sale|sale=sale] [?Product.New|new=new]"></div>
+		<div class="product-image in-block">
+			<a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]"><img alt="[Product.Name]" width="190" src="/[Product.SmallImage=[ProductImage.ImageUrl,205,220]]"></a>
+		</div>
+		<div class="product-details in-block">
+			<div class="product-title in-block">
+				<a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]"><h2 class="product-name">[Product.Name] </h2></a>
+			</div>
+			<div class="add-to-wish-compare in-block">
+				<span class="add-to-wishlist"><a href="#"><img src="[File:/images/wishlist_styleA.png]"/></a></span>
+				<span class="add-to-compare"><a href="#"><img src="[File:/images/compare_icon_styleA.png]"/></a></span>
+			</div>
+			<div class="wrapper product-details">
+				<strong>[_OVERVIEW]</strong>
+				<p class="description">
+					[Product.Description] <a href="" class="more">[_View details]</a>
+				</p>
+			</div>
+			<div>
+				<div class="attributes-con in-block">
+					[:ProductListItemAttributes]
+				</div>
+				<div class="rating-con in-block">
+					[:ProductRating]
+				</div>
+			</div>
+			
+			<div class="bottom-con">
+				<div class="price-block in-block">[:PriceBlock?Product.Sale]</div>
+				<div class="product-qty">
+					<label for="product-qty">[_Qty]</label>
+  					<input id="product-qty-[Product.Id]" value="1">
+				</div>
+				<script type="text/javascript">
+					jQuery( "#product-qty-[Product.Id]" ).spinner({ min: 1 });
+				</script>
+				<div class="cart-details">
+					<button class="button btn-cart"><img src="[File:/images/cart_styleA.png]"/></button>
+					<button class="button btn-details"><img src="[File:/images/i_icon_styleA.png]"/></button>
+				</div>
+			</div>
+		</div>
+	</div>
+|Grid=
+	[?Design.DesignSelectionName,CategoryListLayout
+	|2ProductsInARow=
+		<div class="item-wrapper styleA two">
+			<div class="wrapper first">
+				<div class="product-image">
+					<a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]"><img src="/[Product.ThumbnailImage=[ProductImage.ImageUrl,205,220]]" width="165px" alt="[Product.Name]"/></a>
+				</div>
+				<div class="ratings in-block">
+					[:ProductRating]
+				</div>
+			</div>
+			 <div class="wrapper second product-details">
+		
+				<a href="[Website.GetUrl,Product,[Product.Id]]"><h2 class="product-name">[Product.Name] </h2></a>
+				<strong>[_OVERVIEW]</strong>
+				<p class="description">
+					[Product.Description] <a href="" class="more">[_View details] </a>
+				</p>
+				<div class="attributes-con in-block">
+					[:ProductListItemAttributeColor]
+				</div>
+			</div>
+			<div class="bottom-wrapper">
+				<div class="add-to-wish-compare">
+					<span class="add-to-wishlist"></span>
+					<span class="add-to-compare"></span>
+				</div>
+				<hr>
+				<div class="bottom-con">
+					<div class="in-block">[:PriceBlock?Product.Sale]</div>
+					<div class="cart-details">
+						<button class="button btn-cart"></button>
+						<button class="button btn-details"></button>
+					</div>
+				</div>
+			</div>
+		</div>
+	|3ProductsInARow=
+		<div class="item-wrapper styleA three 111">
+		
+			<a href="[Website.GetUrl,Product,[Product.Id]]"><h2 class="product-name">[Product.Name] </h2></a>
+			<div class="product-image">
+				<a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]"><img src="/[Product.ThumbnailImage=[ProductImage.ImageUrl,205,220]]" width="165px" alt="[Product.Name]"/></a>
+			</div>
+			
+			 <div class="product-details">
+			 	<strong>[_OVERVIEW]</strong>
+				<p class="description">
+					[Product.Description] <a href="" class="more">[_View details] </a>
+				</p>
+				<div class="attributes-con in-block">
+					[:ProductListItemAttributeColor]
+				</div>
+			
+			</div>
+			<div class="bottom-wrapper">
+				<div class="ratings in-block">
+					[:ProductRating]
+				</div>
+				<div class="add-to-wish-compare in-block">
+					<span class="add-to-wishlist"></span>
+					<span class="add-to-compare"></span>
+				</div>
+			
+				<div class="bottom-con">
+					<div class="in-block">[:PriceBlock?Product.Sale]</div>
+					<div class="cart-details">
+						<button class="button btn-cart"></button>
+						<button class="button btn-details"></button>
+					</div>
+				</div>
+			</div>
+		</div>
+	|4ProductsInARow=
+	|= 
+		[:ProductListItemStyleA.3ProductsInARow]
+	]
+]

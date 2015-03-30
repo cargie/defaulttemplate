@@ -1,0 +1,58 @@
+/*
+*	Renders the question type of the survey.  This display radio, checkbox, datafield, etc. on survey question.
+*/
+
+<label class="question" for="question_[PollQuestion.Id]">[PollQuestion.Question] [?PollQuestion.Required|Yes=<label class="required"><em>*</em></label>]</label>
+[?PollQuestion.QuestionType
+|Radio=
+	<ul class="survey-choices">
+		[PollQuestion.Answers=
+		<li>
+			<input type="radio" name="question_[PollQuestion.Id]" class="[?PollQuestion.Required|Yes=required]" id="answer_[PollQuestion.Code]_[PollAnswer.Code]" value="[PollAnswer.Id]">
+			<span class="in-block"><label for="answer_[PollQuestion.Code]_[PollAnswer.Code]">[PollAnswer.Answer]</label></span>
+		</li>
+		]
+	</ul>
+|Checkbox=
+	<ul class="survey-choices">
+		<input type="hidden" value="" id="question_[PollQuestion.Id]_con" class="required" name="question_[PollQuestion.Id]"/>
+		[PollQuestion.Answers=
+		<li>
+			<input type="checkbox" name="c_[PollQuestion.Id]" class="question_[PollQuestion.Id]" id="answer_[PollQuestion.Id]_[PollAnswer.Code]" value="[PollAnswer.Id]">
+			<span class="in-block"><label for="answer_[PollQuestion.Id]_[PollAnswer.Code]">[PollAnswer.Answer]</label></span>
+		</li>
+		]
+	</ul>
+	
+	<script type="text/javascript">
+		jQuery(".question_[PollQuestion.Id]").change(function(){
+			var ids = [];
+			jQuery('.question_[PollQuestion.Id]').each(function() {
+				if (jQuery(this).attr('checked')){
+					ids.push(jQuery(this).val());
+				}
+			});
+			jQuery("#question_[PollQuestion.Id]_con").val(ids);
+		})
+
+	</script>
+|DateField=
+	<br><input type="text" name="question_[PollQuestion.Id]" value="" class="[?PollQuestion.Required|Yes=required]"/>
+|NumericalField=
+	<br><input type="text" name="question_[PollQuestion.Id]" value="" style="width:200px;" class="[?PollQuestion.Required|Yes=required]"/>
+|SingleCheck=
+	<ul class="survey-choices">
+		single check
+		[PollQuestion.Answers=
+		<li>
+			<input type="checkbox" name="question_[PollQuestion.Id]" class="[?PollQuestion.Required|Yes=required]" id="answer_[PollQuestion.Code]_[PollAnswer.Code]" value="[PollAnswer.Id]">
+			<span class="in-block"><label for="answer_[PollQuestion.Code]_[PollAnswer.Code]">[PollAnswer.Answer]</label></span>
+		</li>
+		]
+	</ul>
+|TextField=
+	<br><input id="question_[PollQuestion.Id]" type="text" name="question_[PollQuestion.Id]" value="" class="[?PollQuestion.Required|Yes=required]" style="width:200px;" />
+|Area=
+<br><textarea id="question_[PollQuestion.Id]"  name="question_[PollQuestion.Id]"  class="[?PollQuestion.Required|Yes=required]" style="width:200px;"></textarea>
+]
+

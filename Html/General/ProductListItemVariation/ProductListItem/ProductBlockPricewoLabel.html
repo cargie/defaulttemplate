@@ -1,0 +1,30 @@
+/*
+*	Renders product list item price with label.
+*/
+
+[?Product.ProductType|Simple=
+	[?Product.Sale|sale=
+	<span class="price"><s>[Product.Price] </s>[Product.SpecialPrice]</span>
+	|=
+	<span class="price">
+		[Product.Price]
+	</span>
+	]
+	[Product.ActualPriceTakenFrom] [Product.ActualPrice]
+	[?Product.TierPricesExist|Yes=
+	<p><a href="[Website.GetUrl,Product,[Product.Id]]">[_As low as: %1, [Product.LowestTierPrice]]</a></p>
+	]
+|Configurable=
+	[?SimpleProduct.Sale|sale=
+	<span class="price"><s>[SimpleProduct.Price] </s>[SimpleProduct.SpecialPrice]</span>
+	|=
+	<span class="price">
+		[SimpleProduct.Price]
+	</span>
+	]
+	[SimpleProduct.ActualPriceTakenFrom] [SimpleProduct.ActualPrice]
+	[?SimpleProduct.TierPricesExist|Yes=
+	<p><a href="[Website.GetUrl,Product,[Product.Id]]">[_As low as: %1, [SimpleProduct.LowestTierPrice]]</a></p>
+	]
+]
+

@@ -1,0 +1,28 @@
+/*
+*		Renders the 1 column layout for most of the pages.  This can be enherited on per model basis.
+*
+*/
+/** -------------------------------------------------------------------
+Name:              1Column
+Location:          /Html/General/Layouts/1Column.html
+Created By:        Seth Malaki
+Created At:        22-Okt-2014 19:00 (myupdates in adding comments)
+Last modified By:  Seth Malaki
+Last modified At:  23-Okt-2014 17:52 (myupdates in adding comments)
+Calling blocks:    breadcrumb 	Footer 	header 	mainContent 	notification 	
+--------------------------------------------------------------------**/
+
+ 
+<div class="page">
+	[:header]
+	<div class="one-column">
+		[:breadcrumb]
+		<div class="main-container">
+			<div class="main ">
+				[:notification]
+				[:mainContent]
+			</div>
+		</div>
+	</div>
+	[:Footer]
+</div>

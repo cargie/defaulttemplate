@@ -1,0 +1,65 @@
+/*
+*	
+*		renders the containing items in the shopping cart.
+*
+*/
+/** -------------------------------------------------------------------
+Name:              CartItemsBlock
+Location:          /Html/Cart/Content/CartTableBlock/CartItemsBlock.html
+Created By:        Leslie Canete
+Created At:        07-Okt-2014 16:54 (move to and rename ShoppingCartBlocks to Cart)
+Last modified By:  Seth Malaki
+Last modified At:  21-Okt-2014 17:09 (myupdates on addingComments)
+Called from:       CartTableBlock 	
+--------------------------------------------------------------------**/
+
+
+[ShoppingCart.Items= 
+<tr class="a-center">
+	<td>
+		<a class="product-image" title="[Product.Name]" href="[Website.GetUrl,Product,[Product.Id]]">
+			<img width="120" src="/[Product.ThumbnailImage=[ProductImage.ImageUrl,100,125]]">
+		</a>
+	</td>
+    <td class="p-items">
+		<h4 class="product-name">
+			<a href="[Website.GetUrl,Product,[Product.Id]]">[Product.Name] </a>
+		</h4>
+		<p class="item-msg error">[ShoppingCartItem.Message] </p>
+		[ShoppingCartItem.Attributes=
+		<dl class="item-options">
+			<dt>[ShoppingCartItemAttribute.Value]</dt>
+		</dl>
+		]
+		[ShoppingCartItem.Options=
+		<dl class="item-options">
+			<dt>[ShoppingCartOption.ValueAsText]</dt>
+		</dl>
+		]
+	</td>
+    <td class="a-center">
+		<a title="Edit item parameters" href="[Website.GetUrl,Product,[Product.Id]]">[_Edit]</a>
+	</td>
+    <td class="a-center">
+		<div class="cart-price">
+			<span class="price">[ShoppingCartItem.PriceEach]</span>
+		</div>
+	</td>
+	<td class="a-center">
+		<div class="cart-price">
+			<span class="qty"><input name="qty[ShoppingCartItem.Id]" value="[ShoppingCartItem.Quantity]" size="4" title="[_Qty]" class="input-text qty" maxlength="12"></span>
+		</div>
+	</td>
+	<td class="a-center">
+		<div class="cart-price">
+			<span class="subtotprice">[ShoppingCartItem.RowTotal]</span>
+		</div>
+	</td>
+	<td class="a-center last">
+		<button value="Remove Item" onclick="setLocationAjax('[Website.GetUrl,Magento,RemoveFromCart]','[Url.FullUrl]',true,[ShoppingCartItem.Id]);" class="button btn-remove" title="[_Remove Item]" type="button"><img src="[File:/images/closev1.png]"/></button>
+	</td>
+	</td></td>
+</tr>
+]
+
+

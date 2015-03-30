@@ -1,0 +1,24 @@
+/*
+*		Renders the store currency switcher.
+* logo is in right part, menu is in left part
+*/
+
+<div class="row header-container" style="" id="header_type_e">
+	<div class="large-12 header">
+		<div class="header-top">
+			<div class="large-8 columns">
+			[:HeaderMainMenuBlock]
+			</div>
+			<div class="large-4 columns a-center">
+			[?DesignLayout.CheckHeader,[Url.Model],HeaderLogoBlock|Yes=[:HeaderLogoBlock]]
+			</div>
+		</div>
+		<div class="header-bottom">
+			<div class="large-6 columns cartblock">[:HeaderCartBlock]</div>
+			<div class="large-6 columns a-right">[:HeaderTopNavigationLinksBlock]</div>
+		</div>
+	</div>
+</div>
+
+[:SubmitAsPostVar]
+

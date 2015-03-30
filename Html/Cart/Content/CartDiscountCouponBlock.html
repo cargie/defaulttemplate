@@ -1,0 +1,49 @@
+/*
+*		renders the cart discount coupon form.
+*
+*/
+/** -------------------------------------------------------------------
+Name:              CartDiscountCouponBlock
+Location:          /Html/Cart/Content/CartDiscountCouponBlock.html
+Created By:        Leslie Canete
+Created At:        07-Okt-2014 16:54 (move to and rename ShoppingCartBlocks to Cart)
+Last modified By:  Seth Malaki
+Last modified At:  21-Okt-2014 17:09 (myupdates on addingComments)
+Called from:       mainContent.Cart 	
+--------------------------------------------------------------------**/
+
+
+<div class="discount-coupon-box">
+	<form id="discount-coupon-form" method="post" action="">
+		<div class="discount">
+			<h3 class="discount-title">[_Discount Codes]</h3>
+			<div class="discount-form">
+				<label for="coupon_code">[_Enter your coupon code if you have one.]</label>
+				<input id="remove-coupon" type="hidden" value="0" name="remove">
+				<input class="input-text required" id="coupon_code" name="coupon_code" value="">
+			</div>
+			<div class="btn-applycoupon">
+				<button type="submit" title="Apply Coupon" class="button btn-secondary[Design.DesignSelectionName,ButtonStyle]" onclick="discountForm(false);" value="[_Apply Coupon]"><span><span>[_Apply Coupon]</span></span>
+				</button>
+			</div>
+		</div>
+	</form>
+</div>
+
+<script type="text/javascript">
+var discountForm = function (isRemove) {
+	
+    if (isRemove) {
+	jQuery('#coupon_code').removeClass('required');
+	jQuery('#remove-coupon').val("1");
+    } else {
+	jQuery('#coupon_code').addClass('required');
+	jQuery('#remove-coupon').val("0");
+    }
+     submitAjaxAction('discount-coupon-form','[Website.GetUrl,Magento,ProcessDiscountCoupon]','[Url.FullUrl]',true,'',jQuery('#discount-coupon-form').serialize(),'[Website.GetUrl,Cart]');
+   
+}
+</script>
+
+
+

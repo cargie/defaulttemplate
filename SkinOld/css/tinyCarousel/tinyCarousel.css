@@ -1,0 +1,21 @@
+/* Tiny Carousel */
+.tinyCarousel { height: 1%; overflow:hidden; padding: 0 0 20px; width:720px; margin:0 auto;  }
+.tinyCarousel .viewport { float: left; width: 636px; height: 200px; overflow: hidden; position: relative;}
+.tinyCarousel .buttons { background:url("arrows.png") no-repeat scroll 0 0 transparent; display: block; margin: 55px 10px 0 0; background-position: 0 0px; text-indent: -999em; float: left; width: 25px; height: 37px; overflow: hidden; position: relative; }
+.tinyCarousel .next { background-position: -25px 0; margin: 55px 0 0 10px;  }
+.tinyCarousel .disable { visibility: hidden; }
+.tinyCarousel .overview { list-style: none; position: absolute; padding: 0; margin: 0; width: 590px; left: 0 top: 0; }
+.tinyCarousel .overview li{ float: left;  /*height: 180px; width: 120px;*/}
+
+.tinyCarousel .pager { overflow:hidden; list-style: none; clear: both; margin: 0 0 0 45px; }
+.tinyCarousel .pager li { float: left; }
+.tinyCarousel .pagenum { background-color: #fff; text-decoration: none; text-align: center; padding: 5px; color: #555555; font-size: 14px; font-weight: bold; display: block; }
+.tinyCarousel .active { color: #fff; background-color:  #555555; }
+/*
+.carousel-items-3{
+	width:auto;
+}
+.carousel-items-3 .viewport{
+	width:100%;
+}*/
+

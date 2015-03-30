@@ -1,0 +1,98 @@
+ <div class="checkout-onestep-content" id="shipping-con" style="display:none">
+    <ul class="form-list">
+   [?Customer.NumberOfAddresses|more=
+       <li class="wide">
+           <label for="shipping-address-select">[_Select a shipping address from your address book or enter a new address.]</label>
+           <div class="input-box">
+               <select onchange="shipping.newAddress(!this.value)" title="" class="address-select" id="shipping-address-select" name="shipping_address_id">
+[Customer.Addresses=
+<option  value="[Address.Id]" [?Address.Type|shipping=selected="selected"]>[Address.FirstName] [Address.LastName] [Address.StreetName], [Address.City],  [Address.PostalCode]  [Address.State],  [Address.Country] 
+</option>
+]
+<option value="">[_New Address]</option>
+		</select>
+           </div>
+       </li>
+    ]
+	
+        <li id="shipping-new-address-form" [?Customer.NumberOfAddresses|more=style=display:none]>
+            <fieldset>
+                <input type="hidden" name="address_id" value="" id="shipping:address_id" />
+                <ul>
+			<li class="fields">
+				 <div class="field">
+		                    <label for="shipping:country_id" class="required">[_Country] <em>*</em></label>
+		                    <div class="input-box">
+		                       	<select  class="validate-select required" title="[_country]" id="shipping:country_id" name="country_id"  onchange="addressByCountry_sp(this.value)" >
+						<option value="">[_Please select country]</option>						
+						[CheckOut.AvailableCountries=
+						<option value="[Country.Id]">[Country.Name] </option>
+						]
+					</select>
+
+		                    </div>
+		                </div>
+			</li>
+                    <li class="fields wide">
+				<div class="customer-name">
+					<label class="multifield">[_Name] <em>*</em> </label>
+				    	<div class="field2 in-block">
+						<label class="required" for="shipping:firstname">[_First Name]</label>
+						<div class="input-box2">
+						    <input type="text" class="input-text required"  value="" name="firstname"  title="[_firstname]" id="shipping:firstname">
+						</div>
+			    		</div>
+					<div class="field2 in-block">
+						<label class="required" for="shipping:lastname">[_Last Name] </label>
+						<div class="input-box2">
+						    <input type="text" class="input-text required"  value="" name="lastname" title="[_lastname]" id="shipping:lastname">  
+						  
+						</div>
+					</div>
+				</div>
+		    </li>
+                    <li class="fields">
+                        <div class="field">
+                            <label for="shipping:company">[_Company]</label>
+                            <div class="input-box">
+                                <input type="text" id="shipping:company" name="company" name="title"  value="" class="input-text" onchange="shipping.setSameAsBilling(false);" />
+                            </div>
+                        </div>
+          		
+                    </li>
+                  	<li class="wide fields" id="shipping:address">
+					
+                    	</li>
+                  
+                    <li class="fields">
+                        <div class="field">
+                            <label for="shipping:telephone" class="required">[_Telephone] <em>*</em></label>
+                            <div class="input-box">
+                                <input type="text" name="telephone" title="[_telephone]"  telephone="telephone" value=""  class="input-text required" id="shipping:telephone" onchange="" />
+                            </div>
+                        </div>
+                       [?Customer.LoggedIn|No=	
+                        <div class="field">
+                            <label for="shipping:email" class="required">[_Email Address] <em>*</em></label>
+                            <div class="input-box">
+                                <input type="text" name="email" title="[_email]" id="shipping:email" value="" class="input-text email required" />
+                            </div>
+                        </div>
+          		]
+                    </li>
+              <!--  <?php if ($this->isCustomerLoggedIn() && $this->customerHasAddresses()):?>-->
+                    <li class="fields">
+                        <input type="checkbox" name="save_in_address_book" value="1"  id="shipping:save_in_address_book" onchange="" checked="checked" class="checkbox" /><label for="shipping:save_in_address_book">[_Save in address book]</label></li>
+              <!--  <?php else:?>
+                    <li class="no-display"><input type="hidden" name="shippingsave_in_address_book" value="1" /></li>
+                <?php endif;?> -->
+                </ul>
+            </fieldset>
+        </li>
+      	<li class="control">
+            <input type="checkbox" name="same_as_billing" id="shipping:same_as_billing" value="1" title="[_Use Billing Address]" onclick="shipping.setSameAsBilling(this.checked)" class="checkbox" /><label for="shipping:same_as_billing">[_Use Billing Address]</label>
+        </li>
+    </ul>
+  
+</div>
+

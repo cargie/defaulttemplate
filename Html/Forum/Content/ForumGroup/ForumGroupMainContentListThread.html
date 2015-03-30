@@ -1,0 +1,56 @@
+/*
+*		Renders the thread list information in a certain forum group. 
+*
+*/
+
+<div class="forum-content [Thread.Status]">
+	[?Thread.IsNew|Yes=<div class="ribbon new"></div>]
+	[?Thread.isHot|Yes=<div class="ribbon hot"></div>]
+	[?Thread.Status|Deleted=<div class="ribbon deleted"></div>]
+	<div class="fdata">
+		<ul>
+			<li class="forum-details">
+				[?Thread.Status|Pinned=
+					<div class="tag_badge pinned">[_PINNED]</div>
+				]
+				<span class="updated"><strong>[_Updated last] :</strong> [Thread.LastUpdated]</span>
+			</li>
+			<li class="forum-author">
+				<img src="[File:/css/forum/images/no_image.png]"/>
+				<div class="author-details">
+					<span class="by">[_by: %1, [Thread.UserName]]</span><br/>
+					<span class="posted-on">[_Posted on]: [Thread.Created]</span>
+				</div>
+			</li>
+			<li class="forum-settings">
+				<div class="replies"><span>[Thread.NrComments]</span><br/>[_replies]</div>
+				<div class="views"><span>[Thread.NrViews]</span><br/>[_views]</div>
+				[?Customer.IsAdminForForum|Yes=
+					[?Thread.Status|DeletedByAdmin=|DeletedByUser=|Deleted=|=
+						<div class="settings">
+							<a class="thread-settings" href="#"><img width="20" src="[File:/css/forum/images/settings.png]"/></a>
+							<div class="settings-popup">
+				
+								<div class="set-type" onclick="ForumPost.threadActions([Thread.Id],'enable')">[_Enable This]</div>
+								<div class="set-type" onclick="ForumPost.threadActions([Thread.Id],'block')">[_Block this]</div>
+				
+								<div class="set-type" onclick="ForumPost.threadActions([Thread.Id],'delete')">[_Delete this]</div>
+				
+								<div class="set-type" onclick="ForumPost.threadActions([Thread.Id],'pinned')">[_Pin this]</div>
+								<div class="set-type" onclick="ForumPost.threadActions([Thread.Id],'makeprio')">[_Make Prio]</div>
+				
+							</div>
+						</div>
+					]
+				]
+			</li>
+		</ul>
+		<div class="forum-thread-details ">
+			<h4>
+				<a href="[Website.GetUrl,forum,thread/[Thread.Id]]">[Thread.Title] </a>
+			</h4>
+			<p>[Thread.Description]</p>
+		</div>
+		[:forumGroupFooterContentBlock]
+	</div>
+</div>

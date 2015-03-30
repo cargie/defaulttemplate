@@ -1,0 +1,31 @@
+/*
+*		Renders a block that contains mini search function.
+*
+*/
+
+<form id="side_search_mini_form"  method="post">
+	<label for="search">[_Search:]</label>
+	<input id="side-product-search" type="text" name="q" value="" class="input-text" maxlength="128" autocomplete="off">
+	<button id="side-search-button" type="button" class="small btn-blue"><span><span>[_Search]</span></span></button>
+	
+	<div id="search_autocomplete" class="search-autocomplete">
+	
+	</div>
+</form>
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		jQuery("#side-search-button").click(function(){
+			var str = jQuery('#side-product-search').val();
+			if (str.length==0)
+				return;
+			window.location = "[Website.GetUrl,Search,Text/]"+jQuery("#side-product-search").val();
+		});
+		jQuery("#side-product-search").keydown(function(event){
+			if(event.keyCode == 13) {
+				jQuery("#side-search-button").click();
+			}
+		});
+
+	});
+</script>
+

@@ -1,0 +1,9 @@
+/*
+*		renders the blocks that is belong to right column as configured in the backend.
+*
+*/
+
+[?DesignLayout.RightColumnUseGeneral|Yes=
+	[DesignLayout.RightColumn,General=[:[DesignSelection.Name]]]
+	|No=[DesignLayout.RightColumn,[Url.Model]=[:[DesignSelection.Name]]]
+]

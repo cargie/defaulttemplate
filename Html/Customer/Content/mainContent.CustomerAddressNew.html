@@ -1,0 +1,144 @@
+/*
+*		Renders the main content information of the CustomerAddressNewPage.
+*							
+*/
+
+
+<div class="my-account">
+	<div class="page-title">
+		<h2>[_New Address]</h2>
+	</div>
+<form id="form-newaddress" method="post">
+	<div class="fieldset">
+		<h3 class="legend">[_Contact Information]</h3>
+		<ul class="form-list">
+			<li class="fields">
+				<div class="field">
+					<label class="required" for="country"><em>*</em>[_Country]</label>
+					<select title="Country" class="required" id="country-address" name="country_id" onchange=addressByCountry(this.value);>
+						[Website.AvailableCountries=
+							[CountryGroup.Countries=
+							<option value="[Country.Id]">[Country.Name]</option>
+							]
+						]
+					</select>
+					<script type="text/javascript">
+						jQuery("#country-address option\[value=[Configuration.DefaultCountryId]\]").attr("selected","selected");
+					</script>
+				</div>
+			</li>
+			<li class="fields" id="title_field"><div class="field">
+				<label class="required" for="title"><em>*</em>[_Title]</label>
+				<div class="input-box">
+					<input type="text" class="input-text required"  title="[_Title]" value="" name="title" id="title">
+				</div>
+			</div>
+			</li>
+		    	<li class="fields">
+				<div class="customer-name">
+					    <div class="fieldname">
+						<label class="required" for="firstname"><em>*</em>[_First Name]</label>
+						<div class="input-box">
+						    <input type="text" class="input-text required"  title="[_First Name]" value="" name="firstname" id="firstname">
+						</div>
+					    </div>
+					    <div class="fieldname">
+						<label class="" for="middlename">[_Middle Name]</label>
+						<div class="input-box">
+						    <input type="text" class="input-text" title="[_Middle Name]" value="" name="middlename" id="middlename">
+						</div>
+					    </div>
+					    <div class="fieldname">
+						<label class="required" for="lastname"><em>*</em>[_Last Name]</label>
+						<div class="input-box">
+						    <input type="text" class="input-text required" title="[_Last Name]" value="" name="lastname" id="lastname">
+						</div>
+					    </div>
+				</div>
+		    	</li>
+			<li class="fields">
+				<label for="company">[_Company]</label>
+				<div class="input-box">
+				    <input type="text" class="input-text" value="" title="[_Company]" id="company" name="company">
+				</div>
+			</li>
+		    	<li class="fields">
+				<div class="field">
+				    <label class="required" for="telephone"><em>*</em>[_Telephone]</label>
+				    <div class="input-box">
+					<input type="text" id="telephone" class="input-text required" title="[_Telephone]" value="" name="telephone">
+				    </div>
+				</div>
+		    	</li>
+			<li class="fields">
+				 <label for="email"><em>*</em>[_Email]</label>
+				
+				<div class="input-box">
+					<input type="text" class="input-text required email" value="" title="[_email]" id="email" name="email">
+		    		</div>
+			</li>
+		</ul>
+	</div>
+    	<div class="fieldset">
+		<h3 class="legend">[_Address]</h3>
+		<div class="fields" id="street_field"><label class="required address" for="street1"><em>*</em>[_Street] </label>
+			<div class="input-box">
+				<input type="text" class="input-text required" id="street1" title="Street Address" value="[Address.StreetName]" name="street1">
+			</div>
+		</div>
+		<div class="fields" id="address2_field">
+			<div class="input-box">
+				<input type="text" class="input-text" id="street2" title="Street Address" value="[Address.AddressLine2]" name="street2">
+			</div>
+		</div>
+		<div class="fields" id="housenumber_field">
+			<label class="required" for="house_number"><em>*</em>[_Nr] </label>
+			<div class="input-box"><input type="text" class="input-text required" id="house_number" size="10" title="House Number" value="[Address.HouseNumber]" name="house_number"></div>
+		</div>
+		<div class="fields" id="housenumberext_field">
+			<label class="required" for="house_number_ext"><em>*</em>[_Ext.]</label>
+			<div class="input-box"><input type="text" class="input-text required" id="house_number_ext" size="10" title="House Number Extension" value="[Address.HouseNUmberExtention]" name="house_number_ext"></div>
+		</div>
+		<div class="fields">
+			<label class="required" for="city"><em>*</em>[_City]</label>
+			<div class="input-box"><input type="text" id="city" class="input-text required" title="City" value="[Address.City]" name="city">
+			</div>
+		</div>
+		<div class="fields" id="postal_field">
+			<label class="required" for="postcode"><em>*</em>[_Zip/Postal Code]</label>
+			<div class="input-box">
+				<input type="text" class="input-text validate-zip-international required" id="postcode" title="Zip/Postal Code" value="[Address.PostalCode]" name="postcode">
+			</div>
+		</div>
+		<div class="fields" id="region_field">
+			<label class="required" for="region_id"><em>*</em>[_State/Province]</label>
+			<div class="input-box">
+				<select style="" class="validate-select" title="State/Province" name="region_id" id="region_id" defaultvalue="0">   <option value="">[_Please select region, state or province]</option></select>
+			</div>
+		</div>
+    	</div>
+	<div class="fieldset controls">
+		<ul class="form-list">
+			<li class="fields control">
+				<input type="checkbox" class="checkbox in-block" title="[_Use as My Default Billing Address]" value="1" name="default_billing" id="primary_billing"><label for="primary_billing" class="in-block">[_Use as my default billing address]</label>
+			</li>
+		    	<li class="fields control">
+				<input type="checkbox" class="checkbox in-block" title="[_Use as My Default Shipping Address]" value="1" name="default_shipping" id="primary_shipping"><label for="primary_shipping" class="in-block">[_Use as my default shipping address]</label>
+		 	</li>
+		</ul>
+	</div>
+	<div class="buttons-set">
+		<p class="required">[_* Required Fields]</p>
+		<p class="back-link"><a href="[Website.GetUrl,Customer,Address]"><small>« </small>[_Back]</a></p>
+		<button class="button btn[Design.DesignSelectionName,ButtonStyle]" title="[_Save Address]" type="submit"><span><span>[_Save Address]</span></span></button>
+   	</div>
+</form>
+<script type="text/javascript">
+jQuery("#form-newaddress").validate({
+	submitHandler: function(form) {
+		setLocationAjaxAction('form-newaddress','[Website.GetUrl,magento,AddAddress]','[Url.FullUrl]',false,'',jQuery('#form-newaddress').serialize(),'[Website.GetUrl,Customer,Address]');
+	 }	
+});
+</script>
+[:CustomerAddressJs]
+</div>

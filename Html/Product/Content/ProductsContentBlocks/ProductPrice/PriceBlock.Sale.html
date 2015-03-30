@@ -1,0 +1,13 @@
+/*
+*	Renders a block of product price with tax options.
+*
+*/
+
+[?Product.ProductType
+|Configurable=
+	<span class="price">[SimpleProduct.SpecialPrice] <span class="old-price"><s>[SimpleProduct.Price] </s> </span></span>
+	[SimpleProduct.ActualPriceTakenFrom] [SimpleProduct.ActualPrice]
+|Simple=
+	<span class="price">[Product.SpecialPrice] <span class="old-price"><s>[Product.Price] </s> </span></span>
+	[Product.ActualPriceTakenFrom] [Product.ActualPrice]
+]

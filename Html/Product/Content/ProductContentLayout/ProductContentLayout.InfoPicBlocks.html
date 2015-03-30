@@ -1,0 +1,30 @@
+/*
+*	Renders the product content layout contaning product information, picture(product images),  
+*	and product additional information in a typical block form.
+*/
+
+<div class="product-content-layout info-pic-blocks">
+	<div class="large-12 product-page">
+		<div class="large-12 product-essential clearfix">
+			<div class="large-7 columns ">
+				<div class="product-shop in-block">
+					[:ProductContentLayoutInfoBlock]
+				</div>
+			</div>
+			<div class="large-5 columns text-right">
+				[:ProductMediaImageContainer]
+			</div>
+		<div class="row">
+			
+		</div>
+		<div class="row">
+			[:ProductOptions] 			<!-- design variation -->
+			<div class="large-12 columns product-info product-additional-info">
+				[:ProductDetails]		<!-- product details design variation  -->
+	    		[:ProductUpsellBlock]	<!-- design variation -->
+				[:ProductRelatedBlock]	<!-- design variation -->
+				[:ProductTags]			<!-- design variation -->
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,29 @@
+<div class="checkout-onepage">
+	<div class="page-title border-bottom-large orange">
+		<h2>[_Checkout] [Customer.LoggedIn]</h2>
+	</div>
+	<div id="checkoutSteps" class="opc accordion checkout-steps">
+		[?Customer.LoggedIn|Guest=
+			[:CheckoutOnepageMethodBlock,1]
+			[:BillingInformationBlock,2]
+			[:ShippingInformationBlock,3]
+			[:ShippingMethodBlock,4]
+			[:PaymentMethodBlock,5]
+			[:OrderReviewBlock,6]
+		|LoggedIn=
+			[:BillingInformationBlock,1]
+			[:ShippingInformationBlock,2]
+			[:ShippingMethodBlock,3]
+			[:PaymentMethodBlock,4]
+			[:OrderReviewBlock,5]
+		]
+	</div>
+</div>
+<script type="text/javascript">
+	var checkout = new OnePageCheckOut();
+	checkout.method_url = '[Website.GetUrl,CheckOut,saveMethod]';
+	jQuery(".checkout-block.allow .title").live('click',function(){
+		checkout.gotoSection(jQuery(this).attr('step'));
+	});
+	[?Customer.LoggedIn|LoggedIn=checkout.gotoSection("billing");]
+</script>

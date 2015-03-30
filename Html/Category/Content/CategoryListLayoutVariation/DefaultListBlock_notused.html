@@ -1,0 +1,29 @@
+<ul class="list default">
+	[Filter.Products=
+	<li class="product-item">
+		<div class="product-image in-block">
+			<a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]"><img alt="[Product.Name]" width="115" src="/[Product.SmallImage=[ProductImage.ImageUrl,140,150]]"></a>
+		</div>
+		<div class="product-details in-block">
+			<div class="product-title in-block">
+				<a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]"><h2>[Product.Name]</h2></a>
+				<div class="in-block">[:ProductListItemPrice?Product.Sale]</div>
+				<div class="attributes-con in-block">[:ProductListItemAttributes]</div>
+			</div>
+			<div class="add-to-cart in-block">
+				<button class="button btn[Design.DesignSelectionNameName,ButtonStyle]"><span>[_Add to Cart]</span></button>
+			</div>
+			<p class="description">
+				[Product.Description]
+			</p>
+	
+			<div class="in-block">
+				[:ProductListItemAddTo]
+			</div>
+			<div class="ratings in-block">
+				[:ProductRating]
+			</div>
+		</div>
+	</li>
+	]
+</ul>

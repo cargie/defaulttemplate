@@ -1,0 +1,23 @@
+/*
+*		renders the default style of breadcrumb
+*
+*/
+/** -------------------------------------------------------------------
+Name:              Breadcrumb
+Location:          /Html/General/BreadcrumbVariation/Breadcrumb.html
+Created By:        Leslie Canete
+Created At:        07-Okt-2014 19:02 (General, Customer, Compare)
+Last modified By:  Seth Malaki
+Last modified At:  22-Okt-2014 18:28 (myupdates in adding comments)
+Called from:       1Column.CmsPage 	1Column 	2ColumnsLeft.CmsPage 	2ColumnsLeft.Customer 	2ColumnsLeft.ReviewList 	2ColumnsLeft.ReviewView 	2ColumnsLeft 	2ColumnsRight.CmsPage 	2ColumnsRight 	3Columns.CmsPage 	3Columns.Customer 	3Columns 	AdvancedSearchPage 	AdvancedSearchResultsPage 	CustomerConfirmationPage 	ForumGroupPage 	ForumMembers 	ForumPage 	ForumRightViolationPage 	ForumSearchResults 	ForumThreadAdd 	ForumThreadPage 	ForumUnknownContent 	LoginPage 	TagPageAll 	
+--------------------------------------------------------------------**/
+
+
+<div class="b-con default">
+	<ul>
+		[Website.Breadcrumbs=
+			[?BreadCrumb.IsLast|No=<li class="in-block"><a href="[BreadCrumb.Url]">[BreadCrumb.Name]</a></li><li class="sep in-block"></li>
+			|Yes=<li class="last in-block">[BreadCrumb.Name]</li>]
+		]
+	</ul>
+</div>

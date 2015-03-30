@@ -1,0 +1,131 @@
+<div class="step-title ">
+	<span class="number in-block">1</span>
+	<h2 class="in-block"> [_Billing Information]</h2>
+</div>
+
+	<fieldset>
+	    <div class="checkout-onestep-content">
+		<ul class="form-list">
+			[?Customer.NumberOfAddresses|more=
+			<li class="wide">
+			    	<label for="billing-address-select">[_Select a billing address from your address book or enter a new address.]</label>
+			    	<div class="input-box">
+					<select onchange="billing.newAddress(!this.value)" title="" class="address-select " id="billing-address-select" name="billing_address_id">
+
+[Customer.Addresses=
+<option  value="[Address.Id]" [?Address.Type|billing=selected="selected"]>[Address.FirstName] [Address.LastName] [Address.StreetName], [Address.City],  [Address.PostalCode]  [Address.State],  [Address.Country]
+</option>
+]
+<option value="">[_New Address]</option></select> 
+				</div>						
+			</li>
+		    	]
+		        <li id="billing-new-address-form"  [?Customer.NumberOfAddresses|more=style=display:none]>
+			  <fieldset>
+				<input type="hidden" id="billing:address_id" value="" name="address_id">
+				<ul>
+					<li class="fields">
+						
+					    <label class="required" for="billing:country_id">[_Country] <em>*</em></label>
+					    <div class="input-box">
+					        <select class="validate-select required " id="billing:country_id" name="country_id" onchange="addressByCountry_bp(this.value)"><option value="">[_Please select country]</option>
+								[CheckOut.AvailableCountries=
+								<option value="[Country.Id]">[Country.Name] </option>
+								]
+						</select>
+					    </div>
+			        	
+					</li>
+				  <li class="fields wide">
+					
+					<div class="customer-name ">
+						
+					    	<div class="field2 in-block">
+							<label class="required" for="billing:firstname">[_First Name]<em>*</em></label>
+							<div class="input-box2">
+								<input type="text" class="input-text required" title="[_firstname]" name="firstname" id="billing:firstname">
+							</div>
+				    		</div>
+						<div class="field2 in-block">
+							<label class="required" for="billing:lastname">[_Last Name]<em>*</em></label>
+							<div class="input-box2">
+							    <input type="text" class="input-text required" name="lastname" title="[_lastname]" id="billing:lastname"> 
+							</div>
+						</div>
+					</div>
+				</li>
+
+				<li class="fields">
+		  			<div class="field">
+						<label for="billing:company">[_Company]</label>
+						<div class="input-box">
+						    <input type="text" id="billing:company" name="company" value="" title="[_Company]" class="input-text" />
+						</div>
+				    	</div>
+  					
+				</li>
+
+				<li class="wide fields" id="billing:address">
+				
+				</li>
+		            
+		            <li class="fields">
+		                <div class="field telephone">
+		                    <label class="required" for="billing:telephone">[_Telephone] <em>*</em></label>
+		                    <div class="input-box">
+		                        <input type="text" id="billing:telephone" class="input-text required" value="" name="telephone" title="[_telephone]">
+		                    </div>
+		                </div>
+		               
+		            </li>
+		            <li class="fields">
+				[?Customer.LoggedIn|No=
+					<div class="field email-add">
+					    <label class="required " for="billing:email">[_Email]<em>*</em></label>
+					    <div class="input-box">
+						<input type="text" class="input-text email required"  value="" id="billing:email" title="[_email]" name="email">
+					    </div>
+					</div>
+					]
+		                                
+		           </li>
+		            <li id="register-customer-password" class="fields" style="display: none;">
+		                <div class="field">
+		                    <label class="required" for="billing:customer_password">[_Password] <em>*</em></label>
+		                    <div class="input-box">
+		                        <input type="password" class="input-text required password" id="billing:customer_password" name="customer_password" title="[_customer_password]">
+		                    </div>
+		                </div>
+		                <div class="field">
+		                    <label class="required" for="billing:confirm_password">[_Confirm Password] <em>*</em></label>
+		                    <div class="input-box">
+		                        <input type="password" class="input-text required cpassword" id="billing:confirm_password"  name="confirm_password" title="[_confirm_password]">
+		                    </div>
+		                </div>
+		            </li>
+		                       <li class="no-display"><input type="hidden" value="1" name="save_in_address_book"></li>
+		              </ul>
+		        
+			</fieldset>
+
+		 </li>
+		<li id="option-shipping" class="control">
+		        <div class="option-shipping-options">
+		            <span>
+		                <input type="radio" class="radio"  checked="checked"   onclick="jQuery('#shipping:same_as_billing').checked = true;jQuery('#shipping-con').hide();" class="radio" value="1" id="billing:use_for_shipping_yes" name="use_for_shipping">
+		                <label for="billing:use_for_shipping_yes">[_Ship to this address]</label>
+		            </span>
+		            <br>
+		            <span id="last">
+		                <input type="radio" class="radio" value="0" id="billing:use_for_shipping_no"  onclick="jQuery('#shipping:same_as_billing').checked = false;jQuery('#shipping-con').show()" class="radio" name="use_for_shipping">
+		                <label for="billing:use_for_shipping_no">[_Ship to different address]</label>
+		            </span>
+		        </div>
+
+               </li>
+		
+                </ul>
+        
+    </div>
+</fieldset>
+

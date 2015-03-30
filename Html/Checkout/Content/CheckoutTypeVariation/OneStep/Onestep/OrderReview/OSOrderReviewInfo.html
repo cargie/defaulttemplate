@@ -1,0 +1,50 @@
+ <!-- items before-->
+<div class="step-title">
+	<span class="number  in-block"><span class="entypo checkmark"></span></span>
+	<h2 class="in-block">[_Review Your Order]</h2>
+</div>
+
+<div id="checkout-review-table-wrapper">
+	<p class="note">[_Please review the Payment Details below and click] <span>[_Checkout Now]</span> [_to complete your secure payment.]</p>
+    <table class="data-table" id="checkout-review-table">
+	
+	<col />
+	<col width="" />
+	<col width="1" />
+	
+	
+	<thead>
+	    <tr>
+		<th rowspan="1">[_Item Name]</th>
+		
+		<th rowspan="1">[_Qty]</th>
+		<th colspan="1" class="a-right">[_Subtotal]</th>
+	    </tr>
+	
+	</thead>
+	
+	[:OSOrderReviewTotals]
+	<tbody>
+	
+		[:OSOrderReviewItem]
+	</tbody>
+    </table>
+</div>
+
+<div id="checkout-review-submit">
+ 	[:OSCheckoutAgreements]
+    <div class="buttons-set a-right" id="review-buttons-container">
+	<p class="edit-cart in-block">[_Forgot an Item?] <a href="[Website.GetUrl,Cart]">[_Edit Your Cart]</a></p>
+	[:OSOrderReviewButton]
+	<span class="please-wait" id="review-please-wait" style="display:none;">
+	    <img src="[File:/images/opc-ajax-loader.gif]" alt="Submitting order information..." title="[_Submitting order information]" class="v-middle" /> [_Submitting order information...]
+	</span>
+    </div>
+  	 <script type="text/javascript">
+    
+	//review = new Review('[Website.GetUrl,CheckOut,saveOrder]', '[Website.GetUrl,Home]', $('checkout-agreements'));
+   
+	 </script>
+</div>
+
+

@@ -1,0 +1,38 @@
+/*
+*	Renders a block in product page that contains product options as configured in the backend.
+*
+*/
+
+[?Product.HasOptions
+|Yes=
+<div class="custom-options-container stylec">
+	<h2 class="title">[_Product Options] </h2>
+	<div class="custom-options">
+		[Product.Options=
+
+			[?ProductOption.Type
+			|Field=[:ProductOptionTypeText]
+			|Area=[:ProductOptionTypeText] 
+			|File=[:ProductOptionTypeFile]
+			|DropDown=[:ProductOptionTypeSelect.StyleC]
+			|RadioBox=[:ProductOptionTypeCheckRadio.StyleC]
+			|CheckBox=[:ProductOptionTypeCheckRadio.StyleC]
+			|MultipleSelect=[:ProductOptionTypeSelect]	
+			|Date=[:ProductOptionTypeDate]
+			|DateTime=[:ProductOptionTypeDate]
+			|Time=[:ProductOptionTypeDate]
+			]
+		]
+	</div>
+	<div class="custom-options-bottom">
+		<div class="in-block">
+			[:ProductPriceWithOptions]
+		</div>
+		[?Product.HasOptions|Yes=
+		<div class="add-to-box in-block right">
+			[:QuantityBlock]
+		</div>
+		]
+	</div>
+</div>
+]

@@ -1,0 +1,35 @@
+/*
+*	Renders a custom layout for ReviewViewPage.
+*
+*/
+/** -------------------------------------------------------------------
+Name:              2ColumnsLeft.ReviewView
+Location:          /Html/Product/Layout/2ColumnsLeft.ReviewView.html
+Created By:        Seth Malaki
+Created At:        06-Okt-2014 18:25 (applying standard file structure...)
+Last modified By:  Seth Malaki
+Last modified At:  24-Okt-2014 11:58 (updates on adding comments)
+Called from:       ReviewViewPage 	
+Possible call:    FeaturedPage 	
+Calling blocks:    Breadcrumb 	Footer 	Header 	leftColumn 	mainContent.ProductReviewView 	notification 	
+--------------------------------------------------------------------**/
+
+
+<div class="page">
+	[:Header]
+	<div class="two-columns-left">
+		[:Breadcrumb]
+		<div class="main-container">
+			<div class="left">
+				[:leftColumn]
+			</div>
+			<div class="main ">
+				[:notification]
+				[:mainContent.ProductReviewView]
+			</div>
+		</div>
+		<br style="clear:both;"/>
+	</div>
+	[:Footer]
+</div>
+

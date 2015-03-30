@@ -1,0 +1,34 @@
+/*
+*	Renders the first level categories of the side menu
+*/
+/** -------------------------------------------------------------------
+Name:              SideCategoryNavigationMenuLinks
+Location:          /Html/Category/Content/SideCategoryNavigationMenuVariation/SideCategoryNavigationMenu/SideCategoryNavigationMenuLinks.html
+Created By:        Leslie Canete
+Created At:        14-Okt-2014 11:16 (update a little in admindesign layout, rename side categorynavigation menu, headermainmenublock, headerminilogin block)
+Last modified By:  Aris Catan
+Last modified At:  27-Okt-2014 13:01 (updates on adding comments)
+Called from:       SideCategoryNavigationMenu.Accordion 	SideCategoryNavigationMenu.Popup 	SideCategoryNavigationMenu.StyleA 	SideCategoryNavigationMenu.StyleB 	
+Calling blocks:    SideCategoryNavigationMenuLinksSub(2) 	
+--------------------------------------------------------------------**/
+
+
+[?Url.Model
+|Product=
+		<ul class="level-0">
+			[Product.MainCategory=
+			<li class="menu-header"><a>[Category.Name]</a></li>
+				[Category.ChildCategories=
+					[:SideCategoryNavigationMenuLinksSub]
+				]
+			]
+		</ul>
+	
+|=
+
+		<ul class="level-0">
+			[Website.TopCategories=
+				[:SideCategoryNavigationMenuLinksSub]
+			]
+		</ul>
+]

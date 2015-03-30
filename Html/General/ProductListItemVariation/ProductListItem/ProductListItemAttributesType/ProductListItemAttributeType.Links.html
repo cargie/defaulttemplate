@@ -1,0 +1,13 @@
+/*
+*	(type Links of ProductListItemAttribute) Renders product list item attribute type.
+*/
+
+<ul class="links-plp" id="[Attribute.Id][Product.Id]">
+ [Product.ConfigurableChildProducts,[Attribute.AdminTitle]=
+	<li>
+		<div id="[AttributeOption.Admin]" class="links-nav [?UserInput.ConfigurableAttributeValueValid,[Attribute.AdminTitle],[AttributeOption.Admin]|yes=selected]">[AttributeOption.Admin]</div>
+	</li>
+]
+</ul>
+
+

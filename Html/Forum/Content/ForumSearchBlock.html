@@ -1,0 +1,77 @@
+/*
+*		Renders a block information for forum search.
+*
+*/
+
+<div class="forum-search-container">
+	<div class="search">
+		<input type="text" name="search_text" id="search_text" placeholder="Search forum"/>
+	</div>
+	<div class="search-button">
+		<img src="[File:/css/forum/images/search_icon.png]"/>
+	</div>
+	<div id="search_autocomplete" class="search-autocomplete">
+	
+	</div>
+</div>
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		jQuery("#close-search").live('click',function(){
+			jQuery("#search_autocomplete").css("display","none");
+			jQuery("#search_autocomplete #popover-search").css("display","none");
+			return false;
+		});
+		jQuery("#mini-search-button").click(function(){
+			var str = jQuery('#product-search').val();
+			if (str.length==0){event.preventDefault(); return;}
+			jQuery('#search_mini_form').attr('action','[Website.GetUrl,Search,Text/]'+str);
+			jQuery('#search_mini_form').submit();
+		});
+		jQuery(".search-button img").click(function(){
+			var str = jQuery('#search_text').val();
+			if(str == "")
+				return;
+			window.location.href = "[Website.GetUrl,forum,searchresults/]"+str;
+		});
+		jQuery("#search_text").keypress(function(e){
+			//console.log(e.which);
+			if(e.which==13){
+				var str = jQuery('#search_text').val();
+				if(str == "")
+					return;
+				window.location.href = "[Website.GetUrl,forum,searchresults/]"+str;
+			}
+		});
+		jQuery("#search_text").keydown(function(event){
+			if(event.keyCode == 13) {
+				jQuery("#mini-search-button").click();
+			}
+		});
+		jQuery("#search_text").keyup(function(event){
+			var str = jQuery('#search_text').val();
+			if (str.length==0)
+			{ 
+				jQuery("#search_autocomplete").html("");
+				jQuery("#search_autocomplete").css('display','none');
+				return;
+			}
+			var url="[Website.GetUrl,forum,ajaxsearch/]"+str;
+			jQuery.ajax(url,{	
+			  type: "GET",  
+			  dataType: "html",
+			  cache: true, 
+			  success: function(data, textStatus, jqXHR){
+					jQuery("#search_autocomplete").html(data);
+					jQuery("#search_autocomplete").css('display','block');
+					
+					if(jQuery(".forum-search-ajax-result .item").length){
+						jQuery(".show-all-link").css("display","block");
+					}else{
+						jQuery(".show-all-link").css("display","none");
+					}
+				}
+			});
+		});
+	});
+</script>
+	

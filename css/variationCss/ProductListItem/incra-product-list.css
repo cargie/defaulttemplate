@@ -1,0 +1,23 @@
+.incra-panel {
+  padding: 10px; }
+
+.incra-panel-small {
+  padding: 20px; }
+
+.incra-panel-medium {
+  padding: 30px; }
+
+.incra-panel-large {
+  padding: 30px; }
+
+.incra-no-padd {
+  padding: 0px; }
+
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table; }
+
+.clearfix:after {
+  clear: both; }
+
+/* Incra product list variation */

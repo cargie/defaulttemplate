@@ -1,0 +1,28 @@
+/*
+*	Renders a block containing list of recently reviewed products.
+*/
+[Website.RecentlyViewed,1,4,'Name',Ascending]
+[?Filter.Empty|no=
+<div class="recently-viewed-block home-block">
+	<div class="block-title"><h3>[_RECENTLY VIEWED] </h3></div>
+	<ul class="products-grid inline-list">
+		[Filter.Products=
+		<li class="item">
+			<div class="item-wrapper">
+				<a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]"><img class="product-image" width="120" src="/[Product.ThumbnailImage=[ProductImage.ImageUrl,100,125]]"/></a>
+			
+				<div class="product-details">
+					<a title="[Product.Name]" class="product-name" href="[Website.GetUrl,Product,[Product.Id]]">
+						<h4>[Product.Name]</h4>
+					</a>
+					<div class="price-box">[:PriceBlock?Product.Sale]</div>
+					<p class="links">
+						<a href="[Website.GetUrlForUrlKey,Category]/[product.categories=[Category.UrlKey]]">[_see all] [product.categories=[Category.Name]]</a>
+					</p>
+				</div>
+			</div>
+		</li>
+		]
+	</ul>
+</div>
+]

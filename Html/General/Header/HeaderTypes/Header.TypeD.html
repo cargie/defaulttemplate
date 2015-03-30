@@ -1,0 +1,27 @@
+/*
+*		Renders the store currency switcher.
+* logo is centered but with different layout
+*/
+
+<div class="row header-container" style="" id="header_type_d">
+	<div class="large-12 header">
+		[:HeaderMainMenuBlock]
+		<div class="a-center">[?DesignLayout.CheckHeader,[Url.Model],HeaderLogoBlock|Yes=[:HeaderLogoBlock]]</div>
+		
+		<div class="header-bottom">
+			<div class="large-6 columns">[:HeaderTopNavigationLinksBlock]</div>
+			<div class="large-6 columns a-right">
+				<div class="in-block">[:headerlanguageswitcherblock]</div>
+				<div class="in-block">[:headercurrencyswitcherblock]</div>
+			</div>
+		</div>
+		<div>
+			<div class="large-3 columns">[:HeaderWelcomeMessageBlock]</div>
+			<div class="large-5 large-offset-4 columns searchbar">[:HeaderMiniSearchBlock]</div>
+		</div>
+		
+	</div>
+</div>
+
+[:SubmitAsPostVar]
+

@@ -1,0 +1,14 @@
+/*
+*		Renders the container of the  HeaderCartBlock in a dropdown style.
+*
+*/
+
+<a href="[Website.GetUrl,Cart]" class="incra-dropdown-toggle">[_My Cart]</a>
+<div class="cart-container incra-dropdown-menu cartpop-up" style="display:none">
+[?ShoppingCart.Empty
+|CartFilled=
+	[:HeaderCartBlockDropdownContent]
+|CartEmpty=
+	[:HeaderCartBlockEmptyContent]
+]
+</div>

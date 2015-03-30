@@ -1,0 +1,100 @@
+/*
+*		Renders the listings of products of the current category.
+*		Can be list as Grid type or List type.
+*/
+
+[?UserInput.CatalogMode|List=
+<div class="item-wrapper styleB" id="prd[Product.Id]">
+	[?DesignLayout.Layout,[Url.Model]|3Columns=
+	<div class="wrapper first">
+		<div class="product-image in-block">
+			<a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]"><img alt="[Product.Name]" width="155px" src="/[Product.SmallImage=[ProductImage.ImageUrl,205,220]]"></a>
+		</div>
+		<div class="product-title in-block">
+			<a href="[Website.GetUrl,Product,[Product.Id]]"><h3 class="product-name">[Product.Name]</h3></a>
+			<div class="price-block">
+				<div class="list-price">[:ProductPriceBlock?Product.Sale]</div>
+			</div>
+			<div class="attributes-con">
+				[:ProductListItemAttributeColor.StyleB]
+			</div>
+			[:ProductQuantityBlock.StyleB]
+		</div>
+	</div>
+	<div class="wrapper second product-details">
+		<div class="description">
+			<h3 class="overview">[_Overview]</h3>
+			[Product.Description]
+			<a class="more">[_View Details]</a>
+		</div>
+		<div class="ratings">
+			[:ProductRating.StyleB]
+		</div>
+	</div>
+	<div class="bottom-con">
+		<div class="cart-details">
+			<button  class="button btn[Design.DesignSelection,ButtonStyle]" onclick="actionCart('product_addtocart_form','[Website.GetUrl,magento,AddToCart]','[UserInput.DefaultUrlPart]',true,'[SimpleProduct.Id]','[Website.GetUrl,Cart]',jQuery('#conf-attributes[Product.Id]').find('select').serialize()+'&qty='+jQuery('#qty_[Product.Id]').val())" class="button btn-cart" title="[_Add to Cart]" type="button">
+	<span><span>[_Add to Cart]</span></span>
+			</button>
+		</div>
+		<div class="in-block">
+			[:ProductListItemAddTo]
+		</div>
+	</div>
+	|= <!-- if layout is 2 columns or 1 column-->
+	<div class="wrapper first">
+		<div class="product-image in-block">
+			<a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]"><img alt="[Product.Name]" width="155px" src="/[Product.SmallImage=[ProductImage.ImageUrl,205,220]]"></a>
+		</div>
+		<div class="product-title in-block">
+			<a href="[Website.GetUrl,Product,[Product.Id]]"><h3 class="product-name">[Product.Name]</h3></a>
+			<div class="price-block">
+				<div class="list-price">[:ProductPriceBlock?Product.Sale]</div>
+			</div>
+			<div class="attributes-con">
+				[:ProductListItemAttributeColor.StyleB]
+			</div>
+			[:ProductQuantityBlock.StyleB]
+		</div>
+	</div>
+	<div class="wrapper second product-details">
+		<div class="description">
+			<h3 class="overview">[_Overview]</h3>
+			[Product.Description]
+			<a class="more">[_View Details]</a>
+		</div>
+		<div class="ratings">
+			[:ProductRating.StyleB]
+		</div>
+	</div>
+	<div class="wrapper third">
+		<div class="cart-details">
+			<button  class="button btn[Design.DesignSelection,ButtonStyle]" onclick="actionCart('product_addtocart_form','[Website.GetUrl,magento,AddToCart]','[UserInput.DefaultUrlPart]',true,'[SimpleProduct.Id]','[Website.GetUrl,Cart]',jQuery('#conf-attributes[Product.Id]').find('select').serialize()+'&qty='+jQuery('#qty_[Product.Id]').val())" class="button btn-cart" title="[_Add to Cart]" type="button">
+	<span><span>[_Add to Cart]</span></span>
+			</button>
+		</div>
+		<div class="add-to-block">
+			[:ProductListItemAddto]
+		</div>
+	</div>
+	]
+
+</div>
+|Grid=
+	[?DesignLayout.Layout,[Url.Model]|3Columns=
+		[:ProductListItemStyleB.3ProductsInARow]
+	|=
+		[?Design.DesignSelectionName,CategoryListLayout
+		|2ProductsInARow=
+			[:ProductListItemStyleB.2ProductsInARow]
+		|3ProductsInARow=
+			[:ProductListItemStyleB.3ProductsInARow]
+		|4ProductsInARow=
+			[:ProductListItemStyleB.4ProductsInARow]
+		|=
+			[:ProductListItemStyleB.2ProductsInARow]
+		]
+	]
+	
+]
+

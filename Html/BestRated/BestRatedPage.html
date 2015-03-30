@@ -1,0 +1,30 @@
+/*
+*	Renders a page with a list of Best Rated products.	
+*
+*/
+/** -------------------------------------------------------------------
+Name:              BestRatedPage
+Location:          /Html/BestRated/BestRatedPage.html
+Created By:        Leslie Canete
+Created At:        06-Okt-2014 14:51 (relocating)
+Last modified By:  Seth Malaki
+Last modified At:  20-Okt-2014 19:10 (updates on adding comments)
+Calling blocks:    head 	
+Calling unknown:   MetaData,[_Best Rated Products] 	[DesignLayout.Layout] 	
+--------------------------------------------------------------------**/
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	[:MetaData,[_Best Rated Products]]
+	[:head]
+</head>
+<body>
+<div class="page">
+	[Website.TopRanked,10]
+	[:[DesignLayout.Layout]]
+</div>
+</body>
+</html>
+[:CheckOutSuccessNoOrderPage]

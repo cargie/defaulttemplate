@@ -1,0 +1,41 @@
+<div class="checkout-block chekcout-method active">
+	<div class="title">
+		<div class="circle-number">1</div><div class="label"><a href="#">[_Checkout Method]</a></div>
+	</div>
+	<div class="content">
+		<div class="checkout-register">
+			<span ><strong>[_CHECKOUT AS GUEST OR REGISTER] zzzz</strong><span>
+			
+			<p><br/>[_Register with us for future convinience.]</p>
+			<ul>
+				<li><input name="checmout-method" value="guest" type="radio"/> [_Checkout as guest]</li>
+				<li><input name="checmout-method" value="register" type="radio"/> [_Register]</li>
+			</ul>
+			<p><strong>[_Register and save time!]</strong>
+				<ul>
+				<li>[_Fast and easy checkout]</li>
+				<li>[_Easy access to your order history and status]</li>
+				</ul>
+			</p>
+			<div class="buttons-set" style="margin-top: 25px;">
+				<button type="button" title="[_Create an Account]" class="button" onclick="setLocation('http://linux:8000/base/Customer/AccountCreate')"><span><span>[_Create an Account]</span></span></button>
+			</div>
+		</div>
+		<div class="checkout-login">
+			<span ><strong>[_LOGIN]</strong><span>
+			<p><br/><strong>[_Already registered?]</strong><br/>
+			[_Please log in below]</p>
+			<ul>
+				<li><label>[_Email address] <em>*</em></label></li>
+				<li><input type="text" name="email_address" class="checkout-input"/></li>
+				<li><label>[_Password] <em>*</em></label></li>
+				<li><input type="password" name="password" class="checkout-input"/></li>
+				<li><em>* [_Required fields]</em></li>
+			</ul>
+			<div class="buttons-set">
+				<div class="forgot-password"><a href="#">[_Forgot your password?]</a></div>
+				<button type="button" title="[_Create an Account]" class="button btn[Design.DesignSelectionName,ButtonStyle]" onclick="setLocation('http://linux:8000/base/Customer/AccountCreate')"><span><span>[_Login]</span></span></button>
+			</div>
+		</div>
+	</div>
+</div>

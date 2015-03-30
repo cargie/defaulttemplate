@@ -1,0 +1,55 @@
+/*
+*		Renders the main content information of the CustomerShippingListPage.
+*							
+*/
+
+<div class="my-account">
+	<div class="table-v1">
+		<!--messages -->
+		<div class="page-title">
+		    <h2>[_Shippings]</h2>
+		</div>
+		[?Customer.OrdersAvailable|yes=
+		<table class="data-table" id="my-orders-table">
+		  
+		    <thead>
+			<tr>
+				<th>[_Shipping No.]</th>
+				<th>[_Date]</th>
+				<th class="a-left">[_Order Number]</th>
+				<th>[_Order Date]</th>
+				<th><span class="nobr">[_Status]</span></th>
+				<th><span class="nobr">[_Type]</span></th>
+				<th>&nbsp;</th>
+			</tr>
+		    </thead>
+		    <tbody>
+			<!-- start loop here -->
+			[Customer.Shippings=
+
+			<tr>
+				<td>[Shipping.ShippingNumber]</td>
+				<td><span class="nobr">[Shipping.ShippingDate]</span></td>
+
+				<td>
+				[Shipping.OrderNumber]
+				</td>
+				<td>
+				[Shipping.OrderDate]
+				</td>
+				<td><em>[Shipping.Status]</em></td>
+				<td>[Shipping.Type]</td>
+				<td><a href="[Website.GetUrl,Customer,ShippingView/[Shipping.Id]/[Url.View]]">[_View]</a></td>
+			</tr>
+			]
+			<!-- end loop here -->
+		    </tbody>
+		</table>
+		|no=
+		<!-- if no orders yet -->
+		    <p>[_You have placed no orders.]</p>
+		<!-- if no orders yet -->
+		]
+	</div>
+
+</div>	

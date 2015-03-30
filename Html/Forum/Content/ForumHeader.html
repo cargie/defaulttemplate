@@ -1,0 +1,22 @@
+/*
+*		Renders the forum header information for most of the forum pages.
+*
+*/
+
+[:SubmitAsPostVar]
+<div class="row header-container" style="">
+	<div class="logo small-8 columns" style="">
+		<a href="[Website.GetUrl,forum]"><img src="[File:/images/logo.png]"></a>
+	</div>
+	<div class="large-4 right">
+		[:ForumLoginBlock]
+		[:ForumSearchBlock]
+	</div>
+	<div class="forum-tabs-container">
+		<ul class="forum-tabs">
+			<li class="ftab [?Url.Model|forum=[?Url.View|members=|=active]]"><a href="[Website.GetUrl,forum]">[_Forum]</a></li>
+			<li class="ftab [?Url.Model|forum=[?Url.View|members=active]]"><a href="[Website.GetUrl,forum,members]">[_Members]</a></li>
+		</ul>
+	</div>
+	<div class="back-to-site"><a href="[Website.GetUrl,Home]">[_Back to Demoshop] &nbsp;<img src="[File:/css/forum/images/backtodemoshop_button.png]"/></a></div>
+</div>

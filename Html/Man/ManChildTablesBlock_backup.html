@@ -1,0 +1,17 @@
+
+[?Man.ScopeHasChildren
+|Yes=	
+	var pid=tid;
+	[Man.children=
+		
+		if (scopename!="[Man.ScopeName]"){
+			if (jQuery.inArray(newscope,scopes)===-1){
+				tid++;
+				source_tmp.push({id: tid, parentId: pid, name: "[Man.ScopeName]"});
+				newscope=scopename+'[Man.ScopeName]';
+				scopes.push(newscope);
+			}
+		}
+		
+	]
+]

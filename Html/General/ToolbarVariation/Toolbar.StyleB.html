@@ -1,0 +1,80 @@
+/*
+*		Renders a variation of toolbar block in listings of products, search results and others
+*
+*/
+
+<div class="toolbar style-b">
+	[?Filter.PageCount|1=
+	|=
+	<div class="pager">
+		[?Filter.IsFirstPage|no=
+		<div class="prev in-block"><span onclick="paging('[Filter.PrevPage]')">[_Prev]</span></div>
+		]
+		<div class="product-pagination in-block">
+			
+			<ul>
+				
+				[Filter.PagesSmart=
+					<li>[?Filter.LoopPageIsCurrent
+					|yes=<span class="current">[Filter.LoopPageNr]</span>
+					|no=<span onclick="paging('[Filter.LoopPageNr]')">[Filter.LoopPageNr]</span>]</li>
+					<li class="elipses">[Filter.NextElipsis]</li>
+				]
+				
+			</ul>
+			
+		</div>
+		[?Filter.IsLastPage|no=
+		<div class="next in-block"> <span onclick="paging('[Filter.NextPage]')">[_Next]</span></div>
+		|yes=]
+	</div>
+	]
+	<div class="sorter">
+		<span class="amount">
+			<strong>[Filter.Count] [_items]</strong>
+		</span>
+		<div class="view-mode in-block">
+			<label>[_View as]:</label>
+			[?Configuration.CatalogListMode
+			|ListOnly=
+				<span><span class="selected">[_List]</span></span>
+			|GridOnly=
+				<span><span class="selected">[_Grid]</span></span>
+			|ListDefault=
+				 [?UserInput.CatalogMode
+				 |Grid=
+					<span><span class="selected">[_Grid]</span></span>
+					<span>&#124;</span>
+					<span><span onclick="selectaction('[Website.GetUrl,Ajax,Update]','[UserInput.DefaultUrlPart]','Page/[UserInput.PageFrom]/[UserInput.PageNrOn]/[UserInput.PageSort]/[UserInput.PageAscending]/List/[UserInput.FilterUrl]');">[_List]</span></span>&nbsp;
+			
+				 |List=
+				 	<span><span onclick="selectaction('[Website.GetUrl,Ajax,Update]','[UserInput.DefaultUrlPart]','Page/[UserInput.PageFrom]/[UserInput.PageNrOn]/[UserInput.PageSort]/[UserInput.PageAscending]/Grid/[UserInput.FilterUrl]');">[_Grid]</span></span>
+				 	<span>&#124;</span>
+					<span><span class="selected">[_List]</span></span>
+				 ]
+			|GridDefault=
+				 [?UserInput.CatalogMode
+				 |Grid=
+					<strong>[_Grid]</strong>
+					<span onclick="selectaction('[Website.GetUrl,Ajax,Update]','[UserInput.DefaultUrlPart]','Page/[UserInput.PageFrom]/[UserInput.PageNrOn]/[UserInput.PageSort]/[UserInput.PageAscending]/List/[UserInput.FilterUrl]');">[_List]</span>&nbsp;
+			
+				 |List=
+				 	<span onclick="selectaction('[Website.GetUrl,Ajax,Update]','[UserInput.DefaultUrlPart]','Page/[UserInput.PageFrom]/[UserInput.PageNrOn]/[UserInput.PageSort]/[UserInput.PageAscending]/Grid/[UserInput.FilterUrl]');">[_Grid]</span>
+					<strong>[_List]</strong>
+				 ]
+			]
+		</div>
+		<div class="limiter in-block">
+			[:ToolbarLimiter]
+		</div>
+		
+		<div class="sort-by in-block">
+			[:ToolbarSortby]
+			<div class="sort in-block">
+				<a href="#" onclick="selectaction('[Website.GetUrl,Ajax,Update]','[UserInput.DefaultUrlPart]/[UserInput.FilterUrl]','Page/[UserInput.PageFrom]/[UserInput.PageNrOn]/[UserInput.PageSort]/Ascending/[UserInput.FilterUrl]')" class="desc-direction"  title="[_Set Ascending Direction]"  style="display:none"><img src="[File:/images/i_desc_arrow.gif]" alt="Set Descending Direction" class="v-middle" /></a>
+				<a href="#" onclick="selectaction('[Website.GetUrl,Ajax,Update]','[UserInput.DefaultUrlPart]/[UserInput.FilterUrl]','Page/[UserInput.PageFrom]/[UserInput.PageNrOn]/[UserInput.PageSort]/Descending/[UserInput.FilterUrl]')"  class="asc-direction" title="[_Set Descending Direction]"  ><img  src="[File:/images/i_asc_arrow.gif]" alt="Set Ascending Direction" class="v-middle" /></a>
+			</div>
+		</div>
+	</div>
+</div>
+[:ToolbarJs]

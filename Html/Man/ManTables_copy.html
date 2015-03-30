@@ -1,0 +1,94 @@
+<html>
+<head>
+<title>IncraPages - Tables</title>
+<link href="[File:/Man/css/styles.css]" rel="stylesheet" type="text/css"/>
+<script src="[File:/Man/js/jquery.min.js]"></script>
+<script src="[File:/Man/js/search-ajax.js]"></script>
+<script src="[File:/Man/js/getorgchart.js]"></script>
+<link href="[File:/Man/css/getorgchart.css]" rel="stylesheet" />
+
+</head>
+<body>
+	<div id="content_container">
+		[:ManHeader]	
+		<div id="body_container">
+			<div id="main_content">
+				
+			</div>
+			<script type="text/ecmascript">
+			var scopes=Array();
+			var data_source="";
+			var id=1;
+			var pid=0;
+			var cid=0;
+			var tid=1;
+			var source_tmp=Array();
+			source_tmp.push({id: 1, parentId: null, name: "Website"});
+			
+			data_source+='{ id: 1, parentId: null, name: "Website"},';
+			[Man.Children,Website=
+			var newscope='Website[Man.ScopeName]';
+			
+			if (jQuery.inArray(newscope,scopes)===-1){
+				scopes.push(newscope);
+				tid++;
+				source_tmp.push({id:tid, parentId: 1, name: "[Man.ScopeName]"});
+				var scopename='[Man.ScopeName]';
+				
+				[?Man.ScopeHasChildren
+				|Yes=	
+					pid=tid;
+					[Man.children=
+						var newscope=scopename+'[Man.ScopeName]';
+						if (scopename!="[Man.ScopeName]"){
+							if (jQuery.inArray(newscope,scopes)===-1){
+								tid++;
+								source_tmp.push({id: tid, parentId: pid, name: "[Man.ScopeName]"});
+								scopes.push(newscope);
+								
+								[?Man.ScopeHasChildren
+								|Yes=	
+									cid=tid;
+									[Man.children=
+										var newscope=scopename+'[Man.ScopeName]';
+										if (scopename!="[Man.ScopeName]"){
+											if (jQuery.inArray(newscope,scopes)===-1){
+												tid++;
+												source_tmp.push({id: tid, parentId: cid, name: "[Man.ScopeName]"});
+												scopes.push(newscope);
+								
+											}
+										}
+						
+						
+									]
+								]
+							}
+						}
+						
+						
+					]
+				]
+			}
+			
+			];
+			console.log(source_tmp);
+			//var tmp="["+data_source+"]";
+			
+			jQuery("#main_content").getOrgChart({			
+				theme: "monica",
+				orientation: getOrgChart.RO_LEFT,
+				searchable: false,
+				primaryColumns: \["name", "title"\],
+				imageColumn: "image",
+				gridView: true,
+				dataSource:source_tmp
+
+			});
+			</script>	
+		</div>
+		
+	</div>
+	[:ManCopyWebsite]
+</body>
+</html>

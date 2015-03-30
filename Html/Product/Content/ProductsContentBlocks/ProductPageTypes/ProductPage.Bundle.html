@@ -1,0 +1,59 @@
+/*
+*	Renders a page for Bundle products. 
+*
+*/
+
+
+<div class="product-shop in-block">
+	<div class="product-name in-block">
+		<h4 class="product-name">[SimpleProduct.Name]  [SimpleProduct.Id]<input type="hidden" id="simple_id" value="[SimpleProduct.Id]"/></h4>
+	</div>
+	<div class="ratings in-block">
+		[:ProductRating]
+	</div>
+	<div class="price-box in-block">
+		[:ProductPriceBlock?Product.Sale]
+		[:ProductAttributes]
+		[:ProductBundleItems]
+	</div>
+	<p class="email-friend in-block"><a href="">[_Email to a Friend]</a></p>
+	[:ProductTierPrice]
+	<p class="availability in-stock">[_Availability]: <span>[?Product.InStock|Yes=In Stock|=Out of Stock]</span></p>
+	
+	[?Product.HasOptions|No=
+	<div class="add-to-box">
+		[?Product.InStock|Yes=
+			[:ProductQuantityBlock] <!-- design variation -->
+			<div class="add-to-cart in-block">
+				<button type="submit" title="[_Add to Cart]" class="button btn[Design.DesignSelectionName,ButtonStyle]"><span><span>[_Add to Cart]</span></span></button>	
+				<script type="text/javascript">
+				jQuery("#product_addtocart_form").validate({
+					submitHandler: function(form) {
+						if (jQuery('#simple_id').length>0){
+							var id=jQuery('#simple_id').val();
+						}else{
+							var id='[Product.id]';
+						}
+		
+						actionCart('product_addtocart_form','[Website.GetUrl,magento,AddToCart]','[Website.GetUrl,Product,[Product.Id]]',true,id,'[Website.GetUrl,Cart]',jQuery('#product_addtocart_form').serialize());
+					 }	
+				});
+				</script>
+			</div>
+		<span class="or">OR</span>
+		]
+		<div class=" in-block">
+			[:ProductAddTo]
+		</div>
+	</div>
+	]
+	<div class="short-description">
+		<h2>[_Overview]</h2>
+		<p>[Product.ShortDescription]</p>
+		[?Product.HasBrand|Yes=
+		[Product.Brand=<p>
+			<span>[_Brand]: <a href="[Brand.WwwLink]" target="_blank"><img src="/[Brand.LogoSmall]" alt="[Brand.Name]" width="150px"></a>
+		</p>]
+		]
+	</div>
+</div>

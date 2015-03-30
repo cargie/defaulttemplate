@@ -1,0 +1,36 @@
+/*
+*		Renders the main content information of the CustomerInvoiceListPage.
+*							
+*/
+
+<div class="my-account">
+	<div class="table-v1">
+			<!-- start loop here -->
+			[Customer.Invoices=
+
+			<tr>
+				<td>[Invoice.InvoiceNumber]</td>
+				<td><span class="nobr">[Invoice.Date]</span></td>
+
+				<td>
+				[Invoice.OrderNumber]
+				</td>
+				<td>
+				[Invoice.OrderDate]
+				</td>
+				<td><em>[Invoice.Status]</em></td>
+				<td>[Invoice.Type]</td>
+				<td><a href="[Website.GetUrl,Customer,InvoiceView/[Invoice.Id]/[Url.View]]">[_View]</a></td>
+			</tr>
+			]
+			<!-- end loop here -->
+		    </tbody>
+		</table>
+		|no=
+		<!-- if no orders yet -->
+		    <p>[_You have placed no orders.]</p>
+		<!-- if no orders yet -->
+		]
+	</div>
+
+</div>	

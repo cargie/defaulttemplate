@@ -1,0 +1,48 @@
+/*
+*		renders the main content of the CartPage.  This dislays the 
+*		shopping cart page information.	
+*
+*/
+/** -------------------------------------------------------------------
+Name:              mainContent.Cart
+Location:          /Html/Cart/Content/mainContent.Cart.html
+Created By:        Leslie Canete
+Created At:        06-Okt-2014 18:55 (relocation first 15 models)
+Last modified By:  Seth Malaki
+Last modified At:  21-Okt-2014 17:09 (myupdates on addingComments)
+Possible call:    1Column.CmsPage 	1Column 	2ColumnsLeft.CmsPage 	2ColumnsLeft 	2ColumnsRight.CmsPage 	2ColumnsRight 	3Columns.CmsPage 	3Columns 	CompareProductsPage 	
+Calling blocks:    CartCheckoutButtonBlock 	CartCrossSellsBlock 	CartDiscountCouponBlock 	CartShippingCalculationBlock 	CartTableBlock 	CartTotalsBlock 	
+--------------------------------------------------------------------**/
+
+
+<div class="shopping-cart">
+  <div class="page-title"><h2>[_My Shopping Cart]</h2></div>
+	[?ShoppingCart.Empty
+	|CartFilled=
+		<div class="checkout-button-top">
+			[:CartCheckoutButtonBlock]
+		</div>
+		[:CartTableBlock]
+		<div class="additional-info">
+			<div class="row">
+				<div class="large-12 columns">
+					<div class="large-4 columns ">
+					[:CartCrossSellsBlock]
+					</div>
+					<div class="small-4 columns">
+						<div class="shipping-details">
+							[:CartDiscountCouponBlock]
+							[:CartShippingCalculationBlock]
+						</div>
+					</div>
+					<div class="small-4 columns">
+					[:CartTotalsBlock]
+					</div>
+				</div>
+			</div>
+		</div>
+	|CartEmpty=
+		<div class="empty"> [_Your Cart is empty.]</div>
+	]
+</div>
+

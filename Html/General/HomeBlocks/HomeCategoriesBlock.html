@@ -1,0 +1,24 @@
+/*
+*	Renders a block containing list of categories.
+*/
+
+<div class="categories-block">
+	<div class="category-grid">
+		[Website.TopCategories=
+			<div class="item">
+				<div class="category-image in-block">
+					<a href="[Website.GetUrl,Category,[Category.Id]]" alt="[Category.Name]">
+						<img class="prod-list" src="/[Category.Image]" alt="[Category.Name]" width="200px;"/>
+					</a>
+				</div>
+
+				<div class="category-title in-block">
+					<h2><a href="[Website.GetUrl,Category,[Category.Id]]" alt="[Category.Name]">[Category.Name]</a></h2>
+					<p class="description">
+						[Category.Description]
+					</p>
+				</div>
+			</div>
+		]
+	</div>
+</div>

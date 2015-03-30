@@ -1,0 +1,25 @@
+/*
+*		Renders the store currency switcher.
+*
+*/
+
+ <div class="form-currency">
+	 <label for="select-currency">[_Choose Currency :]</label> 
+	 <select id="currency_switcher" title="[_Your Currency]" onchange="changeCurrency(this.value)">
+			[Website.CurrenciesUsed=
+		             <option value="[CurrencyUsed.Id]">[CurrencyUsed.DisplayName]</option>
+		    ]
+	</select>
+	<script type="text/javascript">
+	jQuery(document).ready(function(){
+		changeCurrency = function(value,url_redirect){
+			window.location ='[Website.GetUrl,Currency,'+value+']';
+		}
+		jQuery("#currency_switcher option\[value=[CurrentCurrencyUsed.Id]\]").attr("selected","selected");
+	});
+	</script>
+ </div>
+
+
+
+

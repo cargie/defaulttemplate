@@ -1,0 +1,30 @@
+/*
+*	Renders the sub level categories of the side menu
+*/
+/** -------------------------------------------------------------------
+Name:              SideCategoryNavigationMenuLinksSub
+Location:          /Html/Category/Content/SideCategoryNavigationMenuVariation/SideCategoryNavigationMenu/SideCategoryNavigationMenuLinksSub.html
+Created By:        Leslie Canete
+Created At:        14-Okt-2014 11:16 (update a little in admindesign layout, rename side categorynavigation menu, headermainmenublock, headerminilogin block)
+Last modified By:  Aris Catan
+Last modified At:  27-Okt-2014 13:01 (updates on adding comments)
+Called from:       SideCategoryNavigationMenuLinks(2) 	
+--------------------------------------------------------------------**/
+
+
+<li class="level-0">
+	<a href="[Website.GetUrl,Category,[Category.Id]]" class="level-0"> <span class="[?Category.IsCurrent|same=current|different=]">[Category.Name]</span></a>[?Category.HasChildren|yes=<span class="toggle">+</span>|no=]
+	<div class="panel">
+		<ul class="level-1">[Category.ChildCategories=
+			<li class="level-1"><a href="[Website.GetUrl,Category,[Category.Id]]"><span class="[?Category.IsCurrent|same=current|different=]">[Category.Name]</span></a>[?Category.HasChildren|yes=<span class="toggle">+</span>
+				<div class="panel">
+					<ul class="level-2">
+						[Category.ChildCategories=<li class="level-2"><a href="[Website.GetUrl,Category,[Category.Id]]"><span class="[?Category.IsCurrent|same=current|different=]">[Category.Name]</span></a>
+						</li>]
+					</ul>
+				</div>
+				|no=]
+			</li>]
+		</ul>
+	</div>
+</li>

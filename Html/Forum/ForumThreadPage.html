@@ -1,0 +1,34 @@
+/*
+*		Renders the forum thread page. This page contains the list of Thread in a certain ForumGroup.
+*
+*/
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>[Website.Name] | [_Thread]</title>
+	[:Head]
+	[:ForumHead]
+</head>
+<body class="forum-home">
+	[:ForumHeader]
+	<div class="one-column">
+		[:Breadcrumb]
+		<div class="new-thread">
+			<a href="[Website.GetUrl,forum,newThread/][Thread.ForumGroup=[ForumGroup.Id]]"><img src="[File:/css/forum/images/create_new_thread.png]"/></a>
+		</div>
+		<br style="clear:both"/>
+		<div class="main-container">
+			<div class="main ">
+				[:ForumThreadMainContent]
+			</div>
+		</div>
+		<div class="new-thread">
+			<a href="[Website.GetUrl,forum,newThread/][Thread.ForumGroup=[ForumGroup.Id]]"><img src="[File:/css/forum/images/create_new_thread.png]"/></a>
+		</div>
+		<br style="clear:both"/>
+	</div>
+	[:ForumFooter]
+</body>
+</html>
+

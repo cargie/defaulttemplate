@@ -1,0 +1,43 @@
+/*
+*		Renders the result of forum search.
+*
+*/
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>[Website.Name] | [_Home]</title>
+	[:Head]
+	[:ForumHead]
+</head>
+<body class="forum-home">
+	[:ForumHeader]
+	<div class="one-column">
+		[:Breadcrumb]
+		<div class="main-container">
+			<div class="main ">
+				<div class="main-content">
+					<div class="forum-block" style="padding: 10px 0px;">
+						[Website.ForumSearch,[Url.Controller],5]
+							Result found : [Filter.Empty]
+							[Filter.OtherPages=
+								<div class="forum-content" style="padding: 10px 15px 10px 15px;">
+									<div class="fdata">
+										<ul>
+											<li class="forum-details">
+												<h4><a href="[Filter.OtherPageUrl]">[Filter.OtherPageTitle]</a></h4>
+												<p></p>
+											</li>
+										</ul>
+									</div>
+								</div>
+							]
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	[:ForumFooter]
+</body>
+</html>
+

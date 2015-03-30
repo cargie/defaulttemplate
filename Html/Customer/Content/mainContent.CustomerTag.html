@@ -1,0 +1,19 @@
+/*
+*		Renders the main content tag information made by the Customer.
+*							
+*/
+
+<div class="my-account">
+	<div class="page-title">
+		<h2>[_My Tags]</h2>
+	</div>
+	<p>[_Click on a tag to view your corresponding products.]</p>
+	<div>
+		<ul class="tags-list">
+			[Customer.Tags=
+			<li class="in-block"><a href="[Website.GetUrl,Tag,[TagCount.TagCountName]]">[TagCount.TagCountName]</a></li>
+			]
+		</ul>
+	</div>
+</div>
+

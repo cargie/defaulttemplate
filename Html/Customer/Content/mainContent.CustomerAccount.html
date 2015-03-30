@@ -1,0 +1,106 @@
+/*
+*		Renders the main content information of the CustomerAccountPage.
+*							
+*/
+
+<div class="dashboard-container">
+	<div class="page-title">
+		<h2>[_My Dashboard]</h2>
+	</div>
+	<div class="welcome-msg">
+		<p class="hello"><strong>[_Hello %1, [Customer.FullName]]!</strong></p>
+		<p>[_From your My Account Dashboard you have the ability to view a snapshot of your recent account activity and update your account information. Select a link below to view or edit information.]</p>
+	</div>
+
+
+	[:CustomerAccountRecentOrderBlock]
+
+	<div class="box-account box-info">
+		<div class="box-head">
+			<h2>[_Account Information]</h2>
+		</div>
+		<div class="col2-set">
+			<div class="col-1">
+				<div class="box">
+					<div class="box-title">
+						<h3>[_Contact Information]</h3>
+						<a href="[Website.GetUrl,Customer,AccountEdit]">[_Edit]</a>
+					</div>
+					<div class="box-content">
+						<p>
+						[Customer.FirstName] [Customer.MiddleName] [Customer.LastName]<br>
+						[Customer.Email]<br>
+						<a href="[Website.GetUrl,Customer,AccountEdit/ChangePassword/1]">[_Change Password]</a>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-2">
+				<div class="box">
+					<div class="box-title">
+						<h3>[_Newsletters]</h3>
+						<a href="[Website.GetUrl,Customer,Newsletter]">[_Edit]</a>
+					</div>
+					<div class="box-content">
+						<p>
+						[?Customer.NewsletterStatus|Subscribed=
+							[_You are currently] [Customer.NewsletterStatus] [_to newsletter.]
+						|=
+							[_You are currently not subscribed to any newsletter.]
+						]
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col2-set">
+			<div class="box">
+				<div class="box-title">
+					<h3>[_Address Book]</h3>
+					<a href="[Website.GetUrl,Customer,Address]">[_Manage Addresses]</a>
+				</div>
+				<div class="box-content">
+					<div class="col-1">
+						<h4>[_Default Billing Address]</h4>
+						<address>
+							[Customer.DefaultInvoiceAddress=
+							[Address.FirstName] [Address.LastName]<br>
+							[Address.HouseNumber]<br>
+							[Address.StreetName]<br>
+							[Address.City][Address.PostalCode]<br>
+							[Address.State]<br>
+							[Address.Country]<br>
+							T:[Address.TelNumber]<br>
+		
+							<p><a href="[Website.GetUrl,Customer,AddressEdit/[Address.Id]]">[_Edit Address]</a></p>
+							]
+							<!--<p>[_You have not set a default billing address.]</p>-->
+						</address>
+						
+					</div>
+					<div class="col-2">
+						<h4>[_Default Shipping Address]</h4>
+						<address>
+							[Customer.DefaultShippingAddress=
+							[Address.FirstName] [Address.LastName]<br>
+							[Address.HouseNumber]<br>
+							[Address.StreetName]<br>
+							[Address.City][Address.PostalCode]<br>
+							[Address.State]<br>
+							[Address.Country]<br>
+							T:[Address.TelNumber]<br>
+		
+							<p><a href="[Website.GetUrl,Customer,AddressEdit/[Address.Id]]">[_Edit Address]</a></p>	
+							]				
+							<!--<p>[_You have not set a default shipping address.]</p>-->
+							
+						</address>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+

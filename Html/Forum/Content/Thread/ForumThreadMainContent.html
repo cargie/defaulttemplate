@@ -1,0 +1,734 @@
+/*
+*		Renders the main content of the thread page.  This list all the thread in a certain forum group.
+*
+*/
+
+[Design.MapName]<br/>
+[Design.DesignSelectionName]
+<div class="content main-content view-thread">
+	<div class="forum-block">
+		<div class="forum-header"><span class="fgtitle" style="">[Thread.ForumGroup=[ForumGroup.Name]] ([Thread.NrComments])</span>[?Thread.Status|Pinned=<div class="tag_badge pinned">[_PINNED]</div>]
+				
+			<div class="toolbar" style="[Thread.ForumGroup=[?ForumGroup.DefaultPaginationType|Pagination=display:block|=display:none]]">
+				<div class="nav-links"><a id="nav-prev" href=""><< Prev</a> | <a id="nav-next" href="#">[_Next] >></a></div>
+				<div class="nav-pages"><span style="margin-right: 5px;">[_Page]</span><input type="text" onkeypress="ForumPost.gotoPage()" value="[UserInput.ForumPage]"/><span> of [UserInput.PageNrOn]</span></div>
+				<div class="show-posts">
+					<span>[_Show]</span>
+						<select id="show_per_page">
+							<option>10 threads</option>
+							<option>30 threads</option>
+							<option>50 threads</option>
+							<option>100 threads</option>
+						</select>
+					<span> [_per page]</span>
+				</div>
+			</div>
+			<script type="text/javascript">
+				jQuery(document).ready(function(){
+			
+					var page = parseInt("[UserInput.ForumPage]");
+					if(page>1){
+						var url_prev = '[Website.GetUrl,forum,thread/[Thread.Id]/page/]'+(page-1);
+						var url_next = '[Website.GetUrl,forum,thread/[Thread.Id]/page/]'+(page+1);
+						jQuery(".nav-links #nav-prev").attr("href",url_prev);
+						jQuery(".nav-links #nav-next").attr("href",url_next);
+					}else if(page==1){
+						var url_prev = '';
+						var url_next = '[Website.GetUrl,forum,thread/[Thread.Id]/page/]'+(page+1);
+						jQuery(".nav-links #nav-prev").attr("href",url_prev);
+						jQuery(".nav-links #nav-next").attr("href",url_next);
+					}
+			
+				});
+			</script>
+			<br style="clear:both"/>
+		</div>
+		<div class="forum-content [Thread.Status]">
+			[?Thread.Status|Deleted=
+				<div class="ribbon DeletedByAdmin" style="margin-top: -5px;margin-left: -5px;"></div>
+			]
+			<div class="fdata">
+				<ul>
+					<li class="forum-details [Thread.Status]">
+						<h4>[Thread.Title]</h4>
+						<span class="updated">[_Updated Last] : [Thread.LastUpdated]</span>
+						
+					</li>
+					<li id="likes_of_this_comment_[Thread.ThreadTextId]" class="tag-likes inline-block [?Thread.Status|Deleted=f-right]" [?Thread.AlreadyLiked|Yes=style="width: 240px;"]>
+						[_%1 like this | %2 dislike this, [Thread.NrLikes], [Thread.NrDislikes]]
+					</li>
+					[?Thread.Status|Deleted=|=
+						<li class="tag-like-icon" style="width:auto;">
+							<ul class="tag-like-icon-container">
+								<li>
+									[?Thread.AlreadyLiked|Yes=
+										<!--<a class="like liked" href="">
+											<span class="t_icon">&nbsp;</span>
+										</a>-->
+										|No=
+										<a comment_id="[Thread.ThreadTextId]" class="like" href="[Website.GetUrl,forum,like/[Thread.ThreadTextId]]">
+											<span class="t_icon">&nbsp;</span>
+										</a>
+									]
+								</li>
+								<li>
+									[?Thread.AlreadyLiked|Yes=
+										<!--<a comment_id="[Thread.ThreadTextId]" class="unlike" href="[Website.GetUrl,forum,dislike/[Thread.ThreadTextId]]">
+											<span class="t_icon">&nbsp;</span>
+										</a>-->
+										|No=
+										<a comment_id="[Thread.ThreadTextId]" class="unlike" href="[Website.GetUrl,forum,dislike/[Thread.ThreadTextId]]">
+											<span class="t_icon">&nbsp;</span>
+										</a>
+									]
+								</li>
+								<li>
+									[?Thread.AlreadyReported|Yes=
+										<a class="report reported" href=""><span class="t_icon">&nbsp;</span></a>
+										|No=
+										<a comment_id="[Thread.ThreadTextId]" class="report" href="[Website.GetUrl,forum,report/[Thread.ThreadTextId]]"><span class="t_icon">&nbsp;</span></a>
+										<div class="report-popup">
+											<div class="report-type" onclick="ForumPost.reportAs(this,[Thread.ThreadTextId],'Discrimination')">[_Discrimination]</div>
+											<div class="report-type" onclick="ForumPost.reportAs(this,[Thread.ThreadTextId],'Stupidity')">[_Stupidity]</div>
+											<div class="report-type" onclick="ForumPost.reportAs(this,[Thread.ThreadTextId],'Hate')">[_Hate]</div>
+											<div class="report-type" onclick="ForumPost.reportAs(this,[Thread.ThreadTextId],'Hate')">[_Pornography]</div>
+											<div class="report-type" onclick="ForumPost.reportAs(this,[Thread.ThreadTextId],'Spam')">[_Spam]</div>
+											<div class="report-type" onclick="ForumPost.reportAs(this,[Thread.ThreadTextId],'Trolling')">[_Trolling]</div>
+											<div class="report-type" onclick="ForumPost.reportAs(this,[Thread.ThreadTextId],'Crime')">[_Crime]</div>
+											<div class="report-type" onclick="ForumPost.reportAs(this,[Thread.ThreadTextId],'IllegalActivities')">[_Illegal Activities]</div>
+											<div class="report-type" onclick="ForumPost.reportAs(this,[Thread.ThreadTextId],'CommercialPromotions')">[_CommercialPromotions]</div>
+											<div class="report-type" onclick="ForumPost.reportAs(this,[Thread.ThreadTextId],'Annoying')">[_Annoying]</div>
+											<div class="report-type" onclick="ForumPost.reportAs(this,[Thread.ThreadTextId],'RudeLanguage')">[_RudeLanguage]</div>
+										</div>
+									]
+								</li>
+							</ul>
+						</li>
+					]
+					[?Customer.IsAdminForForum|Yes=
+						[?Thread.Status|Deleted=|=
+							<li class="forum-settings">
+								<div class="settings">
+									<a class="thread-settings" href="#"><img src="[File:/css/forum/images/settings.png]"/></a>
+									<div class="settings-popup">
+										<div class="set-type" onclick="ForumPost.threadActions([Thread.Id],'edit')">[_Edit Comment]</div>
+										<div class="set-type" onclick="ForumPost.threadActions([Thread.Id],'enable')">[_Enable This]</div>
+										<div class="set-type" onclick="ForumPost.threadActions([Thread.Id],'block')">[_Block this]</div>
+										<div class="set-type" onclick="ForumPost.threadActions([Thread.Id],'delete')">[_Delete this]</div>
+										<div class="set-type" onclick="ForumPost.threadActions([Thread.Id],'pinned')">[_Pin this]</div>
+										<div class="set-type" onclick="ForumPost.threadActions([Thread.Id],'makeprio')">[_Make Prio]</div>
+									</div>
+								</div>
+							</li>
+						]
+					]
+				</ul>
+				<br style="clear:both"/>
+				
+				<div class="thread-association">
+					<ul class="item-values">
+						
+					</ul>
+				</div>
+				<br style="clear:both"/>
+				<div class="thread-block">
+					<p>[Thread.Description]</p>
+					<ul>
+						<li class="forum-author">
+							<img src="[File:/css/forum/images/no_image.png]"/>
+							<div class="author-details">
+								<span class="by">[_by: %1, [Thread.UserName]]</span><br/>
+								<span class="posted-on">[_Posted on]: [Thread.Created]</span>
+							</div>
+						</li>
+						<li class="thread-description">
+							<blockquote>[Thread.Text]</blockquote>
+						</li>
+					</ul>
+				</div>
+				<div class="fdata-footer">
+				[Thread.Poll=
+					<div class="poll-question">
+						<p class="question">[Poll.QuestionText]</p>
+						<ul class="answer-choices">
+						[Poll.Question=[PollQuestion.Answers=
+							<li class="choice"><div class="choice-box"><label ><input name="poll-answer" type="radio" value="1"/>[pollAnswer.Answer]</label></div><div class="votes"></div></li>
+						]]
+						</ul>
+					</div>
+					<ul class="fdata-f">
+						<li class="tag-details">[_TAGS]<ul class="tag-list"><li class="tag"><a href="#">[Thread.Tags]</a></li></ul></li>
+					</ul>
+				]
+					[?Thread.Status|Deleted=|=
+						<div class="reply-to-this-thread">
+							<a href="#" active="false" onclick="ForumPost.reply(this);return false;">[_Post a Reply]</a>
+						</div>
+					]
+					<div class="reply-thread-container">
+						<form id="reply-to-post-form" method="post" action="[Website.GetUrl,forum,AddCOmment/[Thread.Id]]" >
+						</form>
+					</div>
+				</div>
+				<div class="post-list-container">
+					<ul class="post-list" curr_ajax_page="[UserInput.ForumPage]">
+						[Thread.SortedComments,[UserInput.ForumPage]=
+								<li class="post [?Comment.Status|DeletedByUser=deleted-by-user] [?Comment.Status|DeletedByAdmin=delete-by-admin]">
+									<div class="ribbon [Comment.Status]"></div>
+									<div class="post-header"><span class="name">[Comment.UserName]</span><span class="post_number">#[Comment.Id] [Comment.AlreadyLiked]</span></div>
+									<div class="post-data">
+										<div class="post-by">
+											<img src="[File:/css/forum/images/avatar.png]"/>Philippines<br/>26 posts
+										</div>
+										<div class="post-details">
+											
+											<div class="post-date"><span>[_Posted] : [Comment.Created]</span>
+											</div>
+											<div  class="post-likes inline-block"><span id="likes_of_this_comment_[Comment.Id]">[_%1 like this | %2 dislike this, [Comment.NrLikes], [Comment.NrDislikes]] &nbsp;</span>
+												[?Thread.Status|Deleted=|=
+													<ul class="tag-like-icon-container inline-block">
+														[?Comment.Status|DeletedByAdmin=|DeletedByUser=|=
+															<li>
+																[?Comment.CanLike|Yes=
+																	[?Comment.AlreadyLiked|Yes=
+																		<!--<a class="like liked" href="">
+																			<span class="t_icon">&nbsp;</span>
+																		</a>-->
+																		|No=
+																		<a [?Comment.Status|DeletedByUser=|DeletedByAdmin=|=comment_id="[Comment.Id]"] class="like" href="[Website.GetUrl,forum,like/[Comment.Id]]">
+																			<span class="t_icon">&nbsp;</span>
+																		</a>
+																	]
+																]
+															</li>
+														]
+														[?Comment.Status|DeletedByAdmin=|DeletedByUser=|=
+															<li>[?Comment.CanDislike|Yes=
+																	[?Comment.AlreadyLiked|Yes=
+																		<!--<a class="unlike unliked" href="">
+																			<span class="t_icon">&nbsp;</span>
+																		</a>-->
+																		|No=
+																		<a [?Comment.Status|DeletedByUser=|DeletedByAdmin=|=comment_id="[Comment.Id]"] class="unlike" href="[Website.GetUrl,forum,dislike/[Comment.Id]]">
+																			<span class="t_icon">&nbsp;</span>
+																		</a>
+																	]
+																]
+															</li>
+														]
+														[?Comment.Status|DeletedByAdmin=|DeletedByUser=|=
+															<li>[?Comment.CanReport|Yes=
+																	
+																	[?Comment.AlreadyReported|Yes=
+																		<a class="report reported" href=""><span class="t_icon">&nbsp;</span></a>
+																		
+																	|No=
+																		<a [?Comment.Status|DeletedByUser=|DeletedByAdmin=|=comment_id="[Comment.Id]"] class="report" href="[Website.GetUrl,forum,report/[Comment.Id]]"><span class="t_icon">&nbsp;</span></a>
+																		<div class="report-popup">
+																			<div class="report-type" onclick="ForumPost.reportAs(this,[Comment.Id],'Discrimination')">[_Discrimination]</div>
+																			<div class="report-type" onclick="ForumPost.reportAs(this,[Comment.Id],'Stupidity')">[_Stupidity]</div>
+																			<div class="report-type" onclick="ForumPost.reportAs(this,[Comment.Id],'Hate')">[_Hate]</div>
+																			<div class="report-type" onclick="ForumPost.reportAs(this,[Comment.Id],'Hate')">[_Pornography]</div>
+																			<div class="report-type" onclick="ForumPost.reportAs(this,[Comment.Id],'Spam')">[_Spam]</div>
+																			<div class="report-type" onclick="ForumPost.reportAs(this,[Comment.Id],'Trolling')">[_Trolling]</div>
+																			<div class="report-type" onclick="ForumPost.reportAs(this,[Comment.Id],'Crime')">[_Crime]</div>
+																			<div class="report-type" onclick="ForumPost.reportAs(this,[Comment.Id],'IllegalActivities')">[_Illegal Activities]</div>
+																			<div class="report-type" onclick="ForumPost.reportAs(this,[Comment.Id],'CommercialPromotions')">[_Commercial Promotions]</div>
+																			<div class="report-type" onclick="ForumPost.reportAs(this,[Comment.Id],'Annoying')">[_Annoying]</div>
+																			<div class="report-type" onclick="ForumPost.reportAs(this,[Comment.Id],'RudeLanguage')">[_Rude Language]</div>
+																		</div>
+																	]
+																]
+															</li>
+														]
+													</ul>
+												
+													[?Customer.IsAdminForForum|Yes=
+														[?Comment.Status|DeletedByAdmin=|DeletedByUser=|=
+															<div class="settings comment-settings">
+																<a class="thread-settings" href="#"><img width="18" src="[File:/css/forum/images/settings.png]"/></a>
+																<div class="settings-popup">
+																	<div class="set-type" onclick="ForumPost.deleteComment([Comment.Id])">[_Delete this]</div>
+																</div>
+															</div>
+														]
+													|No=
+														[?Comment.IsOwnComment|Yes=
+															[?Comment.Status|DeletedByAdmin=|DeletedByUser=|=
+																<div class="settings comment-settings">
+																	<a class="thread-settings" href="#"><img width="18" src="[File:/css/forum/images/settings.png]"/></a>
+																	<div class="settings-popup">
+																		<div class="set-type" onclick="ForumPost.deleteComment([Comment.Id])">[_Delete this]</div>
+																	</div>
+																</div>
+															]
+														]
+													]
+												]
+											</div>
+											<div class="post-text">
+												[Comment.Text] 
+											</div>
+											<div id="reply-specfic-post-container-[Comment.Id]" class="reply-specfic-post-container">
+												<div class="exisiting-post-reply">
+													<ul>
+													[Comment.SubComments=
+														<li>
+															[?Customer.IsAdminForForum|Yes=
+																		<div class="settings comment-settings" style="float: right;">
+																			<a class="thread-settings" href="#"><img width="18" src="[File:/css/forum/images/settings.png]"/></a>
+																			<div class="settings-popup">
+																				<!--
+																				<div class="set-type" onclick="ForumPost.threadActions([Comment.Id],'enable')">Enable This</div>
+																				<div class="set-type" onclick="ForumPost.threadActions([Comment.Id],'block')">Block this</div>
+																				-->
+																				<div class="set-type" onclick="ForumPost.deleteComment([Comment.Id])">Delete this</div>
+																				<!--
+																				<div class="set-type" onclick="ForumPost.threadActions([Comment.Id],'pinned')">Pin this</div>
+																				<div class="set-type" onclick="ForumPost.threadActions([Comment.Id],'makeprio')">Make Prio</div>
+																				-->
+																			</div>
+																		</div>
+																|No=
+																	[?Comment.IsOwnComment|Yes=
+																		<div class="settings comment-settings" style="float: right;">
+																			<a class="thread-settings" href="#"><img width="18" src="[File:/css/forum/images/settings.png]"/></a>
+																			<div class="settings-popup">
+																				<!--
+																				<div class="set-type" onclick="ForumPost.threadActions([Comment.Id],'enable')">Enable This</div>
+																				<div class="set-type" onclick="ForumPost.threadActions([Comment.Id],'block')">Block this</div>
+																				-->
+																				<div class="set-type" onclick="ForumPost.deleteComment([Comment.Id])">[_Delete this]</div>
+																				<!--
+																				<div class="set-type" onclick="ForumPost.threadActions([Comment.Id],'pinned')">Pin this</div>
+																				<div class="set-type" onclick="ForumPost.threadActions([Comment.Id],'makeprio')">Make Prio</div>
+																				-->
+																			</div>
+																		</div>
+																	]
+															]
+															<blockquote>
+																<p>[Comment.Text]</p>
+																<span class="post-reply-by">By : [Comment.UserName]  | [Comment.Created]</span>
+															</blockquote>
+														</li>
+													]
+													</ul>
+												</div>
+												<form method="post" action="[Website.GetUrl,forum,reply/[Comment.Id]]" >
+												</form>
+											</div>
+											[?Customer.IsAdminForForum|Yes=
+												<div class="comment-info-for-admin">
+													<ul>
+														<li>[_Last updated] : <span>[Comment.LastUpdated]</span></li>
+														<li>[_Ip address] : <span>[Comment.IpAddress]</span></li>
+													</ul>
+												</div>
+											]
+											[?Thread.Status|Deleted=|=
+												[?Comment.Status|DeletedByUser=|DeletedByAdmin=|=
+													[?Comment.CanReply|Yes=
+														<div class="reply-post">
+															<a href="#" active="false" onclick="ForumPost.replyToThisPost([Comment.Id],this);return false;"> [_Reply to this post]</a>
+														</div>
+													]
+												]
+											]
+										</div>
+									</div>
+								</li>
+						]
+					</ul>
+				</div>
+				<div id="post-dummy" style="display:none">
+						<div class="post-header" ><span class="name">{{name}}</span><span class="post_number">{{post_number}}</span></div>
+						<div class="post-data">
+							<div class="post-by">
+								<img src="[File:/css/forum/images/avatar.png]"/>
+								{{location}}<br/>{{number_of_posts}} posts
+							</div>
+							<div class="post-details">
+								<div class="post-date"><span>[_Posted] {{posted_on}}</span>
+								</div>
+								<div class="post-likes"><span>{{like_count}} [_like this] | {{dislike_count}} [_dislike this] </span>
+									<a href="#"><img src="[File:/css/forum/images/like_button.png]"/></a> &nbsp;
+									<a href="#"><img src="[File:/css/forum/images/unlike_button.png]"/></a> &nbsp;
+									<a href="#"><img src="[File:/css/forum/images/report_button.png]"/></a>
+								</div>
+								<div class="post-text">
+									{{post_text}}
+								</div>
+								<div id="reply-specfic-post-container-{{param_id}}" class="reply-specfic-post-container">
+									<form method="post" action="[Website.GetUrl,forum,reply/]{{id}}">
+									</form>
+								</div>
+								<div class="reply-post">
+									<a href="#" active="false" onclick="ForumPost.replyToThisPost({{param_id}},this);return false;">| [_Reply to this post]</a>
+								</div>
+							</div>
+						</div>
+				</div>
+			</div>
+		</div>
+		<div class="forum-header" style="border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">
+			[Thread.ForumGroup=
+				[?ForumGroup.DefaultPaginationType|ButtonMore=
+					<div class="show-more-comments"><span onclick="ForumPost.loadMorePost();return false;">[_Show More posts] (+)</span></div>
+					|Pagination=
+					<div class="toolbar" style="[Thread.ForumGroup=[?ForumGroup.DefaultPaginationType|Pagination=display:block|=display:block]]">
+						<div class="nav-links"><a id="nav-prev" href=""><< Prev</a>  <a id="nav-next" href="#">[_Next] >></a></div>
+						<div class="nav-pages"><span style="margin-right: 5px;">[_Page]</span><input type="text" onkeypress="ForumPost.gotoPage()" value="[UserInput.ForumPage]"/><span> of [UserInput.PageNrOn]</span></div>
+						<div class="show-posts">
+							<span>[_Show]</span>
+								<select id="show_per_page">
+									<option>10 threads</option>
+									<option>30 threads</option>
+									<option>50 threads</option>
+									<option>100 threads</option>
+								</select>
+							<span> [_per page]</span>
+						</div>
+					</div>
+				]
+			]
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+			
+			[?Url.MVC4|reply=
+				jQuery(".reply-to-this-thread a").click();
+				jQuery("#reply").focus();
+				jQuery("body").animate({scrollTop:266},'slow');
+			]
+			if(jQuery(".post-list-container .post-list li").length == 0){
+				jQuery(".post-list-container .post-list").css("border","none");
+			}
+			
+			var cat_id = "[Thread.CategoryId]";
+			var product_id = "[Thread.ProductId]";
+			var cms_id = "[Thread.CmsPageId]";
+			var brand_id = "[Thread.BrandId]";
+			var include_all_products = "[Thread.ShowInAllProducts]";
+			if(cat_id!="0"){
+				var url = encodeURI("[Website.GetUrl,RestApi,Evaluate]?data=\[JSON:Category,Get,"+cat_id+",\[Category.Id\],\[Category.Name\],\[Category.UrlKey\]\]");
+				var temp;
+				jQuery.ajax({
+					url : url,
+					success : function(response){
+						var obj = JSON.parse(response);
+						temp = obj;
+					
+						var li = jQuery("<li>");
+						var categoryId=obj["Category_Id"];
+					
+						li.html("<div class='p-name'><i>Category :</i> <a href='[Website.GetUrlForUrlKey,Category]/"+obj["Category_UrlKey"]+"'>"+obj["Category_Name"]+"</a></div>");
+						jQuery(".thread-association ul.item-values").append(li);
+					
+						if(include_all_products == "Yes"){
+							var li = jQuery("<li class='item-product'>");
+									li.html("<div class='p-name'><i>Product :</i> Show in all products</div>");
+									jQuery(".thread-association ul.item-values").append(li);
+						}
+						
+					
+					}
+				});
+			}
+			if(product_id!="0" && include_all_products=="No"){
+					var url = encodeURIComponent("\[LOCATE:Product,"+product_id+"\]{\"Id\":\[Product.Id\],\"Name\":\"\[Product.Name\]\",\"ProductImage\":\"\[Product.ThumbnailImage=\[ProductImage.ImageUrl\]\]\",\"UrlKey\":\"\[Product.UrlKey\]\"}");
+					
+					var temp;
+					jQuery.ajax({
+						url : "[Website.GetUrl,RestApi,Evaluate]?data="+url,
+						type:"GET",
+						success : function(response){
+							var obj = JSON.parse(response);
+							temp = obj;
+							console.log(obj);
+							var li = jQuery("<li class='item-product'>");
+							li.html("<div class='p-name'><i>Product : </i><a href='[Website.GetUrlForUrlKey,Product]/"+obj["UrlKey"]+"'>"+obj["Name"]+"</a></div><div class='p-image'><img src='/"+obj["ProductImage"]+"'/\></div>");
+							jQuery(".thread-association ul.item-values").append(li);
+						}
+					});
+				}
+			if(cms_id!="0"){
+				var url = encodeURI("[Website.GetUrl,RestApi,Evaluate]?data=\[JSON:CmsPage,Get,"+cms_id+",\[CmsPage.Id\],\[CmsPage.Title\],\[CmsPage.UrlKey\]\]");
+				var temp;
+				jQuery.ajax({
+					url : url,
+					success : function(response){
+						var obj = JSON.parse(response);
+						temp = obj;
+						
+						var li = jQuery("<li>");
+						li.html("<div class='p-name'><i>Cms page :</i> <a href='[Website.GetUrlForUrlKey,CmsPage]/"+obj["CmsPage_UrlKey"]+"'>"+obj["CmsPage_Title"]+"</a></div>");
+						jQuery(".thread-association ul").append(li);
+					}
+				});
+			}
+			if(brand_id!="0"){
+				var url = encodeURI("[Website.GetUrl,RestApi,Evaluate]?data=\[JSON:Brand,Get,"+brand_id+",\[Brand.Id\],\[Brand.Name\],\[Brand.UrlKey\]\]");
+				var temp;
+				jQuery.ajax({
+					url : url,
+					success : function(response){
+						var obj = JSON.parse(response);
+						temp = obj;
+						
+						var li = jQuery("<li>");
+						li.html("<span><i>Brands :</i> <a href='[Website.GetUrlForUrlKey,Brand]/"+obj["Brand_UrlKey"]+"'>"+obj["Brand_Name"]+"</a></span>");
+						jQuery(".thread-association ul.item-values").append(li);
+					}
+				});
+			}
+			
+		});
+	var ForumPost = {
+					reply	:	function(obj){
+									if(jQuery(".reply-to-this-thread a").attr("active")=="true"){
+										return;
+									}else{
+										var html = '<div class="reply-post-container"><textarea id="reply" name="text" placeholder="write your reply here..."></textarea>';
+										html += '<div class="submit-reply" ><button class="cancel" onclick="ForumPost.cancel();return false;">Cancel</button><button onclick="ForumPost.submitThreadReply()" type="button" class="submit-post" >Submit</button></div>';
+										html += '</div><br style="clear:both"/>';
+										jQuery(".reply-thread-container form").append(html);
+										jQuery(".reply-to-this-thread a").attr("active","true");
+									}
+									
+								},
+					cancel	:	function(obj){
+									jQuery(".reply-to-this-thread a").attr("active","false");
+									jQuery(".reply-thread-container form").html("");
+								},
+					replyToThisPost	:	function(id,obj){
+										if(jQuery(obj).attr("active")=="false"){
+											var html = '<div class="reply-post-container"><textarea id="reply-to-this-comment" name="text" placeholder="write your reply here..."></textarea>';
+											html += '<div class="submit-reply" ><button class="cancel" onclick="ForumPost.cancelReplyToThisPost('+id+');return false;">Cancel</button><button type="button" onclick="ForumPost.submitReplyToPost(this)" class="submit-post">[_Submit]</button></div>';
+											html += '</div><br style="clear:both"/>';
+											jQuery("#reply-specfic-post-container-"+id+" form").append(html);
+											jQuery(obj).attr("active","true");
+										}else{
+											jQuery(obj).attr("active","false");
+											return;
+										}
+								},
+					cancelReplyToThisPost	:	function(id){
+									jQuery("#reply-specfic-post-container-"+id).next().find("a").attr("active","false");
+									jQuery("#reply-specfic-post-container-"+id+ " form").html("");
+								},
+					submitThreadReply	:	function(){
+									if(jQuery("#reply").val() == ""){
+										jQuery("#reply").addClass("empty-value");
+									}
+									else{
+										jQuery("#reply").removeClass("empty-value");
+										jQuery("#reply-to-post-form").submit();
+									}
+									
+									return false;
+								},
+					submitReplyToPost	:	function(obj){
+									if(jQuery("#reply-to-this-comment").val() == ""){
+										jQuery("#reply-to-this-comment").addClass("empty-value");
+									}
+									else{
+										jQuery("#reply-to-this-comment").removeClass("empty-value");
+										jQuery(obj).parent().parent().parent().submit();
+									}
+									
+								},
+					loadMorePost	:	function(){
+									/*var html = jQuery("#post-dummy").html();
+									var count = jQuery(".post").length;
+									
+									html = html.replace("{{name}}","Sepiroth");
+									html = html.replace("{{post_number}}","#10");
+									html = html.replace("{{posted_on}}","2 February 2014 - 6:40PM");
+									html = html.replace("{{location}}","Philippines");
+									html = html.replace("{{number_of_posts}}","100");
+									html = html.replace("{{like_count}}","100");
+									html = html.replace("{{dislike_count}}","5");
+									html = html.replace("{{post_text}}","Lorem ipsum dolor lit. Dolor Lit..");
+									html = html.replace(/{{param_id}}/g,++count);
+									
+									var li = jQuery('<li class="post" style="display:none">');
+									li.html(html);
+									jQuery(".post-list").append(li);
+									li.fadeIn(500);*/
+									var curr_page = jQuery(".post-list").attr("curr_ajax_page");
+									var url = "[Website.GetUrl,forum,thread/[Thread.Id]/ajaxpage/]"+(parseInt(curr_page)+1);
+									jQuery.ajax({
+										url		:	url,
+										success	:	function(response){
+											jQuery(".post-list").append(response);
+											jQuery(".post-list .post.added").fadeIn(500);
+											jQuery(".post-list").attr("curr_ajax_page",parseInt(curr_page)+1);
+											//jQuery(".post-list-container").scrollTop(jQuery(".post-list").height()+1000);
+											/*jQuery('.post-list-container').stop().animate({
+												'scrollTop': jQuery(".post-list").height()+1000
+											}, 1500, 'swing', function() {
+												//window.location.hash = target;
+											});*/
+										}
+									});
+									
+								},
+					bindLikeButton 	:	function(){
+									jQuery(".like").click(function(){
+										 var like_url = jQuery(this).attr("href");
+										 var comment_id = jQuery(this).attr("comment_id");
+										 var button = jQuery(this);
+										 jQuery.ajax({
+											url 	:	like_url,
+											success	:	function(response){
+												console.log("#likes_of_this_comment_"+comment_id);
+												jQuery("#likes_of_this_comment_"+comment_id).html(response.trim());
+												jQuery("#likes_of_this_comment_"+comment_id).css("width","240px;");
+												var b1 = button.parent();
+												var b2 = b1.next();
+												b1.html("");
+												b2.html("");
+												
+												//jQuery(".tag-like-icon-container li a[comment_id="+comment_id+"].like").html("");
+												//jQuery(".tag-like-icon-container li a[comment_id="+comment_id+"].unlike").html("");
+											}
+										 });
+										 return false;
+									})
+								},
+					bindUnLikeButton 	:	function(){
+									jQuery(".unlike").click(function(){
+										 var like_url = jQuery(this).attr("href");
+										 var comment_id = jQuery(this).attr("comment_id");
+										 var button = jQuery(this);
+										 jQuery.ajax({
+											url 	:	like_url,
+											success	:	function(response){
+												jQuery("#likes_of_this_comment_"+comment_id).html(response.trim());
+												jQuery("#likes_of_this_comment_"+comment_id).css("width","240px");
+												var b1 = button.parent();
+												var b2 = b1.prev();
+												b1.html("");
+												b2.html("");
+												
+												console.log(jQuery("#likes_of_this_comment_"+comment_id));
+												//jQuery(".tag-like-icon-container li a[comment_id="+comment_id+"].like").html("");
+												//jQuery(".tag-like-icon-container li a[comment_id="+comment_id+"].unlike").html("");
+											}
+										 });
+										 return false;
+									})
+								},
+					bindResponseButton 	:	function(){
+									jQuery(".post").click(function(){
+										jQuery(".report-popup").removeClass("active");
+									});
+									
+									jQuery(".report").click(function(){
+										if(jQuery(this).next().hasClass("active")){
+											jQuery(this).next().removeClass("active");
+										}else{
+											jQuery(".report-popup").removeClass("active");
+											jQuery(this).next().addClass("active");
+										}
+										return false;
+									})
+								},
+					bindSettingButton	:	function(){
+									jQuery(".fdata").click(function(){
+										jQuery(".settings-popup").removeClass("active");
+									});
+									jQuery(".thread-settings").click(function(){
+										if(jQuery(this).next().hasClass("active")){
+											console.log(jQuery(this).next());
+											jQuery(this).next().removeClass("active");
+										}else{
+											jQuery(".settings-popup").removeClass("active");
+											jQuery(this).next().addClass("active");
+										}
+										return false;
+									})
+								},
+					reportAs			:	function(obj,comment_id,type){
+											var like_url = "[Website.GetUrl,forum,report/]"+comment_id+"/"+type;
+											jQuery.ajax({
+												url 	:	like_url,
+												success	:	function(response){
+													console.log(response);
+													jQuery(obj).parent().removeClass("active");
+													//jQuery("#likes_of_this_comment_"+comment_id).html(response.trim());
+													
+												}
+											});
+										},
+					deleteComment		:	function(comment_id){
+									var delete_url = "[Website.GetUrl,forum,delete/]"+comment_id;
+									window.location.href = delete_url;
+								},
+					threadActions		:	function(thread_id,actions){
+									switch(actions){
+										case 'enable'	: { var url = "[Website.GetUrl,forum,EnabledThread/]"+thread_id; window.location.href = url; }break;
+										case 'block'	: { var url = "[Website.GetUrl,forum,BlockedThread/]"+thread_id; window.location.href = url; }break;
+										case 'delete'	: { var url = "[Website.GetUrl,forum,DeleteThread/]"+thread_id; window.location.href = url; }break;
+										case 'pinned'	: { var url = "[Website.GetUrl,forum,PinnedThread/]"+thread_id; window.location.href = url; }break;
+										case 'makeprio'	: { var url = "[Website.GetUrl,forum,PrioThread/]"+thread_id; window.location.href = url; }break;
+										case 'edit'		: {
+															var old_value = jQuery('.thread-description blockquote').html();
+															jQuery(".thread-description blockquote").hide();
+															var textarea = jQuery('<textarea id="thread-description" class="input-data">');
+															var button_html = '<div class="edit-comment-button"><a href="#" onclick="ForumPost.cancelUpdateComment('+thread_id+');return false;">[_Cancel]</a>';
+															button_html += '&nbsp;|&nbsp; <a href="#" onclick="ForumPost.updateComment('+thread_id+');return false;">[_Update]</a></div>';
+															textarea.html(old_value);
+															var div = jQuery('<div id="edit-comment-container">');
+															div.append(textarea);
+															div.append(button_html);
+															jQuery('.thread-description').append(div);
+														  }break;
+									}
+								},
+					updateComment 		:	function(thread_id){
+											var url = "[Website.GetUrl,forum,edit/]"+thread_id;
+											console.log(url);
+											jQuery.post( url, { text: jQuery("#thread-description").val() }).done(
+												function( data ) {
+    												window.location.href = "[Website.GetUrl,forum,thread/]"+thread_id;
+  												});
+								},
+					cancelUpdateComment	:	function(){
+										jQuery("#edit-comment-container").remove();
+										jQuery(".thread-description blockquote").css('display','block');
+					},
+					gotoPage			:	function(evt){
+						evt = evt || window.event;
+						value = evt.srcElement.value;
+						var charCode = evt.keyCode || evt.which;
+						if (charCode == 13) {
+							window.location.href = "[Website.GetUrl,forum,thread/[Thread.Id]/page/]"+value;
+						}
+					}
+				}
+		jQuery(document).ready(function(){
+			ForumPost.bindLikeButton();
+			ForumPost.bindUnLikeButton();
+			ForumPost.bindResponseButton();
+			ForumPost.bindSettingButton();
+			[Thread.ForumGroup=
+				[?ForumGroup.DefaultPaginationType|AjaxScrolling=
+					jQuery('.post-list-container').scroll(function()
+					{
+					  var div = jQuery(this);
+					  console.log(div.height());
+					  console.log(div.scrollTop());
+					  if (div[0].scrollHeight - div.scrollTop() == div.height()) //scrollTop is 0 based
+					  {
+						 ForumPost.loadMorePost();
+					  }
+					});
+				]
+			]
+		});
+		
+</script>

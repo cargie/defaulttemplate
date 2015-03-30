@@ -1,0 +1,41 @@
+/*
+*		renders the shipping calculation block.
+*
+*/
+/** -------------------------------------------------------------------
+Name:              CartShippingCalculationBlock
+Location:          /Html/Cart/Content/CartShippingCalculationBlock.html
+Created By:        Leslie Canete
+Created At:        07-Okt-2014 16:54 (move to and rename ShoppingCartBlocks to Cart)
+Last modified By:  Seth Malaki
+Last modified At:  21-Okt-2014 17:09 (myupdates on addingComments)
+Called from:       mainContent.Cart 	
+--------------------------------------------------------------------**/
+
+
+<div class="estimate-shipping-tax-box">
+	<form id="discount-coupon-form" method="post" action="">
+		<div class="estimated">
+			<h3 class="estimated-title">[_ESTIMATED SHIPPING AND TAX]</h3>
+			<div class="estimated-tax-form">
+				<label>[_Enter your destination to get a shipping estimate.] </label>
+				<label for="country-address">[_Country] <em>*</em></label>
+				<select id="country-address" class="required small" title="Country" onchange="loadRegions(this.value)">
+					<option></option>
+					[Website.AvailableCountries=
+						[CountryGroup.Countries=
+						<option value="[Country.Id]">[Country.Name]</option>
+						]
+					]
+				</select>
+				<script type="text/javascript">
+					jQuery("#country-address option\[value=[Configuration.DefaultCountryId]\]").attr("selected","selected");
+				</script>
+			</div>
+			<button class="button btn-secondaryDefault" value="Get A Quote" onclick="discountForm(false);" title="[_Apply Coupon]" type="submit"><span><span>[_Get a Quote]</span></span></button>
+		</div>
+	</form>
+</div>
+<script type="text/javascript">
+
+</script>

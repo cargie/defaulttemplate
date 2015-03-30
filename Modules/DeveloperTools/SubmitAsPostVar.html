@@ -1,0 +1,192 @@
+<style>
+	.developer-toolbar{
+		position: fixed;
+		bottom: 20px;
+		height: 77px;
+		padding: 10px 5px 10px 0px;
+		background: white;
+		border: 1px solid #CCC;
+	}
+	
+	.developer-toolbar .submit-post-container{
+		width: 1px;
+		overflow: hidden;
+		height: 65px;
+		display:inline-block;
+		padding:0px;
+	}
+	.developer-toolbar .submit-post-container input{
+		background: #FAFAFA;
+		border-color: #999;
+		outline: none;
+		padding: 3px;
+		border: 1px solid #CCC;
+		margin-bottom: 5px;
+	}
+	
+	.developer-toolbar .dev-switch{
+		padding: 0px 5px;
+		display: inline-block;
+		height: 60px;
+		vertical-align: top;
+	}
+	
+	.dev-toolbar{
+		font-size: 12px;
+		color: black;
+		position: fixed;
+		bottom: 0;
+		background:#e5e5e5;
+		padding:5px;
+	}
+	.dev-hints{
+		position:relative;
+		border:1px solid red;
+		margin: -5px;
+	}
+	.dev-hints:hover{
+		border:1px solid #000;
+	}
+	.dev-hints div span{
+		font-size:12px;
+		color:white;
+		background:red;
+		padding:1px 5px;
+	}
+	.dev-hints div.headings{
+		position: absolute;
+		/*margin-top: -23px;*/
+		margin-top: -5px;
+		z-index:1000;
+	}
+	.dev-hints div.headings:hover{
+		z-index:9000;
+	}
+	.modal-bg{
+		position: fixed;
+		display: none;
+		width: 100%;
+		height: 70%;
+		top:0;
+		background: black;
+		/*opacity: .8;*/
+		z-index: 9999;
+		text-align:center;
+	}
+	.modal-bg h5{
+		background: #777;
+		color: white;
+	}
+	.modal-bg #block-list{
+		width:80%;
+		height:90%;
+		margin:10px auto 0px;
+		overflow:auto;
+		color:#fff;
+		text-align:left;
+		border-bottom: 1px solid #555;
+	}
+</style>
+
+<div class="developer-toolbar" style="">
+	<div class="submit-post-container">
+		<input placeholder="input (#form or .form)" id="form_id" type="text" class="input-data" value="" style="width: 240px;display: inline-block;"/>
+		<button class="button" style="background: #CCC;color:#333" onclick="submitPost()"><span>[_Submit as Post]</span></button>
+	</div>
+	<div class="dev-switch"><span style="cursor:pointer" status="off" onclick="toggleDevSwitch(this)">></span></div>
+	
+	/*<div class="submit-post-container">
+		<h4>Submit a value</h4>
+		<span>Action Url</span>
+		<input placeholder="form url" id="form_url" type="text" class="input-data" value="" style="width: 240px;display: inline-block;"/>
+		<span>Id (for updating)</span>
+		<input placeholder="form url" id="form_url" type="text" class="input-data" value="" style="width: 240px;display: inline-block;"/>
+		<span>Field Name</span>
+		<input placeholder="form url" id="form_url" type="text" class="input-data" value="" style="width: 240px;display: inline-block;"/>
+		<span>Field Value</span>
+		<input placeholder="form url" id="form_url" type="text" class="input-data" value="" style="width: 240px;display: inline-block;"/>
+		<button class="button" style="background: #CCC;color:#333" onclick="submitPost()"><span>[_Submit as Post]</span></button>
+	</div>
+	*/
+</div>
+<div class="modal-bg">
+	<h5>Blocks used...</h5>
+	<div id="block-list" class="">
+		
+	</div>
+	<a href="#" onclick="showBlockData()">Close</a>
+</div>
+<script type="text/javascript">
+	function toggleDevSwitch(obj){
+		if(jQuery(obj).attr("status") == "on"){
+			console.log("on");
+			jQuery(obj).parent().prev().animate({ width:'1px',padding:'0px'},300);
+			jQuery(obj).attr("status","off");
+			jQuery(obj).html(">");
+		}
+		else{
+			console.log("off");
+			jQuery(obj).parent().prev().animate({ width:'250px',padding:'0px 5px'},500);
+			jQuery(obj).attr("status","on");
+			jQuery(obj).html("<");
+		}
+		return false;
+	}
+	function submitPost(){
+		var id = jQuery("#form_id").val();
+		jQuery(id).attr("action","http://incra.local/submit.php");
+		jQuery(id).submit();
+	}
+	
+	var block_list = Array();
+	
+	jQuery(document).ready(function(){
+		var body = jQuery("body");
+		var toolbar = jQuery("<div class='dev-toolbar'><a href='#' state='Off' onclick='toggleHints(this)'>Dev hints : <b>On</b></a><br/><a href='#' state='On' onclick='toggleHints(this)'>Dev hints : <b>Off</b></a><br/><a href='#' state='Off' onclick='showBlockData(this)'><b>Show Block data</b></a></div>");
+		body.append(toolbar);
+	
+		//body.dev_toolbar();
+	});
+	function showBlockData(obj){
+		var state = jQuery(obj).attr('state');
+		if(state=='Off'){
+			jQuery(".modal-bg").show();
+			jQuery(obj).attr('state','On');
+			
+			jQuery(".dev-hints .headings").each(function(i,el){ 
+				//console.log(jQuery(el).find("div:first").html());
+				var block_name = jQuery(el).find("div:first").html();
+				var block_path = jQuery(el).find("div:last").html();
+				
+				jQuery("#block-list").append(block_name +'<br/>'+block_path+'<br/><br/>');
+			});
+		}else{
+			jQuery(".modal-bg").hide();
+			jQuery(obj).attr('state','Off');
+			//jQuery(obj).html('<b>Off</b>');
+		}
+		return false;
+	}
+	function toggleHints(obj){
+		var state = jQuery(obj).attr('state');
+		if(state=='Off'){
+			jQuery.ajax({
+				url	:	"http://linux:8000/base/Debug/On",
+				success:function(){
+					location.reload(true);
+				}
+			});
+			jQuery(obj).attr('state','On');
+			jQuery(obj).html('Dev hints : <b>On</b>');
+		}else{
+			jQuery.ajax({
+				url	:	"http://linux:8000/base/Debug/Off",
+				success:function(){
+					location.reload(true);
+				}
+			})
+			jQuery(obj).attr('state','Off');
+			jQuery(obj).html('Dev hints : <b>Off</b>');
+		}
+	}
+</script>

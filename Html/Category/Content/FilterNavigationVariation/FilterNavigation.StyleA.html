@@ -1,0 +1,42 @@
+/*
+*		Renders the a single filter navigation option.
+*
+*/
+/** -------------------------------------------------------------------
+Name:              FilterNavigation.StyleA
+Location:          /Html/Category/Content/FilterNavigationVariation/FilterNavigation.StyleA.html
+Created By:        Leslie Canete
+Created At:        13-Okt-2014 18:44 (rename header and side blocks)
+Last modified By:  Seth Malaki
+Last modified At:  21-Okt-2014 17:09 (myupdates on addingComments)
+Possible call:    SideCategoryNavigationMenu.Accordion 	SideCategoryNavigationMenu.Popup 	SideCategoryNavigationMenu.StyleA 	SideCategoryNavigationMenu.StyleB 	SideCategoryNavigationMenu 	
+Calling unknown:   FilterNavigationAttributeType.[LayeredAttribute.CurrentType] 	
+--------------------------------------------------------------------**/
+
+
+[?Filter.Empty|no=
+<div class="filter-container style-a" style="[?Filter.LayeredAttributesCount|0=display:none]">
+	<div class="layered-navigation">
+		<div class="selected-attr">
+		[?UserInput.ShoppingByAvailable|No=
+			
+		|Yes=
+			<dl> <dt>[_Currently Shopping By:]</dt>
+			[Filter.SelectedLayeredAttributes=
+				<dd>
+					<em>[LayeredAttribute.Name] </em> 
+					<span class="selected-layered-values">[LayeredAttribute.SelectedOptionsName]</span>
+				</dd>
+			]
+			</dl>
+		]
+		</div>
+		<div id="nav-attributes">
+		[Filter.AllLayeredAttributes=
+			[:FilterNavigationAttributeType.[LayeredAttribute.CurrentType]]
+		]
+		<!-- slider, select and price slider not yet -->
+		</div>
+	</div>
+</div>
+]

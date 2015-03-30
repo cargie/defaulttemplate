@@ -1,0 +1,39 @@
+<div class="row topmenu-block default">
+	<div class="large-12 menu">
+		<div class="default main-menu clearfix">
+			[:DefaultMenu_Block]
+		</div>
+	</div>
+</div>
+<<<<<<< HEAD
+
+=======
+<div class="row ">
+	<div class="large-12 columns style-c-container ">
+		<div class="large-12 left style-c main-menu clearfix">
+			<ul class="small-12 columns">
+				[Website.TopMenuSorted=
+					<li class="[?MenuOption.HasChildren|Yes=has-dropdown|No=[?MenuOption.MenuOptionType|Category=has-dropdown]] ">
+						<a class="[?MenuOption.IsCurrent|same= current|different=|parent=current]" href="[MenuOption.Url]" >[MenuOption.Name] </a>
+							<div class="dropdown">
+								<ul>
+									[MenuOption.TopMenuChildrenSorted=
+											[?MenuOption.InTopMenu|Yes=
+												<li class="[?MenuOption.HasChildren|Yes=has-dropdown]">
+													<a href="[MenuOption.Url]" class="[?MenuOption.IsCurrent|same= current|different=|parent= current]">
+														<span class="[?MenuOption.IsCurrent|same= current|different=|parent= current]">[MenuOption.Name]</span>
+														[?MenuOption.HasChildren|Yes=<span class="toggle">+</span>]
+													</a>
+													[:DefaultMenu_Sub_Block]
+												</li>
+											]
+									]
+								</ul>
+							</div>
+					</li>
+				]
+			</ul>
+		</div>
+	</div>
+</div>
+>>>>>>> 35dc8a453cfe6c7565b2f80f6b6f176edce10301

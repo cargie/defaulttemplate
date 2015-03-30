@@ -1,0 +1,18 @@
+/*
+*		renders a page if url is not found.
+*
+*/
+
+<div class="content">
+	<div class="page-title"><h2>[_Page Not Found]</h2></div>
+	<dl>
+		<dt>[_The page you are looking for is not known or no longer available.]</dt>
+		<dt>[_To go to the main page click] <a href="[Website.GetUrl,Home]">[_"home"]</a> [_OR]</dt>
+		<dd>
+			<ul class="disc">
+				<li>[_Go to] <a href="[Website.GetUrl,Customer,Account]">[_My Account]</a> </li>
+				<li><a href="#" onclick="history.go(-1); return false;">[_Go back to the previous page.] </a> </li>
+			</ul>
+		</dd>
+	</dl>
+</div>

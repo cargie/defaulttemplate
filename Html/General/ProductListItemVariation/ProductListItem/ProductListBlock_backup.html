@@ -1,0 +1,104 @@
+[?UserInput.CatalogMode|List=
+	 <div class="item-wrapper default"  id="prd[Product.Id]">
+		<div class="product-image in-block">
+			<a href="http://[Url.DomainName]/[Product.UrlKey]" title="[Product.Name]"><img alt="[Product.Name]" width="100%" src="/[Product.SmallImage=[ProductImage.ImageUrl,140,150]]"></a>
+		</div>
+		<div class="product-details in-block">
+			<div class="product-title in-block">
+				<a href="http://[Url.DomainName]/[Product.UrlKey]" title="[Product.Name]"><h3>[Product.Name]</h3></a>
+				<h5>[_OVERVIEW]</h5>
+				<p class="description">
+					[Product.Description] <a href="" class="more">[_Learn more]</a>
+				</p>
+				[:CategoryProductPriceBlock?Product.Sale]
+				<div class="quantity in-block">
+					<label for="qty">[_Qty:]</label>
+					<input type="text" name="qty" id="qty" maxlength="12" value="1" title="[_Qty]" class="input-text qty">
+				</div>
+				<div class="attributes-con in-block">
+					[:ProductListItemAttributeColor]
+				</div>
+			</div>
+			<div class="add-to-cart in-block">
+				<button  class="button btn[Design.DesignSelectionName,ButtonStyle]" onclick="actionCart('product_addtocart_form','http://[Url.DomainName]/magento/AddToCart','http://[Url.DomainName]/[Url.Page]/',true,'[SimpleProduct.Id]','http://[Url.DomainName]/Cart',jQuery('#conf-attributes[Product.Id]').find('select').serialize()+'&qty=[Product.MinInShoppingCart]')" class="button btn-cart" title="[_Add to Cart]" type="button">
+					<span><span>[_Add to Cart]</span></span>
+				</button>
+			</div>
+			
+			<div class="in-block">
+				[:ProductListItemAddTo]
+			</div>
+			<div class="ratings in-block">
+				[:ProductRating]<!-- design variation -->
+			</div>
+		</div>
+	</div>
+|Grid=
+	<!-- 3 columns and 2 in a row -->
+	<div class="item-wrapper default"  id="prd[Product.Id]">
+		[?Product.Sale|sale=<div class="product-ribbon sale"></div>]
+		<div class="product-image">
+		   <a href="http://[Url.DomainName]/[Product.UrlKey]" title="[Product.Name]"><img src="/[Product.ThumbnailImage=[ProductImage.ImageUrl,140,150]]" alt="[Product.Name]" width="100%"/></a>
+		</div>
+		
+		 <div class="product-details">
+			<a href="http://[Url.DomainName]/[Product.UrlKey]"><h3 class="product-name">[Product.Name]</h3></a>
+		   	<div class="ratings">
+				<div class="rating-box">
+					<div class="rating" style="width:[Product.Ranking]%"></div>
+				</div>
+				<span class="rating-links">
+				<a href="http://[Url.DomainName]/Product/Review/List/[Product.Id]/ListReview">[_%1 Reviews, [Product.NumberOfReviews]]</a>
+				</span>
+			</div>
+			[:ProductBlockPricewoLabel] 
+			[:ProductListItemAttributeColor]
+			
+			<div class="add-to-cart">
+				<button  class="button btn[Design.DesignSelectionName,ButtonStyle]" onclick="actionCart('product_addtocart_form','http://[Url.DomainName]/magento/AddToCart','http://[Url.DomainName]/[Url.Page]/',true,'[SimpleProduct.Id]','http://[Url.DomainName]/Cart',jQuery('#conf-attributes[Product.Id]').find('select').serialize()+'&qty=[Product.MinInShoppingCart]')" class="button btn-cart" title="[_Add to Cart]" type="button">
+					<span><span>[_Add to Cart]</span></span>
+				</button>
+			</div>
+			<div>
+				[:ProductListItemAddTo]
+			</div>
+		</div>
+		
+	</div>
+	<!-- 2 columns ,3 products in a row -->
+	<!-- gi hide ni kay di pwd ug i comment -->
+	<div style="display:none" class="item-wrapper default"  id="prd[Product.Id]">
+		<div class="wrapper first">
+			<div class="product-image">
+			   <a href="http://[Url.DomainName]/[Product.UrlKey]" title="[Product.Name]"><img src="/[Product.ThumbnailImage=[ProductImage.ImageUrl,140,150]]" alt="[Product.Name]"/></a>
+			</div>
+			<div class="ratings">
+				[:ProductRating]
+			</div>
+			<div class="ratings">
+				[:ProductRating]
+			</div>
+			[:ProductListItemAddTo]
+		</div>
+		 <div class="wrapper second product-details">
+			<a href="http://[Url.DomainName]/[Product.UrlKey]"><h3 class="product-name">[Product.Name]</h3></a>
+			<h5>[_OVERVIEW]</h5>
+			<p class="description">
+				[Product.Description] <a href="" class="more">[_Learn More]</a>
+			</p>
+			[:ProductPriceBlock?Product.Sale] 
+			<div class="quantity in-block">
+				<label for="qty">[_Qty:]</label>
+				<input type="text" name="qty" id="qty" maxlength="12" value="1" title="[_Qty]" class="input-text qty">
+			</div>
+			[:ProductListItemAttributeColor]
+
+		   	<div class="add-to-cart">
+				<button class="button btn[Design.DesignSelectionName,ButtonStyle]"><span>[_Add to Cart]</span></button>
+			</div>
+	
+		</div>
+
+	</div>
+	
+]

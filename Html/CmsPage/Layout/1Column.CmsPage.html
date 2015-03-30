@@ -1,0 +1,34 @@
+/*
+*		Renders a 1 column layout Cms page.
+*
+*/
+/** -------------------------------------------------------------------
+Name:              1Column.CmsPage
+Location:          /Html/CmsPage/Layout/1Column.CmsPage.html
+Created By:        Leslie Canete
+Created At:        06-Okt-2014 18:55 (relocation first 15 models)
+Last modified By:  Seth Malaki
+Last modified At:  21-Okt-2014 17:09 (myupdates on addingComments)
+Calling blocks:    breadcrumb 	footer 	header 	mainContent 	notification 	
+--------------------------------------------------------------------**/
+
+
+<div class="page">
+	[?CmsPage.Header|Yes=
+		[:header]
+	]
+	<div class="one-column">
+		[?CmsPage.Header|Yes=
+			[:breadcrumb]
+		]
+		<div class="main-container">
+			<div class="main ">
+				[:notification]
+				[:mainContent]
+			</div>
+		</div>
+	</div>
+	[?CmsPage.Footer|Yes=
+		[:footer]
+	]
+</div>

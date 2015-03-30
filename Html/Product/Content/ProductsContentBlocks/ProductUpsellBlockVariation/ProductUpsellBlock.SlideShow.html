@@ -1,0 +1,70 @@
+/*
+*	Renders a variation block containing list of upsell products.  This displays upsell products 
+*								in a slider control.
+*
+*/
+
+[?Product.HasUpSellProducts|yes=
+<div class="block-upsell-stylec">
+
+	<div class="block-title">
+		<h4>[_You might also be interested in the following products]</h4>
+	</div>
+	<div id="upsell" class="product-list tinyCarousel carousel-items-3">
+		
+		<div class="viewport">
+			<ul class="grid overview" id="slider">
+				[Product.UpSells= 
+				<li class="product-item in-block">
+					<div class="item-wrapper styleA">
+						
+						<div class="product-image">
+						   <a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]"><img src="/[Product.ThumbnailImage=[ProductImage.ImageUrl,140,150]]" alt="[Product.Name]" width="100%"/></a>
+						</div>
+						 <div class="product-details">
+							<a href="[Website.GetUrl,Product,[Product.Id]]"  title="[Product.Name]"><h3 class="product-name">[Product.Name]</h3></a>
+							<p class="description">[Product.Description]</p>
+	
+						</div>
+						<div class="bottom-con">
+							<div class="in-block">[:ProductPriceBlock?Product.Sale]</div>
+							<div class="view"><a href="[Website.GetUrl,Product,[Product.Id]]">[_View Product]</span></a></div>
+						</div>	
+						
+					</div>
+				</li>
+				]
+			</ul>
+			
+			
+		</div>
+		<div class="buttons-slides-con">
+			
+			<a class="button-arrow prev" href="#">[_left]</a>
+			<a class="button-arrow stop" id="stopslider" href="#">[_stop]</a>
+			<a class="button-arrow start" id="startslider" href="#">[_start]</a>
+			<a class="button-arrow next" href="#">[_right]</a>
+			
+		</div>
+	</div>
+	<script type="text/javascript">
+		jQuery(document).ready(function(){
+			var upslider =jQuery('#upsell');
+			upslider.tinycarousel({interval: true,intervaltime: 2000});
+			
+			//The tinycarousel_start method starts the interval.
+			jQuery('#startslider').click(function(){ 
+			    upslider.tinycarousel_start();
+			    return false;
+			});
+
+			//The tinycarousel_stop method stops the interval.
+			jQuery('#stopslider').click(function(){ 
+			   upslider.tinycarousel_stop();
+			    return false;
+			});
+		});
+	</script>
+</div>
+|.no=]
+

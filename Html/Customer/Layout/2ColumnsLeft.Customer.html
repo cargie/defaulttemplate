@@ -1,0 +1,35 @@
+/*
+*		Renders a two columns page containgin left column and main content.
+*
+*/
+/** -------------------------------------------------------------------
+Name:              2ColumnsLeft.Customer
+Location:          /Html/Customer/Layout/2ColumnsLeft.Customer.html
+Created By:        Leslie Canete
+Created At:        06-Okt-2014 18:55 (relocation first 15 models)
+Last modified By:  Seth Malaki
+Last modified At:  21-Okt-2014 18:53 (myupdates in addingComments)
+Possible call:    FeaturedPage 	
+Calling blocks:    breadcrumb 	footer 	header 	leftColumn 	notification 	
+Calling unknown:   mainContent.Customer[Url.View] 	
+--------------------------------------------------------------------**/
+
+
+<div class="page">
+	[:header]
+	<div class="two-columns-left">
+		[:breadcrumb]
+		<div class="main-container">
+			<div class="left">
+				[:leftColumn]
+			</div>
+			<div class="main ">
+				[:notification]
+				[:mainContent.Customer[Url.View]]
+			</div>
+		</div>
+		<br style="clear:both;"/>
+	</div>
+	[:footer]
+</div>
+

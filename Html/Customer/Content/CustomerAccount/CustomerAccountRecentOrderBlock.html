@@ -1,0 +1,66 @@
+/*
+*		Renders an information of Customer recent orders.
+*							
+*/
+
+<div class="table-v1">
+	[?Customer.OrdersAvailable|yes=
+	<div class="box-head">
+			<h2>[_Recent Orders]</h2>
+			 <a class="view" href="[Website.GetUrl,Customer,History]">[_View All]</a>
+		     
+    </div>
+	<table class="recent-table">
+	    <col width="50" />
+	    <col width="100" />
+	    <col width="100">
+	    <col width="100">
+	    <col width="50" />
+	    <col width="50" />
+	    <col width="100" />
+	    <thead>
+		<tr>
+		    <th>[_Order]</th>
+		    <th>[_Date]</th>
+		    <th>[_Ship To]</th>
+		    <th>[_Mutation]</th>
+		    <th><span class="nobr">[_Total]</span></th>
+		    <th><span class="nobr">[_Status]</span></th>
+		    <th>&nbsp;</th>
+		</tr>
+	    </thead>
+	    <tbody>
+		<!-- start loop here -->
+		[Customer.Orders,3=
+
+		<tr>
+			<td>[Order.OrderNumber]</td>
+			<td><span class="nobr">[Order.LastDate]</span></td>
+
+			<td>
+			[Order.LatestDeliveryAddress=
+				[OrderAddress.FirstName] [OrderAddress.MiddleName] [OrderAddress.LastName]<br>
+				
+			]
+			</td>
+			<td>
+				<ul>[Order.Mutations=<li>[OrderMutation.Date], [OrderMutation.Status], [OrderMutation.Type] </li>]
+				<ul>
+			</td>
+			<td><span class="nobr">[Order.TotalPrice]</span></td>
+			<td><em>[Order.LastStatus]</em></td>
+			<td>
+				<span class="nobr"><a href="[Website.GetUrl,Customer,OrderView/[Order.Id]]">[_View Order]</a><!-- check if reorder is true -->&nbsp;&nbsp;<a href="" class="link-reorder">[_Reorder]</a>
+				</span>
+			</td>
+		</tr>
+		]
+		<!-- end loop here -->
+	    </tbody>
+	</table>
+	|no=
+	<!-- if no orders yet -->
+	    <p>[_You have placed no orders.]</p>
+	<!-- if no orders yet -->
+	]
+	</div>

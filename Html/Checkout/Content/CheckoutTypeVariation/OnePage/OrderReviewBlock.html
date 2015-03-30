@@ -1,0 +1,127 @@
+<div id="opc-review" class="checkout-block order-review last" >
+	<div class="title">
+		<div class="circle-number">[General.Param1]</div><div class="label"><h5>[_Order Review]</h5></div>
+	</div>
+	<div class="content " style="">
+		<table class="order-review-table">
+			<colgroup>
+				<col>
+		        <col width="1">
+		        <col width="1">
+		        <col width="1">
+                <col width="1">
+		        <col width="1">
+            </colgroup>
+			<thead>
+				<tr>
+					<th rowspan="2" class="">[_Product Name]</th>
+					<th colspan="2" class="a-center ">[_Price]</th>
+					<th rowspan="2" class="a-center">[_Qty]</th>
+					<th colspan="2" class="a-center no-right-border">[_Subtotal]</th>
+				</tr>
+				<tr class="last">
+                    <th class="a-right"> <span class="tax-flag">(Excl. Tax)</span></th>
+                    <th class="a-right"> <span class="tax-flag">(Incl. Tax)</span></th>
+                    <th class="a-right"> <span class="tax-flag">(Excl. Tax)</span></th>
+                    <th class="a-right"> <span class="tax-flag">(Incl. Tax)</span></th>
+                </tr>
+			</thead>
+			<tbody>
+				[ShoppingCart.Items= 
+				<tr>
+					<td>[Product.Name]</td>
+					<td class="a-right">[ShoppingCartItem.PriceEach]</td>
+					<td class="a-right">[ShoppingCartItem.PriceEach]</td>
+					<td class="a-center">[ShoppingCartItem.Quantity]</td>
+					<td class="a-right">[ShoppingCartItem.RowTotal]</td>
+					<td class="a-right">[ShoppingCartItem.RowTotal]</td>	
+				</tr>
+				]
+				<tfoot>
+						<tr >
+							<td colspan="5" align="right" class="a-right no-all-borders ">[_Subtotal (Excl. Tax)]</td>
+							<td class="a-right no-all-borders"><span class="table-price">[ShoppingCart.TotalExclTax]</span></td>
+						</tr>
+						<tr>
+							<td colspan="5" align="right" class="a-right no-all-borders">[_Subtotal (Incl. Tax)]</td>
+							<td class="a-right no-all-borders"><span class="table-price">[ShoppingCart.TotalInclTax]</span></td>
+						</tr>
+					[?ShoppingCart.HasDiscounts
+					|yes=
+						<tr>
+							<td colspan="5" align="right" class="a-right no-all-borders ">
+								[_Discounts:]
+								[ShoppingCart.Discounts= [ShoppingCartDiscount.Id] [ShoppingCartDiscount.Name]  [ShoppingCartDiscount.Amount]  ([ShoppingCartDiscount.AmountText]) 
+								]
+							</td>
+							<td class="a-right no-all-borders">
+								<span class="table-price">[ShoppingCart.TotalDiscounts]</span>
+							</td>
+						</tr>
+					]
+					
+					[?ShoppingCart.FreeShipping
+					|n/a=
+					|Yes=
+						<tr>
+							<td colspan="5" align="right" class="a-right no-all-borders ">
+								[_Shipping Costs:]
+							</td>
+							<td>
+								[_Free Shipping]
+							</td>
+						</tr>
+					|No=<tr>
+							<td colspan="5" align="right" class="a-right no-all-borders ">
+								[_Shipping Costs:]
+							</td>
+							<td class=" a-right no-all-borders">
+								<span class="table-price">[ShoppingCart.ShippingCosts]</span>
+							</td>
+						</tr>
+					]
+					
+					<tr>
+						<td colspan="5" align="right" class="a-right no-all-borders "><span class="grand-total">[_Grand Total Excl. Tax]</span></td>
+						<td class="a-right no-all-borders"><span class="table-price grand-total">[ShoppingCart.SubTotal]</span></td>
+					</tr>
+					
+					[?ShoppingCart.HasTaxes
+					|yes=
+
+					<tr>
+						<td colspan="5" align="right" class="a-right no-all-borders ">
+							[_Taxes:] [ShoppingCart.TaxAndCosts= [ShoppingCartTaxAndCost.Id] [ShoppingCartTaxAndCost.Name]  [ShoppingCartTaxAndCost.Amount]%  [ShoppingCartTaxAndCost.Value]  [.ShoppingCartAllTaxesIncluded|yes=inclusive btw|no=exclusive btw]
+						]
+						</td>
+						<td class="a-right no-all-borders">
+							<span class="table-price">[ShoppingCart.TotalTax]</span>
+						</td>
+					</tr>
+					]
+					<tr >
+						<td colspan="5" align="right" class="a-right no-all-borders "> <span class="grand-total default-orange">[_Grand Total Incl. Tax]</span></td>
+						<td class="a-right no-all-borders"><span class="table-price grand-total default-orange">[ShoppingCart.TotalInclTax]</span></td>
+					</tr>
+					<tr>
+						<td colspan="6">
+							[:TermsAndConditionsBlock]
+						</td>
+					</tr>
+					<tr>
+						<td colspan="6">
+							<div class="checkout-button-top" style="padding-right:10px">
+								<button value="" class="btn-checkout" onclick="review.save()" title=""><span><span>PROCEED TO CHECKOUT</span></span></button>
+							</div>
+						</td>
+					</tr>
+				</tfoot>
+			</tbody>
+		</table>
+		
+	</div>
+	
+</div>
+<script type="text/javascript">
+	var review = new Review('[Website.GetUrl,CheckOut,saveConfirmation]','[Website.GetUrl,CheckOut,Success]','co-billing-form');
+</script>

@@ -1,0 +1,30 @@
+/*
+*		Renders a page for Forum group.
+*
+*/
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>[Website.Name] | [_Forum Group]</title>
+	[:Head]
+	[:ForumHead]
+</head>
+<body class="forum-home">
+	[:ForumHeader]
+	<div class="one-column">
+		[:Breadcrumb]
+		<div class="new-thread">
+			<a href="[Website.GetUrl,forum,newthread/[ForumGroup.Id]]"><img src="[File:/css/forum/images/create_new_thread.png]"/></a>
+		</div>
+		<br style="clear:both"/>
+		<div class="main-container">
+			<div class="main ">
+				[:ForumGroupMainContent]
+			</div>
+		</div>
+	</div>
+	[:ForumGroupFooter]
+</body>
+</html>
+

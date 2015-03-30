@@ -1,0 +1,17 @@
+/*
+*	Renders a textfield or textarea for accepting inputs from the customer to filled up the product options.
+*
+*/
+
+<dd>
+    <div class="input-box">
+	[?ProductOption.Type
+	|Field=
+        <input type="text" onchange="reloadPrice('[Website.GetUrl,Ajax,Diff]','[Website.GetUrl,Product,[Product.Id]]','[Website.GetUrl,Product,0,OptionsUpdate/[Product.Id]]',jQuery('#product_addtocart_form').serialize());" id="options_[ProductOption.Id]_text" class="input-text validate-length maximum-length-[ProductOption.MaxCharacters] product-custom-option [?ProductOption.Required|Yes=required]" name="options\\[[ProductOption.Id]\\]" value="[UserInput.OptionValue]" />
+	|Area=
+        <textarea id="options_[ProductOption.Id]_text" onchange="reloadPrice('[Website.GetUrl,Ajax,Diff]','[Website.GetUrl,Product,[Product.Id]]','[Website.GetUrl,Product,0,OptionsUpdate/[Product.Id]]',jQuery('#product_addtocart_form').serialize());" class="validate-length maximum-length-[ProductOption.MaxCharacters] product-custom-option [?ProductOption.Required|Yes=required]" name="options\\[[ProductOption.Id]\\]" rows="5" cols="25">[UserInput.OptionValue]</textarea>
+	]
+	[?ProductOption.MaxCharactersSet|yes=<p class="note">[_Maximum number of characters: <strong>%1</strong>, [ProductOption.MaxCharacters]]</p>]
+</div>
+</dd>
+

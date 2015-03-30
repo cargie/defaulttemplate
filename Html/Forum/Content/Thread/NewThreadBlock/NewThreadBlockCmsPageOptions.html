@@ -1,0 +1,13 @@
+/*
+*		Renders a list of cms pages.  
+*
+*/
+
+
+<label>[_Select CMS Page]</label>
+<select class="new-thread-category-list" name="cms_page_id">
+	<option class="" value="">--[_Select]--</option>
+	[Website.CmsPages=
+		<option class="" value="[CmsPage.Id]">[CmsPage.Title]</option>
+	]
+</select>

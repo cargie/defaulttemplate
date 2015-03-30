@@ -1,0 +1,43 @@
+/*
+*		renders the footer information of shopping cart table.
+*
+*/
+/** -------------------------------------------------------------------
+Name:              CartFooterButtonsBlock
+Location:          /Html/Cart/Content/CartTableBlock/CartFooterButtonsBlock.html
+Created By:        Leslie Canete
+Created At:        07-Okt-2014 16:54 (move to and rename ShoppingCartBlocks to Cart)
+Last modified By:  Seth Malaki
+Last modified At:  21-Okt-2014 17:09 (myupdates on addingComments)
+Called from:       CartTableBlock 	
+--------------------------------------------------------------------**/
+
+
+<div class="cart-actions">
+
+	<button type="button" title="[_Continue Shopping]" class="button btn-secondary[Design.DesignSelectionName,ButtonStyle] f-left" onclick="window.location='[Website.GetUrl,Home]'">
+		<span>
+			<span class="">[_Continue Shopping]</span>
+		</span>
+	</button>
+
+	<button type="button" title="[_Clear Cart]" class="button btn[Design.DesignSelectionName,ButtonStyle]" onclick="setLocationAjax('[Website.GetUrl,Magento,ClearCart]','[Url.FullUrl]',true,'');">
+		<span>
+			<span class="clearcart-right">[_Clear Cart]</span>
+		</span>
+	</button>
+
+	<button type="submit" title="[_Update Shopping Cart]" class="button btn-secondary[Design.DesignSelectionName,ButtonStyle]">
+		<span>
+			<span class="update-right">[_Update Shopping Cart]</span>
+		</span>
+	</button>
+	<script type="text/javascript">
+	jQuery("#cart-form").validate({
+		submitHandler: function(form) {
+			setLocationAjaxAction('cart-form','[Website.GetUrl,Magento,UpdateCart]','[Url.FullUrl]',true,'',jQuery('#cart-form').serialize(),'[Website.GetUrl,Cart]');
+		 }	
+	});
+	</script>
+</div>
+

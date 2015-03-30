@@ -1,0 +1,44 @@
+/*
+*	Renders the product review form rating when adding new review in the current product.
+*
+*/
+
+[?Product.CanRate|Yes=
+<!-- check if there are ratings -->
+<div class="rating-container">
+		<h4>[_How do you rate this product?] <em class="required">*</em></h4>
+		<table class="data-table" id="product-review-table">
+			<colgroup><col>
+				<col width="1">
+				<col width="1">
+				<col width="1">
+				<col width="1">
+				<col width="1">
+			</colgroup>
+			<thead>
+				<tr class="first last">
+					<th>&nbsp;</th>
+					<th><span class="nobr">[_1 star]</span></th>
+					<th><span class="nobr">[_2 stars]</span></th>
+					<th><span class="nobr">[_3 stars]</span></th>
+					<th><span class="nobr">[_4 stars]</span></th>
+					<th><span class="nobr">[_5 stars]</span></th>
+				</tr>
+			</thead>
+			<tbody>
+				[Website.RatingCodes=
+				<tr class="">
+					<td><strong>[RatingCode.Name]</strong></td>
+					<td class="value"><input type="radio" name="ratings\\\[[RatingCode.Id]\\\]" id="[RatingCode.Code]_1" value="1" class="radio"></td>
+					<td class="value"><input type="radio" name="ratings\\\[[RatingCode.Id]\\\]" id="[RatingCode.Code]_2" value="2" class="radio"></td>
+					<td class="value"><input type="radio" name="ratings\\\[[RatingCode.Id]\\\]" id="[RatingCode.Code]_3" value="3" class="radio"></td>
+					<td class="value"><input type="radio" name="ratings\\\[[RatingCode.Id]\\\]" id="[RatingCode.Code]_4" value="4" class="radio"></td>
+					<td class="value last"><input type="radio" name="ratings\\\[[RatingCode.Id]\\\]" id="[RatingCode.Code]_5" value="5" class="radio"></td>
+				</tr>
+				]
+			</tbody>
+		</table>
+		
+</div>
+<!-- end check -->
+]

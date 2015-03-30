@@ -1,0 +1,36 @@
+/*
+*		Renders the main content detailed information of the CustomerNewsletterPage.
+*							
+*/
+
+<div class="my-account">
+	<div class="page-title">
+		<h2>[_Newsletter Subscription]</h2>
+	</div>
+	<div>
+	<form id="form-newsletter" method="post" action="">
+		<div class="fieldset">
+			<h3 class="legend">[_Newsletter Subscription]</h3>
+			<ul class="form-list">
+			    <li class="control"><input type="checkbox" class="checkbox in-block" title="[_General Subscription]" value="1" id="newsletter-subscription" name="is_subscribed" [?Customer.NewsletterStatus|Subscribed=checked]><label for="newsletter-subscription" class="in-block">[_General Subscription]</label><input type="hidden" name="email" value="[Website.CurrentCustomer=[Customer.Email]]"></li>
+			</ul>
+		</div>
+		<div class="buttons-set">
+			<p class="back-link"><a href="[Website.GetUrl,Customer,account]"><small>« </small>[_Back]</a></p>
+			<button class="button btn[Design.DesignSelectionName,ButtonStyle]" title="[_Save]" type="submit" ><span><span>[_Save]</span></span></button>
+		</div>
+	</form>
+	</div>
+	<script type="text/javascript">
+		jQuery("#form-newsletter").validate({
+			submitHandler: function(form){
+				if (jQuery('#newsletter-subscription').attr('checked') =='checked'){
+					setLocationAjaxAction('','[Website.GetUrl,magento,SubscribeToNewsletter]','[Url.FullUrl]',true,'',jQuery('#form-newsletter').serialize(),'[Url.FullUrl]');
+				}else{
+					setLocationAjaxAction('','[Website.GetUrl,magento,UnsubscribeNewsletter]','[Url.FullUrl]',true,'',jQuery('#form-newsletter').serialize(),'[Url.FullUrl]');
+				}
+			}
+		});
+	</script>
+			
+</div>

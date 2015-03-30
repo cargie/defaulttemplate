@@ -1,0 +1,27 @@
+/*
+*	Variation 3ProductsInARow of ( ProductListItemStyleB ) Renders the listings of products of the current category.
+*	Can be list as Grid type or List type.
+*/
+<div class="item-wrapper styleB"  id="prd[Product.Id]" >
+	<div class="wrapper">
+		<a href="[Website.GetUrl,Product,[Product.Id]]"><h2 class="product-name">[Product.Name]</h2></a>
+		<div class="product-image">
+			<a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]"><img alt="[Product.Name]" width="155px" src="/[Product.SmallImage=[ProductImage.ImageUrl,205,220]]"></a>
+		</div>
+		<div class="price-block">[:ProductPriceBlock?Product.Sale]</div>
+		<!--<div class="attributes-con">[:ProductListItemAttributeColor.StyleB]</div>-->
+		<div class="ratings">
+			 [:ProductRating.StyleB]
+		</div>
+	</div>
+	<div class="bottom-wrapper">
+		<div class="bottom-con">
+			<div class="cart-details">
+				<button  class="button btn[Design.DesignSelection,ButtonStyle]" onclick="actionCart('product_addtocart_form','[Website.GetUrl,magento,AddToCart]','[UserInput.DefaultUrlPart]',true,'[SimpleProduct.Id]','[Website.GetUrl,Cart]',jQuery('#conf-attributes[Product.Id]').find('select').serialize()+'&qty=[Product.MinInShoppingCart]')" class="button btn-cart" title="[_Add to Cart]" type="button">
+					<span><span>[_Add to Cart]</span></span>
+				</button>
+			</div>
+			[:ProductListItemAddTo]
+		</div>
+	</div>
+</div>

@@ -1,0 +1,32 @@
+/*
+*		Renders a category list in a dropdown selection.  This controls gives a user to choose what category will be associated on a new forum.
+*
+*/
+
+<label>[_Select Category]</label>
+<select class="new-thread-category-list" name="category_id">
+	<option class="" value="">--[_Select]--</option>
+	[Website.TopCategories=
+		<option class="root" value="[Category.Id]">[Category.Name]</option>[:NewThreadBlockCategoryOptionsSub]
+	]
+</select>
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		jQuery(".new-thread-category-list .level-2").each(function(){
+			var html = jQuery(this).html();
+			jQuery(this).html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+html)
+		});
+		jQuery(".new-thread-category-list .level-3").each(function(){
+			var html = jQuery(this).html();
+			jQuery(this).html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+html)
+		});
+		jQuery(".new-thread-category-list .level-4").each(function(){
+			var html = jQuery(this).html();
+			jQuery(this).html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+html)
+		});
+		jQuery(".new-thread-category-list .level-5").each(function(){
+			var html = jQuery(this).html();
+			jQuery(this).html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+html)
+		});
+	});
+</script>

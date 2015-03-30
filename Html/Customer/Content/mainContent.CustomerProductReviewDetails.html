@@ -1,0 +1,31 @@
+/*
+*		Renders the main content detailed information of the CustomerProductReviewDetailsPage.
+*							
+*/
+
+<div class="my-account">
+
+	<div class="page-title">
+		<h2> [ProductReview.ProductName] <em>[ProductReview.Sku]</em>
+			<div class="rating-box">
+	 			<div class="rating" style="width:[ProductReview.RatingPercentage]%"></div>
+			</div>
+		</h2>
+	
+	</div>
+
+
+	<div class="review-info-con">
+		<p>[ProductReview.Title] - <em>[ProductReview.Status]</em></p>
+		<p><i>[ProductReview.CreatedAt]</i></p>
+	
+		<br>
+		<p>[ProductReview.Detail]</p>
+	
+	
+	</div>
+
+	<div class="buttons-set">
+	<p class="back-link"><a href="[Website.GetUrl,Customer,ProductReview]"><small>« </small>[_Back]</a></p>
+	</div>
+</div>

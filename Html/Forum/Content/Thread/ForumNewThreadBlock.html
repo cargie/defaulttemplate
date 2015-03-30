@@ -1,0 +1,226 @@
+/*
+*         Renders the main content in creating new thread.  This contains the fields to be filled up on creating new thread.
+*
+*/
+<div class="forum-block create-thread">
+       <div class="forum-header">[_Create New Thread]</div>
+               <div class="forum-content">
+                       <div class="fdata" style="padding:20px;">
+                               <form id="NewThread" method="post" action="[Website.GetUrl,forum,AddThread/1]">
+                                   <!--<div class="thread-author">
+                                       <img src="[File:/css/forum/images/no_image.png]"/>
+                                       <div class="thread-author-details">
+                                               <span class="by">by: Leslie Canete</span><br/>
+                                               <span class="posted-on">Posted on: Yesterday, 3:15 PM</span>
+                                       </div>
+                                   </div>-->
+                                   <ul class="form-fields" style="float:left">
+                                           <li>
+                                               <label>[_Thread Title]</label>
+                                               <input name="title" type="text" class="input-data required-entry" placeholder="Write title" /> <span class="required">  *</span>
+                                           </li>
+                                           <li>
+                                               <label>[_Description]</label>
+                                               <input name="description" type="text" class="input-data required-entry" placeholder="Write a short description" /> <span class="required">  *</span>
+                                           </li>
+                                           <li style="margin-bottom:0px;">
+                                                   <label>[_Post]</label>
+                                                   <textarea name="text" class="input-data required-entry" placeholder="Write your post" ></textarea> <span class="required">  *</span>
+                                           </li>
+                                           <li style="margin-bottom: 20px;">
+                                                   <label></label>
+                                                   <div class="multiple-choice"><a href="#" onclick="MultipleChoice.addNewMultipleQuestion();return false;">[_Add a Multiple Choice Question]</a></div> <span class="optional"> [_(Optional)]</span>
+                                           </li>
+                                           <li class="multiple-questions-container" style="margin-bottom: 20px;">
+                                           <input id="poll" name="poll" type="hidden" value="false"/>
+                                                  <!-- <label style="display:none">Multiple choice questions</label-->
+                                                   
+                                                   <!--
+	                                                   <div id="multiple-choice-questions-1" class="multiple-choice-questions">
+	                                                           <div class="input-data">
+	                                                                   <textarea name="question\[0\]" class="choice-question" style="" placeholder="Ask Something (ex: What is your favorite color?)"></textarea>
+	                                                           </div>
+	                                                           <div class="option-container">
+	                                                                   <div class="options-list">
+	                                                                           <div class="option"><input type="text" class="option-input"/></div>
+	                                                                           <div class="delete" onclick="MultipleChoice.deleteOption(this)"><img src="[File:/css/forum/images/delete.png]"></div>
+	                                                                   </div>
+	                                                           </div>
+	                                                           <div class="add-new-option">
+	                                                                   <span>+ <span onclick="MultipleChoice.addNewOption(1)">Add Another option...</span></span>
+	                                                           </div>
+	                                                   </div>
+                                                   -->
+                                                   
+                                           </li>
+                                           <li>
+                                                   <label>[_Add tags]</label>
+                                                   <input name="tags" type="text" class="input-data" placeholder="Add tags" /> <span class="optional"> [_(Optional)]</span>
+                                           </li>
+                                   </ul>
+                                    <ul class="form-fields" style="float: right;width: 374px;padding-left: 0px;">
+                                       <li>
+                                       		[:NewThreadBlockCategoryOptions]
+                                       </li>
+                                       <li>
+                                       		<form id="search_mini_form" method="post">
+												<label for="search">[_Search Product]:</label>
+												<input id="product-search" type="text"  value="" class="input-data" maxlength="128" autocomplete="off">
+												<div id="search_product_autocomplete" class="search-autocomplete" style="display: none;width: 350px;z-index: 1000; "></div>
+											</form>
+                                       </li>
+                                       <li>
+                                       		<div class="related-to-item" style="display:none">
+                                       			<div class="p-img">
+                                       			</div>
+                                       			<div class="p-name">
+                                       				
+                                       			</div>
+                                       			<div class="p-close">
+                                       				<a id="close-search" class="close" onclick="MultipleChoice.clearItem(this)">&times;</a>
+                                       			</div>
+                                       		</div>
+                                       </li>
+                                       <li>
+                                       		[:NewThreadBlockCmsPageOptions]
+                                       </li>
+                                       <li>
+                                       		[:NewThreadBlockBrandsOption]
+                                       </li>
+                                       <li>
+                                       		<label><input type="checkbox" name="show_in_all_products" value="Yes"/> Include all products</label>
+                                       </li>
+                                    </ul>
+                                   <div style="text-align:right">
+                                   	<button class="cancel-thread-button" onclick="cancelNewThread();return false;">[_Cancel]</button><button class="submit-thread-button" onclick="thread_form.submit();return false">[_Create Thread]</button>
+                                   </div>
+                                   <br style="clear:both;"/>
+                               </form>
+                       </div>
+               </div>
+</div>
+<script type="text/javascript">
+	
+	var thread_form = new IncraForm("NewThread","[Website.GetUrl,forum,AddThread/1]","","");
+    var MultipleChoice = {
+               id      :       0,
+               addNewMultipleQuestion  :       function(){
+               									   var q_count = jQuery(".multiple-choice-questions").length;
+               									   var l="";
+               									   
+               									   if(q_count>=1)	return;
+               									   //if(q_count>0)
+               									   l = '<label style="display:inline-block">Multiple choice questions</label>';
+               									   	
+                                                   var html = l+'<div id="multiple-choice-questions-'+q_count+'" class="multiple-choice-questions">';
+                                                   html+= '			<div class="input-data">';
+                                                   html+= '				<textarea class="choice-question" name="question" style="" placeholder="Ask Something (ex: What is your favorite color?)"></textarea>';
+                                                   html+= '			</div>';
+                                                   html+= '			<div id="option-container">';
+                                                   html+= '			</div>';
+                                                   html+= '			<div class="add-new-option">';
+                                                   html+= '				<span>+ <span onclick="MultipleChoice.addNewOption('+q_count+')">Add Another option...</span></span>';
+	                                               html+= '	    	</div>';
+                                                   html+= '		</div>';
+                                                   
+                                                   /*if(q_count==0)
+                                                   		jQuery("#multiple-choice-questions-"+q_count+" label").css("display","inline-block");*/
+                                                   		
+                                                   jQuery(".multiple-questions-container").append(html);
+                                                   jQuery("#poll").val('true');
+                                               },
+				addNewOption			:       function(option_id){
+												   var choice_count = jQuery("#multiple-choice-questions-"+option_id+ " .options-list").length;
+												   var input_name = "answer\["+choice_count+"\]";
+                                                   var html = '<div class="options-list">';
+                                                           html+= '<div class="option"><input name="'+input_name+'" type="text" class="option-input"/></div>';
+                                                           html+= '<div class="delete" onclick="MultipleChoice.deleteOption(this)"><img src="[File:/css/forum/images/delete.png]"></div>';
+                                                           html+= '</div>';
+                                                   
+                                                   jQuery("#multiple-choice-questions-"+option_id+ " #option-container").append(html);
+                                                   return false;
+                                               },
+				deleteOption            :       function(obj){
+                                                   var container = jQuery(obj).parent().parent();
+                                                   jQuery(obj).parent().remove();
+                                                   this.reindexFieldName(container);
+												},
+               reindexFieldName			:       function(container){
+		                                           //console.log(container);
+		                                           //console.log(jQuery(container).find(".option-input"));
+		                                           var me = this;
+		                                           jQuery(container).find(".option-input").each(function(i,el){
+	                                                   console.log(i);
+	                                                   jQuery(el).prop("name","multiple["+me.id+"][option]["+i+"]");
+		                                           })
+		                                       },
+		       setRelatedTo				:		function(obj){
+		       										console.log(obj);
+		       										console.log(jQuery(obj).find(".img-polaroid"));
+		       										console.log(jQuery(obj).find(".search-product-title"));
+		       										var p_name = jQuery(obj).find(".search-product-title");
+		       										var p_id = p_name.attr("product_id");
+		       										var p_image = jQuery(obj).find(".img-polaroid");
+		       										jQuery(".related-to-item .p-name").html(p_name);
+		       										jQuery(".related-to-item .p-name").append('<input type="hidden" name="product_id" value="'+p_id+'"/>');
+		       										jQuery(".related-to-item .p-img").html(p_image);
+		       										jQuery("#search_product_autocomplete").css("display","none");
+		       										jQuery(".related-to-item").css("display","block");
+		       										
+		       										return false;
+		 									   },
+		 		clearItem				:		function(obj){
+		 											jQuery(obj).parent().prev().html("");
+		 											jQuery(obj).parent().prev().prev().html("");
+		 											jQuery(obj).parent().parent().css("display","none");
+		 										}
+		 		
+       }
+       
+       function cancelNewThread(){	window.location = "[Website.GetUrl,Forum,group/1]"; }
+       
+</script>
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		jQuery("#close-search").live('click',function(){
+			jQuery("#search_product_autocomplete").css("display","none");
+			jQuery("#search_product_autocomplete #popover-search").css("display","none");
+			return false;
+		});
+		
+		jQuery("#product-search").keydown(function(event){
+			if(event.keyCode == 13) {
+				//jQuery("#mini-search-button").click();
+			}
+		});
+
+		jQuery("#product-search").keyup(function(event){
+			var str = jQuery('#product-search').val();
+			if (str.length==0)
+			{ 
+				jQuery("#search_product_autocomplete").html("");
+				jQuery("#search_product_autocomplete").css('display','none');
+				return;
+			}
+			
+			var url="[Website.GetUrl,Search,Ajax/]"+str;
+			
+			jQuery.ajax(url,{	
+			  type: "GET",
+			  dataType: "html",
+			  cache: true, 
+			  success: function(data, textStatus, jqXHR){
+					jQuery("#search_product_autocomplete").html(data);
+					jQuery("#search_product_autocomplete").css('display','block');
+					
+					jQuery("#popover-search .popover-content .media-list .search-items .image-thumbnail a").attr("href","#");
+					jQuery("#popover-search .popover-content .media-list .search-items .media-heading a").attr("href","#");
+					jQuery("#popover-search .popover-content .media-list .search-items").attr("onclick","MultipleChoice.setRelatedTo(this); return false;");
+					//jQuery("#popover-search .popover-content .media-list .search-items .image-thumbnail a").attr("onclick","MultipleChoice.setRelatedTo(this); return false;");
+					
+				}
+			});
+		});
+	});
+</script>
+

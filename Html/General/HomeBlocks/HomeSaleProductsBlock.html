@@ -1,0 +1,31 @@
+/*
+*	Renders a block containing list of products on sale.
+*/
+
+[Website.SaleProducts,1,3,'Name',Ascending]
+[?Filter.Empty|no=
+<div class="sale-products-block home-block">
+	<div class="block-title"><h3>[_SALE PRODUCTS]</h3></div>
+	<ul class="products-grid inline-list">
+		[Filter.Products=
+			<li class="item">
+				<div class="item-wrapper">
+					<a title="[Product.Name]" href="[Website.GetUrl,Product,[Product.Id]]">
+						<img class="product-image" width="110" data-src="holder.js/300x200" src="/[Product.ThumbnailImage=[ProductImage.ImageUrl,140,150]]" alt="">
+					</a>
+					<div class="product-details">
+						<a title="[Product.Name]" class="product-name" href="[Website.GetUrl,Product,[Product.Id]]">
+							<h4>[Product.Name]</h4>
+						</a>
+						<div class="product_price-container">
+							[?Product.Sale|sale=<span class="price">[SimpleProduct.SpecialPrice] </span>
+							<div>FROM</div><span class="old-price"><s>[SimpleProduct.Price] </s>
+							</span>|= <span class="price">[SimpleProduct.Price] </span>]
+						</div>
+				  	</div>
+				  </div>
+			</li>
+		]
+	</ul>
+</div>
+]

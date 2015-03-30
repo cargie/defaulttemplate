@@ -1,0 +1,59 @@
+/*
+*	Renders a block containing list of featured products.
+*/
+[Website.FeaturedProducts,1,,'Name',Ascending]
+[?Filter.Empty|no=
+<div class="featured-products-block home-block two-items-slider large-6 columns">
+	<div class="block-title"><h3>[_Featured Products] </h3></div>
+	<ul class="products-grid inline-list" id="featured_twoitems_carousel">
+		[Filter.Products=
+			<li class="item">
+				<div class="item-wrapper">
+					<a title="[Product.Name]" href="[Website.GetUrl,Product,[Product.Id]]">
+						<img class="product-image" width="110" data-src="holder.js/300x200" src="/[Product.ThumbnailImage=[ProductImage.ImageUrl,140,150]]" alt="">
+					</a>
+					<div class="product-details">
+						<a title="[Product.Name]" class="product-name" href="[Website.GetUrl,Product,[Product.Id]]">
+							<h4>[Product.Name]</h4>
+						</a>
+						<div class="product_price-container in-block">
+							[?Product.Sale|sale=<span class="price">[SimpleProduct.SpecialPrice] </span>
+							<div>FROM</div><span class="old-price"><s>[SimpleProduct.Price] </s>
+							</span>|= <span class="price">[SimpleProduct.Price] </span>]
+						</div>
+				  	</div>
+				  </div>
+			</li>
+		]
+	</ul>
+	<script type="text/javascript">
+	jQuery(function() {
+		jQuery('#featured_twoitems_carousel').carouFredSel({
+			width: '100%',
+			items: 2,
+			scroll: {
+				fx: 'crossfade',
+				pauseOnHover: true,
+				onBefore: function() {
+					jQuery(this).children().removeClass( 'hover' );
+				}
+			},
+			prev: {
+				button: '#featured_twoitems_prev',
+				items: 1
+			},
+			next: {
+				button: '#featured_twoitems_next',
+				items: 1
+			},
+			auto: {
+				items: 1,
+				duration: 5000,
+				timeoutDuration:3000
+			},
+		});
+	 
+	});
+	</script>
+</div>
+]

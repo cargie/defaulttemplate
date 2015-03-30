@@ -1,0 +1,19 @@
+/*
+*	variation Sale from ProductListItemPrice.  This renders a product list item price.
+*/
+
+[?Product.ProductType|Simple=
+	<span class="old-price">[_Regular Price : <s>%1</s>,[Product.Price]]</span>
+	<p class="special-price">[_Special Price : <span class="price">%1</span>, [Product.SpecialPrice]]</p>
+	[Product.ActualPriceTakenFrom] [Product.ActualPrice] 
+	[?Product.TierPricesExist|Yes=
+	<p><a href="[Website.GetUrl,Product,[Product.Id]]">[_As low as: %1, [Product.LowestTierPrice]]</a></p>
+	]
+|Configurable=
+	<span class="old-price">[_Regular Price : <s>%1</s>,[SimpleProduct.Price]]</span>
+	<p class="special-price">[_Special Price : <span class="price">%1</span>, [SimpleProduct.SpecialPrice]]</p> 
+	[SimpleProduct.ActualPriceTakenFrom] [SimpleProduct.ActualPrice]
+	[?SimpleProduct.TierPricesExist|Yes=
+	<p><a href="[Website.GetUrl,Product,[Product.Id]]">[_As low as: %1, [SimpleProduct.LowestTierPrice]]</a></p>
+	]
+]

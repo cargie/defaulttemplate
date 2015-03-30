@@ -1,0 +1,61 @@
+/*
+*	Renders the variation of ProductMediaImage controls.
+*
+*/
+
+<div class="product-image magnify">
+	<a href="/[Product.BaseImage=[ProductImage.ImageUrl]]" title="[Product.Name]" >
+		<img class="watermark" width="250" alt="[Product.Name]" border="0"  id="image1" src="/[Product.BaseImage=[ProductImage.ImageUrl,250,300]]"/>
+	</a>
+</div>
+<div class="clear"></div>
+<div class="product-gallery">
+	<div class="image-thumbnail">
+		<ul>[Product.Images,4=
+			<li>
+				<a class="fancybox-buttons" data-fancybox-group="button" href="/[ProductImage.ImageUrl]"  title="[ProductImage.Label]">
+					<img class="" width="65" src="/[ProductImage.ImageUrl,100,125]" title="[ProductImage.Label]" class="" />
+		
+				</a>
+	
+			</li>]
+		</ul>
+	</div>
+</div>
+	
+<script type="text/javascript">
+jQuery('.fancybox-buttons').fancybox({
+		openEffect  : 'none',
+		closeEffect : 'none',
+
+		prevEffect : 'none',
+		nextEffect : 'none',
+
+		closeBtn  : false,
+
+		helpers : {
+			title : {
+				type : 'inside'
+			},
+			buttons	: {}
+		},
+
+		afterLoad : function() {
+			this.title = 'Image ' + (this.index + 1) + ' of ' + this.group.length + (this.title ? ' - ' + this.title : '');
+		}
+	});
+
+</script>
+<div id="roll_on">[_(mouse over on the image to zoom in)]</div>
+<script type="text/javascript">
+jQuery(document).ready(function($j){ 
+	 $j('#image1').addimagezoom({ 
+		zoomrange: \[3, 10\], 
+		magnifiersize: \[250,300\], 
+		cursorshade: true,
+		cursorshadecolor: '#CCCCCC',
+		largeimage: '/[Product.BaseImage=[ProductImage.ImageUrl]]' //<-- No comma after last option!
+	 // additional options 
+	 }) 
+ })
+</script>

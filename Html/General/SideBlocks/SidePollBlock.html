@@ -1,0 +1,91 @@
+/*
+*		Renders a block that contains a list of new product.
+*
+*/
+
+<div class="block white-bg block-poll">
+	<div class="title greyed">
+		<h2>[_COMMUNITY POLL]</h2>
+	</div>
+	<div class="block-content">
+		
+		<form id="pollForm" action="" method="post">
+			[Website.ApplicablePolls=
+				[?Poll.Status|Open=
+					[?Customer.LoggedIn|LoggedIn=
+						[?Poll.CustomerOrLocationAlreadyFilledIn|Yes=
+							[Poll.Question=
+							<p class="block-subtitle">[PollQuestion.Question]</p>
+							<ol id="poll-answers">
+								[PollQuestion.AnswersSorted=
+								<li class="">
+									<span class="answer">[PollAnswer.Answer]:</span>
+									<span class="votes">[PollAnswer.VoteCount] ([PollAnswer.VotePercentage]%)</span>
+								</li>
+								]
+							</ol>
+							]
+						|No=
+						
+							<input type="hidden" value="[Poll.Id]" name="id"/>
+							[Poll.Question=
+							<p class="block-subtitle">[PollQuestion.Question]</p>
+							<div id="poll-answers">
+								[PollQuestion.AnswersSorted=
+								<div class="poll-opt">
+									<input type="radio" name="vote" class="radio poll_vote" id="vote_[PollAnswer.Id]" value="[PollAnswer.Id]">
+									<span class="in-block"><label for="vote_[PollAnswer.Id]">[PollAnswer.Answer]</label></span>
+								</div>
+								]
+							</div>
+							]
+							<div class="action a-right">
+								<button type="submit" title="[_Vote]" class="small btn-blue"  onclick="submitAjaxAction('pollForm','[Website.GetUrl,Magento,AddPollVote]','[Url.FullUrl]',true,'',jQuery('#pollForm').serialize(),'[Url.FullUrl]');"><span><span>[_Vote]</span></span></button>
+							</div>
+						]
+					|=
+						[?Poll.LocationAlreadyFilledIn|Yes=
+							[Poll.Question=
+							<p class="block-subtitle">[PollQuestion.Question]</p>
+							<ol id="poll-answers">
+								[PollQuestion.AnswersSorted=
+								<li class="">
+									<span class="answer">[PollAnswer.Answer]:</span>
+									<span class="votes">[PollAnswer.VoteCount] ([PollAnswer.VotePercentage]%)</span>
+								</li>
+								]
+							</ol>
+							]
+						|No=
+							
+							<input type="hidden" value="[Poll.Id]" name="id"/>
+							[Poll.Question=
+							<p class="block-subtitle">[PollQuestion.Question]</p>
+							<ul id="poll-answers">
+								[PollQuestion.AnswersSorted=
+								<li>
+									<input type="radio" name="vote" class="radio poll_vote" id="vote_[PollAnswer.Id]" value="[PollAnswer.Id]">
+									<span class="in-block"><label for="vote_[PollAnswer.Id]">[PollAnswer.Answer]</label></span>
+								</li>
+								]
+							</ul>
+							]
+							<div class="action a-right">
+								<button type="submit" title="[_Vote]" class="small btn-blue"><span><span>[_Vote]</span></span></button>
+							</div>
+						]
+				
+					]
+				]
+			]
+			
+		</form>
+		<script type="text/javascript">
+		jQuery("#pollForm").validate({
+			submitHandler: function(form) {
+				setLocationAjaxAction('pollForm','[Website.GetUrl,Magento,AddPollVote]','[Url.FullUrl]',true,'',jQuery('#pollForm').serialize(),'[Url.FullUrl]');
+			 }	
+		});
+		</script>
+	</div>
+</div>

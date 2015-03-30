@@ -1,0 +1,38 @@
+
+
+<dl>
+	[Product.ConfigurableAttributes=
+  		<dt>[Attribute.Title]</dt>
+  		<dt>
+  			[?Attribute.AttributeCode|Color=
+  				<ul class="color-plp" id="[Attribute.Id][Product.Id]">
+				[Product.ConfigurableChildProducts,[Attribute.AdminTitle]=
+
+				<li>
+					
+					<div id="[AttributeOption.Id]" class="links-nav colorbox [?UserInput.ConfigurableAttributeValueValid,[Attribute.AdminTitle],[AttributeOption.Admin]|yes=selected]" style="background-color:[AttributeOption.Color];"></div>
+					
+				</li>
+				]
+				</ul>
+  			]
+  			<select name="[Attribute.AttributeCode]" id="attribute[Attribute.Id][Product.Id]"  onchange="setAttr([Product.Id])" class="required span2" [?Attribute.AttributeCode|Color=style="display:none"]>
+				<option value="">[_Please select]</option>
+				[Product.ConfigurableChildProducts,[Attribute.AdminTitle]=
+				<option value="[AttributeOption.Id]" [?UserInput.ConfigurableAttributeValueValid,[Attribute.AdminTitle],[AttributeOption.Admin]|yes=selected]>[AttributeOption.Admin]</option>
+				 ]
+			</select>
+			
+		</dt>
+	]
+</dl>
+
+<script type="text/javascript">
+var setAttr=function(id) { 
+	
+	var str=SelectedAttr(id);
+
+	selectaction('[Website.GetUrl,Ajax,Update]','[Website.GetUrl,Product,[Product.Id]]',str);
+
+};
+</script>

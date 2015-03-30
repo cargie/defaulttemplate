@@ -1,0 +1,22 @@
+/*
+*		Renders Toolbar view mode for displaying product listing.
+*
+*/
+
+[?Filter.PageCount|1=
+|=
+<ul>
+	[?Filter.IsFirstPage|no=
+	<li class="prev"><span onclick="paging('[Filter.PrevPage]')">[_Prev] &laquo;</span></li>
+	]
+	[Filter.PagesSmart=
+		<li>[?Filter.LoopPageIsCurrent
+		|yes=<span class="current">[Filter.LoopPageNr]</span>
+		|no=<span onclick="paging('[Filter.LoopPageNr]')">[Filter.LoopPageNr]</span>]</li>
+		<li class="elipses">[Filter.NextElipsis]</li>
+	]
+	[?Filter.IsLastPage|no=
+	<li class="next"> <span onclick="paging('[Filter.NextPage]')">[_Next] &raquo;</span></li>
+	|yes=]
+</ul>
+]

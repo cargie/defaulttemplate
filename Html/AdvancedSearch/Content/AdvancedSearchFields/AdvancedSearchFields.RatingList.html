@@ -1,0 +1,56 @@
+/*
+*		renders a single type of AdvanceSearchFields attributes for advance search.  
+*		Displays a rating list with options button to select rating value.
+*/
+/** -------------------------------------------------------------------
+Name:              AdvancedSearchFields.RatingList
+Location:          /Html/AdvancedSearch/Content/AdvancedSearchFields/AdvancedSearchFields.RatingList.html
+Created By:        Leslie Canete
+Created At:        07-Okt-2014 16:27 (category, checkout general)
+Last modified By:  Seth Malaki
+Last modified At:  20-Okt-2014 19:10 (updates on adding comments)
+Possible call:    mainContent.AdvancedSearch 	
+--------------------------------------------------------------------**/
+
+
+<label for="[Attribute.AttributeCode]">[Attribute.Title]</label>
+<div class="input-box">
+	<input type="hidden" id="[Attribute.AttributeCode]" name="[Attribute.AttributeCode]" />
+	<div style="display:none">
+		<input type="radio" class="radio ratings_[Attribute.AttributeCode]" value="10">
+		<input type="radio" class="radio ratings_[Attribute.AttributeCode]" value="20">
+		<input type="radio" class="radio ratings_[Attribute.AttributeCode]" value="30">
+		<input type="radio" class="radio ratings_[Attribute.AttributeCode]" value="40">
+		<input type="radio" class="radio ratings_[Attribute.AttributeCode]" value="50">
+		<input type="radio" class="radio ratings_[Attribute.AttributeCode]" value="60">
+		<input type="radio" class="radio ratings_[Attribute.AttributeCode]" value="70">
+		<input type="radio" class="radio ratings_[Attribute.AttributeCode]" value="80">
+		<input type="radio" class="radio ratings_[Attribute.AttributeCode]" value="90">
+		<input type="radio" class="radio ratings_[Attribute.AttributeCode]" value="100">
+	</div>
+	<div id="[Attribute.AttributeCode]star" class="in-block"></div> <br />
+
+	<script type="text/javascript">
+	jQuery(document).ready(function() {
+		if(!jQuery('#[Attribute.AttributeCode]').val())
+			jQuery('#[Attribute.AttributeCode]').val(50);
+		
+		jQuery('#[Attribute.AttributeCode]star').ratings(10,jQuery('#[Attribute.AttributeCode]').val()/10).bind('ratingchanged', function(event, data) {
+			jQuery('#[Attribute.AttributeCode]').val(data.rating*10);
+			jQuery('.ratings_[Attribute.AttributeCode]').each(function() {
+				if((jQuery(this).val()/10)==data.rating) {
+					jQuery(this).attr("checked","checked");
+				} 
+			});
+		});
+		jQuery('#[Attribute.AttributeCode]star .jquery-ratings-star').each(function (){
+			var index=jQuery(this).index()+1;
+			if(index%2==1)
+				jQuery(this).addClass('odd');
+			else
+				jQuery(this).addClass('even');
+		})
+		
+	});
+	</script>
+</div>

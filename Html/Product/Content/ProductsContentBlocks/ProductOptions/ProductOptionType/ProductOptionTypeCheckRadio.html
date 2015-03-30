@@ -1,0 +1,64 @@
+/*
+*	Renders a dropdown providing options or checkbox to the customer needed in product options.
+*
+*/
+
+<dt><label class="[?ProductOption.Required|yes=required]">[?ProductOption.Required|yes=<em>*</em>] [ProductOption.Label]</label></dt>
+<dd>
+    <div class="input-box">
+	<ul class="options-list" id="options-[ProductOption.Id]-list">
+		[?ProductOption.Type|CheckBox=<input type="hidden" id="check_[ProductOption.Id]" name="options\\[[ProductOption.Id]\\]">]
+		[ProductOption.Choices=
+		<li>
+			[?ProductOption.Type
+			|RadioBox=
+			<label class="custom-box">
+				<span class="customstyle radio [?UserInput.OptionValueSelected,[ProductOption.Id],[ProductOptionChoice.Id]|Yes=active]"></span><input type="radio" price="[ProductOptionChoice.ActualPrice]" value="[ProductOptionChoice.Id]" id="options_[ProductOption.Id]_[ProductOptionChoice.Id]" name="options\\\[[ProductOption.Id]\\\]" onclick="reloadPrice('[Website.GetUrl,Ajax,Diff]','[Website.GetUrl,Product,[Product.Id]]','[Website.GetUrl,Product,0,OptionsUpdate/[Product.id]]',jQuery('#product_addtocart_form').serialize()); " class="radio required product-custom-option" [?UserInput.OptionValueSelected,[ProductOption.Id],[ProductOptionChoice.Id] |Yes=checked]>
+				<span class="title-price">[ProductOptionChoice.Title] + <strong>[ProductOptionChoice.ActualPrice]</strong></span>
+			</label>
+			|Checkbox=
+			<label class="custom-box">[ProductOptionChoice.OptionType]
+				<span class="customstyle check  [?UserInput.OptionValueSelected,[ProductOption.Id],[ProductOptionChoice.Id]|Yes=active]"></span><input type="checkbox" name="checkbox_option"  price="[ProductOptionChoice.ActualPrice]" value="[ProductOptionChoice.Id]" id="options_[ProductOption.Id]_[ProductOptionChoice.Id]" class="checkbox-opt_[ProductOption.Id] product-custom-option" [?UserInput.OptionValueSelected,[ProductOption.Id],[ProductOptionChoice.Id]|Yes=checked]>
+				<span class="title-price">[ProductOptionChoice.Title] + <strong>[ProductOptionChoice.ActualPrice]</strong></span>
+			</label>
+			]
+		</li>
+		]
+	</ul>
+
+    </div>
+</dd>
+
+<script type="text/javascript">
+
+[?ProductOption.Type|CheckBox=
+	var temp = Array();
+	[ProductOption.Choices=
+		[?UserInput.OptionValueSelected,[ProductOption.Id],[ProductOptionChoice.Id]
+		|yes=
+			temp.push([ProductOptionChoice.Id]);
+		]
+	]
+	
+	jQuery("#check_[ProductOption.Id]").val(temp.join(","));
+	
+	jQuery(".checkbox-opt_[ProductOption.Id]").change(function(){
+		var custom_check=jQuery(this).siblings('.customstyle');
+		if (custom_check.hasClass('active')){
+			custom_check.removeClass('active');
+		}else{
+			custom_check.addClass('active');
+		}
+		
+		var ids = [];
+		jQuery('.checkbox-opt_[ProductOption.Id]').each(function() {
+			if (jQuery(this).attr('checked')){
+				ids.push(jQuery(this).val());
+			}
+		});
+		jQuery("#check_[ProductOption.Id]").val(ids);
+		reloadPrice('[Website.GetUrl,Ajax,Diff]','[Website.GetUrl,Product,[Product.Id]]','[Website.GetUrl,Product,0,OptionsUpdate/[Product.id]]',jQuery('#product_addtocart_form').serialize());
+	})
+]
+</script>
+

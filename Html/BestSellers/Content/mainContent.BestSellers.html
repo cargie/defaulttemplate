@@ -1,0 +1,26 @@
+/*
+*		renders the main content of the BestSellersPage.  This dislays the 
+*		list of best sellers products.	
+*
+*/
+/** -------------------------------------------------------------------
+Name:              mainContent.BestSellers
+Location:          /Html/BestSellers/Content/mainContent.BestSellers.html
+Created By:        Leslie Canete
+Created At:        06-Okt-2014 18:55 (relocation first 15 models)
+Last modified By:  Seth Malaki
+Last modified At:  21-Okt-2014 12:25 (myupdates)
+Possible call:    1Column.CmsPage 	1Column 	2ColumnsLeft.CmsPage 	2ColumnsLeft 	2ColumnsRight.CmsPage 	2ColumnsRight 	3Columns.CmsPage 	3Columns 	CompareProductsPage 	
+Calling blocks:    CategoryListLayout 	toolbar 	
+--------------------------------------------------------------------**/
+
+
+<div class="content category-view">
+	<div class="page-title"> <h2>[_Best Sellers Products] </h2></div>
+	[?Filter.Empty|no=[:toolbar]]
+
+	[:CategoryListLayout]
+	
+	[?Filter.Empty|no=|yes=<p class='no-results'>[_There are no products matching the selection.]</p>]
+	
+</div>

@@ -1,0 +1,34 @@
+/*
+*		renders the footer type information.
+*
+*/
+<div class="footer" id="footer_type_b">
+	<div class="footer-info">
+		
+		<div class="row footer-up">
+			<div class="large-6 columns">
+				<div class="block-grid footer-categories">[?DesignLayout.CheckFooter,[Url.Model],FooterCategoriesBlock|No=[:FooterCategoriesBlock]]</div>
+			</div>
+			<div class="large-6 columns">
+				<div class="block-grid footer-static-info-links">[?DesignLayout.CheckFooter,[Url.Model],FooterInfoLinksBlock|No=[:FooterInfoLinksBlock]]</div>
+			</div>
+		</div>
+		<div class="row footer-bottom">
+			<div class="large-3 columns">
+				<div class="block-grid footer-links">[?DesignLayout.CheckFooter,[Url.Model],FooterLinksBlock|Yes=[:FooterLinksBlock]]</div>
+			</div>
+			<div class="large-3 columns">
+				<div class="block-grid footer-newsletter">[?DesignLayout.CheckFooter,[Url.Model],FooterNewsletterSubscriberBlock|No=[:FooterNewsletterSubscriberBlock]]</div>
+			</div>
+			<div class="large-3 columns">
+				<div class="block-grid footer-payment">[?DesignLayout.CheckFooter,[Url.Model],FooterPaymentsImagesBlock|No=[:FooterPaymentsImagesBlock]]</div>
+			</div>
+			<div class="large-3 columns">
+				<div class="block-grid footer-social-media">[?DesignLayout.CheckFooter,[Url.Model],FooterSocialMediaBlock|No=[:FooterSocialMediaBlock]]</div>
+			</div>
+		</div>
+		<div class="row">
+			[?DesignLayout.CheckFooter,[Url.Model],FooterCopyrightsBlock|Yes=[:FooterCopyrightsBlock]]
+		</div>
+	</div>
+</div>

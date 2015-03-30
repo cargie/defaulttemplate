@@ -1,0 +1,31 @@
+/*
+*		Renders the main content of the ReviewListPage.
+*
+*/
+
+<div class="product-page">
+	<div class="product-essential">
+		<form id="product_addtocart_form">
+			[:ProductMediaBlock] <!-- contains design variation lightbox - changed already to image plugin -->
+			<div class="product-shop in-block">
+				<div class="product-review">
+					<div class="product-name">
+						<h4 class="">[Product.Name]</h4></div>
+						<dl>
+							<dt>
+							[_Product Review] ([ProductReview.CreatedAt]):
+							</dt>
+							<dd>
+							"[ProductReview.Detail]"</dd>
+						</dl>
+						<div class="buttons-set">
+							<p class="back-link"><a href="[Website.GetUrl,Product,0,Review/List/[Product.Id]/ListReview]"><small>« </small>[_Back to Product Reviews]</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+

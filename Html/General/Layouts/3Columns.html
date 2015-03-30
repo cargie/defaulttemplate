@@ -1,0 +1,35 @@
+/*
+*		Renders the 3 columns layout containing mainContent, left and right column, loads for most of the pages.  This can be enherited on per model basis.
+*
+*/
+/** -------------------------------------------------------------------
+Name:              3Columns
+Location:          /Html/General/Layouts/3Columns.html
+Created By:        Leslie Canete
+Created At:        06-Okt-2014 14:51 (relocating)
+Last modified By:  Seth Malaki
+Last modified At:  23-Okt-2014 17:52 (myupdates in adding comments)
+Calling blocks:    breadcrumb 	Footer 	header 	leftColumn 	mainContent 	notification 	rightColumn 	
+--------------------------------------------------------------------**/
+
+
+<div class="page">
+	[:header]
+	<div class="three-columns">
+		[:breadcrumb]
+		<div class="main-container">
+			<div class="left ">
+				[:leftColumn]
+			</div>
+			<div class="main ">
+				[:notification]
+				[:mainContent]
+			</div>
+		</div>
+		<div class="right">
+			[:rightColumn]
+		</div>
+		<br style="clear:both;"/>
+	</div>
+	[:Footer]
+</div>

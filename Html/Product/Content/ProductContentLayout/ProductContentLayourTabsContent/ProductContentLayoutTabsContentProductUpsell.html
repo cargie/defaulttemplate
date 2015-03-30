@@ -1,0 +1,27 @@
+/*
+*	
+*
+*/
+
+[?Product.HasUpSellProducts|yes=
+<div class="block-upsell">
+	<ul class="products-grid" id="block-upsell">
+		[Product.UpSells,4= 
+		<li class="item in-block">
+			<div class="item-wrapper">
+				<div class="product-image">
+				   <a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]"><img src="/[Product.ThumbnailImage=[ProductImage.ImageUrl,140,150]]" alt="[Product.Name]"/></a>
+				</div>
+				 <div class="product-details">
+					<a href="[Website.GetUrl,Product,[Product.Id]]"><h3 class="product-name">[Product.Name]</h3></a>
+				   	[:ProductPriceBlock?Product.Sale] 
+				</div>
+				<div class="ratings">
+					[:ProductRating]
+				</div>
+			</div>
+		</li>
+		]
+	</ul>
+</div>
+]

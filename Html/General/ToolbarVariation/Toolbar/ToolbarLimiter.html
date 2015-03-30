@@ -1,0 +1,24 @@
+/*
+*		Renders Toolbar dropdown limiter.  This limit how many products to be displayed in a page.
+*
+*/
+
+<label>[_Show:]</label>
+<select id="limiter" class="select-small" onchange="setLimit(this.value)">
+	[?Configuration.CatalogListMode
+	|ListOnly=
+			[?Configuration.CatalogListAllowAll|Yes=<option value="All">[_All]</option>]
+		[Configuration.CatalogListPerPageIterator=<option value="[Configuration.CatalogPerPageCurrentValue]">[Configuration.CatalogPerPageCurrentValue]</option>]
+	|GridOnly=
+		[?Configuration.CatalogGridAllowAll|Yes=<option value="All">[_All]</option>]
+		[Configuration.CatalogGridPerPageIterator=<option value="[Configuration.CatalogPerPageCurrentValue]">[Configuration.CatalogPerPageCurrentValue]</option>]
+	|ListDefault=
+		[?Configuration.CatalogListAllowAll|Yes=<option value="All">[_All]</option>]
+		[Configuration.CatalogListPerPageIterator=<option value="[Configuration.CatalogPerPageCurrentValue]">[Configuration.CatalogPerPageCurrentValue]</option>]
+	|GridDefault=
+		[?Configuration.CatalogGridAllowAll|Yes=<option value="All">[_All]</option>]
+		[Configuration.CatalogGridPerPageIterator=<option value="[Configuration.CatalogPerPageCurrentValue]">[Configuration.CatalogPerPageCurrentValue]</option>]
+	]
+</select>
+<label>[_per page]</label>
+

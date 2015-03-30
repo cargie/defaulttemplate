@@ -1,0 +1,67 @@
+/*
+*	(default variation) Renders the side category navigation menu.
+*/
+/** -------------------------------------------------------------------
+Name:              SideCategoryNavigationMenu
+Location:          /Html/Category/Content/SideCategoryNavigationMenuVariation/SideCategoryNavigationMenu.html
+Created By:        Leslie Canete
+Created At:        13-Okt-2014 18:44 (rename header and side blocks)
+Last modified By:  Aris Catan
+Last modified At:  27-Okt-2014 13:01 (updates on adding comments)
+Called from:       SideCategoryNavigationBlock 	
+Calling blocks:    FilterNavigation 	
+--------------------------------------------------------------------**/
+
+
+<div class="category-menu default">
+	[?Url.Model
+	|Product=
+	<ul class="level-0">
+		[Product.MainCategory=
+		<li class="menu-header"><a>[Category.Name]</a></li>
+			[Category.ChildCategories=
+				<li class="level-0">
+					<a href="[Website.GetUrl,Category,[Category.Id]]" class="level-0"> <span class="[?Category.IsCurrent|same=current|different=]">[Category.Name]</span></a>
+					<div class="panel">
+						<ul class="level-1">[Category.ChildCategories=
+							<li class="level-1"><a href="[Website.GetUrl,Category,[Category.Id]]"><span class="[?Category.IsCurrent|same=current|different=]">[Category.Name]</span></a>[?Category.HasChildren|yes=
+								<div class="panel">
+									<ul class="level-2">
+										[Category.ChildCategories=<li class="level-2"><a href="[Website.GetUrl,Category,[Category.Id]]"><span class="[?Category.IsCurrent|same=current|different=]">[Category.Name]</span></a>
+										</li>]
+									</ul>
+								</div>
+								|no=]
+							</li>]
+						</ul>
+					</div>
+				</li>
+			]
+		]
+	</ul>
+	
+	|=
+
+	<ul class="level-0">
+		[Website.TopCategories=
+			<li class="level-0">
+			<a href="[Website.GetUrl,Category,[Category.Id]]" class="level-0"> <span class="[?Category.IsCurrent|same=current|different=]">[Category.Name]</span></a>
+			<div class="panel">
+				<ul class="level-1">[Category.ChildCategories=
+					<li class="level-1"><a href="[Website.GetUrl,Category,[Category.Id]]"><span class="[?Category.IsCurrent|same=current|different=]">[Category.Name]</span></a>[?Category.HasChildren|yes=
+						<div class="panel">
+							<ul class="level-2">
+								[Category.ChildCategories=<li class="level-2"><a href="[Website.GetUrl,Category,[Category.Id]]"><span class="[?Category.IsCurrent|same=current|different=]">[Category.Name]</span></a>
+								</li>]
+							</ul>
+						</div>
+						|no=]
+					</li>]
+				</ul>
+			</div>
+		</li>
+		]
+	</ul>
+	]
+</div>
+[:FilterNavigation]

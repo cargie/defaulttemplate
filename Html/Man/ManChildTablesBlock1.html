@@ -1,0 +1,22 @@
+scopes.push(parentscope+'[Man.ScopeName]');
+data.addRows(\[
+	\[{v:'[Man.ScopeName]', f:'[Man.ScopeName]<div style="display:none;color:red; font-style:italic"></div>'}, parentscope, ''\],
+\]);
+var scopename='[Man.ScopeName]';
+[?Man.ScopeHasChildren
+|Yes=	
+	[Man.children=
+		if (scopename!="[Man.ScopeName]"){
+		
+			if (jQuery.inArray(scopename+'[Man.ScopeName]',scopes)===-1){
+				data.addRows(\\\[
+					\\\[{v:scopename+'[Man.ScopeName]', f:'[Man.ScopeName]<div style="display:none;color:red; font-style:italic"></div>'}, scopename, ''\\\],
+				\\\]);
+			}
+		}
+		var newscope=scopename+'[Man.ScopeName]';
+		scopes.push(newscope);
+		[:ManChildTablesBlock2,newscope]
+	]
+]
+

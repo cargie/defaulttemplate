@@ -1,0 +1,72 @@
+<div id="opc-billing" class="checkout-block billing-information">
+	<div class="title">
+		<div class="circle-number">2</div><div class="label">[_Billing Information]</div>
+	</div>
+	<div class="content ">
+		<div class="billing-info-form">
+			<ul class="billing-info-list">
+				<li>
+					<label>[_First Name]<em>*</em></label>
+					<input type="text" name="billing_first_name" value=""/>
+				</li>
+				<li>
+					<label>[_Last Name]<em>*</em></label>
+					<input type="text" name="billing_last_name" value=""/>
+				</li>
+				<li>
+					<label>[_Company]</label>
+					<input type="text" name="billing_company" value=""/>
+				</li>
+				<li>
+					<label>[_Email Address]<em>*</em></label>
+					<input type="text" name="billing_email" value=""/>
+				</li>
+				<li>
+					<label>[_Address]<em>*</em></label>
+					<input type="text" class="address-field" name="billing_address1" value=""/>
+				</li>
+				<li>
+					<input type="text" class="address-field" name="billing_address2" value=""/>
+				</li>
+				<li>
+					<label>[_City] <em>*</em></label>
+					<input type="text" name="billing_city" value=""/>
+				</li>
+				<li>
+					<label>[_State/Province] <em>*</em></label>
+					<input type="text" name="billing_state_province" value=""/>
+				</li>
+				<li>
+					<label>[_Zip Postal Code] <em>*</em></label>
+					<input type="text" name="billing_postal_code" value=""/>
+				</li>
+				<li>
+					<label>[_Country] <em>*</em></label>
+					<input type="text" name="billing_country" value=""/>
+				</li>
+				<li>
+					<label>[_Telephone] <em>*</em></label>
+					<input type="text" name="billing_telephone" value=""/>
+				</li>
+				<li>
+					<label>[_Fax <em>*</em></label>
+					<input type="text" name="billing_fax" value=""/>
+				</li>
+			</ul>
+			<ul class="shipping-address-options">
+				<li><input type="radio" name="ship-to-this-address" value="1"> <strong>[_Ship to this address]</strong></li>
+				<li><input type="radio" name="ship-to-this-address" value="1"> <strong>[_Ship to different address]</strong></li>
+			</ul>
+			<hr/>
+			<div class="buttons-set">
+				<span class="please-wait" id="billing-please-wait" style="display:none;float:left;">
+					<img src="[File:/images/opc-ajax-loader.gif]" alt="Loading next step..." title="[_Loading next step]..." class="v-middle"> [_Loading next step]...        
+				</span>
+				<div class="required-fields"><em>* [_Required fields]</em></div>
+				<button type="button" title="Create an Account" class="button btn[Design.DesignSelectionName,ButtonStyle]" onclick="setLocation('http://linux:8000/base/Customer/AccountCreate')"><span><span>[_Continue]</span></span></button>
+			</div>
+		</div>
+		
+	</div>
+	
+</div>

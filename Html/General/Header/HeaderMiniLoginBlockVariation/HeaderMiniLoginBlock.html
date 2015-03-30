@@ -1,0 +1,10 @@
+/*
+*		Renders the header mini log in block. This displays a typical link of the login page.
+*
+*/
+
+[?Customer.LoggedIn|LoggedIn=
+	<a href="javascript:setLocationAjax('[Website.GetUrl,Magento,Logout]','[Website.GetUrl,Login,Logout]',false,'');">[_Logout]</a>
+	|=
+	<a href="[Website.GetUrl,Login,Login]">[_Login]</a>
+]

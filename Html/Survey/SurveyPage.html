@@ -1,0 +1,98 @@
+/*
+*	Renders the SurveyPage.  This display a series of survey question that needs to answer.
+*/
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	[:MetaData,[_Survey]]
+	[:head]
+	<script src="[File:/Js/jQuery/survey.js]"></script>
+</head>
+<body>
+<div class="page survey-page">
+	[:header]
+	<div class="main-container one-column">
+		<div class="main">
+			<div class="col-main">
+				<div class="">
+					[:notification]
+					
+					<div class="survey">
+						<form id="form-survey" method="post" accept-charset="utf-8">
+						<input type="hidden" name="id"  value="[Survey.Id]"/>
+						[Website.Surveys=
+						
+						<div class="page-title">
+							<h2 class="">[Survey.Title]</h2>
+						</div>
+							<p>[Survey.Description]</p>
+							
+							[Survey.GroupsSorted=
+								[?SurveyQuestionGroup.Enabled|Yes=
+								<fieldset id="step_[SurveyQuestionGroup.Id]">
+								<div class="survey-group">
+									<h4> [SurveyQuestionGroup.Title]</h4>
+									<p>[SurveyQuestionGroup.Description]</p>
+									<ol class="survey-questions form-list">
+										
+									[SurveyQuestionGroup.QuestionsSorted=
+										[?PollQuestion.Enabled|Yes=
+										<li class="q_[PollQuestion.DependsOnQuestion]"  id="q_[PollQuestion.DependsOnQuestion]_[PollQuestion.DependsOnAnswer]" 
+	                                          [?PollQuestion.HideType
+	                                           |DisabledWhenUnused= disabled=disabled
+	                                           |HiddenWenUnused= style="display:none"
+	                                           |EnabledWhenUsed= disabled=disabled
+	                                           |ShownWhenUsed=style="display:none"]>
+							[:QuestionType]
+							
+							</li>
+										]
+						]
+						</ol>
+									
+								</div>
+								</fieldset>
+								]
+							]
+						]
+							<div class="buttons-set" id="buttoncon-survey">
+								<button class="" type="submit"><span><span>[_Submit]</span></span></button>
+							</div>
+						</form>
+						
+					</div>
+					
+					<script type="text/javascript">
+					jQuery(function() {
+							jQuery('.survey-choices \[type^=radio\]').click(function(e) {
+								var id =jQuery(this).attr('id');
+								var tmp=id.split('answer_')\[1\];
+								var qid=tmp.split('_')\[0\];
+								jQuery('.q_'+qid).css('display','none');
+								jQuery('#q_'+tmp).css('display','block');
+							});
+						});
+					/*jQuery('#form-survey').flexipage({
+						element:'fieldset',
+						perpage:1,
+						firstpage: 1,
+						next_txt: "Next »",
+						prev_txt: "« Previous"
+					});*/
+					jQuery(document).ready(function(){
+						jQuery("#form-survey").validate({
+							submitHandler: function(form){
+								setLocationAjaxAction('form-survey','[Website.GetUrl,Magento,Survey]','[Website.GetUrl,Survey,[Survey.Id]]',true,'',jQuery('#form-survey').serialize(),'[Website.GetUrl,Survey,[Survey.Id]]');
+							}
+						});
+					});
+					</script>
+				</div>
+			
+			</div>
+		</div>
+		
+	</div>
+	[:footer]
+</div>

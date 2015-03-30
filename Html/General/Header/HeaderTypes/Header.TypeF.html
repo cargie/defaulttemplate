@@ -1,0 +1,42 @@
+/*
+*		Renders the store currency switcher.
+* with promoheader
+*/
+
+<div class="row header-container" style="" id="header_type_f">
+	<div class="large-12">
+		<div class="header-promoheaderblock">
+			[:HeaderPromoHeaderLayoutBlock]
+			<div class="large-6 columns header-left">
+				<div class="row">
+					<div class="large-9 columns">
+						[?DesignLayout.CheckHeader,[Url.Model],HeaderTopNavigationLinksBlock|Yes=[:HeaderTopNavigationLinksBlock]]
+					</div>
+					<div class="large-3 columns cartblock">
+						[?DesignLayout.CheckHeader,[Url.Model],HeaderCartBlock|Yes=[:HeaderCartBlock]][:HeaderCartBlock]
+					</div>
+				</div>
+				<div class="row header-left-bottom">
+					<div class="large-9 large-offset-1 columns searchbar">
+						[?DesignLayout.CheckHeader,[Url.Model],HeaderMiniSearchBlock|Yes=[:HeaderMiniSearchBlock]]
+					</div>
+					
+				</div>
+			</div>
+			<div class="large-6 columns header-right">
+				<div class="row">
+					<div class="large-12 header-right-overlay"></div>
+					<div class="large-12 a-center">
+					[?DesignLayout.CheckHeader,[Url.Model],HeaderLogoBlock|Yes=[:HeaderLogoBlock]]
+					</div>
+					<div class="large-12">
+						[:HeaderMainMenuBlock]
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+[:SubmitAsPostVar]
+

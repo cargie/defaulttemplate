@@ -1,0 +1,13 @@
+/*
+*		renders the main content of MostInterestingProductsPage.
+*
+*/
+
+<div class="content category-view">
+	<div class="page-title"> <h2>[_Most Interesting Products] </h2></div>
+	[?Filter.Empty|no=[:toolbar]]
+
+	[:CategoryListLayout]
+	
+	[?Filter.Empty|no=|yes=<p class='no-results'>[_There are no products matching the selection.]</p>]
+</div>

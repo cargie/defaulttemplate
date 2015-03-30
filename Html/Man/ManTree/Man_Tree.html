@@ -1,0 +1,223 @@
+<ul class="no-bullet text-left root-list">
+	<li class="item">
+		<i state="collapsed" class="toggle-collapse fa fa-plus-square-o"></i> 
+			<a class="root-man-link1 [?Url.View|Scopes=active]" data="Scopes" child-data="Scope" data_title="[_Available Scope]" href="[Website.GetUrl,Man,Scopes]">Scopes</a>
+		<ul class="children no-bullet text-left sub-list" style="display:none">
+			[Man.Scopes=
+				<li><i class="fa fa-angle-right item"></i> <a class="man-link" href="#" data="Scope/[Man.ScopeName]">[Man.ScopeName]</a></li>
+			]
+		</ul>
+	</li>
+	<!--<li class="item">
+		<i class="fa fa-plus-square-o"></i> <a href="#">Replacers</a>
+	</li>-->
+	<li class="item">
+		<i state="collapsed" class="toggle-collapse fa fa-plus-square-o"></i> 
+			<a class="root-man-link [?Url.View|Types=active]" data="Types" child-data="Type" data_title="[_Available Types]" href="[Website.GetUrl,Man,Types]">Types</a>
+		<ul class="children no-bullet text-left sub-list" style="display:none">
+			[Man.Types=
+				<li><i class="fa fa-angle-right item"></i> 
+						<a class="man-link" href="#" data="Type/[Man.TypeName]">[Man.TypeName]</a>
+				</li>
+			]
+		</ul>
+	</li>
+	<li class="item">
+		<i state="collapsed" class="fa fa-table"></i> <a class="table-man-link" data="Tables/All" data_title="" href="#" child-data="Table">Tables</a>
+	</li>
+	<li class="item">
+		<i state="collapsed" class="toggle-collapse fa fa-plus-square-o"></i> 
+			<a class="root-man-link [?Url.View|Filters=active]" data="Filters" data_title="[_Available Filter]" href="[Website.GetUrl,Man,Filters]" child-data="Filter">Filters</a>
+		<ul class="children no-bullet text-left sub-list" style="display:none">
+			[Man.Filters=
+				<li><i class="fa fa-angle-right item"></i> <a class="man-link" href="#" data="Filter/[Man.FilterName]">[Man.FilterName]</a></li>
+			]
+		</ul>
+	</li>
+	<li class="item">
+		<i state="collapsed" class="toggle-collapse fa fa-plus-square-o"></i> 
+			<a class="root-man-link [?Url.View|Models=active]" data="Models" data_title="[_Available Model]" href="[Website.GetUrl,Man,Models]" child-data="Model">Models</a>
+		<ul class="children no-bullet text-left sub-list" style="display:none">
+			[Man.Models=
+				<li><i class="fa fa-angle-right item"></i> <a class="man-link" href="#" data="Model/[Man.ModelName]">[Man.ModelName]</a></li>
+			]
+		</ul>
+	</li>
+	<li class="item">
+		<i state="collapsed" class="toggle-collapse fa fa-plus-square-o"></i> 
+			<a class="root-man-link [?Url.View|Blocks=active]" data="Blocks" data_title="[_Block List]" child-data="Block" href="[Website.GetUrl,Man,Blocks]" child-data="Block">Blocks</a>
+		<ul class="children no-bullet text-left sub-list" style="display:none">
+			[Man.Blocks=
+				<li><i class="fa fa-angle-right item"></i> <a class="man-link" href="#" data="Block/[Man.BlockName]">[Man.BlockName]</a></li>
+			]
+		</ul>
+	</li>
+	<li class="item">
+		<i state="collapsed" class="toggle-collapse fa fa-plus-square-o"></i> 
+			<a class="root-man-link [?Url.View|Urls=active]" child-data="Url" data="Urls" data_title="[_Url List]" href="[Website.GetUrl,Man,Urls]" child-data="Url">Url</a>
+		<ul class="children no-bullet text-left sub-list" style="display:none">
+			[Man.Urls=
+				<li><i class="fa fa-angle-right item"></i> <a class="man-link" href="#" data="Url/[Man.UrlCode]">[Man.UrlCode]</a></li>
+			]
+		</ul>
+	</li>
+</ul>
+
+/* [:google_table] */
+<script type="text/javascript">
+ 
+
+	jQuery(".toggle-collapse").bind("click",function(){
+		var state = jQuery(this).attr("state");
+		console.log(state);
+		if(state=="collapsed"){
+			jQuery(this).removeClass("fa-plus-square-o").addClass("fa-minus-square-o");
+			jQuery(this).attr("state","expanded");
+			jQuery(this).next().next().show();
+		}else{
+			jQuery(this).removeClass("fa-minus-square-o").addClass("fa-plus-square-o");
+			jQuery(this).attr("state","collapsed");
+			jQuery(this).next().next().hide();
+		}
+	});
+
+	/*function drawChart(){
+		var chart_data = jQuery('#filter-selector').val();
+		console.log(chart_data);
+
+	}*/
+	jQuery(document).ready(function(){
+		
+		jQuery(".table-man-link").bind("click",function(){
+			var me = jQuery(this);
+			var data = me.attr("data");
+			
+			jQuery.ajax({
+				url 	:	"[Website.GetUrl,Man,]/"+data,
+				success :	function(response){
+					jQuery(".man-content-container").html(response);
+				}
+			});
+
+			/*var table =  '<div class="large-12" id="main_content"><div class="row text-left" style="padding-top:20px;">';
+				table += '	<div id="filter-tables" class="large-4 columns">';
+				table += '		<label>Select table';
+				table += '		        <select id="filter-selector">';
+				table += '		        </select>';
+				table += '		</label>';
+				table += '	</div>';
+				table += '		<div class="large-8 columns" style="padding: 21px 0;">';
+				table += '			<a class="button tiny" href="#" onclick="drawChart()">Filter</a>';
+				table += '		</div>';
+				table += '</div></div>';
+				jQuery(".man-content-container").html(table);
+				for (i=0; i < availableFilters.length; i++){
+					jQuery('#filter-selector').append('<option value="'+availableFilters[i]+'">'+availableFilters[i]+'</option>');
+				}*/
+
+			return false;
+		});
+		jQuery(".root-man-link").bind("click",function(){
+			var me = jQuery(this);
+			var data = me.attr("data");
+			var title = me.attr("data_title");
+			var child_data = me.attr("child-data");
+			jQuery(".root-man-link").removeClass("active");
+	        me.addClass("active");
+
+			jQuery.ajax({
+				url 	:	"[Website.GetUrl,Man,]/"+data,
+				success :	function(response){
+					var al = 'abcdefghijklmnopqrstuvwxyz';
+					var arr = response.split(",");
+					
+					test_array = arr;
+					//arr.splice(arr.length-1,1);
+					//arr.sort();
+
+					var html = jQuery('<div class="large-12 text-left">');
+					var t = jQuery('<h6 class="subheader">'+title+' :<h6>');
+					var ul = jQuery('<ul class="inline-list scopes_list">');
+					var max = arr.length;
+					var x = 0;
+					html.append(t);
+					//console.log(arr);
+					//temp = arr;
+					
+					/*arr.forEach(function(el){
+						var y=0;
+						if(el!=null && el[0]!=" "){
+							var reg = RegExp("^"+al[x]);
+							if(el.trim().toLowerCase().match(reg)){
+								
+								ul.append('<li><a class="man-link" href="#" data="'+child_data+'/'+el+'"><i class="fa fa-angle-right"></i> '+el+'</a></li>');
+							}else{
+								while(!el.trim().toLowerCase().match(reg) && x<al.length){
+									x++;
+									y++;
+									reg = RegExp("^"+al[x]);
+								}
+									html.append('<strong>'+al[x-y].toUpperCase()+'</strong>');
+									html.append(ul);
+									ul = jQuery('<ul sort="'+al[x]+'" class="inline-list scopes_list">');
+									ul.append('<li><a class="man-link" href="#" data="'+child_data+'/'+el+'"><i class="fa fa-angle-right"></i> '+el+'</a></li>');
+							}
+						}
+					});*/
+
+					arr.sort();
+					var currentletter = '';
+					
+					arr.forEach(function(el,i){
+						
+						if(el!=""){
+							
+							if(currentletter != el[0].toLowerCase()){
+
+								html.append(ul);
+								html.append('<strong>'+el[0].toUpperCase()+'</strong>');
+								ul = jQuery('<ul class="inline-list scopes_list">');
+								ul.append('<li><a class="man-link" href="#" data="'+child_data+'/'+el+'"><i class="fa fa-angle-right"></i> '+el+'</a></li>');
+								currentletter = el[0].toLowerCase();
+							}
+							else{
+							ul.append('<li><a class="man-link" href="#" data="'+child_data+'/'+el+'"><i class="fa fa-angle-right"></i> '+el+'</a></li>');
+							}
+						}
+					});
+					var temp = Array();
+					
+					/*arr.forEach(function(el){
+						temp\[el\[0\]\] = el;
+					});*/
+					//console.log(temp);
+					html.append(ul);
+					jQuery(".man-content-container").html(html);
+				}
+			});
+		});
+		jQuery(".man-link").live("click",function(){
+			var me = jQuery(this);
+			var data = me.attr("data");
+			var title = me.attr("data_title");
+			jQuery(".man-link").removeClass("active");
+			jQuery(".root-man-link").removeClass("active");
+			me.parent().parent().prev().addClass("active");
+	        me.addClass("active");
+
+			console.log(data);
+			jQuery.ajax({
+				url 	:	"[Website.GetUrl,Man,]/"+data+'/ajax',
+				success :	function(response){
+					jQuery(".man-content-container").html(response);
+				}
+			});
+		});
+	});
+	jQuery(document).ready(function(){
+		var hash = window.location.hash;
+		hash = hash.replace("#","");
+		jQuery("a\[data="+hash+"\]").delay(1000).click();
+		console.log(jQuery("a\[data="+hash+"\]"));
+	});
+</script>

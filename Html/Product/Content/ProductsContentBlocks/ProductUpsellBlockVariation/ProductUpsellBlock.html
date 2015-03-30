@@ -1,0 +1,31 @@
+/*
+*	Renders a block containing list of upsell products.
+*
+*/
+
+[?Product.HasUpSellProducts|yes=
+	<div class="block-upsell">
+		<div class="block-title">
+			<h4>[_You might also be interested in the following products]</h4>
+		</div>
+		<ul class="products-grid" id="block-upsell">
+			[Product.UpSells,4= 
+			<li class="item in-block">
+				<div class="item-wrapper">
+					<div class="product-image">
+					   <a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]"><img src="/[Product.ThumbnailImage=[ProductImage.ImageUrl,140,150]]" alt="[Product.Name]"/></a>
+					</div>
+					 <div class="product-details">
+						<a href="[Website.GetUrl,Product,[Product.Id]]"><h3 class="product-name">[Product.Name]</h3></a>
+					   	[:ProductPriceBlock?Product.Sale] 
+					</div>
+					<div class="ratings">
+						[:ProductRating]
+					</div>
+				</div>
+			</li>
+			]
+		</ul>
+	</div>
+]
+

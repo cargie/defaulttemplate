@@ -1,0 +1,180 @@
+[?Url.MVC4
+	|ajax=
+	|=
+	<html>
+	  <head>
+	  <title>IncraPages - [_Not Available]</title>
+	  [:ManHead]
+	  <style type="text/css">
+	      .description a{text-decoration:none;}
+	  </style>
+	  <!--\[if IE 7\]>
+	  <link href="styles-ie7.css" rel="stylesheet" type="text/css"/>
+	  <!\[endif\]-->
+
+	  </head>
+	  <body>
+	     <div class="topnav">
+	        <nav class="incra-right">
+
+	        </nav>
+	    </div>
+	      <div id="content_container">
+	      
+	        [:ManHeader]
+	        <div class="large-12 clearfix ">
+	          <div class="large-2 columns panel man-tree-container">
+	            [:Man_Tree]
+	          </div>
+	          <div class="large-10 columns man-content-container">
+]
+		<h6 class="text-left">[_Scope] : [Man.ScopeName]</h6>
+		<p class="scope-description  text-left">[Man.ScopeShortDescription]
+		<br/> [Man.ScopeLongDescription]</p>
+
+		<div id="main_content" class="large-12">
+			<div class="large-6 columns content-list" style="padding:0px 10px 0px 0px;">
+				<ul class="tabs" data-tab role="tablist">
+					<li class="tab-title active" role="presentational" ><a href="#panel2-1" role="tab" tabindex="0" aria-selected="true" controls="panel2-1">List of replacers</a></li>
+					<li class="tab-title" role="presentational" ><a href="#panel2-2" role="tab" tabindex="0"aria-selected="false" controls="panel2-2">Parents</a></li>
+					<li class="tab-title" role="presentational"><a href="#panel2-3" role="tab" tabindex="0" aria-selected="false" controls="panel2-3">Children</a></li>
+					<li class="tab-title" role="presentational" ><a href="#panel2-4" role="tab" tabindex="0" aria-selected="false" controls="panel2-4">Used by</a></li>
+					<li class="tab-title" role="presentational" ><a href="#panel2-5" role="tab" tabindex="0" aria-selected="false" controls="panel2-5">Using</a></li>
+				</ul>
+				<div class="tabs-content">
+					<section role="tabpanel" aria-hidden="false" class="content active" id="panel2-1">
+						<table >
+							<thead>
+								<tr>
+									<th width="200">Replacer name</th>
+									<th>Description</th>
+								</tr>
+							</thead>
+							<tbody>
+								[Man.Replacers=
+								<tr>
+									<td><a class="replacer-link" href="#" data="Replacer/[Man.ReplacerName]">[Man.ReplacerName]</a></td>
+									<td>[Man.ReplacerShortDescription]</td>
+								</tr>
+								]
+							</tbody>
+						</table>			
+					</section>
+					<section role="tabpanel" aria-hidden="true" class="content" id="panel2-2">
+						<table >
+							<thead>
+								<tr>
+									<th width="200">Scope</th>
+									<th>Parent</th>
+								</tr>
+							</thead>
+							<tbody>
+								[Man.Parents=
+								<tr>
+									<td>[Man.ScopeName]</td>
+									<td><a class="replacer-link" href="#" data="Replacer/[Man.ReplacerName]">[Man.ReplacerName]</a></td>
+								</tr>
+								]
+							</tbody>
+						</table>
+					</section>
+					<section role="tabpanel" aria-hidden="true" class="content" id="panel2-3">
+						<table >
+							<thead>
+								<tr>
+									<th width="200">Scope</th>
+									<th>Children</th>
+								</tr>
+							</thead>
+							<tbody>
+								[Man.Children=
+								<tr>
+									<td>[Man.ScopeName]</td>
+									<td><a class="replacer-link" href="#" data="Replacer/[Man.ReplacerName]">[Man.ReplacerName]</a></td>
+								</tr>
+								]
+							</tbody>
+						</table>
+					</section>
+					<section role="tabpanel" aria-hidden="true" class="content" id="panel2-4">
+						<table >
+							<tbody>
+								<thead>
+									<tr>
+										<th width="200">Scope</th>
+										<th>Children</th>
+									</tr>
+								</thead>
+								[Man.UsedBy=
+								<tr>
+									<td>[Man.ScopeName]</td>
+									<td><a class="replacer-link" href="#" data="Replacer/[Man.ReplacerName]">[Man.ReplacerName]</a></td>
+								</tr>
+								]
+							</tbody>
+						</table>
+					</section>
+					<section role="tabpanel" aria-hidden="true" class="content" id="panel2-5">
+						<table >
+							<tbody>
+								[Man.Using=
+								<tr>
+									<td>[Man.ScopeName]</td>
+									<td><a class="replacer-link" href="#" data="Replacer/[Man.ReplacerName]">[Man.ReplacerName]</a></td>
+								</tr>
+								]
+							</tbody>
+						</table>
+					</section>
+				</div>
+			</div>
+			<div class="large-6 columns replacer-details" style="">
+				
+			</div>
+		</div>
+		<script type="text/javascript">
+		  jQuery(document).foundation({
+		    tab: {
+		      callback : function (tab) {
+		        console.log(tab);
+		      }
+		    }
+		  });
+
+		  jQuery(document).ready(function(){
+			  jQuery(".replacer-link").bind("click",function(){
+			        var me = jQuery(this);
+			        var data = me.attr("data");
+			        var title = me.attr("data_title");
+			        jQuery(".replacer-link").removeClass("active");
+			        me.addClass("active");
+			        jQuery.ajax({
+			          url   : "[Website.GetUrl,Man,]/"+data+'/ajax',
+			          success : function(response){
+			            jQuery(".replacer-details").html(response);
+			          }
+			        });
+				});
+			 /*jQuery(".man-content-container").scroll(function(){
+			 	console.log(jQuery(this).scrollTop());
+			 	if(jQuery(this).scrollTop() > 100){
+			 		jQuery(".replacer-content-details").addClass("sticky-content");
+			 	}
+			 	else{
+			 		jQuery(".replacer-content-details").removeClass("sticky-content");
+			 	}
+			 });*/
+		  });
+
+		</script>
+
+[?Url.MVC4
+	|ajax=
+	|=
+	</div>
+        </div>    
+      </div>
+      
+  </body>
+  </html>
+]

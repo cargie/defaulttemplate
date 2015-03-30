@@ -1,0 +1,82 @@
+/*
+*		Renders the listings of products of the current category.  
+*		Can be list as Grid type or List type.
+*/
+
+[?UserInput.CatalogMode|Grid=
+<div class="item-wrapper styleC">
+	<div class="wrapper">
+	       	<a href="[Website.GetUrl,Product,[Product.Id]]"><h2 class="product-name">[Product.Name]</h2></a>
+		<div class="product-image in-block">
+			<a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]"><img alt="[Product.Name]" width="155px" src="/[Product.SmallImage=[ProductImage.ImageUrl,205,220]]"></a>
+		</div>
+		<div class="product-details">
+			<div class="product-title">
+			     <div class="price-block">
+				      [:PriceBlock?Product.Sale] 
+		         </div>
+				  <div class="attributes-con">
+					[:ProductListItemAttributeColor.StyleC]
+				</div>
+
+			</div>
+       </div>
+       <div class="bottom-wrapper"> 
+           <div class="bottom-con">
+			<div class="add-to-cart in-block">
+				<button class="button btn-stylec" onclick="actionCart('product_addtocart_form','[Website.GetUrl,magento,AddToCart]','[UserInput.DefaultUrlPart]',true,'[SimpleProduct.Id]','[Website.GetUrl,Cart]',jQuery('#conf-attributes[Product.Id]').find('select').serialize()+'&qty=[Product.MinInShoppingCart]')" class="button btn-cart" title="[_Add to Cart]" type="button"><span>[_Add to Cart]</span></button>
+			</div>
+			<div class="details in-block">
+				<button class="button btn-stylec_details"><span>[_Details]</span></button>
+			</div>
+     </div>
+    </div>
+ </div>
+</div>
+|list=
+<div class="item-wrapper styleC">
+	<div class="product-image in-block">
+		<a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]"><img src="/[Product.ThumbnailImage=[ProductImage.ImageUrl,205,220]]" width="202" alt="[Product.Name]"/></a>
+	</div>
+	<div class="product-details in-block">
+		<a href="[Website.GetUrl,Product,[Product.Id]]"><p class="product-name">[Product.Name]</p></a>
+		
+		    <div class="price-block">
+		                 [:PriceBlock?Product.Sale] 
+	       </div>
+		
+		
+		<div class="attributes-con">
+			[:ProductListItemAttributeColor.StyleC]
+		</div>	
+
+		<div class="bottom-con">
+			 <div class="product-qty">
+					<label for="product-qty">[_Qty]</label>
+  					<input id="product-qty-[Product.Id]" value="1">
+				</div>
+				<script type="text/javascript">
+					jQuery( "#product-qty-[Product.Id]" ).spinner({ min: 1 });
+				</script>
+			<!--<button class="button btn[Design.DesignSelection,ButtonStyle]"><span>Add to Cart</span></button>-->
+		</div>
+	</div>
+	<div class="ratings in-block">
+		 [:ProductRating.StyleC]
+	</div>
+	<div class="add-to in-block">
+	     <div class="cart-details">
+	     	<div class="add-to-cart">
+			<button  class="button btn-stylec" onclick="actionCart('product_addtocart_form','[Website.GetUrl,magento,AddToCart]','[UserInput.DefaultUrlPart]',true,'[SimpleProduct.Id]','[Website.GetUrl,Cart]',jQuery('#conf-attributes[Product.Id]').find('select').serialize()+'&qty=[Product.MinInShoppingCart]')" class="button btn-cart" title="[_Add to Cart]" type="button">
+				<span><span>[_Add to Cart]</span></span>
+			</button>
+		   </div>
+			<div class="details in-block">
+				<button class="button btn-stylec_details"><span>[_Details]</span></button>
+			</div>
+		</div>
+		  [:ProductAddTo]
+    </div>
+</div>
+]
+

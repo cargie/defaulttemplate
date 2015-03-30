@@ -1,0 +1,55 @@
+/*
+*		Renders the listings of products of the current category.  
+*		Can be list as Grid type or List type.
+*
+*/
+
+<li class="product-item minimalist">
+	<div class=" item-wrapper "  id="prd[Product.Id]">
+		[?Product.Sale|sale=<div class="product-ribbon sale"></div>]
+		<div class="product-title">
+			<a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]" alt="[Product.Name]">
+				<span class="product-name">[Product.Name] [SimpleProduct.Id]</span>
+			</a>
+		</div>
+		<div class="product-image">
+		   <a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]"><img src="/[Product.ThumbnailImage=[ProductImage.ImageUrl,140,150]]" alt="[Product.Name]" width="100%"/></a>
+		</div>
+		 <div class="product-details clearfix">
+			<div class="price-block">
+
+				[?Product.ProductType|Simple=
+					[?Product.Sale|sale=
+						<span class="price special"><s>[Product.Price] </s>[Product.SpecialPrice]</span>
+						|=
+						<span class="price">
+							[Product.Price]
+						</span>
+						]
+					|Configurable=
+						[?SimpleProduct.Sale|sale=
+						<span class="price special"><s>[SimpleProduct.Price] </s>[SimpleProduct.SpecialPrice]</span>
+						|=
+						<span class="price">
+							[SimpleProduct.Price]
+						</span>
+						]
+				]
+			</div>
+			[:ProductListItemAttributeColor]
+			
+			<div class="add-to-cart large-12">
+				<div class="add-to">
+					<a href="#" title="add to compare"><img src="[File:/images/compare_icon_styleA.png]"/></a>
+					<a href="#" title="add to wishlist"><img src="[File:/images/wishlist_styleA.png]"/></a>
+				</div>
+				<div class="add-to-cart-button">
+					<a href="#" onclick="actionCart('product_addtocart_form','[Website.GetUrl,Magento,AddToCart]','[UserInput.DefaultUrlPart]/',true,'[Product.Id]','[Website.GetUrl,ShoppingCart]',jQuery('#conf-attributes[Product.Id]').find('select').serialize()+'&qty=[Product.MinInShoppingCart]'); return false;" class="button">ADD TO CART</a>
+				</div>
+			</div>
+			
+		</div>
+		
+	</div>
+</li>
+

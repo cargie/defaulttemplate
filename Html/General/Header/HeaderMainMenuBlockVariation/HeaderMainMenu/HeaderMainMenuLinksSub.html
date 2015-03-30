@@ -1,0 +1,20 @@
+/*
+*		Renders the sub menu of the main menu links.
+*
+*/
+
+[?MenuOption.HasChildren|Yes=
+	<ul class="dropdown">
+		[MenuOption.TopMenuChildrenSorted=
+				[?MenuOption.InTopMenu|Yes=
+					<li class="[?MenuOption.HasChildren|Yes=has-dropdown]">
+						<a href="[MenuOption.FullUrl]" class="[?MenuOption.IsCurrent|same= current|different=|parent= current]">
+							<span class="[?MenuOption.IsCurrent|same= current|different=|parent= current]">[MenuOption.Name]</span>
+							[?MenuOption.HasChildren|Yes=<span class="toggle">+</span>]
+						</a>
+						[:HeaderMainMenuLinksSub]
+					</li>
+				]
+		]
+	</ul>
+]

@@ -1,0 +1,27 @@
+/*
+*		Renders the cms page base on backend settings.
+*	
+*/
+
+[?CmsPage.FullPage|Yes=
+	[:[CmsPage.BlockName]]
+|No=
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>[CmsPage.PageTitleFull]</title>
+	<meta name="description" content="[CmsPage.MetaDescriptionFull]">
+	<meta name="keywords" content="[CmsPage.MetaKeywordsFull]">
+	<meta name="robots" content="[Configuration.DesignHeadDefaultRobots]">
+	[:head]
+	<link rel="stylesheet" href="[File:/css/usps/uspstyles.css]" type="text/css">
+	<style type="text/css">
+	#cmspage .three-columns{
+		width:auto;
+	}
+	</style>
+</head>
+<body id="cmspage">
+	
+	[:[DesignLayout.Layout]]
+]

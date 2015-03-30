@@ -1,0 +1,52 @@
+/*
+*		Renders the main menu block container of the header.
+*
+*/
+
+<div class="row ">
+	<div class="large-12 columns style-c-container ">
+		<div class="large-12 left style-c main-menu clearfix">
+			<ul class="small-12 columns" >
+				[Website.TopMenuSorted=
+					<li class="[?MenuOption.HasChildren|Yes=has-dropdown|No=[?MenuOption.MenuOptionType|Category=has-dropdown]] ">
+						<a class="[?MenuOption.IsCurrent|same= current|different=|parent=current]" href="[MenuOption.Url]" >[MenuOption.Name] [MenuOption.isCurrent]</a>
+							[?MenuOption.MenuOptionType|AllBrands=
+								[:HeaderMainMenuStyleCBlock]
+								|=
+								<div class="dropdown">
+									<ul class="menu-list" >
+										[MenuOption.TopMenuChildrenSorted=
+											<li class="[?MenuOption.HasChildren|Yes=has-dropdown]">
+												<a incra-data-image="/[MenuOption.Image]" class="[?MenuOption.IsCurrent|same= current|different=|parent= current]">
+													<span class="[?MenuOption.IsCurrent|same= current|different=|parent= current]">[MenuOption.Name]</span>
+													[?MenuOption.HasChildren|Yes=<span class="toggle">+</span>]
+												</a>
+												[:HeaderMainMenuLinksSub]
+											</li>
+										]
+									</ul>
+									[?MenuOption.HasChildren|Yes=
+										<div class="menu-item-img incra-panel" >
+											<img class="default-img" src="/[MenuOption.Image]"/>
+										</div>
+									]
+								</div>
+								
+							]
+					</li>
+				]
+			</ul>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		jQuery("a[incra-data-image]").bind("hover",function(){
+			var img = jQuery(this).attr("incra-data-image");
+			var img_container = jQuery(this).parent().parent().parent().find(".menu-item-img");
+			console.log('<img src="'+decodeURI(img)+'"/>');
+			img_container.html('<img src="'+decodeURI(img)+'"/>');
+		});
+		jQuery(".style-c.main-menu>ul>li:last>.dropdown").css("margin-left","-200px");
+	});
+</script>

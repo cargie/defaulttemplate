@@ -1,0 +1,91 @@
+/*
+*		Renders the layout of product listings in a certain category.
+*
+*/
+/** -------------------------------------------------------------------
+Name:              CategoryListLayout.StyleC
+Location:          /Html/Category/Content/CategoryListLayoutVariation/CategoryListLayout.StyleC.html
+Created By:        Leslie Canete
+Created At:        09-Okt-2014 16:49 (categorylistlayoutvariation, categorysidenavigation, checkouttype, change to button style)
+Last modified By:  Seth Malaki
+Last modified At:  23-Okt-2014 17:52 (myupdates in adding comments)
+Possible call:    mainContent.AdvancedSearchResult 	mainContent.BestRated 	mainContent.BestSellers 	mainContent.Brand 	mainContent.Category 	mainContent.Featured 	mainContent.MostInteresting 	mainContent.MostViewed 	mainContent.New 	mainContent.OthersAreViewing 	mainContent.RecentlyViewed 	mainContent.Sales 	mainContent.Search 	mainContent.Tag 	
+Calling blocks:    ProductListItemAddTo 	ProductListItemAttributes 	ProductListItemPrice 	ProductPriceBlock 	
+--------------------------------------------------------------------**/
+
+
+<div class="product-list-stylec">
+	[?UserInput.CatalogMode|List=
+	<ul class="list">
+		[Filter.Products=
+		<li class="product-item">
+			<div class="item-wrapper">
+			
+				<div class="product-image in-block">
+					<a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]"><img alt="[Product.Name]" width="155" src="/[Product.SmallImage=[ProductImage.ImageUrl,205,220]]"></a>
+				</div>
+				
+				<div class="product-details in-block">
+					<div class="product-title in-block">
+						<a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]"><h2>[Product.Name]</h2></a>
+						[:ProductListItemPrice?Product.Sale]
+						<div class="attributes-con">[:ProductListItemAttributes]</div>
+				
+						<p class="description">
+							[Product.Description] <a href="" class="more">[_more]</a>
+						</p>
+					</div>
+					<div class="button-con in-block">
+						<div class="add-to-cart in-block">
+							<button class="button btn-gradientorange"><span>[_Add to Cart]</span></button>
+						</div>
+						<div class="btn-details in-block">
+							<button class="button btn-gradientblue"><span>[_Details]</span></button>
+						</div>
+					</div>
+					
+					<div class="ratings in-block">
+						<div class="rating-box">
+							<div class="rating" style="width:[Product.Ranking]%"></div>
+						</div>
+					</div>
+					<div class="add-to in-block">
+						[:ProductListItemAddTo]
+					</div>
+					
+				</div>
+
+			</div>
+			
+		</li>
+		]
+	</ul>
+	|Grid=
+	<ul class="grid">
+		[Filter.Products=
+		<li class="product-item in-block">
+			<div class="item-wrapper">
+				<a href="[Website.GetUrl,Product,[Product.Id]]"  title="[Product.Name]"><h3 class="product-name">[Product.Name]</h3></a>
+				<div class="product-image">
+				   <a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]"><img src="/[Product.ThumbnailImage=[ProductImage.ImageUrl,205,220]]" width="202" alt="[Product.Name]"/></a>
+				</div>
+				 <div class="product-details">
+				   	[:ProductPriceBlock?Product.Sale] 
+				   	<p class="description">
+						[Product.Description]
+					</p>
+		
+				   	<div class="add-to-cart in-block">
+						<button class="button btn-gradientorange"><span>[_Add to Cart]</span></button>
+					</div>
+					<div class="btn-details in-block">
+						<button class="button btn-gradientblue"  onclick="window.location.href='[Website.GetUrl,Product,[Product.Id]]'"><span>Details</span></button>
+					</div>
+				</div>
+				
+			</div>
+		</li>
+		]
+	</ul>
+	]
+</div>

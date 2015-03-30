@@ -1,0 +1,36 @@
+/*
+*		Renders a three columns page containing left, right column and main content.
+*
+*/
+/** -------------------------------------------------------------------
+Name:              3Columns.Customer
+Location:          /Html/Customer/Layout/3Columns.Customer.html
+Created By:        Leslie Canete
+Created At:        06-Okt-2014 18:55 (relocation first 15 models)
+Last modified By:  Seth Malaki
+Last modified At:  21-Okt-2014 18:53 (myupdates in addingComments)
+Calling blocks:    breadcrumb 	footer 	header 	leftColumn 	notification 	rightColumn 	
+Calling unknown:   mainContent.Customer[Url.View] 	
+--------------------------------------------------------------------**/
+
+
+<div class="page">
+	[:header]
+	<div class="three-columns">
+		[:breadcrumb]
+		<div class="main-container">
+			<div class="left ">
+				[:leftColumn]
+			</div>
+			<div class="main ">
+				[:notification]
+				[:mainContent.Customer[Url.View]]
+			</div>
+		</div>
+		<div class="right">
+			[:rightColumn]
+		</div>
+		<br style="clear:both;"/>
+	</div>
+	[:footer]
+</div>

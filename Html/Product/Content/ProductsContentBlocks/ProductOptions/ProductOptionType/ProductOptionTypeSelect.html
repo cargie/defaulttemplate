@@ -1,0 +1,46 @@
+/*
+*	Renders a dropdown providing options to the customer needed in product options.
+*
+*/
+
+<dt><label for="text_[ProductOption.Id]" class="[?ProductOption.Required|Yes=required]">[?ProductOption.Required|Yes=<em>*</em>] [ProductOption.Label]</label></dt>
+<dd>
+	<div class="input-box">
+	[?ProductOption.Type|MultipleSelect=
+	<input type="hidden" id="multipleselect_[ProductOption.Id]" name="options\\[[ProductOption.Id]\\]">
+	<select multiple name="select_[ProductOption.Id]" class="multiselect [?ProductOption.Required|Yes=required] product-custom-option" id="select_[ProductOption.Id]">
+		[ProductOption.Choices=
+		<option price="[ProductOptionChoice.Price]" value="[ProductOptionChoice.Id]"  [?UserInput.OptionValueSelected,[ProductOption.Id],[ProductOptionChoice.Id]|yes=selected]>[ProductOptionChoice.Title]  [ProductOptionChoice.ActualPrice]</option>
+		]
+	</select>
+	|Dropdown=
+	<select onchange="reloadPrice('[Website.GetUrl,Ajax,Diff]','[Website.GetUrl,Product,[Product.Id]]','[Website.GetUrl,Product,0,OptionsUpdate/[Product.Id]]',jQuery('#product_addtocart_form').serialize());" class="[?ProductOption.Required|Yes=required] product-custom-option" id="select_[ProductOption.Id]" name="options\\[[ProductOption.Id]\\]">
+		[ProductOption.Choices=
+		<option price="[ProductOptionChoice.Price]" value="[ProductOptionChoice.Id]"  [?UserInput.OptionValueSelected,[ProductOption.Id],[ProductOptionChoice.Id]|yes=selected]>[ProductOptionChoice.Title]  [ProductOptionChoice.ActualPrice]</option>
+		]
+	</select>
+	]
+	</div>
+</dd>
+<script type="text/javascript">
+
+[?ProductOption.Type|MultipleSelect=
+	var temp = Array();
+	[ProductOption.Choices=
+		[?UserInput.OptionValueSelected,[ProductOption.Id],[ProductOptionChoice.Id]
+		|yes=
+			temp.push([ProductOptionChoice.Id]);
+		]
+	]
+	jQuery("#multipleselect_[ProductOption.Id]").val(temp.join(","));
+		var ids = [];
+	jQuery("#select_[ProductOption.Id]").change(function(){
+		ids.push(jQuery(this).val());
+		
+		jQuery("#multipleselect_[ProductOption.Id]").val(ids);
+		
+		reloadPrice('[Website.GetUrl,Ajax,Diff]','[Website.GetUrl,Product,[Product.Id]]','[Website.GetUrl,Product,0,OptionsUpdate/[Product.Id]]',jQuery('#product_addtocart_form').serialize());
+	})
+]
+
+</script>

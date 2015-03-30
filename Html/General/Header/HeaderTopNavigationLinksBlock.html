@@ -1,0 +1,15 @@
+/*
+*		Renders the top navigation links in the header.
+*
+*/
+
+ <ul id="toplinks" class="small-12">
+ 	<li class=""><a href="[Website.GetUrl,Customer,Account]">[_My Account]</a></li>
+ 	<li class=""><a href="[Website.GetUrl,WishList]">[_My Wishlist] [?WishList.NrItems|0=|1=(1 item)|=([Wishlist.NrItems] items)] </a></li>
+ 	
+ 	<li class=""><a href="[Website.GetUrl,CheckOut,OnePage]">[_Checkout]</a></li>
+ 	<li class="last">
+ 		[:HeaderMiniLoginBlock]
+	</li>
+ </ul>
+

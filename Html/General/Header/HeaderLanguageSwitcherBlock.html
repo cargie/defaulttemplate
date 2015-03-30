@@ -1,0 +1,23 @@
+/*
+*		Renders the store language switcher. Also refered to store view switcher.
+*
+*
+*/
+
+<div class="form-language">
+	<label for="select-language">[_Your Language :]</label>
+	<select id="select-language" title="[_Your Language]" onchange="changeStoreView(this.value)">
+		[Website.StoreViews=
+			<option value="[StoreView.Id]">[StoreView.Name]</option>
+		]
+	</select>
+	<script type="text/javascript">
+		jQuery(document).ready(function(){
+		changeStoreView = function(value,url_redirect){
+			window.location ='[Website.GetUrl,Storeview,'+value+']';
+		}
+		jQuery("#select-language option\[value=[Website.CurrentStoreView=[StoreView.Id]]\]").attr("selected","selected");
+		});
+	</script>
+</div>
+

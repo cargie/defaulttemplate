@@ -1,0 +1,59 @@
+/*
+*		Used in rendering page that contains a list of Faq category.
+*/
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	[:MetaData,[_FAQ Category] [FaqCategory.CategoryName]]
+	[:head]
+</head>
+<body>
+<div class="page">
+	[:header]
+	<div class="main-container one-column">
+		<div class="main">
+			<div class="col-main">
+				<div class="">
+					[:notification]
+					<h2> [_Frequently Asked Questions] - [FaqCategory.CategoryName]</h2>
+					
+					<div class="faq">
+						<div class="faq-block1">
+							<ul class="faq-questions">
+								[FaqCategory.QuestionsSorted=
+									[?Faq.Enabled|Yes=
+									<li>
+										<a href="#faq_[Faq.Id]">[Faq.Question]</a>
+									</li>
+									]
+								]
+							</ul>
+							
+						</div>
+						<br>
+						<div class="faq-block2">
+							
+							<dl class="faq-answers">
+								[FaqCategory.QuestionsSorted=
+									[?Faq.Enabled|Yes=
+									<a name="faq_[Faq.Id]"></a>
+									<dt>[Faq.Question]</dt>
+									<dd>[Faq.Answer]
+										 <br><a href="#faqcat_[FaqCategory.Id]">[_Back to Top]</a>
+									</dd>
+									]
+								]
+							</dl>
+							
+						</div>
+						<p class="back-link"><a href="#" onclick="history.go(-1); return false;">[_Go back]</a></p>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	[:footer]
+</div>

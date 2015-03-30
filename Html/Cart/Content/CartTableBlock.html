@@ -1,0 +1,47 @@
+/*
+*	
+*		renders the shopping cart items information in a table type format.
+*
+*/
+/** -------------------------------------------------------------------
+Name:              CartTableBlock
+Location:          /Html/Cart/Content/CartTableBlock.html
+Created By:        Leslie Canete
+Created At:        07-Okt-2014 16:54 (move to and rename ShoppingCartBlocks to Cart)
+Last modified By:  Seth Malaki
+Last modified At:  21-Okt-2014 17:09 (myupdates on addingComments)
+Called from:       mainContent.Cart 	
+Calling blocks:    CartFooterButtonsBlock 	CartItemsBlock 	
+--------------------------------------------------------------------**/
+
+
+<form action="" method="post" id="cart-form">
+	<table  class="shopping-cart-table">
+		<colgroup>
+			<col width="150">
+			<col width="250">
+			<col width="20">
+			<col width="25">
+			<col width="25">
+			<col width="35">
+			<col width="40">
+		</colgroup>
+
+		<thead class="head-title">
+			<tr>
+				<th class="a-center" rowspan="2"></th>
+				<th class="a-center" rowspan="2">[_Product Name]</th>
+				<th class="a-center" rowspan="2"></th>
+				<th class="a-center" colspan="">[_Unit Price]</th>
+				<th class="a-center" rowspan="2">[_Qty]</th>
+				<th class="a-center" colspan="">[_Subtotal]</th>
+				<th class="a-center" rowspan="2"></th>
+			</tr>
+		</thead>
+		<tbody>
+			[:CartItemsBlock]
+		</tbody>
+	</table>
+	[:CartFooterButtonsBlock]
+</form>
+	

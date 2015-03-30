@@ -1,0 +1,22 @@
+/*
+*		renders the footer info links in the footer area.
+*
+*/
+
+<div class="footer-info-links">
+	<ul class="media-list">
+		[Website.CmsPageGroupNames=
+		<li class="media flow-inline-block" >
+			<div class="media-body">
+				<h4 class="media-heading footer-link-heading">[CmsPage.GroupingName]</h4>
+				<div class="media footer-link-items">
+					<ul>	[Website.CmsPagesInGroup,[CmsPage.GroupingName]=
+						[?CmsPage.InFooter|Yes=<li><a href="[Website.GetUrl,CmsPage,[CmsPage.Id]]">[CmsPage.Name]</a></li>]
+						]
+					</ul>
+				</div>
+			</div>
+		</li>
+		]
+	</ul>
+</div>

@@ -1,0 +1,21 @@
+/*
+*		renders the footer type information.
+*
+*/
+<div class="footer" id="footer_type_c">
+	<div class="footer-info">
+		<div class="row footer-up">
+			<div class="large-3 columns">
+				<div class="block-grid footer-newsletter">[?DesignLayout.CheckFooter,[Url.Model],FooterNewsletterSubscriberBlock|No=[:FooterNewsletterSubscriberBlock]]</div>
+			</div>
+			<div class="large-8 large-offset-1 columns">
+				<div class="block-grid footer-static-info-links">[?DesignLayout.CheckFooter,[Url.Model],FooterInfoLinksBlock|No=[:FooterInfoLinksBlock]]</div>
+			</div>
+		</div>
+		<div class="row footer-bottom">	
+			
+			<div class="large-8 columns">[?DesignLayout.CheckFooter,[Url.Model],FooterLinksBlock|Yes=[:FooterLinksBlock]]</div>
+			<div class="large-4 columns a-right">[?DesignLayout.CheckFooter,[Url.Model],FooterCopyrightsBlock|Yes=[:FooterCopyrightsBlock]]</div>
+		</div>
+	</div>
+</div>

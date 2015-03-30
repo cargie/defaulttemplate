@@ -1,0 +1,46 @@
+/*
+*		Renders the a single filter navigation option.
+*
+*/
+/** -------------------------------------------------------------------
+Name:              FilterNavigation
+Location:          /Html/Category/Content/FilterNavigationVariation/FilterNavigation.html
+Created By:        Leslie Canete
+Created At:        13-Okt-2014 18:44 (rename header and side blocks)
+Last modified By:  Seth Malaki
+Last modified At:  21-Okt-2014 17:09 (myupdates on addingComments)
+Called from:       SideCategoryNavigationMenu.Accordion 	SideCategoryNavigationMenu.Popup 	SideCategoryNavigationMenu.StyleA 	SideCategoryNavigationMenu.StyleB 	SideCategoryNavigationMenu 	
+Calling unknown:   FilterNavigationAttributeType.[LayeredAttribute.CurrentType] 	
+--------------------------------------------------------------------**/
+
+
+[?Filter.Empty|no=
+<div class="filter-container default" style="[?Filter.LayeredAttributesCount|0=display:none]">
+	<div class="title"><span>[_Shop By]</span></div>
+	<div class="layered-navigation">
+		<div class="selected-attr">
+		[?UserInput.ShoppingByAvailable|No=
+		|Yes=
+			<dl> <dt>[_Currently Shopping By:]</dt>
+			[Filter.SelectedLayeredAttributes=
+				<dd>
+					<em>[LayeredAttribute.Name] </em> 
+					<span class="selected-layered-values">[LayeredAttribute.SelectedOptionsName]</span>
+					<span class="f-right"><img class="img-remove" src="[File:/images/btn_remove.gif]" title="remove" onclick="removeFilter('[Website.GetUrl,Ajax,Update]','/Filter/[LayeredAttribute.AttributeCode]/[LayeredAttribute.SelectedOptionsName]')"/></span>
+				</dd>
+			]
+			</dl>
+			<p class="a-right"><a href="javascript:removeFilter('[Website.GetUrl,Ajax,Update]','',true,'[UserInput.DefaultUrlPart]');">[_Clear All] </a></p>
+			
+		]
+		</div>
+		<div id="nav-attributes">
+		[Filter.AllLayeredAttributes=
+			[:FilterNavigationAttributeType.[LayeredAttribute.CurrentType]]
+		]
+		<!-- checkboxes, slider, select and price slider not yet -->
+		</div>
+	</div>
+</div>
+]
+

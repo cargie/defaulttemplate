@@ -1,0 +1,50 @@
+/*
+*	Renders the variation of ProductMediaImage controls.
+*
+*/
+
+<div class="product-image styleb">
+	<a href="/[Product.BaseImage=[ProductImage.ImageUrl]]" title="[Product.Name]" class="fancyboxstyleb" data-fancybox-group="gallery">
+		<img width="250" alt="[Product.Name]" border="0"  id="image1" src="/[Product.BaseImage=[ProductImage.ImageUrl,250,300]]"/>
+	</a>
+</div>
+<div class="clear"></div>
+<div class="product-gallery">
+	<div class="image-thumbnail">
+		<ul>[Product.Images,4=
+			<li>
+				<a class="fancyboxstyleb" data-fancybox-group="gallery" href="/[ProductImage.ImageUrl]"  title="[ProductImage.Label]">
+					<img class="" width="65" src="/[ProductImage.ImageUrl,100,125]" title="[ProductImage.Label]" class="" />
+				</a>
+
+			</li>]
+		</ul>
+	</div>
+</div>
+
+<script type="text/javascript">
+	jQuery(document).ready(function ($)  {
+		/*
+		 *  Simple image gallery. Uses default settings
+		 */
+
+		$('.fancyboxstyleb').fancybox();
+
+		/*
+		 *  Different effects
+		 */
+
+		// Change title type, overlay closing speed
+		$(".fancybox-effects-a").fancybox({
+			helpers: {
+				title : {
+					type : 'outside'
+				},
+				overlay : {
+					speedOut : 0
+				},
+				classname: "styleb"
+			}
+		});
+	});
+</script>

@@ -1,0 +1,65 @@
+/*
+*	Renders the main content of LoginPage.  This displays login form, sign up link and a forgot password.
+*	
+*/
+
+<div class="account-login-container">
+	<div class="page-title">
+		<h2>[_Log In or Create a New Account]</h2>
+	</div>
+	<!-- Message block -->
+	[:notification]
+	<div class="col2-set">
+		<div class="col-1 new-users in-block">
+			<div class="content">
+			    <h2>[_New Customers]</h2>
+			    <p>[_By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.]</p>
+			</div>
+			<div class="buttons-set">
+				 <button type="button" title="[_Create an Account]" class="button btn[Design.DesignSelectionName,ButtonStyle]" onclick="setLocation('[Website.GetUrl,Customer,AccountCreate]')"><span><span>[_Create an Account]</span></span></button>
+			</div>
+			
+		</div>
+		<div class="col-2 registered-users in-block">
+			<form id="form-login" method="post">
+				<div class="content">
+				
+					<h2>[_Registered Customers]</h2>
+					<p>[_If you have an account with us please log in.]</p>
+					<ul class="form-list">
+					    <li>
+						<label class="required" for="customer_username">[_User Name]<em>*</em></label>
+						<div class="input-box">
+						    <input type="text" value="" size="30" class="input-text required span4" id="customer_username" alt="username" name="username">
+						</div>
+					    </li>
+					    <li>
+						<label class="required" for="customer_password">[_Password]<em>*</em></label>
+						<div class="input-box">
+						    <input type="password" value="" size="30" class="input-text required password span4" id="customer_password" alt="password" name="password">
+						</div>
+					    </li>
+					</ul>
+					
+					<p class="a-right"><em>* [_required fields] </em></p>
+				</div>
+				
+				<div class="buttons-set">
+					<a href="[Website.GetUrl,Login,ForgotPassword]" class="f-left">[_Forgot Your Password?]</a>
+					<button type="submit" class="button btn[Design.DesignSelectionName,ButtonStyle]" title="[_Login]" name="send" id="send2"><span><span>[_Continue]</span></span></button>
+				</div>
+				
+			</form>
+			<script type="text/javascript">
+			jQuery("#form-login").validate({
+				submitHandler: function(form) {
+					setLocationAjaxAction('form-login','[Website.GetUrl,magento,Login]','[Website.GetUrl,Login,Login]',false,'',jQuery('#form-login').serialize(),'[Website.GetUrl,Customer,Account]');
+				 }	
+			});
+			</script>
+		</div>
+	</div>
+
+</div>
+
+

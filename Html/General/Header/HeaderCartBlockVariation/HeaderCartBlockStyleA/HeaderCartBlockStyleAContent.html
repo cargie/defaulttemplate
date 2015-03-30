@@ -1,0 +1,50 @@
+/*
+*		Renders a content information of HeaderCartBlock.StyleA variation.
+*
+*/
+
+<div class="popover fade bottom in shopping-cart-popup" style="">
+	<h4 class="shopping-cart-title">[_My Shopping Cart]</h4>
+	<div id="popupContent" class="popover-content">
+		<p class="label-add-item">[_You currently have <strong>%1</strong> items in your <a href="[Website.GetUrl,Cart]"><span class="cartlink">shopping cart</span></a>, [ShoppingCart.NrItems]]</p>
+		<p class="label-recent-item"> [_Recently added item/s:] </p>
+	
+		<div id="objects-container">
+			[ShoppingCart.RecentlyAddedItems,3=
+			<div id="medialist-con" class="media-item">
+				<div class="item-thumb">
+					<a class="pull-left" href="[Website.GetUrl,Product,[Product.Id]]">
+						<img class="img-polaroid" title="[Product.Name]" src="/[Product.ThumbnailImage=[ProductImage.ImageUrl,100,100]]">
+					</a>
+				</div>
+				<div class="item-content">
+					<h5 class="productname-heading">
+						<a href="[Website.GetUrl,Product,[Product.Id]]">[Product.Name]</a>
+					</h5>
+					<span class="shopcart-price">&dollar;[ShoppingCartItem.PriceEach]</span>
+
+					<div class="shopcart-attrib">
+						[ShoppingCartItem.Attributes=
+						<p class="attrib">[Attribute.AdminTitle] : [ShoppingCartItemAttribute.Value]</p>
+						]
+					</div>
+					<div class="shopcart-links">
+						<a href="">[_Edit]</a><span class="divider">|</span><a href="javascript:setLocationAjax('[Website.GetUrl,magento,RemoveFromCart]','[Url.FullUrl]',true,[ShoppingCartItem.Id]);">[_Remove]</a>
+					</div>
+				</div>
+			</div>
+			]
+		</div>
+	
+		<hr class="sp-cart">
+		<div class="price-holder">
+			<span class="total">[_Total:]</span><span class="total-price">[ShoppingCart.TotalInclTax] </span>
+		</div>
+		<div class="button_holder">
+			<button type="button" class="btn-checkout" onclick="window.location='[Website.GetUrl,CheckOut,OnePage]'" ><span><span>[_PROCEED TO CHECKOUT]</span></span></button>
+
+			<p class="or">[_OR]</p>
+			<button type="button" class="btn-shopcart" onclick="window.location='[Website.GetUrl,Cart]'"><span><span>[_GO TO SHOPPING CART]</span></span></button>
+		</div>
+	</div>
+</div>

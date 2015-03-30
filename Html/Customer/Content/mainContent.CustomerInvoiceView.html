@@ -1,0 +1,50 @@
+/*
+*		Renders the main content detailed information of the CustomerInvoiceViewPage.
+*							
+*/
+
+<div class="content-my-account">
+	<div class="page-title">
+		<h2>[Invoice.InvoiceNumber] - [Invoice.Status]</h2>
+	</div>
+	<div class="order-info-con">
+		<h3 class="order-label in-block">[_Type] : [Invoice.Type]</h3>
+		<p class="order-date in-block">[_Invoice date] : [Invoice.Date] </p>
+		<div class="order-items-con">
+			<table class="data-table">
+			    <thead>
+				<tr>
+				    <th class="a-left" >[_Product Name]</th>
+				    <th class="a-right" width="15%">[_SKU]</th>
+				    <th class="a-center" width="15%">[_Price]</th>
+				    <th class="a-center" width="15%">[_Qty]</th>
+				    <th class="a-right" width="20%">[_Subtotal]</th>
+				</tr>
+			    </thead>
+			    <tbody>	
+			    	[Invoice.Mutation=	
+						[OrderMutation.Items=
+						<tr>
+						    <td>[OrderItem.Name]<br></td>
+						    <td class="a-right">[OrderItem.Sku]</td>
+						    <td class="a-center">[OrderItem.PriceEach]</td>
+						    <td class="a-center">[OrderItem.Quantity]</td>
+						    <td class="a-right">[OrderItem.Price]</td>
+						</tr>
+						]
+					]
+			    </tbody>
+			    <tfoot>
+				<tr><td colspan="5">[Invoice.Comments]</td></tr>
+				<tr>
+				    <td colspan="4" class="a-right">[_Total]</td>
+				    <td class="a-right">[Invoice.TotalAmount]</td>
+				</tr>
+			    </tfoot>
+			</table>
+			 <div class="buttons-set">
+				<p class="back-link"><a href="[Website.GetUrl,Customer,[Url.MVC4]/[Url.MVC5]]"><small>« </small>[_Back]</a></p>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,12 @@
+/*
+*		renders a brand list populted in dropdown control.
+*
+*/
+
+<label>[_Select Brand]</label>
+<select class="new-thread-category-list" name="brand_id">
+	<option class="" value="">--[_Select]--</option>
+	[Website.Brands=
+		<option class="" value="[Brand.Id]">[Brand.Name]</option>
+	]
+</select>

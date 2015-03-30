@@ -1,0 +1,27 @@
+/*
+*		Renders a block that cotains a best sellers product.
+*
+*/
+
+[Website.BestSellers,1,2,'Name',Ascending]
+[?Filter.Empty|no=
+<div class="bestselling-products">
+	<h2>[_BEST-SELLING PRODUCTS]</h2>
+		<ul class="product-list">
+			[Filter.Products=
+			<li class="product-item">
+				<div class="product-image">
+					<a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]"><img width="120" src="/[Product.ThumbnailImage=[ProductImage.ImageUrl,100,125]]"/></a>
+				</div>
+				<div class="product-details">
+					<a href="[Website.GetUrl,Product,[Product.Id]]"><h4 class="product-title">[Product.Name]</h4></a>
+					<div class="price-box">[:ProductPriceBlock]</div>
+					<p class="links">
+						<a href="[Website.GetUrlForUrlKey,Category]/[product.categories=[Category.UrlKey]]">[_see all] [product.categories=[Category.Name]]</a>
+					</p>
+				</div>
+			</li>
+			]
+		</ul>
+</div>
+]

@@ -1,0 +1,38 @@
+/*
+*		Renders the content of the mini login block dropdown variation.  This contains the fields used to login.
+*
+*/
+
+<div class="login-popup">
+	<div class="content">
+		<form id="login-form" method="post">
+			<h4>[_Log In]</h4>
+			<label for="email">[_Email Address]</label>
+			<div class="input-box">
+
+				<input type="text" value="" name="username" id="email" size="29" class="required" />
+
+			</div>
+			<label for="password">[_Password]</label>
+			<div class="input-box">
+
+				<input type="password" value="" name="password" id="password" size="29" class="required password" />
+
+			</div>
+
+			<div id="button_holder">
+				<button class="button btn[Design.DesignSelectionName,ButtonStyle]" type="submit"><span><span>[_Log In]</span></span></button>
+			</div>
+		</form>
+		<p class="helplink">
+		[_Forgot your password?] <a href="[Website.GetUrl,Login,ForgotPassword]">[_CLICK HERE]</a>
+		</p>	
+		<script type="text/javascript">
+		jQuery("#login-form").validate({
+			submitHandler: function(form) {
+				setLocationAjaxAction('login-form','[Website.GetUrl,magento,Login]','[Url.FullUrl]',false,'',jQuery('#login-form').serialize(),'[Website.GetUrl,Customer,Account]');
+			 }	
+		});
+		</script>
+	</div>
+</div>

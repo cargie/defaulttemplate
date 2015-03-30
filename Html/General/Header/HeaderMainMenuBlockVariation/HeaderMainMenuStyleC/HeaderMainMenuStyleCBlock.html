@@ -1,0 +1,16 @@
+/*
+*		Renders the dropdown list menu for a HeaderMainMenuBlock.StyleC variation.
+*
+*/
+
+<div class="dropdown brand-list">
+	<ul>
+	[MenuOption.TopMenuChildrenSorted=
+		<li class="[?MenuOption.HasChildren|Yes=has-dropdown]">
+			<a href="http://[Url.DomainName]/[MenuOption.Url]" class="[?MenuOption.IsCurrent|same= current|different=|parent= current]">
+				<img src="/[MenuOption.Image]" title="[MenuOption.Name]" width="150"/>
+			</a>
+		</li>
+	]
+	</ul>
+</div>

@@ -1,0 +1,32 @@
+/*
+*		Renders Toolbar view mode for displaying product listing.
+*
+*/
+
+<label>[_View as]:</label>
+[?Configuration.CatalogListMode
+|ListOnly=
+	<strong>[_List]</strong>
+|GridOnly=
+	<strong>[_Grid]</strong>
+|ListDefault=
+	[?UserInput.CatalogMode
+	|Grid=
+		<span><span class="selected"><strong>[_Grid]</strong></span></span>
+		<span><span onclick="selectaction('[Website.GetUrl,Ajax,Update]','[UserInput.DefaultUrlPart]','Page/[UserInput.PageFrom]/[UserInput.PageNrOn]/[UserInput.PageSort]/[UserInput.PageAscending]/List/[UserInput.FilterUrl]');">[_List]</span></span>&nbsp;
+
+	|List=
+		<span><span onclick="selectaction('[Website.GetUrl,Ajax,Update]','[UserInput.DefaultUrlPart]','Page/[UserInput.PageFrom]/[UserInput.PageNrOn]/[UserInput.PageSort]/[UserInput.PageAscending]/Grid/[UserInput.FilterUrl]');">[_Grid]</span></span>
+		<span><span class="selected"><strong>[_List]</strong></span></span>
+	]
+|GridDefault=
+	[?UserInput.CatalogMode
+ 	|Grid=
+	<span><span class="selected"><strong>[_Grid]</strong></span></span>
+	<span><span onclick="selectaction('[Website.GetUrl,Ajax,Update]','[UserInput.DefaultUrlPart]','Page/[UserInput.PageFrom]/[UserInput.PageNrOn]/[UserInput.PageSort]/[UserInput.PageAscending]/List/[UserInput.FilterUrl]');">[_List]</span></span>&nbsp;
+
+	|List=
+ 	<span><span onclick="selectaction('[Website.GetUrl,Ajax,Update]','[UserInput.DefaultUrlPart]','Page/[UserInput.PageFrom]/[UserInput.PageNrOn]/[UserInput.PageSort]/[UserInput.PageAscending]/Grid/[UserInput.FilterUrl]');">[_Grid]</span></span>
+	<span><span class="selected"><strong>[_List]</strong></span></span>
+	]
+]

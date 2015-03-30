@@ -1,0 +1,38 @@
+/*
+*	Renders the product content layout containing product information, product image
+*	and a tab control containing product additional information.
+*
+*/
+
+<div class="product-content-layout info-pic-tabs">
+	<div class="large-12 product-page">
+		<div class="large-12 product-essential clearfix">
+			<div class="large-7 columns ">
+				[:ProductContentLayoutInfoBlock]
+			</div>
+			<div class="large-5 columns text-right">
+				[:ProductMediaImageContainer]
+			</div>
+		</div>
+		<div class="row">
+			[:ProductOptions] 			<!-- design variation -->
+			<div class="large-12 columns product-info product-additional-info panel">
+				[:ProductContentLayoutInfoTabs]
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+ 	jQuery(document).ready(function(){
+ 		jQuery(".tabs .tab-title a[role=tab]").click(function(){
+			var tab = jQuery(this);
+			console.log(tab.attr("content"));
+			jQuery(".tabs .tab-title").removeClass("active");
+			tab.parent().addClass("active");
+			var content_id = tab.attr("content");
+			jQuery(".tabs-content .content").removeClass("active");
+			jQuery("#"+content_id).addClass("active");
+			return false;
+		});
+ 	})
+</script>

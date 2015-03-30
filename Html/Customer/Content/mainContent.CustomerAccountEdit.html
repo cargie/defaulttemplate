@@ -1,0 +1,127 @@
+/*
+*		Renders the main content information of the CustomerAccountEditPage.
+*							
+*/
+
+<div class="my-account">
+	<div class="page-title">
+		<h2>[_Edit Account Information]</h2>
+	</div>
+	<form id="form-validate" method="post" action="">
+		<div class="fieldset">
+			<h3 class="legend">[_Account Information]</h3>
+
+			<ul class="form-list">
+				<li class="fields">
+					<div class="customer-name">
+						<div class="field">
+							<label class="required" for="firstname">[_First Name]<em>*</em></label>
+							<div class="input-box">
+								<input type="text" class="input-text required" title="[_First Name]" value="[Customer.FirstName]" name="firstname" id="firstname">
+							</div>
+						</div>
+						
+						<div class="field">
+							<label class="required" for="lastname">[_Last Name]<em>*</em></label>
+							<div class="input-box">
+								<input type="text" class="input-text required" title="[_Last Name]" value="[Customer.LastName]" name="lastname" id="lastname">
+							</div>
+						</div>
+					</div>
+				</li>
+				<li  class="fields">
+					<label class="required" for="email">[_Email Address]<em>*</em></label>
+					<div class="input-box">
+						<input type="text" class="input-text required email" title="[_Email Address]" value="[Customer.Email]" id="email" name="email">
+					</div>
+				</li>
+				[?Configuration.CustomerShowDateOfBirth|Yes=<li>
+					<label for="dateofbirth" class="[?Configuration.CustomerRequiredDateOfBirth|Yes=required]">[?Configuration.CustomerRequiredDateOfBirth|Yes=<em>*</em>][_Date of Birth]</label>
+					<div class="input-box">
+						<input type="text" name="dateofbirth" id="dateofbirth" value="[Customer.DateOfBirth]" title="[_Date of Birth]" class="input-text [?Configuration.CustomerRequiredDateOfBirth|Yes=required]">
+						<script type="text/javascript">
+							jQuery('#dateofbirth').datepicker();
+						</script>
+					</div>
+				</li>]
+				[?Configuration.CustomerShowTaxNumber|Yes=<li>
+					<label for="vatnumber" class="[?Configuration.CustomerRequiredTaxNumber|Yes=required]">[?Configuration.CustomerRequiredTaxNumber|Yes=<em>*</em>][_Tax/VAT number]</label>
+					<div class="input-box">
+						<input type="text" name="taxvat" id="vatnumber" value="[Customer.TaxNumber]" title="[_Tax/VAT number]" class="input-text [?Configuration.CustomerRequiredTaxNumber|Yes=required]">
+					</div>
+				</li>]
+				[?Configuration.CustomerShowGender|Yes=<li>
+					<label for="gender" class="[?Configuration.CustomerRequiredGender|Yes=required]">[?Configuration.CustomerRequiredGender|Yes=<em>*</em>][_Gender]</label>
+					<div class="input-box">
+						<select id="gender" name="gender" title="[_Gender]" class="[?Configuration.CustomerRequiredGender|Yes=required]">
+						<option value=""></option>
+						<option value="male" [?Customer.Gender|male=selected]>[_Male]</option>
+						<option value="female" [?Customer.Gender|female=selected]>[_Female]</option>
+						</select>
+					</div>
+				</li>]
+				<li class="control">
+					<input type="checkbox" class="checkbox" title="[_Change Password]" onclick="setPasswordForm(this.checked)" value="1" id="change_password" name="change_password"><label for="change_password" class="in-block">[_Change Password]</label>
+				</li>
+				
+			</ul>
+		</div>
+		<div class="fieldset" id="change-password" style="display:none;">
+			<h3 class="legend">[_Change Password]</h2>
+			<ul class="form-list">
+				<li>
+					<label for="current_password" class="required"><em>*</em>[_Current Password]</label>
+					<div class="input-box">
+					    <input type="password" title="[_Current Password]" class="input-text" name="current_password" id="current_password" />
+					</div>
+				</li>
+				<li class="fields">
+					<div class="field">
+					    <label for="customer_password" class="required"><em>*</em>[_New Password]</label>
+					    <div class="input-box">
+						<input type="password" title="[_New Password]" class="input-text" name="password" id="customer_password" />
+					    </div>
+					</div>
+					<div class="field">
+					    <label for="confirm_password" class="required"><em>*</em>[_Confirm New Password]</label>
+					    <div class="input-box">
+						<input type="password" title="[_Confirm New Password]" class="input-text" name="confirm_password" id="confirm_password" />
+					    </div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="buttons-set">
+			<p class="required">[_required fields *]</p>
+			<p class="back-link"><a href="[Website.GetUrl,Customer,Account]"><small><<</small>[_Back]</a></p>
+			<button class="button btn[Design.DesignSelectionName,ButtonStyle]" title="[_Save]" type="submit"><span><span>[_Save]</span></span></button>
+		</div>
+
+		<script type="text/javascript">
+			jQuery("#form-validate").validate({
+				rules: { 
+					password: {
+						required: true,
+						minlength: 6
+					},
+					confirm_password: {
+						required: true,
+						minlength: 6,
+						confirmPassword: "#customer_password"
+					}
+				},
+				submitHandler: function(form){
+					setLocationAjaxAction('form-validate','[Website.GetUrl,magento,UpdateAccount]','[Url.FullUrl]',false,'',jQuery('#form-validate').serialize(),'[Website.GetUrl,Customer,Account]');
+				}
+			});
+		</script>
+		</form>
+
+		<script type="text/javascript">
+		if (('[Url.Controller]'=='ChangePassword') && ('[Url.MVC4]'=='1')){
+			jQuery('#change_password').prop('checked', true);
+			setPasswordForm(true);
+		}
+		</script>
+	
+</div>

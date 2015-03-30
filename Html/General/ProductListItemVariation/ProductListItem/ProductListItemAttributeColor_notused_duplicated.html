@@ -1,0 +1,31 @@
+<div id="conf-attributes[Product.Id]">
+	[Product.ConfigurableAttributes=
+	
+		[?LayeredAttribute.CurrentType
+		|ColorsAndText=
+			<div style="display:none">
+				<label>[Attribute.Title]:</label>
+				<select class="attr-option pull-right select-small span2" name="[Attribute.AttributeCode]" id="attribute[Attribute.Id][Product.Id]"  onchange="chooseoption([Product.Id]);">
+					<option value="">[_Please select]</option>
+					[Product.ConfigurableChildProducts,[Attribute.AdminTitle]=
+						<option  value="[AttributeOption.Id]" [?UserInput.ConfigurableAttributeValueValid,[Attribute.AdminTitle],[AttributeOption.Admin]|yes=selected]>[AttributeOption.Admin]</option>
+					]
+				</select>
+			</div>
+			<div class="attr-list clearfix">
+			[:PLPColorsAndText]
+			</div>
+		]
+	]
+</div>
+<script type="text/javascript">
+
+var chooseoption=function(id) { 
+	
+	var str=SelectedAttr(id);
+	var url='[Website.GetUrl,Product,0,UpdateConfigurableInList/]'+id+"/"+str;
+	alert(url);
+	updateconfigproduct(url,id);
+};
+
+</script>

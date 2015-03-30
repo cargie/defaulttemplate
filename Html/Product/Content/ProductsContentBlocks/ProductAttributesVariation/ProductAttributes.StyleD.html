@@ -1,0 +1,31 @@
+/*
+*	Renders the variation list of Product attributes.
+*
+*/
+
+<div id="conf-attributes[Product.Id]" class="product-attributes">
+	<dl>
+		[Product.ConfigurableAttributes=
+	  		<dt>[Attribute.Title]</dt>
+	  		<dt>
+	  			<select name="[Attribute.AttributeCode]" id="attribute[Attribute.Id][Product.Id]"  onchange="setAttr([Product.Id])" class="msdropdown required span2" >
+					<option value="">[_Please select]</option>
+					[Product.ConfigurableChildProducts,[Attribute.AdminTitle]=
+					<option [?Attribute.AttributeCode|Color=data-title="[AttributeOption.Color]"] value="[AttributeOption.Id]" [?UserInput.ConfigurableAttributeValueValid,[Attribute.AdminTitle],[AttributeOption.Admin]|yes=selected]>[AttributeOption.Admin]</option>
+					 ]
+				</select>
+			</dt>
+		]
+	</dl>
+	
+</div>
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+	try {
+			oHandler = jQuery("select.msdropdown").msDropDown().data("dd");
+			//jQuery("#ver").html(jQuery.msDropDown.version);
+			} catch(e) {
+				alert("Error: "+e.message);
+			}
+	})
+</script>

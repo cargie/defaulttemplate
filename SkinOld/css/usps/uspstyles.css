@@ -1,0 +1,108 @@
+@font-face {
+    font-family: 'Futura MdCn BT';
+    src: url('futura_mdcn_bt-italic-webfont.eot');
+    src: url('futura_mdcn_bt-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('futura_mdcn_bt-italic-webfont.woff') format('woff'),
+         url('futura_mdcn_bt-italic-webfont.ttf') format('truetype'),
+         url('futura_mdcn_bt-italic-webfont.svg#FuturaMdCnBT') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Futura Md BT';
+    src: url('futura_medium_bt-webfont.eot');
+    src: url('futura_medium_bt-webfont.eot?#iefix') format('embedded-opentype'),
+         url('futura_medium_bt-webfont.woff') format('woff'),
+         url('futura_medium_bt-webfont.ttf') format('truetype'),
+         url('futura_medium_bt-webfont.svg#FuturaMdBT') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+#content-block { margin: 0 auto; padding: 0; width: 960px;  }
+
+#content-block .logo { margin: 0; padding: 0; }
+
+#content-block hr { margin: 16px 0; padding: 0; height: 6px; background-color: #696E77; }
+
+#content-block .nav_menu { margin: 0 auto; padding:0; text-align: center; }
+#content-block .nav_menu ul, #content-block .nav_menu ul li { margin: 0 auto; padding:0; list-style-type: none; display: inline-block; *display: inline; zoom: 1;  }
+#content-block .nav_menu ul, #content-block .nav_menu ul li, #content-block .nav_menu ul li a { margin: 0 20px; padding: 0; font-family: Futura MdCn BT; font-size: 16px; color: #C1C1C1; text-transform:uppercase;}
+#content-block .nav_menu ul, #content-block .nav_menu ul li, #content-block .nav_menu ul li a:hover { color: #0088cc; }
+
+#content-block .content { margin: 10px; padding: 0; min-height: 450px; }
+#content-block .content p.title { margin: 46px 0 0 0; padding: 0; font-family: Futura MdCn BT; font-size: 48px; color: #F68C1E; }
+#content-block .content h3 { margin: 20px 0; padding: 0; font-family: Futura MdCn BT; color: #6FC5FE; font-size: 28px; }
+#content-block .content h4 { margin: 20px 0; padding: 0; font-family: Futura Md BT; color: #333333; font-size: 20px; }
+
+#content-block .content ul.content-list { margin: 24px 0; padding: 0; width: 460px;  display: inline-block; *display: inline; zoom:1; }
+#content-block .content ul.content-list, #content-block .content ul.content-list li { margin: 12px 18px; padding: 0; list-style-type: disc; font-family: Futura Md BT; font-size: 14px; color: #333333;}
+
+#content-block .content div.graph1_container { position: relative; margin: 0; padding: 0; width: 400px; display: inline-block; *display: inline; zoom: 1; vertical-align: top; }
+
+#content-block .content div.graph1_container p.graph1_caption { margin: 0; padding: 14px; color: #F68C1E; text-align: justify; font-family: Futura MdCn BT; font-size: 12px; line-height: 16px;  }
+
+#content-block .content p.description { margin: 30px 0; padding: 0 8px 0 0; width: 490px;  display: inline-block; *display: inline; zoom:1; font-family: Futura Md BT; font-size: 14px; color: #333333; }
+
+#content-block .content div.graph2_container { position: relative; margin: 46px 0 0 0; padding: 0; width: 400px; display: inline-block; *display: inline; zoom: 1; vertical-align: top; }
+
+#content-block .content div.graph2_container p.graph2_caption { margin: 0; padding: 14px; color: #F68C1E; text-align: justify; font-family: Futura MdCn BT; font-size: 12px; line-height: 16px; }
+
+#content-block .content div.price_list_wrapper { margin: 0 auto; padding: 0;  }
+#content-block .content div.price_list_wrapper, #content-block div.price_list_wrapper ul { margin: 0; padding: }
+#content-block .content div.price_list_wrapper .content ul.price_list { margin: 0 auto; padding: 0; }
+#content-block .content div.price_list_wrapper .content ul.price_list, #content-block .content ul.price_list li { margin: 0; padding: 0; display: block; list-style-type: none; }
+#content-block .content div.price_list_wrapper .content ul.price_list, #content-block .content ul.price_list li ul.rows { margin: 0; padding: 0; }
+#content-block .content div.price_list_wrapper .content ul.price_list, #content-block .content ul.price_list li ul.rows li { margin: 0 -2px; padding: 6px; display:inline-block; *display: inline; zoom: 1; list-style-type: none; width: 294px; background-color: #9ab6df; vertical-align: top; border: 1px solid #FFFFFF; height: 35px; font-family: Futura Md BT; font-size: 14px; line-height: 18px; }
+
+
+#content-block .content p.graph_title { margin: 28px 0; padding: 0; font-family: Futura MdCn BT; font-size: 26px; color: #F68C1E; }
+
+#content-block .content div.features_graph_wrapper { margin: 0 auto; padding: 0;  }
+#content-block .content div.features_graph_wrapper, #content-block div.features_graph_wrapper ul { margin: 0; padding: }
+#content-block .content div.features_graph_wrapper .content ul.features_list { margin: 0 auto; padding: 0; }
+#content-block .content div.features_graph_wrapper .content ul.features_list, #content-block .content ul.features_list li { margin: 0; padding: 0; display: block; list-style-type: none; }
+
+#content-block .content div.features_graph_wrapper .content ul.features_list, #content-block .content ul.features_list li ul.features_titles { margin: 0; padding: 0; }
+#content-block .content div.features_graph_wrapper .content ul.features_list, #content-block .content ul.features_list li ul.features_titles h4 { margin: 0; padding: 20px; text-align: center; font-size: 16px;}
+#content-block .content div.features_graph_wrapper .content ul.features_list, #content-block .content ul.features_list li ul.features_titles li { margin: 0 -2px; padding: 6px; display:inline-block; *display: inline; zoom: 1; list-style-type: none; width: 134px; background-color: #eeece1; vertical-align: top; border: 1px solid #FFFFFF; height: 49px; font-family: Futura Md BT; font-size: 12px; line-height: 18px; }
+
+
+
+.first { /*background-color: #c3c3c3;*/ }
+p.check { text-align: center; color: green; font-size: 18px; margin: 4px; }
+
+
+
+#content-block .content div.features_graph_wrapper .content ul.features_list, #content-block .content ul.features_list li ul.features_rows { margin: 0; padding: 0; }
+#content-block .content div.features_graph_wrapper .content ul.features_list, #content-block .content ul.features_list li ul.features_rows li { margin: 0 -2px; padding: 6px; display:inline-block; *display: inline; zoom: 1; list-style-type: none; width: 134px; background-color: #f2f2f2; vertical-align: top; border: 1px solid #FFFFFF; height: 25px; font-family: Futura Md BT; font-size: 11px; line-height: 18px; text-align: center;}
+
+
+
+#content-block .content div.column1 { margin: 0; padding: 0; display: inline-block; *display: inline; zoom:1; width: 494px; }
+#content-block .content div.column1 ul.content-list { margin: 24px 0; padding: 0; width: 460px;  display: inline-block; *display: inline; zoom:1; }
+#content-block .content div.column1 ul.content-list, #content-block .content div.column1 ul.content-list li { margin: 12px 18px; padding: 0; list-style-type: disc; font-family: Futura Md BT; font-size: 14px; color: #333333;}
+
+
+#content-block .content div.column1 p.description { margin: 30px 0; padding: 0 8px 0 0; width: 490px;  display: inline-block; *display: inline; zoom:1; font-family: Futura Md BT; font-size: 14px; color: #333333; }
+
+
+#content-block .content div.column2 { margin: 0; padding: 0; display: inline-block; *display: inline; zoom:1; width: 428px;  vertical-align: top; }
+#content-block .content div.column2 p.image_caption { margin: 24px 0; padding: 0; font-family: Futura MdCn BT; font-size: 24px; color: #3c9cfe;}
+#content-block .content div.column2 img { margin: 24px 0; padding; 0; }
+
+
+
+#content-block .content div.footnote { margin: 18px; padding: 0; text-align: center; }
+#content-block .content div.footnote ul { margin: 0; padding: 0; list-style-type: none;}
+#content-block .content div.footnote li { margin: 0 48px; padding: 0; display: inline-block; *display: inline; zoom:1; font-family: Futura Md BT; font-size: 14px; color: #414141; }
+
+#content-block .footer { margin: 0; padding: 0;  text-align: center; }
+#content-block .footer ul.links { margin: 20px 0; padding: 0;  text-align: center; }
+#content-block .footer ul.links, #content-block .footer ul.links li  { margin: 0 60px; padding: 0; display: inline-block; *display: inline; list-style-type: none; font-family: Futura MdCn BT; font-size: 16px; color: #C1C1C1; }
+
+#content-block .footer ul.links, #content-block .footer ul.links li a { font-family: Futura MdCn BT; color: #F68C1E; }
+#content-block .footer ul.links, #content-block .footer ul.links li a:hover { color: #6FC5FE; }
+
+
+

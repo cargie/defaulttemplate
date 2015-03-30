@@ -1,0 +1,56 @@
+/*
+*		renders a form to be used in Faq search. 
+*/
+
+<form id="faqsearch_mini_form"  method="post">
+	<div class="faq-search-block">
+		<input id="faq-search" type="text" name="query" value="" class="input-text" maxlength="128" autocomplete="off">
+		<button id="faq-search-button" type="button" class="small"><span><span>[_Search]</span></span></button>
+		<div id="faqsearch_autocomplete" class="faqsearch-autocomplete"></div>
+	</div>
+</form>
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		jQuery("#close-search").live('click',function(){
+			jQuery("#faqsearch_autocomplete").css("display","none");
+			jQuery("#faqsearch_autocomplete #popover-search").css("display","none");
+			return false;
+		});
+		jQuery("#faq-search-button").click(function(){
+			var str = jQuery('#faq-search').val();
+			if (str.length==0){event.preventDefault(); return;}
+			jQuery('#faqsearch_mini_form').attr('action','[Website.GetUrl,Faq,Search/]'+str);
+			jQuery('#faqsearch_mini_form').submit();
+		});
+		
+		jQuery("#faq-search").keydown(function(event){
+			if(event.keyCode == 13) {
+				jQuery("#faqsearch-search-button").click();
+			}
+		});
+
+		jQuery("#faq-search").keyup(function(event){
+			var str = jQuery('#faq-search').val();
+			if (str.length==0)
+			{ 
+				jQuery("#faqsearch_autocomplete").html("");
+				jQuery("#faqsearch_autocomplete").css('display','none');
+				return;
+			}
+			
+			var url="[Website.GetUrl,Faq,Search/]"+str;
+			
+			jQuery.ajax(url,{	
+			  type: "GET",  
+			  dataType: "html",
+			  cache: true, 
+			  success: function(data, textStatus, jqXHR){
+					jQuery("#faqsearch_autocomplete").html(data);
+					jQuery("#faqsearch_autocomplete").css('display','block');
+					
+				}
+			});
+		});
+	});
+</script>
+	

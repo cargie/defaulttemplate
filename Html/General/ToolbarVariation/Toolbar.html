@@ -1,0 +1,194 @@
+/*
+*		Renders a toolbar block in listings of products, search results and others
+*
+*/
+
+<div class="large-12 toolbar default">
+	<div class="large-4 columns view-mode">
+		<span class="">
+			<label>[_View as]:</label>
+			[?Configuration.CatalogListMode
+			|ListOnly=
+				<strong>[_List]</strong>
+			|GridOnly=
+				<strong>[_Grid]</strong>
+			|ListDefault=
+				 [?UserInput.CatalogMode
+				 |Grid=
+					<strong>[_Grid]</strong>
+					<span onclick="selectaction('[Website.GetUrl,Ajax,Update]','[UserInput.DefaultUrlPart]','Page/[UserInput.PageFrom]/[UserInput.PageNrOn]/[UserInput.PageSort]/[UserInput.PageAscending]/List/[UserInput.FilterUrl]');">[_List]</span>&nbsp;
+			
+				 |List=
+				 	<span onclick="selectaction('[Website.GetUrl,Ajax,Update]','[UserInput.DefaultUrlPart]','Page/[UserInput.PageFrom]/[UserInput.PageNrOn]/[UserInput.PageSort]/[UserInput.PageAscending]/Grid/[UserInput.FilterUrl]');">[_Grid]</span>
+					<strong>[_List]</strong>
+				 ]
+			|GridDefault=
+				 [?UserInput.CatalogMode
+				 |Grid=
+					<strong>[_Grid]</strong>
+					<span onclick="selectaction('[Website.GetUrl,Ajax,Update]','[UserInput.DefaultUrlPart]','Page/[UserInput.PageFrom]/[UserInput.PageNrOn]/[UserInput.PageSort]/[UserInput.PageAscending]/List/[UserInput.FilterUrl]');">[_List]</span>&nbsp;
+			
+				 |List=
+				 	<span onclick="selectaction('[Website.GetUrl,Ajax,Update]','[UserInput.DefaultUrlPart]','Page/[UserInput.PageFrom]/[UserInput.PageNrOn]/[UserInput.PageSort]/[UserInput.PageAscending]/Grid/[UserInput.FilterUrl]');">[_Grid]</span>
+					<strong>[_List]</strong>
+				 ]
+			]
+		</span>
+	</div>
+	<div class="large-8 columns sort-by">
+		<div class="large-7 columns text-right  ">
+			<label>[_Sort By]</label>
+			<select id="sorter" class="select-small" onchange="selectaction('[Website.GetUrl,Ajax,Update]','[UserInput.DefaultUrlPart]','Page/[UserInput.PageFrom]/[UserInput.PageNrOn]/'+this.value+'/[UserInput.PageAscending]/[UserInput.FilterUrl]');" >
+				[Configuration.IterateAvailableSortBy=
+					<option value="[configuration.CurrentAvailableSortBy]">[configuration.CurrentAvailableSortBy]</option>
+				]
+			</select>
+			<script type="text/javascript">
+				jQuery("#sorter").val('[UserInput.PageSort]');
+			</script> &nbsp;
+			<div class="sort in-block">
+				<a href="javascript:selectaction('[Website.GetUrl,Ajax,Update]','[UserInput.DefaultUrlPart]','Page/[UserInput.PageFrom]/[UserInput.PageNrOn]/[UserInput.PageSort]/Ascending/[UserInput.FilterUrl]'); " class="desc-direction"  title="Set Ascending Direction"  style="display:none"><img src="[File:/images/i_desc_arrow.gif]" alt="Set Descending Direction" class="v-middle" /></a>
+				 <a href="javascript:selectaction('[Website.GetUrl,Ajax,Update]','[UserInput.DefaultUrlPart]','Page/[UserInput.PageFrom]/[UserInput.PageNrOn]/[UserInput.PageSort]/Descending/[UserInput.FilterUrl]'); "  class="asc-direction" title="Set Descending Direction"  > <img  src="[File:/images/i_asc_arrow.gif]" alt="Set Ascending Direction" class="v-middle" /></a>
+			</div>
+			
+		</div>
+		<div class="large-5 columns text-right limiter">
+			<label for="limiter">[_Show]</label>
+			<select id="limiter" class="select-small" onchange="setLimit(this.value)">
+				[?Configuration.CatalogListMode
+				|ListOnly=
+						[?Configuration.CatalogListAllowAll|Yes=<option value="All">[_All]</option>]
+					[Configuration.CatalogListPerPageIterator=<option value="[Configuration.CatalogPerPageCurrentValue]">[Configuration.CatalogPerPageCurrentValue]</option>]
+				|GridOnly=
+					[?Configuration.CatalogGridAllowAll|Yes=<option value="All">[_All]</option>]
+					[Configuration.CatalogGridPerPageIterator=<option value="[Configuration.CatalogPerPageCurrentValue]">[Configuration.CatalogPerPageCurrentValue]</option>]
+				|ListDefault=
+					[?Configuration.CatalogListAllowAll|Yes=<option value="All">[_All]</option>]
+					[Configuration.CatalogListPerPageIterator=<option value="[Configuration.CatalogPerPageCurrentValue]">[Configuration.CatalogPerPageCurrentValue]</option>]
+				|GridDefault=
+					[?Configuration.CatalogGridAllowAll|Yes=<option value="All">[_All]</option>]
+					[Configuration.CatalogGridPerPageIterator=<option value="[Configuration.CatalogPerPageCurrentValue]">[Configuration.CatalogPerPageCurrentValue]</option>]
+				]
+			</select>
+			[_per page]
+		
+			<script type="text/javascript">
+				jQuery("#limiter").val('[UserInput.PageNrOn]');
+			</script>
+		</div>
+	</div>
+</div>
+<div class="large-12 items-count">
+	<span class="amount">
+		[Filter.Count] [_Items]
+	</span>
+</div>
+
+/*
+<div class="toolbar default">
+	<div class="pager">
+		<span class="amount">
+			<strong> [Filter.Count] [_Items]</strong>
+		</span>
+		<div class="product-pagination in-block">
+			[?Filter.PageCount|1=
+			|=
+			<ul>
+				<li><span class="">[_Page]</span></li>
+				[?Filter.IsFirstPage|no=
+				<li class="prev"><span onclick="paging('[Filter.PrevPage]')">&laquo;</span></li>
+				]
+				[Filter.PagesSmart=
+					<li>[?Filter.LoopPageIsCurrent
+					|yes=<span class="current">[Filter.LoopPageNr]</span>
+					|no=<span onclick="paging('[Filter.LoopPageNr]')">[Filter.LoopPageNr]</span>]</li>
+					<li>[Filter.NextElipsis]</li>
+				]
+				[?Filter.IsLastPage|no=
+				<li class="next"> <span onclick="paging('[Filter.NextPage]')">&raquo;</span></li>
+				|yes=]
+			</ul>
+			]
+		</div>
+		
+		<div class="limiter in-block">
+		
+			<label for="limiter">[_Show]</label>
+			<select id="limiter" class="select-small" onchange="setLimit(this.value)">
+				[?Configuration.CatalogListMode
+				|ListOnly=
+						[?Configuration.CatalogListAllowAll|Yes=<option value="All">[_All]</option>]
+					[Configuration.CatalogListPerPageIterator=<option value="[Configuration.CatalogPerPageCurrentValue]">[Configuration.CatalogPerPageCurrentValue]</option>]
+				|GridOnly=
+					[?Configuration.CatalogGridAllowAll|Yes=<option value="All">[_All]</option>]
+					[Configuration.CatalogGridPerPageIterator=<option value="[Configuration.CatalogPerPageCurrentValue]">[Configuration.CatalogPerPageCurrentValue]</option>]
+				|ListDefault=
+					[?Configuration.CatalogListAllowAll|Yes=<option value="All">[_All]</option>]
+					[Configuration.CatalogListPerPageIterator=<option value="[Configuration.CatalogPerPageCurrentValue]">[Configuration.CatalogPerPageCurrentValue]</option>]
+				|GridDefault=
+					[?Configuration.CatalogGridAllowAll|Yes=<option value="All">[_All]</option>]
+					[Configuration.CatalogGridPerPageIterator=<option value="[Configuration.CatalogPerPageCurrentValue]">[Configuration.CatalogPerPageCurrentValue]</option>]
+				]
+				
+			</select>
+			[_per page]
+		
+			<script type="text/javascript">
+				jQuery("#limiter").val('[UserInput.PageNrOn]');
+			</script>
+		</div>
+	</div>
+
+	<div class="sorter">
+		<span class="view-mode">
+			<label>[_View as]:</label>
+			[?Configuration.CatalogListMode
+			|ListOnly=
+				<strong>[_List]</strong>
+			|GridOnly=
+				<strong>[_Grid]</strong>
+			|ListDefault=
+				 [?UserInput.CatalogMode
+				 |Grid=
+					<strong>[_Grid]</strong>
+					<span onclick="selectaction('[Website.GetUrl,Ajax,Update]','[UserInput.DefaultUrlPart]','Page/[UserInput.PageFrom]/[UserInput.PageNrOn]/[UserInput.PageSort]/[UserInput.PageAscending]/List/[UserInput.FilterUrl]');">[_List]</span>&nbsp;
+			
+				 |List=
+				 	<span onclick="selectaction('[Website.GetUrl,Ajax,Update]','[UserInput.DefaultUrlPart]','Page/[UserInput.PageFrom]/[UserInput.PageNrOn]/[UserInput.PageSort]/[UserInput.PageAscending]/Grid/[UserInput.FilterUrl]');">[_Grid]</span>
+					<strong>[_List]</strong>
+				 ]
+			|GridDefault=
+				 [?UserInput.CatalogMode
+				 |Grid=
+					<strong>[_Grid]</strong>
+					<span onclick="selectaction('[Website.GetUrl,Ajax,Update]','[UserInput.DefaultUrlPart]','Page/[UserInput.PageFrom]/[UserInput.PageNrOn]/[UserInput.PageSort]/[UserInput.PageAscending]/List/[UserInput.FilterUrl]');">[_List]</span>&nbsp;
+			
+				 |List=
+				 	<span onclick="selectaction('[Website.GetUrl,Ajax,Update]','[UserInput.DefaultUrlPart]','Page/[UserInput.PageFrom]/[UserInput.PageNrOn]/[UserInput.PageSort]/[UserInput.PageAscending]/Grid/[UserInput.FilterUrl]');">[_Grid]</span>
+					<strong>[_List]</strong>
+				 ]
+			]
+		</span>
+	</div>
+		<div class="sort-by in-block">
+			<label>[_Sort By]</label>
+			<select id="sorter" class="select-small" onchange="selectaction('[Website.GetUrl,Ajax,Update]','[UserInput.DefaultUrlPart]','Page/[UserInput.PageFrom]/[UserInput.PageNrOn]/'+this.value+'/[UserInput.PageAscending]/[UserInput.FilterUrl]');" >
+				[Configuration.IterateAvailableSortBy=
+					<option value="[configuration.CurrentAvailableSortBy]">[configuration.CurrentAvailableSortBy]</option>
+				]
+			</select>
+			<script type="text/javascript">
+				jQuery("#sorter").val('[UserInput.PageSort]');
+			</script>
+			<div class="sort in-block">
+				<a href="javascript:selectaction('[Website.GetUrl,Ajax,Update]','[UserInput.DefaultUrlPart]','Page/[UserInput.PageFrom]/[UserInput.PageNrOn]/[UserInput.PageSort]/Ascending/[UserInput.FilterUrl]'); " class="desc-direction"  title="Set Ascending Direction"  style="display:none"><img src="[File:/images/i_desc_arrow.gif]" alt="Set Descending Direction" class="v-middle" /></a>
+				<a href="javascript:selectaction('[Website.GetUrl,Ajax,Update]','[UserInput.DefaultUrlPart]','Page/[UserInput.PageFrom]/[UserInput.PageNrOn]/[UserInput.PageSort]/Descending/[UserInput.FilterUrl]'); "  class="asc-direction" title="Set Descending Direction"  ><img  src="[File:/images/i_asc_arrow.gif]" alt="Set Ascending Direction" class="v-middle" /></a>
+			</div>
+			
+		</div>
+	</div>
+</div>
+*/
+
+
+[:ToolbarJs]

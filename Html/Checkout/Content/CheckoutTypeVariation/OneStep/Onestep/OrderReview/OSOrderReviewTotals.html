@@ -1,0 +1,97 @@
+<tfoot>
+	<tr class="first">
+		<td colspan="2">
+			[_Sub total]
+		</td>
+		<td>
+			<span class="price">[ShoppingCart.BasePrice]</span>
+		</td>
+	</tr>
+	[.ShoppingCartDiscounts
+	|yes=
+	<tr>
+		<td colspan="2">
+			[_Discounts:]
+	[ShoppingCart.Discounts= [ShoppingCartDiscount.Id] [ShoppingCartDiscount.Name]  [ShoppingCartDiscount.Amount]  ([ShoppingCartDiscount.AmountText]) 
+	]
+		</td>
+		<td>
+			<span class="price">[ShoppingCart.TotalDiscounts]</span>
+		</td>
+	</tr>]
+	[.ShoppingCartFreeShipping
+	|n/a=
+	|yes=
+	<tr>
+		<td colspan="2">
+			[_Shipping Costs:]
+		</td>
+		<td>
+			<span class="price">[_Free Shipping]</span>
+		</td>
+	</tr>
+	|no=<tr>
+		<td colspan="2">
+			[_Shipping Costs:]
+		</td>
+		<td>
+			<span class="price">[ShoppingCart.ShippingCosts]</span>
+		</td>
+	</tr>
+	]
+	[.ShoppingCartSubTotalSameAsBase
+	|no=<tr>
+		<td colspan="2">
+			[_Total]
+		</td>
+		<td>
+			<span class="price">[ShoppingCart.SubTotal]</span>
+		</td>
+	</tr>
+	]
+	[.ShoppingCartTaxes
+	|yes=
+
+	<tr>
+		<td colspan="2">
+			[_Taxes:] [ShoppingCart.TaxAndCosts= [ShoppingCartTaxAndCost.Id] [ShoppingCartTaxAndCost.Name]  [ShoppingCartTaxAndCost.Amount]%  [ShoppingCartTaxAndCost.Value]  [.ShoppingCartAllTaxesIncluded|yes=inclusive btw|no=exclusive btw]
+	]
+
+		</td>
+		<td>
+			<span class="price">[ShoppingCart.TotalTax]</span>
+		</td>
+	</tr>
+	]
+
+	<tr class="last">
+		<td colspan="2">
+			[_Grand Total]
+		</td>
+		<td>
+			<span class="price">[ShoppingCart.TotalInclTax]</span>
+		</td>
+	</tr>
+</tfoot>
+
+
+
+
+<!--<?php if ($this->getTotals()): ?>
+<tfoot>
+  <?php $_colspan = $this->helper('tax')->displayCartBothPrices() ? 5 : 3; ?>
+    <?php echo $this->renderTotals(null, $_colspan); ?>
+    <?php echo $this->renderTotals('footer', $_colspan); ?>
+ <?php if ($this->needDisplayBaseGrandtotal()):?>
+    <tr>
+        <td  colspan="<?php echo $_colspan; ?>">
+            <small>Your credit card will be charged for</small>
+        </td>
+        <td >
+            <small><?php echo $this->displayBaseGrandtotal() ?></small>
+        </td>
+    </tr>
+  <?php endif?>
+</tfoot>
+<?php endif; ?>-->
+

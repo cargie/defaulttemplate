@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>IncraCache - [_Find '%1', [Url.Controller]]</title>
+	[:ManHead]
+</head>
+ <body>
+ 	<div class="topnav">
+      <nav class="incra-right">
+
+      </nav>
+
+  </div>
+	<div id="content_container">
+			[:ManHeader]	
+			<div id="body_container">
+				[:ManLeftColumn]
+				<div id="main_content">
+			
+				[Man.FindReplacerExact,[Url.Controller]]
+				
+				[?Man.LastReplacerFindResultsEmpty|empty= [_There are no results found for '%1', [Url.Controller]] |filled= [_%1 result/s found for '%2', [Man.LastFindResultsTotalCount], [Url.Controller]]  <ul class="scopes_list"> [Man.LastFindResults=<li><a href="[Website.GetUrl,Man,Replacer/[Man.ReplacerName]]">[Man.ReplacerName] </a></li> ] </ul> ]
+			
+				</div>
+			</div>
+			
+	</div>
+	[:ManCopyright]
+ </body>
+ </html>
+

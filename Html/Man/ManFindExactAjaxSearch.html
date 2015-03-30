@@ -1,0 +1,12 @@
+	[Man.FindReplacerExact,[Url.Controller],10]
+	<ul id="search-auto">
+	[?Man.LastReplacerFindResultsEmpty
+	|empty=<li class="labelsearch">[_No results found] </li>
+	|filled= <li class="labelsearch"> [_Search Suggestions %1 of %2, [Man.LastFindResultsCount], [Man.LastFindResultsTotalCount]] </li>
+	[Man.LastFindResults=<li><a href="[Website.GetUrl,Man,Replacer/[Man.ReplacerName]]">[Man.ReplacerName] </a></li> ]
+	<li><a href="[Website.GetUrl,Man,FindExact/[Url.Controller]]"><strong>[_See All Results]</strong></a></li>]
+	</ul>
+
+
+
+

@@ -1,0 +1,121 @@
+<div id="opc-shipping-info" class="checkout-block shipping-information">
+	<div class="title">
+		<div class="circle-number">[General.Param1]</div><div class="label"><h5>[_Shipping Information]</h5></div>
+	</div>
+	<div class="content ">
+		<div class="shipping-info-form">
+		<form action="" id="co-shipping-form">
+			<ul class="shipping-info-list">
+				[?Customer.LoggedIn|LoggedIn=
+					[?Customer.NumberOfAddresses|0=
+					|=
+					<li class="wide">
+				   		<label for="shipping-address-select">[_Select a shipping address from your address book or enter a new address.]</label>
+						<select onchange="shipping.newAddress(!this.value)" title="" class="address-select span5" id="shipping-address-select" name="shipping_address_id">
+							[Customer.Addresses=
+								<option  value="[Address.Id]" [?Address.Type|shipping=selected="selected"]>[Address.FirstName] [Address.LastName] [Address.StreetName], [Address.City],  [Address.PostalCode]  [Address.State],  [Address.Country] 
+								</option>
+							]
+							<option value="">[_New Address]</option>
+						</select>
+					</li>
+					]
+				]
+				<li id="shipping-new-address-form" [?Customer.LoggedIn|LoggedIn=[?Customer.NumberOfAddresses|more=style=display:none]]>
+				
+				[?CheckOut.ShippingCompleted|yes=
+					[:ShippingAddress]
+				|=
+					
+				]
+					<ul>
+						<li class="wide">
+							<label class="required" for="shipping_country_id">[_Country] <em>*</em></label>
+							
+							<select class="validate-select required" id="shipping_country_id" name="country_id" onchange="">
+								<option value="">[_Please select country]</option>
+								[Website.AvailableCountries=
+									[CountryGroup.Countries=<option value="[Country.Id]">[Country.Name] </option>]
+								]
+							</select>
+							<script type="text/javascript">
+								jQuery("#shipping_country_id option\\[value=[Configuration.DefaultCountryId]\\]").attr("selected","selected");
+							</script>
+						</li>
+						<li>
+							<label class="required" for="shipping_firstname">[_First Name]</label>
+							<input type="text" class="input-text required"  value="" name="firstname"  title="[_firstname]" id="shipping_firstname">
+						</li>
+						<li>
+							<label class="required" for="shipping_lastname">[_Last Name] </label>
+							<input type="text" class="input-text required"  value="" name="lastname" title="[_lastname]" id="shipping_lastname">
+						</li>
+						<li>
+							<label for="shipping_company">[_Company]</label>
+							<input type="text" id="shipping_company" name="company" name="title"  value="" class="input-text" onchange="shipping.setSameAsBilling(false);" />
+						</li>
+						<li class="wide" id="shipping_address">
+						</li>
+						<li>
+							<label class="required" for="shipping_country_id">[_Address] <em>*</em></label>
+							<input type="text" class="input-text address-field required"  value="" id="shipping_address1" title="[_address1]" name="street">
+							<input type="text" class="input-text address-field"  value="" id="shipping_address2" title="[_address2]" name="street2">
+						</li>
+						<li>
+							<label class="required" for="shipping_city">[_City] <em>*</em></label>
+							<input type="text" class="input-text required"  value="" id="shipping_city" title="[_address]" name="city">
+						</li>
+						<li>
+							<label class="required" for="shipping_province_id">[_State/Province] <em>*</em></label>
+							<select class="validate-select span5" id="shipping_province_id" name="country_id" onchange="addressByCountry_bp(this.value);">
+								<option value="">[_Please select state]</option>
+								[Website.AvailableCountries=
+									[CountryGroup.Countries=<option value="[Country.Id]">[Country.Name] </option>]
+								]
+							</select>
+						</li>
+						<li>
+							<label class="required" for="shipping_postal_code">[_Zip/Postal Code] <em>*</em></label>
+							 <input type="text" class="input-text required" value="" id="shipping_postal_code" title="[_zip/postal code]" name="postcode">
+						</li>
+						<li>
+							<label for="shipping_telephone" class="required">[_Telephone] <em>*</em></label>
+							<input type="text" name="telephone" title="[_telephone]"  value=""  class="input-text required" id="shipping_telephone" onchange="" />
+						</li>
+						[?Customer.LoggedIn
+						|LoggedIn=
+							<li class="control">
+								<input type="checkbox" name="save_in_address_book" value="1"  id="shipping_save_in_address_book" onchange="" checked="checked" class="checkbox" />
+								<label for="shipping_save_in_address_book"  class="in-block"><small>[_Save in address book]</small></label>
+							</li>
+							
+						|=	
+							<li class="no-display"><input type="hidden" name="shipping_save_in_address_book" value="1" /></li>
+						]
+					</ul>
+				</li>
+			</ul>
+			<ul class="shipping-address-options">
+				<li>
+					<input type="checkbox" name="same_as_billing" id="shipping_same_as_billing" value="1" title="[_Use Billing Address]" onclick="shipping.setSameAsBilling(this.checked)" class="checkbox" />
+					<label for="shipping_same_as_billing" class="in-block">[_Use Billing Address]</label>
+				</li>
+			</ul>
+			<hr/>
+			<div class="buttons-set">
+				<a class="step-back left" href="#" onclick="checkout.stepBack();return false;">
+					<img src="[File:/images/i_asc_arrow.gif]"/> Back
+				</a>
+				<span class="please-wait" id="shipping-info-please-wait" style="display:none;float:left;">
+					<img src="[File:/images/opc-ajax-loader.gif]" alt="Loading next step..." title="[_Loading next step...]" class="v-middle"> [_Loading next step...]        
+				</span>
+				<div class="required-fields"><em>* [_Required fields]</em></div>
+				<button type="button" title="Create an Account" class="button btn[Design.DesignSelectionName,ButtonStyle]" onclick="shipping.save();"><span><span>[_Continue]</span></span></button>
+			</div>
+		</form>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var shipping = new Shipping('co-shipping-form','[Website.GetUrl,CheckOut,selectShipping]','[Website.GetUrl,CheckOut,saveShipping]','[Website.GetUrl,CheckOut,saveShippingMethod]');
+</script>

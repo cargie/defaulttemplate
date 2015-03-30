@@ -1,0 +1,35 @@
+/*
+*	Renders a block containing list of most viewed products.
+*/
+[Website.MostViewed,1,4,'Name',Ascending]
+[?Filter.Empty|no=
+<div class="most-viewed-block home-block curved">
+<div class="block-title"><h3>[_Most Viewed Products] </h3></div>
+	<ul class="products-grid inline-list">
+		[Filter.Products=
+		<li class="item">
+			<div class="item-wrapper">
+				<a title="[Product.Name]" href="[Website.GetUrl,Product,[Product.Id]]">
+					<img width="110" class="product-image" data-src="holder.js/300x200" src="/[Product.ThumbnailImage=[ProductImage.ImageUrl,140,150]]" alt="">
+				</a>
+				<div class="product-details">
+					<a title="[Product.Name]" class="product-name" href="[Website.GetUrl,Product,[Product.Id]]">
+						<h4>[Product.Name]</h4>
+					</a>
+					<div class="product_price-container">
+						<div class="price-box"><span class="price">[:PriceBlock?Product.Sale]</span></div>
+					</div>
+					
+					<div>
+						<a title="[Product.Name]" href="[Website.GetUrl,Product,[Product.Id]]" class="product-image">
+							<button type="submit" title="Details" class="button btn[Design.DesignSelectionName,ButtonStyle]" ><span><span>[_Details]</span></span></button>
+						</a>
+					</div>
+				</div>
+			</div>
+		</li>
+		]
+	</ul>
+</div>
+]
+

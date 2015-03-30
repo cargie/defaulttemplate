@@ -1,0 +1,118 @@
+/*
+*		renders the main content of the CompareProductsPage.  This dislays the 
+*		the products in a table type format for comparing.
+*/
+
+<div class="compare-container">
+	<div class="page-title">
+		<h2>[_Compare Products]</h2>
+	</div>
+	[?Comparer.HasItems|Yes=
+	<div class="compared-products table-v1">
+		<form id="compare_form" method="post">
+			<div>
+				<table class="data-table compare-table" id="product_comparison">
+				
+				<thead>
+					<tr>
+						<th>&nbsp;</th>
+						[Comparer.Items,4=  <td class="t-header a-right">
+							<button value="Remove Item" onclick="setLocationAjax('[Website.GetUrl,magento,RemoveFromCompare]','[Url.FullUrl]',true,'[ComparerItem.Id]');" class="button btn-remove" title="[_Remove Item]" type="button"><img src="[File:/images/closev1.png]" class="noprint"/></button></td>
+						]
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="product-shop-row">
+						<th>&nbsp;</th>
+						[Comparer.Items,4= 
+						<td>
+							<div>	
+								<a class="product-image" href="[Website.GetUrl,Product,[ComparerItem.ProductId]]">
+									<div class="image-holder"><img src="/[Product.ThumbnailImage=[ProductImage.ImageUrl,140,150]]" alt="[Product.Name]" /></div>
+								</a>
+								<input type="hidden" id="qty[ComparerItem.ProductId]" value="1" name="qty_[ComparerItem.ProductId]"/>
+							</div>
+							<div class="product-details">
+								<h2 class="product-name"><a href="[Website.GetUrl,Product,[ComparerItem.ProductId]]" >[Product.Name]</a></h2>
+								<div class="rating-box2">
+									<div style="width:[Product.Ranking]%;" class="rating2"></div>
+								</div>
+								[:ProductPriceBlock?Product.Sale]
+								<br>
+								<p>
+									<button class="button btn[Design.DesignSelectionName,ButtonStyle]" type="button" onclick="actionCart('compare_form','[Website.GetUrl,magento,AddToCart]','[Url.FullUrl]',true,'[ComparerItem.ProductId]','[Website.GetUrl,Cart]','qty=1');"><span><span>[_Add to Cart]</span></span></button></p>
+								<ul class="add-to-links">
+									<li><a  href="#" onclick="setLocationAjaxAction('compare_form','[Website.GetUrl,magento,AddToWishlist]','[Url.FullUrl]',true,'[ComparerItem.ProductId]','qty=1','[Website.GetUrl,WishList]');" class="link-wishlist" style="text-decoration:underline">[_Add to WishList]
+									</a></li>
+								</ul>
+							</div>
+						</td>
+						]
+					</tr>
+					[Comparer.IterateAttributesForCompare=
+					<tr>
+						<th>[Attribute.Title]</th>
+						[Comparer.Items,4= 
+						<td>
+							[?Attribute.ProductValueFull|Ratings=
+							<div class="rating-box default">
+								<div class="rating" style="width:[Product.Ranking]%" title="[Product.Ranking]%"></div>
+							</div>
+							|Image=
+								<a class="product-image" href="[Website.GetUrl,Product,[ComparerItem.ProductId]]">
+									<div class="image-holder"><img src="/[Product.ThumbnailImage=[ProductImage.ImageUrl,140,150]]" alt="[Product.Name]" /></div>
+								</a>
+							|=[Attribute.ProductValueFull]]<br>
+							[?Product.ParentProductType|Configurable=
+								[?Attribute.HasOptions|Yes=
+									[ParentProduct.ConfigurableChildProducts,[Attribute.AdminTitle]=
+										[AttributeOption.Admin] 
+									]
+								]
+							|No= 
+								[?Product.ProductType|Configurable=
+									[?Attribute.HasOptions|Yes=
+										[ParentProduct.ConfigurableChildProducts,[Attribute.AdminTitle]=
+											[AttributeOption.Admin] 
+										]
+									]
+								]
+							]
+						</td>
+						]
+					</tr>
+					]
+					<tr class="product-shop-row"><th>&nbsp;</th>
+					[Comparer.Items,4= 
+					<td>
+				 		<div>
+							[:ProductPriceBlock?Product.Sale]
+							<p><button class="button btn[Design.DesignSelectionName,ButtonStyle] noprint" type="button" onclick="actionCart('compare_form','[Website.GetUrl,magento,AddToCart]','[Url.FullUrl]',true,'[ComparerItem.ProductId]','[Website.GetUrl,Cart]','qty=1');"><span><span>[_Add to Cart]</span></span></button></p>
+							<ul class="add-to-links">
+									<li><a  href="#" onclick="setLocationAjaxAction('compare_form','[Website.GetUrl,magento,AddToWishlist]','[Url.FullUrl]',true,'[ComparerItem.ProductId]','qty=1','[Website.GetUrl,WishList]');" class="link-wishlist" style="text-decoration:underline">[_Add to WishList]
+		</a></li>
+							</ul>
+						</div>
+					</td>
+					]
+					</tr>
+			
+		
+				</tbody>
+			    </table>
+			</div>
+		</form>
+	</div>
+
+	<div class="buttons-set a-right noprint">
+		<button type="submit" class="button btn-secondary[Design.DesignSelectionName,ButtonStyle]" onclick="setLocationAjax('[Website.GetUrl,magento,ClearCompare]','[Url.FullUrl]',true,'');"><span><span>[_Clear Compare Items]</span></SPAN></button>
+	
+		<button type="button" class="button btn-secondary[Design.DesignSelectionName,ButtonStyle]" onclick="window.print(); return false;"><span><span>[_PRINT THIS PAGE]</span></SPAN></button>
+		<button type="button" class="button btn[Design.DesignSelectionName,ButtonStyle]" onclick="window.location='[Website.GetUrl,Home]'"><span><span>[_CONTINUE SHOPPING]</span></SPAN></button>	
+		
+	</div>
+	|No=
+		<p>[_There are no compared items.]</p>
+	]
+</div>
+

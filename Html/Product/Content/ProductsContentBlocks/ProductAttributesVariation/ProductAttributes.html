@@ -1,0 +1,31 @@
+/*
+*	Renders the list of Product attributes.
+*
+*/
+
+<div id="conf-attributes[Product.Id]" class="product-attributes">
+	<ul class="attributes">
+		[Product.ConfigurableAttributes=
+			
+	  		<li class="attrib-title">[Attribute.Title]:</li>
+	  		
+	  		<li>
+	  			<select name="[Attribute.AttributeCode]" id="attribute[Attribute.Id][Product.Id]"  onchange="setAttr([Product.Id])" class="required span2" >
+					[Product.ConfigurableChildProducts,[Attribute.AdminTitle]=
+					<option value="[AttributeOption.Admin]" [?UserInput.ConfigurableAttributeValueValid,[Attribute.AdminTitle],[AttributeOption.Admin]|yes=selected]>[AttributeOption.Value]</option>
+					 ]
+				</select>
+			</li>
+		]
+	</ul>
+</div>
+<script type="text/javascript">
+var setAttr=function(id) { 
+	var str=SelectedAttr(id);
+	selectaction('[Website.GetUrl,Ajax,Update]','[Website.GetUrl,Product,[Product.Id]]',str);
+};
+[Product.ConfigurableAttributes=
+	jQuery('#attribute[Attribute.Id][Product.Id] option\\[value=[Product.DefaultConfigurableAttribute,[Attribute.AttributeCode]]\\]').attr('selected','selected');
+]
+</script>
+

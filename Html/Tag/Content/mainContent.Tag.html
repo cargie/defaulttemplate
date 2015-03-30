@@ -1,0 +1,11 @@
+/*
+*	Renders the main content of the TagPage.  This display the list of tags that is associated in the current product.
+*/
+
+<div class="tag-view">
+	<div class="page-title"><h2>[_Products tagged with '%1', [Url.View]]</h2></div>
+	[Website.TagResults,[Url.View]]
+	[?Filter.Empty|no=[:toolbar]]
+	[:CategoryListLayout]
+	[?Filter.Empty|no=|yes=<p class='no-results'>[_There are no products matching the selection.]</p>]
+</div>

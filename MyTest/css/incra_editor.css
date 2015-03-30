@@ -1,0 +1,11 @@
+.incra_editor {
+  border: 1px solid #CCC;
+  padding: 10px; }
+  .incra_editor .toolbar {
+    background: #f5f5f5;
+    /*border:1px solid #CCC;*/
+    padding: 5px; }
+  .incra_editor .workarea {
+    border: 1px solid #CCC;
+    padding: 10px;
+    height: 300px; }

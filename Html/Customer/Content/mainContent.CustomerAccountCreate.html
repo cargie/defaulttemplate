@@ -1,0 +1,118 @@
+/*
+*		Renders the main content information of the CustomerAccountCreatePage.
+*							
+*/
+
+<div class="account-login-container">
+	<div class="page-title"><h2>[_Create a New Account]</h2></div>
+
+	<form id="form-signup" method="post" action="">
+		<div class="content">
+			<h2 class="legend">[_Personal Information]</h2>
+			<ul class="form-list">
+				<li class="fields">
+					<div class="customer-name">
+						<div class="field name-firstname">
+							<label for="firstname" class="required"><em>*</em>[_First Name]</label>
+							<div class="input-box">
+								<input type="text" id="firstname" name="firstname" value="" title="[_First Name]" maxlength="255" class="input-text required">
+							</div>
+						</div>
+						<div class="field name-lastname">
+							<label for="lastname" class="required"><em>*</em>[_Last Name]</label>
+							<div class="input-box">
+								<input type="text" id="lastname" name="lastname" value="" title="[_Last Name]" maxlength="255" class="input-text required">
+							</div>
+						</div>
+					</div>
+				</li>
+				<li>
+					<label for="email_address" class="required"><em>*</em>[_Email Address]</label>
+					<div class="input-box">
+						<input type="text" name="email" id="email_address" value="" title="[_Email Address]" class="input-text validate-email required">
+					</div>
+				</li>
+				<li class="control">
+					<div class="input-box">
+						<input type="checkbox" name="is_subscribed" title="[_Sign Up for Newsletter]" value="1" id="is_subscribed" class="checkbox">
+					</div>
+					<label for="is_subscribed">[_Sign Up for Newsletter]</label>
+				</li>
+				[?Configuration.CustomerShowDateOfBirth|Yes=
+				<li>
+					<label for="dateofbirth" class="[?Configuration.CustomerRequiredDateOfBirth|Yes=required]">[?Configuration.CustomerRequiredDateOfBirth|Yes=<em>*</em>][_Date of Birth]</label>
+					<div class="input-box">
+						<input type="text" name="dateofbirth" id="dateofbirth" value="" title="[_Date of Birth]" class="input-text [?Configuration.CustomerRequiredDateOfBirth|Yes=required]">
+					</div>
+					<script type="text/javascript">
+						jQuery('#dateofbirth').datepicker();
+					</script>
+				</li>]
+				[?Configuration.CustomerShowTaxNumber|Yes=<li>
+					<label for="vatnumber" class="[?Configuration.CustomerRequiredTaxNumber|Yes=required]">[?Configuration.CustomerRequiredTaxNumber|Yes=<em>*</em>][_Tax/VAT number]</label>
+					<div class="input-box">
+						<input type="text" name="taxvat" id="vatnumber" value="" title="[_Tax/VAT number]" class="input-text [?Configuration.CustomerRequiredTaxNumber|Yes=required]">
+					</div>
+				</li>]
+				[?Configuration.CustomerShowGender|Yes=<li>
+					<label for="gender" class="[?Configuration.CustomerRequiredGender|Yes=required]">[?Configuration.CustomerRequiredGender|Yes=<em>*</em>][_Gender]</label>
+					<div class="input-box">
+						<select id="gender" name="gender" title="[_Gender]" class="[?Configuration.CustomerRequiredGender|Yes=required]">
+						<option value=""></option>
+						<option value="male">[_Male]</option>
+						<option value="female">[_Female]</option>
+						</select>
+					</div>
+				</li>]
+			 </ul>
+		
+			<h2 class="legend">[_Login Information]</h2>
+			<ul class="form-list">
+				<li class="fields">
+					<div class="field">
+						<label for="password" class="required"><em>*</em>[_Password]</label>
+						<div class="input-box">
+							<input type="password" name="password" id="password" title="[_Password]" class="input-text required validate-password">
+						</div>
+					</div>
+					<div class="field">
+						<label for="confirmation" class="required"><em>*</em>[_Confirm Password]</label>
+						<div class="input-box">
+							<input type="password" name="confirmation" title="[_Confirm Password]" id="confirmation" class="input-text required validate-cpassword">
+						</div>
+					</div> 
+						<p style="text-align: right;">
+							<em>* [_required fields]</em>
+						</p> 
+				</li>
+			</ul>
+		</div>
+		<div class="buttons-set">
+			<p class="back-link"><a href="[Website.GetUrl,Login,Login]">[_&laquo;Back]</a></p>
+			<button class="button btn[Design.DesignSelectionName,ButtonStyle]" title="[_Submit]" type="submit"><span><span>[_Submit]</span></span></button>
+		</div>
+	</form>
+	<script type="text/javascript">
+	jQuery("#form-signup").validate({
+		rules: { 
+			password: {
+				required: true,
+				minlength: 6
+			},
+			confirmation: {
+				 required: true,
+				 minlength: 6,
+				 confirmPassword: "#password"
+			}
+		},
+		submitHandler: function(form){
+			[?Configuration.RequireEMailConfirmation|Yes=
+				setLocationAjaxAction('form-signup','[Website.GetUrl,magento,SignUp]','[Url.FullUrl]',false,'',jQuery('#form-signup').serialize(),'[Website.GetUrl,Customer,Confirmation]');
+			|No=
+				setLocationAjaxAction('form-signup','[Website.GetUrl,magento,SignUp]','[Url.FullUrl]',false,'',jQuery('#form-signup').serialize(),'[Website.GetUrl,Customer,Account]');
+			]
+		}
+	});
+	</script>
+</div>
+

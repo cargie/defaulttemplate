@@ -1,0 +1,28 @@
+<div class="comments">
+	<label for="comments">[_Comments]</label>
+	<textarea name="comments" id="comments"> </textarea>
+</div>
+<div class="add-giftmessage">
+	<input type="checkbox" id="giftmsg" name="giftmessage" value="1" title="" class="checkbox" />
+	<label for="giftmsg">[_Add a gift message to my order]</label>
+</div>
+<div class="agreement">
+	<!-- check for agreement -->
+	<form action="" id="checkout-agreements" onsubmit="return false;">
+		<!-- loop <?php foreach ($this->getAgreements() as $_a): ?>-->
+			<div class="agreement-content">
+			<!-- <?php if ($_a->getIsHtml()):?>
+			<?php echo $_a->getContent() ?>
+			<?php else:?>
+			<?php echo nl2br($this->htmlEscape($_a->getContent())) ?>
+			<?php endif; ?> -->
+			</div>
+
+			<input type="checkbox" id="agreementID" name="agreementID" value="1" title="" class="checkbox"/><label for="agreementID">[_I Agree on the] <a href="#"> [_Terms and Conditions] </a></label>
+
+		<!--<?php endforeach ?>-->
+	</form>
+</div>
+<div class="gift-wrap">
+	<input type="checkbox" id="giftwrap" name="giftwrap" value="1" title="" class="checkbox" ><label for="giftwrap">[_Gift wrap] $10</label></input>
+</div>

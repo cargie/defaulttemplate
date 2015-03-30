@@ -1,0 +1,215 @@
+[?Url.MVC4
+  |ajax=
+  |=
+  <html>
+  <head>
+  <title>IncraPages - [_Not Available]</title>
+  [:ManHead]
+  <style type="text/css">
+      .description a{text-decoration:none;}
+  </style>
+  <!--\[if IE 7\]>
+  <link href="styles-ie7.css" rel="stylesheet" type="text/css"/>
+  <!\[endif\]-->
+
+  </head>
+  <body>
+     <div class="topnav">
+        <nav class="incra-right">
+
+        </nav>
+    </div>
+      <div id="content_container">
+      
+        [:ManHeader]
+        <div class="large-12 clearfix ">
+          <div class="large-2 columns panel man-tree-container">
+            [:Man_Tree]
+          </div>
+          <div class="large-10 columns man-content-container">
+            
+]
+      <div id="main_content" class="replacer-content-details">
+          <h5 class="subheader">[Man.ScopeName].[Man.ReplacerName] [Man.AllReplacers=[Man.ReplacerType]]</h5>
+      	<div class="large-12 columns description">
+      		  <p>[Man.ReplacerShortDescription]<br/>
+      			   [Man.ReplacerLongDescription]
+            </p>
+      			<table>
+              <tbody>
+                <tr>
+                 <th>Flags</th>
+                   <td class="" >[Man.ReplacerFlags]</td>
+                   <td class="">
+                      [?Man.ReplacerFlags
+                          |NONE =
+                              None-A normal replacer that has a simple value with given type and can be set.It has all data types except: List, Map and   reference.
+                          |ID_FIELD=  
+                              This flag indicates that this field is the id of the record. It is always an Integer value and can not be set. The criteria from and to are not filled or none.
+          							  |READ_ONLY= 
+                              This value can not be set. Read only fields are calculated value or a related value and that are not directly stored in data tables.
+                          |Read_Only_LookUp = 
+                              This value is a lookup field to another table.It is always an integer field. This is used to make references to other tables.The data type is always an integer and it cant be set.
+          							  |Read_Only_Loop = 
+                              Indicates that the field can only be looped, and not used as a direct replacer. However it is not owned, so it loops over references to another table.It can't be changed, set, added or deleted and has a data type of Map or List.The criteria from contains the scope over which you can loop
+          							  |Read_Only_Owned = 
+                              Indicates a parent child relation.A record can have a child table with 1 or multiple records of onother type.This can only be used with the looped replacer definition and This can't be set, can't be added, deleted or updated. The criteria from contains the name of the child scope.
+          							  |Read_Only_Specify =
+                              Indicates that there is another record related to this record which can be accessed using this replacer. This can be used with the loop type of replacer, however it is not an actual loop, it is a single other record. It can not be set , the datatype is reference or integer. The criteria from contains the scope it is referring to.
+          							  |OWNED= 
+                              Indicates a parent child relation.A record can have a child table with 1 or multiple records of another type.This value can not be set and child records can be added, updated or deleted.
+          							  |PARENT=   
+                              This is the parent of the scope.It can be used in reference only.This is read-only and values can not be set.
+          							  |LOOP=     
+                              The field can only be looped and not used as direct replacer and can be set using a comma separated list of ids, can not be added or deleted. It has a data type map or list. 
+          							  |SPECIFY=  
+                              Indicates that there is another record related to this record which can be accessed using this replacer. Used with loop type of replacer,has data type reference or integer.
+          							  |CONST=     
+                              A field that can be read, but it can not be set. Have all data types except:List,Map and Reference.In the criteria field front and to, there can be a value depending on the datatype of the replacer.
+          							  |LookUp=   
+                              This value is a lookup field to another table. An integer field and make references to other tables. It can be set, using a valid ID to the other table.The criteria from contains the name of the scope it is referring to.
+                          |LookUp_List=
+                              Indicates that there is multiple reference to a certain table. This is actually a list of ids, that all point to different records in the other scope.The value is a comma separated list of id's,can be read and set and the data type is always string.
+                      ]
+                      </td>
+                </tr>
+                <tr>
+                  <th>Type </th>
+                  <td class="">[Man.ReplacerType]
+                   <td class="">
+                      [?Man.ReplacerType
+                          |Integer= The return value of this replacer is a numerical whole number value.When the flags indicate any lookup type, the criteria from will be the scope it is referring to. When the flags indicate a standard kind of replacer (NONE, READ_ONLY, CONST), the criteria from and to can be set with the minimum and maximum value possible.
+                          |Numeric= The return value of this replacer is s number, but it can have fractions. The value of the criteria from and criteria to can contain the minimum and maximum value that can be used in this field.
+                          |String= The return value of this replacer is text or string.  The criteria from and to can contain the minimum and maximum length of the field. When only the criteria from is specified, it can contain a code that indicates what kind of string it is.It is shown <a href="[Website.GetUrl,Man,ReplacerTypes]">here</a>
+                          |Boolean =Having two values (usually denoted yes or no),intended to represent the truth values. The output is always: yes/no. When settings also 0/1, true/false
+                          |Date= It indicates that the field is date. It can also indicates a date including time, but in most cases there is just a date component used.The criteria from and to can contain the minimum and maximum date that are allowed. Normaly replacers with this type can have a parameter to format the date. The formatting uses a string. When no formating is given, it uses the defined formatting of the storeview.Please click <a href="[Website.GetUrl,Man,ReplacerTypes]">here</a> to view the Date formatting string codes.
+                          |TimeSpan= TimeSpan,  value describing the difference between two events. The criteria from and to are not filled. Normaly replacers with this type can have a parameter to format the time span. The formatting uses a string. When no formating is given, it uses the default formatting "dd:mm:nn:ss".Please click <a href="[Website.GetUrl,Man,ReplacerTypes]">here</a> to view the TimeSpan formatting string codes.
+                          |StoreViewString=   The value is a free text field. However it is possible that each storeview has a different value. This text can be entered for each language.The criteria from and to can contain the minimum and maximum length of the field. When only the criteria from is specified, it can contain a code that indicates what kind of string it is.
+                          |List=This is a list of values. Normally this is a list of a reference to another scope. In the criteria from, you can find the scope it is referring to.</td>
+                          |Map=Indicates that there is actually an indexed list of values. Normally this is a list of a reference to another scope. In the criteria from, you can find the scope it is referring to.</td>
+                          |Reference=  Indicates that this field is a single reference to another scope. The criteria from contains the name of that other scope.</td>
+                          |Enum= The return value of this replacer is the enumeration type. It can have only certain values. Which values it can have depend on the type of enumeration. The enumeration types are listed in this manual.Please click <a href="[Website.GetUrl,Man,Type/[Man.ReplacerCriteriaFrom]]">here</a> to view the types.
+                          |StoreViewBool= This field is a boolean value, but it can be different for each storeview (language). The value is always yes/no.</td>
+                          |StoreViewEnum= This field is a enumeration type. It can have only certain values. However the value can be set for each storeview independently. Which values it can have depend on the type of enumeration. The enumeration types are listed in this manual. The scope from contains the name of the enumeration type.
+                          |Void= This field has no value.It is always empty.
+                          |Amount = This field is a amount of money. This value can be formated, but if no format is given the default format for that currency (CurrencyUsed) is taken.The format parameter can be viewed <a href="[Website.GetUrl,Man, ReplacerTypes]">here</a>                                 
+                          |Color=The field indicates that the data is a color.Colors can be formatted using a parameter. Please click <a href="[Website.GetUrl,Man,ReplacerTypes]">here</a> to view the parameter values.
+                          |unknown= unknown
+      	             ]
+                    </td>
+                </tr>
+                <tr>
+                  <th>Criteria</th>
+                  <td class="">[Man.ReplacerCriteriaAvailable]</td>
+                  <td class="type">
+                    [?Man.ReplacerCriteriaAvailable
+                        |Type= 
+                          
+                              [?Man.ReplacerFlags
+                                |Owned=<a class="owned-criteria-from" href="[Website.GetUrl,Man,Scope/[Man.ReplacerCriteriaFrom]]"> [Man.ReplacerCriteriaFrom]</a>
+                                |=
+                                [Man.ReplacerCriteriaFrom]
+                              ]
+
+                              [?Man.ReplacerCriteriaFrom
+                                |Email= a valid email address
+                                |ExtendedNumber= a number with point or some additions tokens.
+                                |HouseNumber= a valid house number
+                                |Tel=a valid telephone number
+                                |Url= a valid url
+                                |Image= a valid image on disk (on server)
+                                |UrlKey = a valid key for using as part of the url
+                                |NumberList = a list of whole integer numbers
+                                |BlockName = a valid name of a block.
+                                |DomainName = a valid domain name.
+                                |Folder = a existing folder on the server
+                                |APAddress = a valid IP address
+                                |SubdomainName = a subdomainname
+                              ]
+                               <!--[?Man.ReplacerFlags
+                                |Owned=
+                                  <div class="mark"><img class="imgs-mark" src="[File:/css/man/images/mark.png]"/>
+                                   <div class="info">
+                                  <a href="[Website.GetUrl,Man,Scope/[Man.ReplacerCriteriaFrom]]"><p class="info-text">Click here to view the available replacers</p></a>
+                                   </div>
+                                 |=]-->  
+                          
+      					        |Length =  
+                          [Man.ReplacerCriteriaFrom]  [Man.ReplacerCriteriaTo]
+      					        |None=  
+                          None
+                    ]
+                    </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table id="repacer-value-table">
+              <thead>
+                <tr>
+                  <th width="200">Replacer value</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                [Man.ReplacerValues=
+                  <tr>
+                    <td class="color-black">[Man.ReplacerValueName]</td>
+                    <td>[Man.ReplacerValueDescription]</td>
+                  </tr>
+                ]
+              </tbody>
+            </table>
+
+            [?Man.ReplacerHasParameters
+              |Yes=
+                <table>
+                  <tbody>
+                    <tr><th colspan="3">Replacer Data Parameter</th></tr>
+                    <tr> 
+                      <th>Name</th>
+                      <th>Description</th>
+                      <th>Optional</th>
+                    </tr>
+                    [Man.ReplacerParameters= 
+                      <tr>
+                        <td>[ReplacerDataParameter.Name]</td>
+                        <td>[ReplacerDataParameter.Description]</td>
+                        <td>[ReplacerDataParameter.Optional]</td>
+                      </tr>
+                    ]
+                  </tbody>
+                </table>
+              |No=
+            ]
+
+            
+      	</div>
+      </div>
+      <script type="text/javascript">
+        jQuery(document).ready(function(){
+            if(jQuery("#repacer-value-table tbody tr").length < 1){
+                jQuery("#repacer-value-table").hide();
+            }
+        });
+      </script>
+<div class="large-12">
+<pre class="panel text-left">
+[Man.Sample]
+</pre>
+<pre class="panel text-left">
+[Man.Sample2]
+</pre>
+</div>
+      [:[Man.ScopeName].[Man.ReplacerName]_samples]
+
+[?Url.MVC4
+  |ajax=
+  |=
+  </div>
+        </div>    
+      </div>
+      
+  </body>
+  </html>
+]

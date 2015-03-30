@@ -1,0 +1,54 @@
+<div id="opc-login" class="checkout-block chekcout-method active">
+	<div class="title" step="">
+		<div class="circle-number">[General.Param1]</div><div class="label"><a href="#" onclick="checkout.gotoSection('billing');return false;">[_Checkout Method]</a></div>
+	</div>
+	<div class="content open">
+		<div class="checkout-register">
+			<span ><strong>[_CHECKOUT AS GUEST OR REGISTER] ==</strong><span>
+			
+			<p><br/>[_Register with us for future convinience.]</p>
+			<ul>
+				[?Configuration.CheckOutAllowGuest|Yes=
+					<li><label><input id="login_guest" name="checkout-method" value="guest" type="radio"/> [_Checkout as guest]</label></li>
+				]
+				<li><label><input id="login_register" name="checkout-method" value="register" type="radio"/> [_Register]</label></li>
+			</ul>
+			<p><strong>[_Register and save time!]</strong>
+				<ul>
+					<li>[_Fast and easy checkout]</li>
+					<li>[_Easy access to your order history and status]</li>
+				</ul>
+			</p>
+			<div class="buttons-set" style="margin-top: 25px;">
+				<button type="button" title="Create an Account" class="button btn[Design.DesignSelectionName,ButtonStyle]" onclick="checkout.setMethod()"><span><span>[_Continue]</span></span></button>
+			</div>
+		</div>
+		<div class="checkout-login">
+
+			<span ><strong>[_LOGIN]</strong><span>
+			<p><br/><strong>[_Already registered?]</strong><br/>
+			[_Please log in below]</p>
+			<form id="checkout-login" method="post" action="[Website.GetUrl,Login,Login]">
+
+				<ul>
+					<li><label>[_Email address] <em>*</em></label></li>
+					<li><input type="text" name="username" class="checkout-input"/></li>
+					<li><label>[_Password] <em>*</em></label></li>
+					<li><input type="password" name="password" class="checkout-input"/></li>
+					<li><em>* [_Required fields]</em></li>
+				</ul>
+				<div class="buttons-set">
+					<div class="forgot-password"><a href="#">[_Forgot your password?]</a></div>
+					<button type="submit" title="Login" class="button btn[Design.DesignSelectionName,ButtonStyle]" onclick="setLocation('[Website.GetUrl,Customer,AccountCreate]')"><span><span>[_Login]</span></span></button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	jQuery("#checkout-login").validate({
+		submitHandler: function(form) {
+			setLocationAjaxAction('checkout-login','[Website.GetUrl,Magento,Login]','[Website.GetUrl,CheckOut,OnePage]',false,'',jQuery('#checkout-login').serialize(),'[Website.GetUrl,CheckOut,OnePage]');
+		 }	
+	});
+</script>

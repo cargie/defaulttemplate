@@ -1,0 +1,88 @@
+body{
+	background: [Theme.BackGroundColor];
+	color:	[Theme.MainColor];
+	font-family:[Theme.MainFontName];
+	font-size:[Theme.MainFontSize];
+	font-style:[Theme.MainFontStyle];
+	font-weight:[Theme.MainFontWeight];
+	/** Theme.MainTextColor
+	Theme.MainTextDecoration**/
+}
+
+a{
+	font-family:[Theme.LinkFontName];
+	font-size:[Theme.LinkFontSize];
+	font-style:[Theme.LinkFontStyle];
+	font-weight:[Theme.LinkFontWeight];
+	text-decoration:[Theme.LinkTextDecoration];
+}
+
+a:active{
+	background:[Theme.SelectedColor];
+	color:[Theme.SelectedTextColor];
+}
+a:hover{
+	background-color:[Theme.HoverColor];
+	color:[Theme.HoverTextColor];
+}
+
+.page-title h2{
+	font-family:[Theme.HeadFontName];
+	font-size:[Theme.HeadFontSize];
+	font-style: [Theme.HeadFontStyle];
+	font-weight:[Theme.HeadFontWeight];
+	text-decoration:[Theme.HeadTextDecoration];
+}
+input{
+	border:1px solid [Theme.TextFieldBorderColor];
+	font-style:[Theme.TextFieldStyle];
+}
+
+label{
+	font-family:[Theme.CaptionFontName];
+	font-size:[Theme.CaptionFontSize];
+	font-style:[Theme.CaptionFontStyle];
+	font-weight:[Theme.CaptionFontWeight];
+	text-decoration:[Theme.CaptionTextDecoration];
+}
+
+.secondarycolor{
+	color:[Theme.SecondSupportColor];
+}
+.supportcolor{
+	color:[Theme.SupportColor];
+}
+
+[?Theme.ButtonBorderStyle|rounded=
+	button{
+		border-radius:5px;
+		Theme.ButtonBorderStyle
+	}
+]
+
+/**Theme.Button3D  returns a boolean value 
+
+Theme.EdgeRadius returns rounded corner
+
+Theme.Edges returns value in px **/
+.comment{
+	font-family:[Theme.CommentFontName];
+	font-size:[Theme.CommentFontSize];
+	font-style:[Theme.CommentFontStyle];
+	font-weight:[Theme.CommentFontWeight];
+	text-decoration:[Theme.CommentTextDecoration];
+}
+
+.highlight{
+	background-color:[Theme.HighLightColor];
+	color:[Theme.HighLightTextColor]; 
+}
+img{
+	border: 1px solid [Theme.ImageBorderColor];
+	-moz-box-shadow: 3px 3px 4px [Theme.ImageBorderShadow];
+	-webkit-box-shadow: 3px 3px 4px [Theme.ImageBorderShadow];
+	box-shadow: 3px 3px 4px [Theme.ImageBorderShadow];
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='[Theme.ImageBorderShadow]')";
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='[Theme.ImageBorderShadow]');
+	border-style:[Theme.ImageBorderStyle]; /** ImageBorderStyle	default/rounded **/
+}

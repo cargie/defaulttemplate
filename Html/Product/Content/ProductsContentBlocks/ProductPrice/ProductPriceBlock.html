@@ -1,0 +1,32 @@
+/*
+*	Renders a block of product price with tax options.
+*
+*/
+
+<!--product page -->
+[?Product.ProductType
+|Configurable=
+	[?SimpleProduct.ActualPriceTakenFrom
+	|Standard=<span class="price standard"> [SimpleProduct.Price]= [SimpleProduct.ActualPrice]</span>
+	|Special= <span class="old-price">[_Regular Price : <s>%1</s>, [SimpleProduct.Price]]</span>
+		<p class="special-price">[_Special Price : <span class="price">%1</span>, [SimpleProduct.ActualPrice]]</p>
+	|Rules=<span class="old-price">[_Regular Price : <s>%1</s>, [SimpleProduct.Price]]</span>
+		<p class="special-price">[_Special Price : <span class="price">%1</span>, [SimpleProduct.ActualPrice]]</p>
+	]
+	
+	[?CustomerGroup.DisplayPricesExclTax|Yes=<p class="exclusive-tax"> <i>[SimpleProduct.ActualPriceExclTaxExclCosts] (excl tax) </i></p>]
+	[?CustomerGroup.DisplayPricesInclTax|Yes=<p class="inclusive-tax"><i> [SimpleProduct.ActualPriceInclTaxInclCosts] (incl tax) </i></p>]
+|Simple=
+
+	[?Product.ActualPriceTakenFrom
+	|Standard=<span class="price standard"> [Product.Price]= [Product.ActualPrice]</span>
+	|Special= <span class="old-price">[_Regular Prices : <s>%1</s>, [Product.Price]]</span>
+		<p class="special-price">[_Special Price : <span class="price">%1</span>, [Product.ActualPrice]]</p> 
+	|Rules=<span class="old-price">[_Regular Prices : <s>%1</s>, [Product.Price]]</span>
+		<p class="special-price">[_Special Price : <span class="price">%1</span>, [Product.ActualPrice]]</p> 
+	]
+	
+	[?CustomerGroup.DisplayPricesExclTax|Yes= <p class="exclusive-tax"> <i>[Product.ActualPriceExclTaxExclCosts] (excl tax)</i> </p>]
+	[?CustomerGroup.DisplayPricesInclTax|Yes=<p class="inclusive-tax"> <i> [Product.ActualPriceInclTaxInclCosts] (incl tax) </i></p>]
+]
+

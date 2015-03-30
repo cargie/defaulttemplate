@@ -1,0 +1,48 @@
+/*
+*		Renders a page with a list of compared products.	
+*	
+*/
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	[:MetaData, [_Compare Products]]
+	[:head]
+	
+<style type="text/css">
+<!--
+@media print
+{
+	.noprint,
+	.header-container ,
+	.shopping-cart-mini-block,
+	.alert,
+	.topmenu-block {display:none;}
+}
+
+@media screen
+{
+
+}
+-->
+</style>
+</head>
+<body>
+	[:header]
+	<div class="one-column">
+		<div class="main-container">
+			<div class="main ">
+				<div class="content print">
+					[:notification]
+					<div class="my-account">
+					[:mainContent]
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="noprint">
+		[:footer]
+	</div>
+</body>
+</html>

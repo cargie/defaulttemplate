@@ -1,0 +1,37 @@
+/*
+*		Renders the main content of the AdvanceSearchResultPage.  
+*		Content dislays the result list of products that meets the condition.
+*/
+/** -------------------------------------------------------------------
+Name:              mainContent.AdvancedSearchResult
+Location:          /Html/AdvancedSearch/Content/mainContent.AdvancedSearchResult.html
+Created By:        Leslie Canete
+Created At:        06-Okt-2014 18:55 (relocation first 15 models)
+Last modified By:  Seth Malaki
+Last modified At:  20-Okt-2014 19:10 (updates on adding comments)
+Called from:       AdvancedSearchResultsPage 	
+Possible call:    1Column.CmsPage 	1Column 	2ColumnsLeft.CmsPage 	2ColumnsLeft 	2ColumnsRight.CmsPage 	2ColumnsRight 	3Columns.CmsPage 	3Columns 	CompareProductsPage 	
+Calling blocks:    CategoryListLayout 	toolbar 	
+--------------------------------------------------------------------**/
+
+
+<div class="page-title"><h2>[_Search Results]</h2></div>
+<p class="advanced-search-amount">[_<strong>%1 item(s)</strong> were found using the following search criteria,[Filter.Count]]</p>
+<div class="advanced-search-summary">
+	<ul>
+		[Website.IterateAttributesForAdvancedSearch=
+			 [?UserInput.AdvancedSearchValueAvailable,[Attribute.AttributeCode]|Yes=<li> <strong> [Attribute.Title]: </strong>[UserInput.AdvancedSearchValue,[Attribute.AttributeCode]]</li>] 
+		]
+	</ul>
+	<p>
+	[_Don't see what you're looking for?] <a href="[Website.GetUrl,AdvancedSearch]">[_Modify your search]</a>
+</p>
+</div>
+<div class="category-view">
+	[?Filter.Empty|no=[:toolbar]]
+
+	[:CategoryListLayout]
+
+	[?Filter.Empty|no=|yes=<p class='no-results'>[_There are no products matching the selection.]</p>]
+	
+</div>

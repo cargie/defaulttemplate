@@ -1,0 +1,29 @@
+<div class="box-tags">
+	[?Product.HasTags
+	|Yes=
+		<h3>[_Other people marked this product with these tags:]</h3>
+		<ul class="tags">[Product.TagsSortedAndUnique= <li> <a href="[Website.GetUrl,Tag,[Tag.Name]]">[Tag.Name]  </a> ([Tag.ProductCountWithTagName]) </li>]</ul>
+	]
+	<form id="addTagForm" action="" method="get">
+		<div class="form-add">
+			<p><label for="productTagName">[_Add Your Tags]</label></p>
+
+			<div class="input-box">
+				<input type="text" class="input-text required" name="tagname" id="productTagName">
+			</div>
+			<button type="submit" title="Add Tags" class="button btn[Design.DesignSelectionName,ButtonStyle]">
+				<span>
+					<span>[_Add Tags]</span>
+				</span>
+			</button>
+		</div>
+	</form>
+	<p class="note" style="clear:both">[_Use spaces to separate tags. Use single quotes (') for phrases.]</p>
+	<script type="text/javascript">
+	jQuery("#addTagForm").validate({
+		submitHandler: function(form) {
+			 setLocationAjaxAction('addTagForm','[Website.GetUrl,Magento,AddTag]','[Url.FullUrl]',true,'',jQuery('#addTagForm').serialize()+ '&product_id=[Product.Id]','[Url.FullUrl]');
+		 }
+	});
+	</script>
+</div>

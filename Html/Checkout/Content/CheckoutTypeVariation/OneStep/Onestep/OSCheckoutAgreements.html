@@ -1,0 +1,19 @@
+<!-- check for agreement -->
+<form action="" id="checkout-agreements" onsubmit="return false;">
+<ol class="checkout-agreements">
+<!-- loop <?php foreach ($this->getAgreements() as $_a): ?>-->
+    <li>
+        <div class="agreement-content">
+           <!-- <?php if ($_a->getIsHtml()):?>
+                <?php echo $_a->getContent() ?>
+            <?php else:?>
+                <?php echo nl2br($this->htmlEscape($_a->getContent())) ?>
+            <?php endif; ?> -->
+        </div>
+        <p class="agree">
+            <input type="checkbox" id="agreementID" name="agreementID" value="1" title="" class="checkbox" ><label for="agreementID">[_I Agree on the] <a href="#"> [_Terms and Conditions] </a></label></input>
+        </p>
+    </li>
+<!--<?php endforeach ?>-->
+</ol>
+</form>

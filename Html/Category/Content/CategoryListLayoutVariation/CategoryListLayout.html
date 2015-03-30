@@ -1,0 +1,76 @@
+/*
+*		Renders the layout of product listings in a certain category.
+*
+*/
+/** -------------------------------------------------------------------
+Name:              CategoryListLayout
+Location:          /Html/Category/Content/CategoryListLayoutVariation/CategoryListLayout.html
+Created By:        Leslie Canete
+Created At:        09-Okt-2014 16:49 (categorylistlayoutvariation, categorysidenavigation, checkouttype, change to button style)
+Last modified By:  Aris Catan
+Last modified At:  27-Okt-2014 11:55 (my updates in adding comments)
+Called from:       mainContent.AdvancedSearchResult 	mainContent.BestRated 	mainContent.BestSellers 	mainContent.Brand 	mainContent.Category 	mainContent.Featured 	mainContent.MostInteresting 	mainContent.MostViewed 	mainContent.New 	mainContent.OthersAreViewing 	mainContent.RecentlyViewed 	mainContent.Sales 	mainContent.Search 	mainContent.Tag 	
+Calling blocks:    CategoryListLayout.2ProductsInARow 	
+--------------------------------------------------------------------**/
+
+/*
+[:CategoryListLayout.2ProductsInARow]
+*/
+[?UserInput.CatalogMode|list=
+	<div class="product-list">
+		<ul class="list">
+		[Filter.Products=
+			<li class="product-item">
+				[:ProductListItem]
+			</li>
+			]
+		</ul>
+	</div>
+|Grid=
+	<div class="product-list-three_products_in_a_row">
+		<ul class="grid">
+			[Filter.Products=
+				<li class="product-item in-block">
+					[:ProductListItem]
+				</li>
+			]
+		</ul>
+	</div>
+]
+*/
+[?UserInput.CatalogMode
+	|list=
+		<div class="product-list">
+			<ul class="list">
+			[Filter.Products=
+				<li class="product-item">
+					[:ProductListItem]
+				</li>
+			]
+			</ul>
+		</div>
+	|Grid=
+		<div class="product-list">
+			<ul class="grid">
+				[Filter.Products=
+					[:ProductListItem]
+				]
+			</ul>
+		</div>
+]
+
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		var width_container = jQuery(".product-list").width();
+		var width = jQuery(".flat-ecommerce-list-large").width();
+		var count = parseInt(width_container / width);
+
+		jQuery(".flat-ecommerce-list-large").each(function(index,el){
+			console.log(el);
+			if((index+1)%count == 0){
+				jQuery(el).addClass('last');
+			}
+		});
+		console.log(count);
+	});
+</script>

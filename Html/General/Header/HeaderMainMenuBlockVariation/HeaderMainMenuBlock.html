@@ -1,0 +1,116 @@
+/*
+*		Renders the main menu block container of the header.
+*
+*/
+/*
+<div class="row topmenu-block default">
+	<div class="large-12 menu">
+		<div class="default main-menu clearfix">
+			[:HeaderMainMenuLinks]
+		</div>
+	</div>
+</div>
+*/
+
+<div class="row ">
+	<div class="large-12 columns flat-ecommerce-container ">
+		<div class="large-12 left flat-ecommerce clearfix">
+			<ul class="small-12 columns inline-list">
+				[Website.TopMenuSorted=
+					<li class="[?MenuOption.HasChildren|Yes=has-dropdown|No=[?MenuOption.MenuOptionType|Category=has-dropdown]] ">
+						<a class="[?MenuOption.IsCurrent|same= current|different=|parent=current]" href="[MenuOption.Url]" >
+							[MenuOption.Name]
+						</a>
+						[?MenuOption.MenuOptionType|AllCmsPages=
+								<div class="dropdown all-cms-pages">
+									<div class="large-12 clearfix incra-no-padd" style="">
+										<div class="large-3 columns side-submenu">
+											<ul class="cms-pages-list no-bullet">
+												[MenuOption.TopMenuChildrenSorted=
+													<li>
+														<a href="[MenuOption.FullUrl]">
+															<h6>[MenuOption.Name]</h6>
+														</a>
+													</li>
+												]
+											</ul>
+										</div>
+										<div class="large-9 columns">
+												
+										</div>
+									</div>
+								</div>
+							|=
+								[?MenuOption.Name|About us=
+									<div class="dropdown all-cms-pages">
+											<div class="large-12 clearfix incra-no-padd" style="">
+												<div class="large-3 columns side-submenu">
+													<ul class="cms-pages-list no-bullet">
+														[MenuOption.TopMenuChildrenSorted=
+															<li>
+																<a href="[MenuOption.FullUrl]">
+																	<h6>[MenuOption.Name]</h6>
+																</a>
+															</li>
+														]
+													</ul>
+												</div>
+												<div class="large-9 columns">
+														
+												</div>
+											</div>
+										</div>
+									|=
+										<div class="dropdown">
+											<div class="large-12">
+												[MenuOption.TopMenuChildrenSorted=
+													<div class="sub-items">
+														<a href="[MenuOption.FullUrl]">
+															<div class="img-block">
+																<img src="/[MenuOption.Image]"/>
+															</div>
+															<h6>[MenuOption.Name] </h6>
+														</a>
+													</div>
+												]
+											</div>
+										</div>
+								]
+						]
+					</li>
+				]
+			</ul>
+		</div>
+	</div>
+</div>
+
+/*
+<div class="row ">
+	<div class="large-12 columns flat-ecommerce-container ">
+		<div class="large-12 left flat-ecommerce clearfix">
+			<ul class="small-12 columns">
+				[Website.TopMenuSorted=
+					<li class="[?MenuOption.HasChildren|Yes=has-dropdown|No=[?MenuOption.MenuOptionType|Category=has-dropdown]] ">
+						<a class="[?MenuOption.IsCurrent|same= current|different=|parent=current]" href="[MenuOption.Url]" >[MenuOption.Name] </a>
+							<div class="dropdown">
+								<ul>
+									[MenuOption.TopMenuChildrenSorted=
+											[?MenuOption.InTopMenu|Yes=
+												<li class="[?MenuOption.HasChildren|Yes=has-dropdown]">
+													<a href="[MenuOption.Url]" class="[?MenuOption.IsCurrent|same= current|different=|parent= current]">
+														<span class="[?MenuOption.IsCurrent|same= current|different=|parent= current]">[MenuOption.Name]</span>
+														[?MenuOption.HasChildren|Yes=<span class="toggle">+</span>]
+													</a>
+													[:HeaderMainMenuLinksSub]
+												</li>
+											]
+									]
+								</ul>
+							</div>
+					</li>
+				]
+			</ul>
+		</div>
+	</div>
+</div>
+*/

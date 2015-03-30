@@ -1,0 +1,34 @@
+<div class="large-4 columns search-box">
+	<div><form>
+		<input type="radio" name="searchmode" value="Find" checked onclick="ClearTextSearch();">[_Starts with]</input>
+		<input type="radio" name="searchmode" value="FindExact" onclick="ClearTextSearch();">[_Exact]</input>
+		<input type="radio" name="searchmode" value="FindContains" onclick="ClearTextSearch();">[_Contains]</input>
+
+		<div class="search-container">
+			<input type="text" id="findreplacer" value="find replacer..." class="default-value" autocomplete="off" />
+			
+			<input type="button" id="button-search" />
+		<div id="livesearch"></div>
+		</div>
+		</form>
+	</div>
+</div>
+<br style="clear:both"/>
+<script type="text/javascript">
+function searchMan(obj){
+	console.log(obj);
+	var href = jQuery(obj).attr('data');
+	jQuery.ajax({
+		url : href+'/ajax',
+		success : function(response){
+			console.log(response);
+			jQuery(".man-content-container").html(response);
+			jQuery("#findreplacer").val('');
+			jQuery("#findreplacer").trigger('keyup')
+		}
+	})
+}
+</script>
+
+
+

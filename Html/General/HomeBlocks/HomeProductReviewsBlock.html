@@ -1,0 +1,27 @@
+/*
+*	Renders a block containing product reviews.
+*/
+
+[Website.ReviewsAvailable|Yes=
+<div class="home-recent-reviews">
+	<h3> Recent Reviews </h3>
+	[Website.RecentReviews,3=
+	<div class="review-details">
+		<div class="review-title in-block">
+			<a href="[Website.GetUrl,Product,[ProductReview.ProductId]]"><h4 class="product-name">[ProductReview.ProductName]</h4></a>
+			<div class="rating-box">
+				<div class="rating" style="width:[ProductReview.RatingPercentage]%" title="[ProductReview.RatingPercentage]%"></div>
+			</div>
+		</div>
+		<div class="review-comment in-block">
+			<a href="[Website.GetUrl,Product,0,Review/View/[ProductReview.Id]]" class="review-title">[ProductReview.Title]</a> <span> [_by %1, [ProductReview.NickName]]</span>
+			<blockquote>
+				"[ProductReview.Detail]"
+			</blockquote>
+			<p class="date">([_Posted on %1, [ProductReview.CreatedAt]])</p>
+		</div>
+	
+	</div>
+	]
+</div>
+]

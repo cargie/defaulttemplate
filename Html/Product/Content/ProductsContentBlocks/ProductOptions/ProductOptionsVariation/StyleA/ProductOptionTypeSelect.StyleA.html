@@ -1,0 +1,64 @@
+/*
+*	Renders a variation of product option type select control. Displays a select control.
+*
+*/
+
+<dt>
+	<label for="text_[ProductOption.Id]" class="[?ProductOption.Required|Yes=required]">[?ProductOption.Required|Yes=<em>*</em>] [ProductOption.Label]</label>
+</dt>
+
+<dd>
+	<div class="input-box">
+	[?ProductOption.Type|MultipleSelect=
+	<input type="hidden" id="text_[ProductOption.Id]" name="options\\[[ProductOption.Id]\\]">
+	<select multiple name="select_[ProductOption.Id]" class="multiselect [?ProductOption.Required|Yes=required] product-custom-option stylea-dd" id="select_[ProductOption.Id]">
+		[ProductOption.Choices=
+			<option price="[ProductOptionChoice.Price]" value="[ProductOptionChoice.Id]"  [?UserInput.OptionValueSelected,[ProductOption.Id],[ProductOptionChoice.Id]|yes=selected]>[ProductOptionChoice.Title]  [ProductOptionChoice.ActualPrice]</option>
+		]
+	</select>
+	|Dropdown=
+	<select onchange="reloadPrice('[Website.GetUrl,Ajax,Diff]','[Website.GetUrl,Product,[Product.Id]]','[Website.GetUrl,Product,0,OptionsUpdate/[Product.Id]]',jQuery('#product_addtocart_form').serialize());" class="[?ProductOption.Required|Yes=required] product-custom-option stylea-dd" id="select_[ProductOption.Id]" name="options\\[[ProductOption.Id]\\]">
+		[ProductOption.Choices=
+		<option price="[ProductOptionChoice.Price]" value="[ProductOptionChoice.Id]"  [?UserInput.OptionValueSelected,[ProductOption.Id],[ProductOptionChoice.Id]|yes=selected]>[ProductOptionChoice.Title]  [ProductOptionChoice.ActualPrice]</option>
+		]
+	</select>
+	]
+	</div>
+</dd>
+<script type="text/javascript">
+
+[?ProductOption.Type|MultipleSelect=
+	var temp = Array();
+	[ProductOption.Choices=
+		[?UserInput.OptionValueSelected,[ProductOption.Id],[ProductOptionChoice.Id]
+		|yes=
+			temp.push([ProductOptionChoice.Id]);
+		]
+	]
+	jQuery("#text_[ProductOption.Id]").val(temp.join(","));
+
+	jQuery("#select_[ProductOption.Id]").click(function(){
+		var ids = jQuery(this).val().join(",");
+		jQuery("#text_[ProductOption.Id]").val(ids);
+		
+		reloadPrice('[Website.GetUrl,Ajax,Diff]','[Website.GetUrl,Product,[Product.Id]]','[Website.GetUrl,Product,0,OptionsUpdate/[Product.Id]]',jQuery('#product_addtocart_form').serialize());
+	})
+]
+
+	/*jQuery(document).ready(function() {
+	try {
+		oHandler = jQuery("select.option-dd").msDropDown().data("dd-option");
+		//jQuery("#ver").html(jQuery.msDropDown.version);
+		} catch(e) {
+			alert("Error: "+e.message);
+		}
+	})
+	*/
+	jQuery(document).ready(function(e) {
+		
+		jQuery(".stylea-dd").msDropdown({mainCSS:'dd-plain',roundedCorner:false}); 
+		
+	});
+	
+	
+</script>

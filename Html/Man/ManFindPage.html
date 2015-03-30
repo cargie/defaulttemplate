@@ -1,0 +1,62 @@
+[?Url.MVC4
+	|ajax=
+		<div id="main_content">
+		[Man.FindReplacer,[Url.Controller]]
+		[?Man.LastReplacerFindResultsEmpty
+			|empty= [_There are no results found for '%1' , [Url.Controller]] 
+			|filled= 
+				[_%1 result/s found for '%2' , [Man.LastFindResultsTotalCount], [Url.Controller]] 
+				<ul class="scopes_list"> 
+					[Man.LastFindResults=
+						<li><a  href="[Website.GetUrl,Man,Replacer/[Man.ReplacerName]]">[Man.ReplacerName] </a></li> 
+					] 
+				</ul>
+		]
+		</div>
+	|=
+	<html>
+	<head>
+	<title>IncraPages - [_Not Available]</title>
+	[:ManHead]
+	<style type="text/css">
+		  .description a{text-decoration:none;}
+	</style>
+	<!--\[if IE 7\]>
+	<link href="styles-ie7.css" rel="stylesheet" type="text/css"/>
+	<!\[endif\]-->
+
+	</head>
+	<body>
+	   <div class="topnav">
+	      <nav class="incra-right">
+
+	      </nav>
+	  </div>
+			<div id="content_container">
+			
+				[:ManHeader]
+				<div class="large-12 clearfix ">
+					<div class="large-2 columns panel man-tree-container">
+						[:Man_Tree]
+					</div>
+					<div class="large-10 columns man-content-container text-left">
+						
+						[Man.FindReplacer,[Url.Controller]]
+						[?Man.LastReplacerFindResultsEmpty
+							|empty= [_There are no results found for '%1' , [Url.Controller]] 
+							|filled= 
+								<h6>[_%1 result/s found for '%2' , [Man.LastFindResultsTotalCount], [Url.Controller]] </h6>
+								<ul class="scopes_list"> 
+									[Man.LastFindResults=
+										<li style="min-width:350px"><a href="[Website.GetUrl,Man,Replacer/[Man.ReplacerName]]">[Man.ReplacerName] </a></li> 
+									] 
+								</ul>
+						]
+						
+					</div>
+				</div>		
+			</div>
+			
+	</body>
+	</html>
+]

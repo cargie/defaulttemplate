@@ -1,0 +1,48 @@
+/*
+*		Renders a content HeaderCartBlock in a dropdown style.
+*
+*/
+
+<div class="popover fade bottom in shopping-cart-popup">
+	<h4 class="shopping-cart-title">[_MY SHOPPING CART]</h4>
+	<hr class="sp-cart">
+	<div id="popupContent" class="popover-content">
+		<p class="label-add-item"> [_Recently added item/s:] </p>
+		<!-- nested objects-->
+		<div id="objects-container">
+			[ShoppingCart.RecentlyAddedItems,3=
+			<div id="medialist-con" class="media-item">
+				<div class="item-thumb">
+					<a class="pull-left" href="[Website.GetUrl,Product,[Product.Id]]">
+						<img class="img-polaroid" height="80" title="[Product.Name]" src="/[Product.ThumbnailImage=[ProductImage.ImageUrl,100,100]]">
+					</a>
+				</div>
+				<div class="item-content">
+					<h5 class="productname-heading">
+						<a href="[Website.GetUrl,Product,[Product.Id]]">[Product.Name]</a>
+					</h5>
+
+					<span class="shopcart-price">[ShoppingCartItem.PriceEach]</span>
+
+					<div class="shopcart-attrib">
+						[ShoppingCartItem.Attributes=
+						<p class="attrib">[Attribute.AdminTitle] : [ShoppingCartItemAttribute.Value]</p>
+						]
+					</div>
+
+					<div class="shopcart-links">
+						<a href="">[_Edit]</a><span class="divider">|</span><a href="javascript:setLocationAjax('[Website.GetUrl,magento,RemoveFromCart]','[Url.FullUrl]',true,[ShoppingCartItem.Id]);">[_Remove]</a>
+					</div>
+				</div>
+			</div>
+			]
+		</div>
+		<!--end nested objects-->
+		<hr class="sp-cart">
+		<div class="button_holder">
+			<p class="cart-link-bottom">[_You currently have <strong>%1</strong> items in your <a href="[Website.GetUrl,Cart]"> shopping cart</a>, [ShoppingCart.NrItems]]</p>
+
+			<button type="button" class="btn-checkout" onclick="window.location='[Website.GetUrl,CheckOut,OnePage]'" ><span class="btn-checkout">[_CHECKOUT]</span></button> <p class="total">[_Total]: [ShoppingCart.TotalInclTax] </p>
+		</div>
+	</div>
+</div>

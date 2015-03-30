@@ -1,0 +1,20 @@
+/*
+*	default variation.  This renders a product list item price.
+*/
+
+[?Product.ProductType|Simple=
+	<span class="price">
+		[Product.Price]
+		[Product.ActualPriceTakenFrom] [Product.ActualPrice]
+	</span>
+	[?Product.TierPricesExist|Yes=
+	<p><a href="[Website.GetUrl,Product,[Product.Id]]">[_As low as: %1, [Product.LowestTierPrice]]</a></p>
+	]
+|Configurable=
+	<span class="price">
+		[SimpleProduct.ActualPriceTakenFrom] [SimpleProduct.ActualPrice]
+	</span>
+	[?Simple.TierPricesExist|Yes=
+	<p><a href="[Website.GetUrl,Product,[Product.Id]]">[_As low as: %1, [Simple.LowestTierPrice]]</a></p>
+	]
+]

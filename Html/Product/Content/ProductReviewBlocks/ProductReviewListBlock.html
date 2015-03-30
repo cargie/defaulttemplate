@@ -1,0 +1,59 @@
+/*
+*	Renders the review list of the current product.
+*
+*/
+
+[?Product.HasReviews|yes=
+<div class="box-collateral box-reviews first" id="customer-reviews">
+	<div id="slides">
+		<div class="slides_container">
+		[Product.Reviews=
+			<div class="review-details">
+				<div class="head-title">
+					<a href="[Website.GetUrl,Product,0,Review/View/[ProductReview.Id]]" class="review-title">[ProductReview.Title]</a> <span> [_by %1, [ProductReview.NickName]]</span>
+				</div>
+				
+				<!-- getRatingVotes-->
+			
+				<!-- check if there are votes -->
+			
+				<!-- end check if there are votes -->
+				<div class="review-comment">
+					<blockquote>
+						"[ProductReview.Detail]"
+					</blockquote>
+					[ProductReview.Ratings=  
+							<div class="ratings">
+								<span class="rating-code in-block">[ProductRating.RatingCodeName]</span>
+								<div class="rating-box in-block">
+									<div class="rating" style="width:[ProductRating.Percentage]%"></div>
+								</div>
+							</div>
+					]
+					<small class="date">([_Posted on %1, [ProductReview.CreatedAt]])</small>
+				</div>
+				
+			</div>
+		]
+		</div>
+	</div>
+</div>
+|no=<div class="no-review"><p>[_This product has no reviews.]</p><p>
+	[?Customer.LoggedIn
+	|LoggedIn=
+		<div class="buttons-set right"><button class="button btn[Design.DesignSelectionName,button]" id="write-reviews"><span><span>[_Write a review].</span></span></button></div>
+	|=
+		[_You must be logged in to write a review]. <a href="[Website.Geturl,Login,Login]"> [_Login]</a> [_or] <a href="[Website.Geturl,Login,Login]">[_register]</a>.
+	]
+</p></div>
+]
+
+
+<script>
+	$j('#write-reviews').live('click',function(){ 
+		$j("#read_review").removeClass('active in');
+		$j("#write_review").addClass('active in');
+		$j("#review_tab li").removeClass('active');
+		$j("#review_tab li#link-write-review").addClass('active');
+	});
+</script>

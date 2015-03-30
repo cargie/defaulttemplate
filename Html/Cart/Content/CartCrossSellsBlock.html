@@ -1,0 +1,51 @@
+/*
+*		renders the a list of products tagged as crossells.
+*
+*/
+/** -------------------------------------------------------------------
+Name:              CartCrossSellsBlock
+Location:          /Html/Cart/Content/CartCrossSellsBlock.html
+Created By:        Leslie Canete
+Created At:        07-Okt-2014 16:54 (move to and rename ShoppingCartBlocks to Cart)
+Last modified By:  Seth Malaki
+Last modified At:  21-Okt-2014 17:09 (myupdates on addingComments)
+Called from:       mainContent.Cart 	
+Calling blocks:    PriceBlock 	
+--------------------------------------------------------------------**/
+
+
+[?ShoppingCart.HasCrossSells|Yes=
+	<div class="crossells-box">
+	<p>[_Based on your selection, you may be interested in the following items:]</p>
+		[ShoppingCart.CrossSells,1= 
+		<div class="product-image">
+			<a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]"><img width="120" src="/[Product.ThumbnailImage=[ProductImage.ImageUrl,140,150]]"></a>
+		</div>
+		<div class="crossells-details">
+			<a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]"><h2 class="crossells-title">[Product.Name]</h2></a>
+			<div class="price-box"><span class="price">[:PriceBlock?Product.Sale]</span></div>
+			[?Product.ProductType|Configurable=
+				<button  class="button btn[Design.DesignSelectionName,ButtonStyle]" onclick="window.location.href='[Website.GetUrl,Product,[Product.Id]]'" class="button btn-cart" title="[_Configure]" type="button">
+					<span><span>[_Configure]</span></span>
+				</button>
+			|=
+				[?Product.HasRequiredOptions|Yes=
+					<button  class="button btn[Design.DesignSelectionName,ButtonStyle]" onclick="window.location.href='[Website.GetUrl,Product,[Product.Id]]'" class="button btn-cart" title="[_Configure]" type="button">
+						<span><span>[_Configure]</span></span>
+					</button>
+				|=
+				<button  class="button btn[Design.DesignSelectionName,ButtonStyle]" onclick="actionCart('','[Website.GetUrl,Magento,AddToCart]','[Website.GetUrl,Cart]',true,'[Product.Id]','[Website.GetUrl,Cart]','qty=[Product.MinInShoppingCart]')" class="button btn-cart" title="[_Add to Cart]" type="button">
+					<span><span>[_Add to Cart]</span></span>
+				</button>
+				]
+			]
+			<div class="link-title">
+				<h4 class="wishlist-link"><a  href="javascript:setLocationAjax('[Website.GetUrl,Magento,AddToWishlist]','[Website.GetUrl,Cart]',true,'[Product.Id]'); " class="link-wishlist">[_Add to WishList]
+		</a></h4>
+				<h4 class="crossells-link"><a href="javascript:setLocationAjax('[Website.GetUrl,Magento,AddToCompare]','[Website.GetUrl,Cart]',true,'[Product.Id]');" class="link-compare">[_Add to Compare]</a></h4>
+			</div>
+		</div>
+		]
+	</div>
+]
+

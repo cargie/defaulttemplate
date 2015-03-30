@@ -1,0 +1,44 @@
+/*
+*	Renders a variation block containing list of upsell products.
+*
+*/
+
+[?Product.HasUpSellProducts|yes=
+<div class="block-upsell-styleb">
+
+	<div class="block-title">
+		<h4>[_You might also be interested in the following products]</h4>
+	</div>
+	<div id="upsell" class="product-list tinyCarousel carousel-items-3">
+		<a class="button-arrow prev" href="#">[_left]</a>
+		<div class="viewport">
+			<ul class="grid overview" id="slider">
+				[Product.UpSells= 
+				<li class="product-item in-block">
+					<div class="item-wrapper styleB">
+						<div class="product-image">
+						   <a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]"><img src="/[Product.ThumbnailImage=[ProductImage.ImageUrl,140,150]]" alt="[Product.Name]" width="100%"/></a>
+						</div>
+						 <div class="product-details">
+						 	<div class="top-con">
+								<a class="product-name" href="[Website.GetUrl,Product,[Product.Id]]"  title="[Product.Name]">[Product.Name]</a>
+								[:ProductPriceBlock?Product.Sale]
+							</div>
+							<div class="bottom-con a-center">
+								<a href="[Website.GetUrl,Product,[Product.Id]]">[_View Product]</span></a>
+							</div>
+						</div>
+					</div>
+				</li>
+				]
+			</ul>
+		</div>
+		<a class="button-arrow next" href="#">right</a>
+	</div>
+	<script type="text/javascript">
+		jQuery(document).ready(function(){
+			jQuery('#upsell').tinycarousel({start:1});
+		});
+	</script>
+</div>
+|.no=]

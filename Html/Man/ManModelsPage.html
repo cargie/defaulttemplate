@@ -1,0 +1,80 @@
+[?Url.MVC4
+	|ajax=
+		[Man.Models=[Man.ModelName],]
+|=
+	<html>
+		  <head>
+		  <title>IncraPages - [_Not Available]</title>
+		  [:ManHead]
+		  <style type="text/css">
+		      .description a{text-decoration:none;}
+		  </style>
+		  <!--\[if IE 7\]>
+		  <link href="styles-ie7.css" rel="stylesheet" type="text/css"/>
+		  <!\[endif\]-->
+
+		  </head>
+		  <body>
+		     <div class="topnav">
+		        <nav class="incra-right">
+
+		        </nav>
+		    </div>
+		      <div id="content_container">
+		      
+		        [:ManHeader]
+		        <div class="large-12 clearfix ">
+		          <div class="large-2 columns panel man-tree-container">
+		            [:Man_Tree]
+		          </div>
+		          <div class="large-10 columns man-content-container">
+
+				</div>
+	        </div>    
+	      </div>
+	      
+	  </body>
+	  </html>
+	 <script type="text/javascript">
+			jQuery(document).ready(function(){
+			var al = 'abcdefghijklmnopqrstuvwxyz';
+			var temp = '{[Man.Models=[Man.ModelName],]}';
+			var arr = temp.split(",");
+			
+			test_array = arr;
+			
+			var html = jQuery('<div class="large-12 text-left">');
+			var t = jQuery('<h6 class="subheader">Available Models :<h6>');
+			var ul = jQuery('<ul class="inline-list scopes_list">');
+			var max = arr.length;
+			var x = 0;
+			html.append(t);
+			
+			arr.sort();
+			var currentletter = '';
+			
+			arr.forEach(function(el,i){
+				
+				if(el!=""){
+			
+					if(currentletter != el[0].toLowerCase()){
+
+						html.append(ul);
+						html.append('<strong>'+el[0].toUpperCase()+'</strong>');
+						ul = jQuery('<ul class="inline-list scopes_list">');
+						ul.append('<li><a class="man-link" href="#" data="Type/'+el+'"><i class="fa fa-angle-right"></i> '+el+'</a></li>');
+						currentletter = el[0].toLowerCase();
+					}
+					else{
+					ul.append('<li><a class="man-link" href="#" data="Type/'+el+'"><i class="fa fa-angle-right"></i> '+el+'</a></li>');
+					}
+				}
+			});
+			var temp = Array();
+
+			html.append(ul);
+			jQuery(".man-content-container").html(html);
+		
+		});
+	 </script>
+]

@@ -1,0 +1,19 @@
+/*
+*		renders a single type of AdvanceSearchFields attributes for advance search.  
+*		Displays a typical textarea input for search option.
+*/
+/** -------------------------------------------------------------------
+Name:              AdvancedSearchFields.TextArea
+Location:          /Html/AdvancedSearch/Content/AdvancedSearchFields/AdvancedSearchFields.TextArea.html
+Created By:        Leslie Canete
+Created At:        07-Okt-2014 16:27 (category, checkout general)
+Last modified By:  Seth Malaki
+Last modified At:  20-Okt-2014 19:25 (myupdates on adding comments)
+Possible call:    mainContent.AdvancedSearch 	
+--------------------------------------------------------------------**/
+
+
+<label for="[Attribute.AttributeCode]">[Attribute.Title]</label>
+<div class="input-box">
+	<textarea id="[Attribute.AttributeCode]" name="[Attribute.AttributeCode]" title="[Attribute.Title]" class="input-text">[UserInput.AdvancedSearchValue,[Attribute.AttributeCode]]</textarea>
+</div>

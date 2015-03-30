@@ -1,0 +1,33 @@
+<script type="text/javascript">
+   /* var quoteBaseGrandTotal = <?php echo (float)$this->getQuoteBaseGrandTotal(); ?>;
+    var checkQuoteBaseGrandTotal = quoteBaseGrandTotal;*/
+    //var payment = new Payment('co-payment-form', 'http://localhost:8040/CheckOut/savePayment/');
+   
+
+</script>
+<div class="step-title ">
+	<span class="number in-block">3</span>
+	<h2 class="in-block"> [_Payment Method]</h2>
+</div>
+<div class="checkout-onestep-content">
+	
+	<ul class="sp-methods">
+		[CheckOut.AvailablePaymentMethods=
+		
+		<li>
+			<input name="method" type="radio" value="[PaymentMethod.Id]" id="p_method_[PaymentMethod.Code]" class="radio">
+
+
+			<label for="p_method_[PaymentMethod.Code]">[PaymentMethod.Name] <span class="pm-price">[PaymentMethod.AdditionalCost]</span> </label>
+		</li>
+				
+		]
+	</ul>
+	
+	<div class="tool-tip" id="payment-tool-tip" style="display:none;">
+	    <div class="btn-close"><a href="#" id="payment-tool-tip-close" title="[_Close]">[_Close]</a></div>
+	    <div class="tool-tip-content"><img src="" alt="Card Verification Number Visual Reference" title="[_Card Verification Number Visual Reference]" /></div>
+	</div>
+	
+</div>
+

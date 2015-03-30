@@ -1,0 +1,94 @@
+[_allowed guest checkout] : [CheckOut.AllowGuestCheckOut]<br>
+	[?Customer.LoggedIn|LoggedIn=
+		The current user is [Customer.FirstName] [Customer.LastName]
+	]
+	payment shown = [CheckOut.PaymentShown] <br>
+	shipping completed = [CheckOut.ShippingCompleted]  <br>
+	the same = [CheckOut.BillingAndShippingAddressTheSame]  <br>
+	conditions checked = [CheckOut.ConditionsChecked]  <br>
+	shipping complete = [CheckOut.ShippingComplete] <br>
+<div class="checkout-onepage-page-progress">
+
+
+	<h4>[_YOUR CHECKOUT PROGRESS]</h4>
+	<div class="progress-block billing">
+		<div class="progress-step-title">
+			<span class="bold">[_Billing Address] </span>  [?CheckOut.AddressCompleted|yes=<a href="#" onclick="checkout.gotoSection('billing');">[_Change]</a>]
+
+		</div>
+		<div class="progress-block-content">
+				[?CheckOut.AddressCompleted|yes=
+					<dt class="complete">
+						[_Billing Address]
+					</dt>
+					<div>
+						[CheckOut.InvoiceAddress=
+						<address> [Address.FirstName] [Address.LastName]
+						<br>
+						[Address.StreetName]   [Address.HouseNumber]<br>
+							[Address.City], [Address.PostalCode] <br>
+			
+							T:[Address.TelNumber]<br>
+						</address>
+						]
+						
+					</div>
+				|no=
+					<dt>
+						[_Billing Address]
+					</dt>
+	
+				]
+		</div>
+	</div>
+	<div class="progress-block shipping">
+		<div class="progress-step-title">
+			<span class="bold">[_Shipping Address]</span> | <a class="default-orange">[_Change]</a>
+		</div>
+		<div class="progress-block-content">
+			[?CheckOut.ShippingCompleted|Yes=
+			<dt class="complete">
+				[_Shipping Address]
+			</dt>
+			<div>
+				[CheckOut.DeliveryAddress=
+				<address> [Address.FirstName] [Address.LastName]
+				<br>
+				[Address.StreetName]   [Address.HouseNumber]  <br>
+					[Address.City], [Address.PostalCode] <br>
+
+					T:[Address.TelNumber]<br>
+				</address>	
+				]
+				<a href="#" onclick="checkout.gotoSection('shipping');">[_Change]</a>
+			</div>
+			
+		|No=
+			<dt>
+				[_Shipping Address]
+			</dt>
+			
+		]
+		</div>
+	</div>
+	<div class="progress-block shipping_method">
+		<div class="progress-step-title">
+			<span class="bold">[_Shipping Method]</span> | <a class="default-orange">[_Change]</a>
+		</div>
+		<div class="progress-block-content">
+			<p>[_Full Name :] 
+			
+			</p>
+		</div>
+	</div>
+	<div class="progress-block payment">
+		<div class="progress-step-title">
+			<span class="bold">[_Payment Method]</span> | <a class="default-orange">[_Change]</a>
+		</div>
+		<div class="progress-block-content">
+			<p>[_Full Name :]
+			
+			</p>
+		</div>
+	</div>
+</div>

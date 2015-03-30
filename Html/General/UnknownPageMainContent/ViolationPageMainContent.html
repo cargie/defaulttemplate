@@ -1,0 +1,18 @@
+/*
+*		renders a page if user dont have permission to access.
+*
+*/
+
+<div class="content">
+	<div class="page-title"><h2>[_Page Not Available]</h2></div>
+	<dl>
+		<dt>[_You have no right to access this page.]</dt>
+		<dt>[_To go to the main page click] <a href="[Website.GetUrl,Home]">[_"home"]</a> [_OR]</dt>
+		<dd>
+			<ul class="disc">
+				<li>[_Go to] <a href="[Website.GetUrl,customer,account]">[_My Account]</a> </li>
+				<li><a href="#" onclick="history.go(-1); return false;">[_Go back to the previous page.] </a> </li>
+			</ul>
+		</dd>
+	</dl>
+</div>

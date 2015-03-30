@@ -1,0 +1,99 @@
+/*
+*		Renders the listings of products of the current category.  
+*		Can be list as Grid type or List type.
+*
+*/
+
+[?UserInput.CatalogMode|List=
+	 <div class="item-wrapper default"  id="prd[Product.Id]">
+		<div class="product-image in-block">
+			<a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]"><img alt="[Product.Name]" width="100%" src="/[Product.SmallImage=[ProductImage.ImageUrl,140,150]]"></a>
+		</div>
+		<div class="product-details in-block">
+			<div class="product-title in-block">
+				<a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]"><h3>[Product.Name]</h3></a>
+				<h5>[_OVERVIEW]</h5>
+				<p class="description">
+					[Product.Description] <a href="" class="more">[_Learn more]</a>
+				</p>
+				[:ProductListItemPrice?Product.Sale]
+				<div class="quantity in-block">
+					<label for="qty">[_Qty:]</label>
+					<input type="text" name="qty" id="qty" maxlength="12" value="1" title="[_Qty]" class="input-text qty">
+				</div>
+				<div class="attributes-con in-block">
+					[:ProductListItemAttributeColor] /*variation*/
+				</div>
+			</div>
+			<div class="add-to-cart in-block">
+				[?Product.ProductType|Configurable=
+				<button  class="button btn[Design.DesignSelectionName,ButtonStyle]" onclick="window.location.href='[Website.GetUrl,Product,[Product.Id]]'" class="button btn-cart" title="[_Configure]" type="button">
+					<span><span>[_Configure]</span></span>
+					</button>
+				|=
+					[?Product.HasRequiredOptions|Yes=
+						<button  class="button btn[Design.DesignSelectionName,ButtonStyle]" onclick="window.location.href='[Website.GetUrl,Product,[Product.Id]]'" class="button btn-cart" title="[_Configure]" type="button">
+						<span><span>[_Configure]</span></span>
+						</button>
+					|=
+				  	<button  class="button btn[Design.DesignSelectionName,ButtonStyle]" onclick="actionCart('','[Website.GetUrl,Magento,AddToCart]','[UserInput.DefaultUrlPart]/',true,'[Product.Id]','[Website.GetUrl,ShoppingCart]',jQuery('#conf-attributes[Product.Id]').find('select').serialize()+'&qty=[Product.MinInShoppingCart]')" class="button btn-cart" title="[_Add to Cart]" type="button">
+						<span><span>[_Add to Cart]</span></span>
+					</button>
+					]
+				]
+			</div>
+			<div class="in-block">
+				[:ProductListItemAddTo]
+			</div>
+			<div class="ratings in-block">
+				[:ProductRating]<!-- design variation -->
+				
+			</div>
+		</div>
+	</div>
+|Grid=
+	<!-- 3 columns and 2 in a row -->
+	<div class="item-wrapper default"  id="prd[Product.Id]">
+		[?Product.Sale|sale=<div class="product-ribbon sale"></div>]
+		<div class="product-image">
+		   <a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]"><img src="/[Product.ThumbnailImage=[ProductImage.ImageUrl,140,150]]" alt="[Product.Name]" width="100%"/></a>
+		</div>
+		
+		 <div class="product-details">
+			<a href="[Website.GetUrl,Product,[Product.Id]]"><h3 class="product-name">[Product.Name] [SimpleProduct.Id]</h3></a>
+		   	<div class="ratings">
+				<div class="rating-box">
+					<div class="rating" style="width:[Product.Ranking]%" title="[Product.Ranking]%"></div>
+				</div>
+				<span class="rating-links">
+				<a href="[Website.GetUrl,Product,0,Review/List/[Product.Id]/ListReview]">[_%1 Reviews, [Product.NumberOfReviews]]</a>
+				</span>
+			</div>
+			[:ProductBlockPricewoLabel] 
+			[:ProductListItemAttributeColor]
+			
+			<div class="add-to-cart">
+				[?Product.ProductType|Configurable=
+				<button  class="button btn[Design.DesignSelectionName,ButtonStyle]" onclick="window.location.href='[Website.GetUrl,Product,[Product.Id]]'" class="button btn-cart" title="[_Configure]" type="button">
+					<span><span>[_Configure]</span></span>
+					</button>
+				|=
+					[?Product.HasRequiredOptions|Yes=
+						<button  class="button btn[Design.DesignSelectionName,ButtonStyle]" onclick="window.location.href='[Website.GetUrl,Product,[Product.Id]]'" class="button btn-cart" title="[_Configure]" type="button">
+						<span><span>[_Configure]</span></span>
+						</button>
+					|=
+				  	<button  class="button btn[Design.DesignSelectionName,ButtonStyle]" onclick="actionCart('product_addtocart_form','[Website.GetUrl,Magento,AddToCart]','[UserInput.DefaultUrlPart]/',true,'[Product.Id]','[Website.GetUrl,ShoppingCart]',jQuery('#conf-attributes[Product.Id]').find('select').serialize()+'&qty=[Product.MinInShoppingCart]')" class="button btn-cart" title="[_Add to Cart]" type="button">
+						<span><span>[_Add to Cart]</span></span>
+					</button>
+					]
+				]
+			</div>
+			<div>
+				[:ProductListItemAddTo]
+			</div>
+		</div>
+		
+	</div>
+	
+]

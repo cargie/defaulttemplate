@@ -1,0 +1,13 @@
+/*
+*		Renders the main content of the OthersAreViewingPage.html
+*
+*/
+<div class="content category-view">
+	<div class="page-title"> <h2>[_Others are viewing at]</h2></div>
+	[?Filter.Empty|no=[:toolbar]]
+
+	[:CategoryListLayout]
+	
+	[?Filter.Empty|no=|yes=<p class='no-results'>[_There are no products matching the selection.]</p>]
+	
+</div>

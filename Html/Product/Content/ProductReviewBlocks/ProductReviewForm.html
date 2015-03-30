@@ -1,0 +1,77 @@
+/*
+*	Renders the review form to be used in add new reviews in the current product.
+*
+*/
+
+<div class="form-add-review">
+	<form action="" method="post" id="review-form">
+		<fieldset>
+			<h3>[_You're reviewing : <span>%1</span>, [Product.Name]]</h3>
+			<ul class="form-list">
+				<li>
+					[:ProductReviewFormRatingBlock]
+				</li>
+				<li>
+					<label for="nickname_field" class="required">[_Nickname] <em> *</em></label>
+					<div class="input-box">
+						<input type="text" name="nickname" id="nickname_field" class="input-text required" value="" />
+					</div>
+				</li>
+				<li>
+					<label for="summary_field" class="required">[_Summary of Your Review] <em> *</em></label>
+					<div class="input-box">
+						<input type="text" name="title" id="summary_field" class="input-text required" value="" />
+					</div>
+				</li>
+				<li>
+					<label for="review_field" class="required">[_Review] <em> *</em></label>
+					<div class="input-box">
+						<textarea name="detail" id="review_field" cols="100" rows="3" class="required" style="resize:vertical"></textarea>
+					</div>
+				</li>
+			</ul>
+			
+			<div class="buttons-set">
+				<button type="submit" title="[_Submit Review]" class="button btn[Design.DesignSelectionName,button]"><span><span>[_Submit Review]</span></span></button>
+			</div>
+		</fieldset>
+	</form>
+	<script type="text/javascript">
+		jQuery("#review-form").validate({
+			messages: {
+				[Website.RatingCodes=
+					'ratings\\[[RatingCode.Id]\\]':{	required: "Please select one of each of the ratings above"},
+				]
+			},
+			groups:{
+				ratings: "[Website.RatingCodes= ratings\\[[RatingCode.Id]\\]]"
+			},
+			rules:	{
+				[Website.RatingCodes=
+					'ratings\\[[RatingCode.Id]\\]':{	required: true},
+				]
+			},
+			errorPlacement: function(error, element) {
+				if(jQuery(element).hasClass('radio')){
+					error.insertAfter(jQuery('#product-review-table'));
+				}else{
+					error.insertAfter(element);
+				}
+			},
+			onclick:  function(element, event) { 
+				var empty=false;
+				[Website.RatingCodes=
+					if (!jQuery("input:radio\\[name='ratings\\[[RatingCode.Id]\\]'\\]:checked").val()){
+						empty=true;
+					} 
+				]
+				if (!empty)
+					jQuery('#product-review-table').next().css('display','none');
+			},
+			submitHandler: function(form) {
+				setLocationAjaxAction('review-form','[Website.GetUrl,Magento,AddReviewAndRatings]','[Url.FullUrl]',true,'[Product.Id]',jQuery('#review-form').serialize(),'[Url.FullUrl]');
+			 }	
+		});
+	</script>
+</div>
+

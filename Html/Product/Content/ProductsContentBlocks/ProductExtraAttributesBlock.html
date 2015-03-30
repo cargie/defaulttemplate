@@ -1,0 +1,26 @@
+/*
+*	Renders a block containing product extra attributes rendered in table type format.
+*
+*/
+
+[?Product.HasInfoAttributes |Yes=
+<div class="additional-info">
+	<h2>[_Additional Information]</h2>
+	<table class="table table-bordered">
+		<colgroup>
+			<col width="40">
+			<col width="200">
+		</colgroup>
+		<tbody>
+		[Product.VisibleAttributes= 
+			<tr>
+				<th><strong>[Attribute.Title]</strong></th><td>[ProductAttribute.Value]</td>
+			</tr>
+		]
+		</tbody>
+	</table>
+	
+</div>
+]
+
+

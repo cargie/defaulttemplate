@@ -1,0 +1,38 @@
+/*
+*		Renders a block that contains a list of new product.
+*
+*/
+	<div class="title">
+		<h2>[_NEWSLETTER Subscribe]</h2>
+	</div>
+	<div class="block-content">
+		 <form class="form-inline" id="newsletter-validate-detail" method="post" action="">
+		 	<input type="text" class="input-small span3" name="name" placeholder="name">
+			<input type="text" class="input-small span3" name="email" placeholder="email">
+			<div class="newsletter-error"></div>
+			<button onclick="submitNewsletter('newsletter-validate-detail','[Website.GetUrl,Magento,SubscribeToNewsLetter]');" type="button" title="[_Details]" class="button btn[Design.DesignSelectionName,ButtonStyle]" ><span><span>[_Subscribe]</span></span></button>
+		 </form>
+	</div>
+</div>
+<script type="text/javascript">
+submitNewsletter = function(form,surl){
+	url= surl+"/"+formatUrl('[Url.FullUrl]')+"/true";
+		jQuery.ajax(url,{	
+			type: "POST",  
+			dataType: "json",
+			cache: false, 
+			data: jQuery("#"+form).serialize(),
+			success: function(response, textStatus, jqXHR){
+					console.log(response[0].Content);
+					jQuery(".newsletter-error").html(response[0].Content);
+				},
+			error: function(jqXHR, textStatus, errorThrown)
+				{
+					//alert("The request was not completed successfuly.");
+					console.log(errorThrown);
+				}
+			});
+		return false;
+}
+</script>
+

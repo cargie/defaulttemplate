@@ -1,0 +1,23 @@
+/*
+*	Renders a block of quantity field in a product page.
+*
+*/
+
+<div class="quantity styleB">
+	<label for="qty">[_Qty]:</label>
+	<input type="text" name="qty" id="qty_[Product.Id]" maxlength="12" value="[Product.MinInShoppingCart]" title="[_Qty]" class="input-text qty">
+	<script type="text/javascript">
+	jQuery("#qty_[Product.Id]").spinner({
+		spin: function( event, ui ) {
+			if (ui.value < 1) {
+				jQuery( this ).spinner("value", 1 );
+				return false;
+			}
+		},
+		icons: {
+			down: "ui-icon-minus",
+			up: "ui-icon-plus"
+		}
+	});
+	</script>
+</div>

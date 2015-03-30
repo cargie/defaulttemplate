@@ -1,0 +1,42 @@
+/*
+*	Renders a block containing promoheader block.
+*/
+
+[Website.Promoheader,Test =
+<div class="categorypromoheader layoutcontainer">
+	[?PromoHeader.Enabled|Yes=
+		[PromoHeader.Blocks=  
+			[?PromoHeaderBlock.Type
+			|slider=
+			<div class="slideshow [PromoHeader.LayoutType] _block[PromoHeaderBlock.Position]  blocks-preview" id="slides[PromoHeader.Id]" > 
+				<div class="slides_container">	
+					[PromoHeaderBlock.Sliders= 
+						[:PromoHeaderSlider]
+					]
+				</div>
+				<script type="text/javascript">
+					$j(function(){
+						$j("#slides[PromoHeader.Id]").slides({
+							generateNextPrev: false,
+							play: 2500,
+							effect: 'slide, fade',
+						});
+					});		
+				</script>
+			</div>
+			|media=
+			<div class="[PromoHeader.LayoutType] _block[PromoHeaderBlock.Position] blocks-preview" id="media">
+				[?PromoHeaderBlock.HasMediaUrl|Yes=[PromoHeaderBlock.MediaUrl]]
+			</div>
+			|image=
+		
+				<div class="[PromoHeader.LayoutType] _block[PromoHeaderBlock.Position] blocks-preview" style="[?PromoHeaderBlock.HasImage|Yes=background:url('/[PromoHeaderBlock.Image]')]">		
+					[:PromoHeaderImage]
+				</div>
+		
+			]
+		]
+	]
+</div>
+]
+

@@ -1,0 +1,163 @@
+/*
+*		Renders a detailed information of a single thread
+*
+*/
+
+<li class="post added" style="display:none">
+	<div class="post-header"><span class="name">Leslie CaÃ±ete</span><span class="post_number">#2</span></div>
+	<div class="post-data">
+		<div class="post-by">
+			<img src="[File:/css/forum/images/avatar.png">Philippines<br>26 posts
+		</div>
+		<div class="post-details">
+			<div class="post-date"><span>[_Posted] : </span>
+			</div>
+			<div class="post-likes inline-block"><span id="likes_of_this_comment_2">0 [_like this] | 0 [_dislike this] &nbsp;</span>
+				<ul class="tag-like-icon-container inline-block">
+					<li>
+						
+							<a comment_id="2" class="like" href="[Website.GetUrl,forum,like/2]">
+								<span class="t_icon">&nbsp;</span>
+							</a>
+					</li>
+					<li>
+							<a comment_id="2" class="unlike" href="[Website.GetUrl,forum,dislike/2]">
+								<span class="t_icon">&nbsp;</span>
+							</a>
+					</li>
+					<li>
+							<a comment_id="2" class="report" href="[Website.GetUrl,forum,report/2]"><span class="t_icon">&nbsp;</span></a>
+							<div class="report-popup">
+								<div class="report-type" onclick="ForumPost.reportAs(this,2,'Discrimination')">[_Discrimination]</div>
+								<div class="report-type" onclick="ForumPost.reportAs(this,2,'Stupidity')">[_Stupidity]</div>
+								<div class="report-type" onclick="ForumPost.reportAs(this,2,'Hate')">[_Hate]</div>
+								<div class="report-type" onclick="ForumPost.reportAs(this,2,'Hate')">[_Pornography]</div>
+								<div class="report-type" onclick="ForumPost.reportAs(this,2,'Spam')">[_Spam]</div>
+								<div class="report-type" onclick="ForumPost.reportAs(this,2,'Trolling')">[_Trolling]</div>
+								<div class="report-type" onclick="ForumPost.reportAs(this,2,'Crime')">[_Crime]</div>
+								<div class="report-type" onclick="ForumPost.reportAs(this,2,'IllegalActivities')">[_Illegal Activities]</div>
+								<div class="report-type" onclick="ForumPost.reportAs(this,2,'CommercialPromotions')">[_CommercialPromotions]</div>
+								<div class="report-type" onclick="ForumPost.reportAs(this,2,'Annoying')">[_Annoying]</div>
+								<div class="report-type" onclick="ForumPost.reportAs(this,2,'RudeLanguage')">[_Rude Language]</div>
+							</div>
+					</li>
+					
+				</ul>
+				
+			</div>
+			<div class="post-text">
+				[_yap bro...k nag cover ko nila bro] 
+			</div>
+			<div id="reply-specfic-post-container-2" class="reply-specfic-post-container">
+				<div class="exisiting-post-reply">
+					<ul>
+					
+					</ul>
+				</div>
+				<form method="post" action="[Website.GetUrl,forum,reply/2]">
+				</form>
+			</div>
+			
+				<div class="reply-post">
+					<a href="#" active="false" onclick="ForumPost.replyToThisPost(2,this);return false;"> [_Reply to this post]</a>
+				</div>
+		</div>
+	</div>
+</li>
+[Thread.SortedComments,[UserInput.ForumPage]=
+	<li class="post added" style="display:none;">
+		<div class="post-header"><span class="name">[Comment.UserName]</span><span class="post_number">#[Comment.Id]</span></div>
+		<div class="post-data">
+			<div class="post-by">
+				<img src="[File:/css/forum/images/avatar.png]"/>Philippines<br/>26 posts
+			</div>
+			<div class="post-details">
+				<div class="post-date"><span>[_Posted] : [Comment.Created]</span>
+				</div>
+				<div  class="post-likes inline-block"><span id="likes_of_this_comment_[Comment.Id]">[_%1 like this | %2 dislike this, [Comment.NrLikes], [Comment.NrDislikes]] &nbsp;</span>
+					<ul class="tag-like-icon-container inline-block">
+						<li>
+							[?Comment.CanLike|Yes=
+								<a comment_id="[Comment.Id]" class="like" href="[Website.GetUrl,forum,like/Comment.Id]]">
+									<span class="t_icon">&nbsp;</span>
+								</a>
+							]
+						</li>
+						<li>[?Comment.CanDislike|Yes=
+								<a comment_id="[Comment.Id]" class="unlike" href="[Website.GetUrl,forum,dislike/Comment.Id]]">
+									<span class="t_icon">&nbsp;</span>
+								</a>
+							]
+						</li>
+						<li>[?Comment.CanReport|Yes=
+								<a comment_id="[Comment.Id]" class="report" href="[Website.GetUrl,forum,report/Comment.Id]]"><span class="t_icon">&nbsp;</span></a>
+								<div class="report-popup">
+									<div class="report-type" onclick="ForumPost.reportAs(this,[Comment.Id],'Discrimination')">[_Discrimination]</div>
+									<div class="report-type" onclick="ForumPost.reportAs(this,[Comment.Id],'Stupidity')">[_Stupidity]</div>
+									<div class="report-type" onclick="ForumPost.reportAs(this,[Comment.Id],'Hate')">[_Hate]</div>
+									<div class="report-type" onclick="ForumPost.reportAs(this,[Comment.Id],'Hate')">[_Pornography]</div>
+									<div class="report-type" onclick="ForumPost.reportAs(this,[Comment.Id],'Spam')">[_Spam]</div>
+									<div class="report-type" onclick="ForumPost.reportAs(this,[Comment.Id],'Trolling')">[_Trolling]</div>
+									<div class="report-type" onclick="ForumPost.reportAs(this,[Comment.Id],'Crime')">[_Crime]</div>
+									<div class="report-type" onclick="ForumPost.reportAs(this,[Comment.Id],'IllegalActivities')">[_Illegal Activities]</div>
+									<div class="report-type" onclick="ForumPost.reportAs(this,[Comment.Id],'CommercialPromotions')">[_Commercial Promotions]</div>
+									<div class="report-type" onclick="ForumPost.reportAs(this,[Comment.Id],'Annoying')">[_Annoying]</div>
+									<div class="report-type" onclick="ForumPost.reportAs(this,[Comment.Id],'RudeLanguage')">[_Rude Language]</div>
+								</div>
+							]
+						</li>
+						
+					</ul>
+					[?Comment.IsOwnComment|Yes=
+						<div class="settings comment-settings">
+							<a class="thread-settings" href="#"><img width="18" src="[File:/css/forum/images/settings.png]"/></a>
+							<div class="settings-popup">
+								<div class="set-type" onclick="ForumPost.deleteComment([Comment.Id])">[_Delete this]</div>
+							</div>
+						</div>
+					]
+				</div>
+				<div class="post-text">
+					[Comment.Text] 
+				</div>
+				<div id="reply-specfic-post-container-[Comment.Id]" class="reply-specfic-post-container">
+					<div class="exisiting-post-reply">
+						<ul>
+						[Comment.SubComments=
+							<li>
+								[?Comment.IsOwnComment|Yes=
+									<div class="settings comment-settings" style="float: right;">
+										<a class="thread-settings" href="#"><img width="18" src="[File:/css/forum/images/settings.png]"/></a>
+										<div class="settings-popup">
+											<!--
+											<div class="set-type" onclick="ForumPost.threadActions([Comment.Id],'enable')">Enable This</div>
+											<div class="set-type" onclick="ForumPost.threadActions([Comment.Id],'block')">Block this</div>
+											-->
+											<div class="set-type" onclick="ForumPost.threadActions([Comment.Id],'delete')">[_Delete this]</div>
+											<!--
+											<div class="set-type" onclick="ForumPost.threadActions([Comment.Id],'pinned')">Pin this</div>
+											<div class="set-type" onclick="ForumPost.threadActions([Comment.Id],'makeprio')">Make Prio</div>
+											-->
+										</div>
+									</div>
+								]
+								<blockquote>
+									<p>[Comment.Text]</p>
+									<span class="post-reply-by">[_By] : [Comment.UserName]  | [Comment.Created]</span>
+								</blockquote>
+							</li>
+						]
+						</ul>
+					</div>
+					<form method="post" action="[Website.GetUrl,forum,reply/Comment.Id]]">
+					</form>
+				</div>
+				[?Comment.CanReply|Yes=
+					<div class="reply-post">
+						<a href="#" active="false" onclick="ForumPost.replyToThisPost([Comment.Id],this);return false;"> [_Reply to this post]</a>
+					</div>
+				]
+			</div>
+		</div>
+	</li>
+]

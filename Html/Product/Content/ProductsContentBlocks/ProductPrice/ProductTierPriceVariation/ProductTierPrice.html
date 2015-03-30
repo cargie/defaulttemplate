@@ -1,0 +1,24 @@
+/*
+*	Renders a block of product tier prices.
+*
+*/
+
+[?Product.ProductType|Simple=
+	[?Product.TierPricesExist|Yes=
+		<div class="tier-price-block">
+			<ul class="tierprice">
+				[Product.TierPrices=
+					<li>[_Buy <strong>%1</strong>, for <strong>%2</strong> each and save %3%, [TierPrice.Number],[TierPrice.ActualPriceEach],[TierPrice.ActualSavePercent]] </li>]
+			</ul>
+		</div>
+	]
+|Configurable=
+	[?SimpleProduct.TierPricesExist|Yes=
+		<div class="tier-price-block">
+			<ul class="tierprice">
+				[SimpleProduct.TierPrices=
+					<li>[_Buy <strong>%1</strong>, for <strong>%2</strong> each and save %3%, [TierPrice.Number],[TierPrice.ActualPriceEach], [TierPrice.ActualSavePercent]] </li>]
+			</ul>
+		</div>
+	]
+]

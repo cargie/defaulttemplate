@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>IncraCache - [Man.ClassName].[Man.FunctionName]</title>
+<link href="[File:/Man/css/styles.css]" rel="stylesheet" type="text/css"/>
+<!--\[if IE 7\]>
+<link href="styles-ie7.css" rel="stylesheet" type="text/css"/>
+<!\[endif\]-->
+
+</head>
+<body>
+	<div class="top_orange"></div>
+		
+		<div id="content_container">
+		
+			[:ManHeader]
+			
+			<div id="body_container">
+				<div id="left_column">
+					<div class="left_menu">
+						<p>[_FUNCTIONS]:<p>
+						<ul>
+						[Man.Functions=<li><a href="/Man/[Man.ClassName]/[Man.FunctionName]">[Man.FunctionName]</a></li>]
+						</ul>
+					</div>
+				</div>
+				<div id="main_content">
+					<div class="title">
+						<p>[Man.ClassName].[Man.FunctionName]</p>
+						[Man.ReturnValue] [Man.FunctionName]([Man.ParameterString]);
+					
+					</div>
+					
+					<div class="description">
+						
+						<p><strong> [Man.FunctionShortDescription]. </strong></p>
+						<p>[_Return value]: [Man.ReturnValue]  [Man.ReturnDescription]</p>
+						<p>[_Parameters]: </p>
+							<div class="param-list"><i> [Man.Parameters= [Man.ParameterName] </i>: [Man.ParameterDescription]]</div>
+					
+						<p class="long-desc">[Man.FunctionLongDescription]</p>
+					</div>
+					<div>
+						<p>[_See Also]:<p>
+						<ul>
+						[Man.SeeAlso=<li><a href="/Man/[Man.ClassName]/[Man.FunctionName]">[Man.FunctionName]</a></li>]
+						</ul>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		[:ManFooter]
+	
+</body>
+</html>

@@ -1,0 +1,15 @@
+/*
+*		Renders the header mini log in block in a dropdown style. This displays a block of mini login form pop up when it is hover where Customer can login directly.
+*
+*/
+
+[?Customer.LoggedIn
+	|LoggedIn=
+		<a href="javascript:setLocationAjax('[Website.GetUrl,magento,Logout]','[Website.GetUrl,Login,Logout]',false,'');">[_Logout]</a>
+	|=
+		<a href="[Website.GetUrl,Login,Login]" class="incra-dropdown-toggle">[_Login]</a>
+		<div class="loginpopup-container incra-dropdown-menu" style="display:none">
+			[:HeaderMiniLoginTypeDropdownContent]
+		</div>
+]
+

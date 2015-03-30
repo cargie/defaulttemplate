@@ -1,0 +1,17 @@
+[?Man.ScopeHasChildren
+|Yes=	
+	//var newscope=scopename+'[Man.ScopeName]';
+	[Man.children=
+		if (scopename!="[Man.ScopeName]"){
+			
+			if (jQuery.inArray(scopename+'[Man.ScopeName]',scopes)===-1){
+				data.addRows(\\\[
+					\\\[{v:scopename+'[Man.ScopeName]', f:'[Man.ScopeName]<div style="display:none;color:red; font-style:italic"></div>'}, [General.Param1], ''\\\],
+				\\\]);
+			}
+		}
+		
+		scopes.push(newscope);
+	] 
+	
+]

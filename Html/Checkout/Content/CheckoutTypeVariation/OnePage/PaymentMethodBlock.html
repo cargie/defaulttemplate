@@ -1,0 +1,50 @@
+<div id="opc-payment-method" class="checkout-block payment-method">
+	<div class="title">
+		<div class="circle-number">[General.Param1]</div><div class="label"><h5>[_Payment Method]</h5></div>
+	</div>
+	<div class="content ">
+		<div class="payment-method-form">
+			<form action="" id="co-payment-form">
+				<ul class="payment-method-list">
+					[CheckOut.AvailablePaymentMethods=
+					<li>
+						<input class="payment-method-item" name="method" type="radio" value="[PaymentMethod.Id]" id="p_method_[PaymentMethod.Code]" class="radio in-block">
+						<label class="in-block payment-method-item" for="p_method_[PaymentMethod.Code]">[PaymentMethod.Name] <span>[PaymentMethod.AdditionalCost]</span> </label>
+						<div class="payment-additional-info">
+							<ul>
+							[PaymentMethod.ExtraFields=
+								[?CheckOutExtraDataField.Type
+									|TextField=
+										<li>
+											<span>[CheckOutExtraDataField.Caption]</span><br/>
+											<input type="text" name="" value=""/>
+										</li>
+									|
+									|CheckBox=
+									|
+								]
+							]
+							</ul>
+						</div>
+					</li>
+					]
+				</ul>
+				<hr/>
+				<div class="buttons-set">
+					<a class="step-back left" href="#" onclick="checkout.stepBack();return false;">
+						<img src="[File:/images/i_asc_arrow.gif]"/> Back
+					</a>
+					<span class="please-wait" id="payment-method-please-wait" style="display:none;float:left;">
+						<img src="[File:/images/opc-ajax-loader.gif]" alt="Loading next step..." title="[_Loading next step...]" class="v-middle">[_Loading next step...]
+					</span>
+					<div class="required-fields"><em>* [_Required fields]</em></div>
+					<button type="button" title="Create an Account" class="button btn[Design.DesignSelectionName,ButtonStyle]" onclick="payment.save()" ><span><span>[_Continue]</span></span></button>
+				</div>
+			</form>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+	var payment = new Payment('co-payment-form','[Website.GetUrl,CheckOut,savePayment]');
+</script>

@@ -1,0 +1,56 @@
+/*
+*	Renders a block containing list of featured products.
+*/
+[Website.FeaturedProducts,1,,'Name',Ascending]
+[?Filter.Empty|no=
+<div class="featured-products-block home-block simple-slider">
+	<div class="block-title"><h3>[_Featured Products] </h3></div>
+	<ul class="products-grid inline-list" id="featured_simpleslider_carousel">
+		[Filter.Products=
+			<li class="item">
+				<div class="item-wrapper">
+					<a title="[Product.Name]" href="[Website.GetUrl,Product,[Product.Id]]">
+						<img class="product-image" width="110" data-src="holder.js/300x200" src="/[Product.ThumbnailImage=[ProductImage.ImageUrl,140,150]]" alt="">
+					</a>
+					<div class="product-details">
+						<a title="[Product.Name]" class="product-name" href="[Website.GetUrl,Product,[Product.Id]]">
+							<h4>[Product.Name]</h4>
+						</a>
+						<div class="product_price-container in-block">
+							<div class="price-box"><span class="price">[:PriceBlock?Product.Sale]</span></div>
+						</div>
+				  	</div>
+				  </div>
+			</li>
+		]
+	</ul>
+	<a class="prev" id="featured_simpleslider_prev" href="#"><span>prev</span></a>
+	<a class="next" id="featured_simpleslider_next" href="#"><span>next</span></a>
+
+</div>
+
+<script type="text/javascript">
+jQuery(function() {
+	jQuery('#featured_simpleslider_carousel').carouFredSel({
+		width: '100%',
+		items: 4,
+		scroll: {
+			pauseOnHover: true,
+			onBefore: function() {
+				jQuery(this).children().removeClass( 'hover' );
+			}
+		},
+		prev: {
+			button: '#featured_simpleslider_prev',
+			items: 1
+		},
+		next: {
+			button: '#featured_simpleslider_next',
+			items: 1
+		},
+		auto: false
+	});
+ 
+});
+</script>
+]

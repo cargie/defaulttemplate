@@ -1,0 +1,40 @@
+[?ShoppingCart.Empty
+
+|CartFilled=
+	<div class="block">
+		<div class="title">
+			<h2>[_Recently Added Items]</h2>
+		</div>
+		<div class="block-content">
+			<div class="cart-items-block">
+				<p>[_There is/are <strong>%1</strong> items in your shopping cart, [ShoppingCart.NrItems]]</p>
+				<p>[_CARD SUBTOTAL:] <strong>[ShoppingCart.TotalInclTax]</strong></p>
+				
+				<ul class="media-list">
+				[ShoppingCart.RecentlyAddedItems,2=
+					<li class="media">
+						<div class="product-image in-block">
+							<a href="[Website.GetUrl,Product,[Product.Id]]">
+							  <img class="img-polaroid" width="50" title="[Product.Name]" src="/[Product.ThumbnailImage=[ProductImage.ImageUrl,100,100]]">
+							</a>
+						</div>
+						<div class="product-details in-block">
+							<h5 class="media-heading " style="font-size: 12px;">
+								<a href="[Website.GetUrl,Product,[Product.Id]]" class="search-product-title" style="text-decoration:none">[Product.Name]</a>
+							</h5>
+						 
+						  	<div>
+						  		<i>[Product.ShortDescription]</i>
+						  		
+						  		<p><small>[_QTY :] [ShoppingCartItem.Quantity]</small></p>
+						 	</div>
+						 	
+						</div>
+				  	</li>
+				  ]
+				</ul>
+			</div>
+					
+		</div>
+	</div>
+]

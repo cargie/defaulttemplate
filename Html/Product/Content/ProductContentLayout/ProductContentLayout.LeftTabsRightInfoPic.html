@@ -1,0 +1,53 @@
+/*
+*	Renders the product content layout containing tab controls on the left then product
+*								information and image on the right
+*/
+
+<div class="product-content-layout left-info-right-tabs">
+	<div class="large-12 product-page">
+		<div class="large-12 product-essential clearfix">
+			<div class="large-7 columns ">
+				<div class="large-12 columns product-info product-additional-info panel">
+					<ul class="tabs" data-tab="" role="tablist">
+						<li class="tab-title active" role="presentational"><a href="#" role="tab" tabindex="0" aria-selected="true" content="details">Product details</a></li>
+						<li class="tab-title" role="presentational"><a href="#" role="tab" tabindex="0" aria-selected="false" content="upsell">Upsell products</a></li>
+						<li class="tab-title" role="presentational"><a href="#" role="tab" tabindex="0" aria-selected="false" content="related">Related products</a></li>
+					</ul>
+					<div class="tabs-content ">
+						<section role="tabpanel" aria-hidden="false" class="content active" id="details">
+							[:ProductContentLayoutTabsContentProductDetails]
+						</section>
+						<section role="tabpanel" aria-hidden="false" class="content " id="upsell">
+							[:ProductContentLayoutTabsContentProductUpsell]
+						</section>
+						<section role="tabpanel" aria-hidden="false" class="content " id="related">
+							[:ProductContentLayoutTabsContentProductRelated]
+						</section>
+					</div>
+				</div>
+			</div>
+			<div class="large-5 columns text-right">
+				[:ProductContentLayoutInfoBlock]
+				<div class="row">
+					[:ProductMediaImageContainer]
+				</div>
+			</div>
+		</div>
+		[:ProductOptions] 			<!-- design variation -->
+	</div>
+</div>
+
+<script type="text/javascript">
+ 	jQuery(document).ready(function(){
+ 		jQuery(".tabs .tab-title a[role=tab]").click(function(){
+			var tab = jQuery(this);
+			console.log(tab.attr("content"));
+			jQuery(".tabs .tab-title").removeClass("active");
+			tab.parent().addClass("active");
+			var content_id = tab.attr("content");
+			jQuery(".tabs-content .content").removeClass("active");
+			jQuery("#"+content_id).addClass("active");
+			return false;
+		});
+ 	})
+</script>

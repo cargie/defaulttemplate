@@ -1,0 +1,47 @@
+/*
+*		Renders a 3 column layout containing left, right content and main content cms page.
+*
+*/
+/** -------------------------------------------------------------------
+Name:              3Columns.CmsPage
+Location:          /Html/CmsPage/Layout/3Columns.CmsPage.html
+Created By:        Leslie Canete
+Created At:        06-Okt-2014 18:55 (relocation first 15 models)
+Last modified By:  Seth Malaki
+Last modified At:  21-Okt-2014 17:09 (myupdates on addingComments)
+Calling blocks:    breadcrumb 	footer 	header 	leftColumn 	mainContent 	notification 	rightColumn 	
+--------------------------------------------------------------------**/
+
+
+<div class="page">
+	[?CmsPage.Header|Yes=
+	[:header]
+	]
+	<div class="three-columns">
+		[?CmsPage.Header|Yes=
+			[:breadcrumb]
+		]
+		<div class="main-container">
+			<div class="left ">
+				[?CmsPage.LeftCol|Yes=
+				[:leftColumn]
+				]
+			</div>
+			<div class="main ">
+				[:notification]
+				[:mainContent]
+			</div>
+		</div>
+		<div class="right">
+			[?CmsPage.RightCol|Yes=
+			[:rightColumn]
+			]
+		</div>
+		<br style="clear:both;"/>
+	</div>
+	[?CmsPage.Footer|Yes=
+	[:footer]
+	]
+
+</div>
+

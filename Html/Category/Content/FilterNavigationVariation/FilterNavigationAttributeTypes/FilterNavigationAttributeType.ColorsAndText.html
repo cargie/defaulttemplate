@@ -1,0 +1,33 @@
+/*
+*	Renders a typical colors swatches with text labels control for a single filter navigation attributes option.
+*
+*/
+/** -------------------------------------------------------------------
+Name:              FilterNavigationAttributeType.ColorsAndText
+Location:          /Html/Category/Content/FilterNavigationVariation/FilterNavigationAttributeTypes/FilterNavigationAttributeType.ColorsAndText.html
+Created By:        Leslie Canete
+Created At:        13-Okt-2014 18:44 (rename header and side blocks)
+Last modified By:  Seth Malaki
+Last modified At:  21-Okt-2014 17:09 (myupdates on addingComments)
+--------------------------------------------------------------------**/
+
+
+<div class="menu-header"><h2>[LayeredAttribute.Name]</h2></div>
+<ul class="links-navigation">
+	[LayeredAttribute.Options=
+	<li class="color-option">
+		<div class="link-attribute" onclick="selectaction('[Website.GetUrl,Ajax,Update]','[UserInput.DefaultUrlPart]/[UserInput.FilterUrl]','Filter/[LayeredAttribute.AttributeCode]/[LayeredOption.AdminName]')" >
+			<div class="colorbox-border">
+				<div class="colorbox" style="background-color:[LayeredOption.Color]"></div>
+			</div>
+			<span class="color-name">[LayeredOption.Name]</span>
+			<span class="count">([LayeredOption.Count])</span>
+		</div>
+	</li>
+	]
+</ul>
+<!-- for ajax -->
+<!-- onclick="selectaction('[Website.GetUrl,Ajax,Update]','[Website.GetUrl,[Url.Model],[Url.View]/[Url.Controller]]',
+'[UserInput.FilterUrl]/[LayeredAttribute.AdminName]/[LayeredOption.AdminName]/')"-->
+<!-- for jquery -->
+<!-- onclick="setLocation('[Website.GetUrl,[Url.Model],[Url.View]/[Url.Controller]][UserInput.FilterUrl]/[LayeredAttribute.AdminName]/[LayeredOption.AdminName]')"-->

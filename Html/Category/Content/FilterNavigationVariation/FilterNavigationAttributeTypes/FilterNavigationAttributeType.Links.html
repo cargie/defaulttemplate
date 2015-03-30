@@ -1,0 +1,29 @@
+/*
+*		Renders a typical link control for a single filter navigation attributes option.
+*
+*/
+/** -------------------------------------------------------------------
+Name:              FilterNavigationAttributeType.Links
+Location:          /Html/Category/Content/FilterNavigationVariation/FilterNavigationAttributeTypes/FilterNavigationAttributeType.Links.html
+Created By:        Leslie Canete
+Created At:        13-Okt-2014 18:44 (rename header and side blocks)
+Last modified By:  Seth Malaki
+Last modified At:  21-Okt-2014 17:09 (myupdates on addingComments)
+--------------------------------------------------------------------**/
+
+
+<div class="menu-header"><h2>[LayeredAttribute.Name]</h2></div>
+<ul class="links-navigation">
+	[LayeredAttribute.Options=
+	<li> <div class="link-attribute" onclick="selectaction('[Website.GetUrl,Ajax,Update]','[UserInput.DefaultUrlPart]/[UserInput.FilterUrl]','Filter/[LayeredAttribute.AttributeCode]/[LayeredOption.AdminName]')" >[LayeredOption.Name]
+			<span class="count">([LayeredOption.Count])</span>
+		</div>
+	</li>
+	]
+</ul>
+
+<!-- for ajax -->
+<!-- onclick="selectaction('[Website.GetUrl,Ajax,Update]','[Website.GetUrl,[Url.Model],[Url.View]/[Url.Controller]]',
+'[UserInput.FilterUrl]/[LayeredAttribute.AdminName]/[LayeredOption.AdminName]/')" -->
+<!-- for jquery -->
+<!-- onclick="setLocation('[Website.GetUrl,[Url.Model],[Url.View]/[Url.Controller]][UserInput.FilterUrl]/[LayeredAttribute.AdminName]/[LayeredOption.AdminName]')"-->

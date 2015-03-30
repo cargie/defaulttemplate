@@ -1,0 +1,29 @@
+<div id="opc-payment-method" class="checkout-block payment-method">
+	<div class="title">
+		<div class="circle-number">5</div><div class="label">[_Payment Method]</div>
+	</div>
+	<div class="content ">
+		<div class="payment-method-form">
+			<ul class="payment-method-list">
+				<li>
+					<label><strong>[_Check money order]</strong></label>
+					<input type="radio" name="check_money_order" value=""/>[_Check money order]
+				</li>
+				<li>
+				
+					<label><strong>[_Paytest]</strong></label>
+					<input type="radio" name="paytest" value=""/> [_PayTest]
+				</li>
+			</ul>
+			<hr/>
+			<div class="buttons-set">
+				<span class="please-wait" id="payment-method-please-wait" style="display:block;float:left;">
+					<img src="[File:/images/opc-ajax-loader.gif]" alt="Loading next step..." title="[_Loading next step]..." class="v-middle"> [_Loading next step]...        
+				</span>
+				<div class="required-fields"><em>* [_Required fields]</em></div>
+				<button type="button" title="Create an Account" class="button btn[Design.DesignSelectionName,ButtonStyle]" onclick="setLocation('http://linux:8000/base/Customer/AccountCreate')"><span><span>[_Continue]</span></span></button>
+			</div>
+		</div>
+		
+	</div>
+</div>

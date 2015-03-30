@@ -1,0 +1,52 @@
+select#test_select{
+	background-color: #FF0000;
+}
+
+#incra_intellisense{
+	width:200px;
+	position:absolute;
+	height:300px;
+	border:1px solid #CCC;
+	background:#f5f5f5;
+}
+
+ul.auto-list{
+	display: none;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	border: 1px solid #aaa;
+	-webkit-box-shadow: 0 4px 5px rgba(0,0,0,.15);
+	-moz-box-shadow   : 0 4px 5px rgba(0,0,0,.15);
+	-o-box-shadow     : 0 4px 5px rgba(0,0,0,.15);
+	box-shadow        : 0 4px 5px rgba(0,0,0,.15);
+	line-height:18px;
+	cursor: default;
+	padding: 0;
+	margin:0;
+	margin-top:-24px;
+	list-style:none;
+	z-index: 1000000;
+	background:#fff;
+	
+}
+
+ul.auto-list > li:hover,
+ul.auto-list > li[data-selected=true]{
+	/*background: #e5e5e5;*/
+	color: #000;
+	background:url('classes_icon.png') no-repeat 5px 3px #e5e5e5;
+}
+
+ul.auto-list > li{
+	background: #fff;
+	line-height: 80%;
+	padding: 7px 20px 8px 25px;
+	font-family:arial;
+	font-size:12px;
+	background:url('classes_icon.png') no-repeat 5px 3px;
+}
+ul.auto-list > li > mark{
+	font-weight:bold;
+}
+

@@ -1,0 +1,29 @@
+/*
+*		Renders a cms link information.
+*							
+*/
+
+<div class="col1-block in-block">
+		<ul id="btn-link" class="pages-links">
+			<li><button href= "" class="orange">
+				<div><h3>About Us</h3>
+				<p>What we do and how we get here.</p></div></button></li>
+			<li><button href="#" class="orange"><div><h3>Contact Us</h3><p>Call us, Email us, Send us love letters or visit out homepage.</p></div></li>
+			<li><button href="#" class="orange"><div><h3>Site Map</h3><p>Be guided by our sitemap.</p></div></button></li>
+			<li><button href="#" class="orange"><div><h3>Legal Notice</h3><p>Legal notices and terms of use.</p></div></button></li>
+			<li><button href="#" class="orange"><div><h3>Terms and Conditions</h3><p>Rights and Responsibilities</p></div></button></li>
+			<li><button href="#" class="orange"><div><h3>Privacy Policy</h3><p>Your privacy is critically important to us.</p></div></button></li>
+
+		</ul>
+		<script type="text/javascript">
+			jQuery("#btn-link li").hover(
+			  function () {
+				jQuery(this).append(jQuery("<span class='arrow'></span>"));
+			  }, 
+			  function () {
+				jQuery(this).find("span:last").remove();
+			  }
+			);
+
+		</script>
+	</div>

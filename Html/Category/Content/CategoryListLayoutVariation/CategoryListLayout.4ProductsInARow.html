@@ -1,0 +1,64 @@
+/*
+*		Renders the layout of product listings in a certain category.
+*
+*/
+/** -------------------------------------------------------------------
+Name:              CategoryListLayout.4ProductsInARow
+Location:          /Html/Category/Content/CategoryListLayoutVariation/CategoryListLayout.4ProductsInARow.html
+Created By:        Leslie Canete
+Created At:        09-Okt-2014 16:49 (categorylistlayoutvariation, categorysidenavigation, checkouttype, change to button style)
+Last modified By:  Seth Malaki
+Last modified At:  23-Okt-2014 17:52 (myupdates in adding comments)
+Possible call:    mainContent.AdvancedSearchResult 	mainContent.BestRated 	mainContent.BestSellers 	mainContent.Brand 	mainContent.Category 	mainContent.Featured 	mainContent.MostInteresting 	mainContent.MostViewed 	mainContent.New 	mainContent.OthersAreViewing 	mainContent.RecentlyViewed 	mainContent.Sales 	mainContent.Search 	mainContent.Tag 	
+Calling blocks:    ProductListItem.StyleA 	ProductListItem.StyleB 	ProductListItem.StyleC 	ProductListItemAddTo 	ProductListItemAttributeColor 	ProductListItem 	ProductPriceBlock 	
+--------------------------------------------------------------------**/
+
+
+<div class="product-list-four_products_in_a_row">
+	[?UserInput.CatalogMode|List=
+		<ul class="list">
+		[Filter.Products=
+			<li class="product-item">
+				[:ProductListItem]
+			</li>
+			]
+		</ul>
+	|Grid=
+	<ul class="grid aaa">
+		[Filter.Products=
+		<li class="product-item in-block">
+			[?Design.DesignSelectionName,ProductListItem
+			|StyleA=[:ProductListItem.StyleA]
+			|StyleB=[:ProductListItem.StyleB]
+			|StyleC=[:ProductListItem.StyleC]
+			|=
+			<div class="item-wrapper "  id="prd[Product.Id]">
+				<div class="product-image">
+				   <a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]"><img src="/[Product.ThumbnailImage=[ProductImage.ImageUrl,140,150]]" alt="[Product.Name]"/></a>
+				</div>
+				
+				 <div class="product-details">
+					<a href="[Website.GetUrl,Product,[Product.Id]]"><h3 class="product-name">[Product.Name]</h3></a>
+					<div class="ratings">
+						<div class="rating-box">
+							<div class="rating" style="width:[Product.Ranking]%"></div>
+						</div>
+						<span class="rating-links">
+						<a href=""> [_%1 Review(s), [Product.NumberOfReviews]] </a>
+						</span>
+					</div>
+					[:ProductPriceBlock?Product.Sale] 
+					[:ProductListItemAttributeColor]
+					
+					<div class="add-to-cart">
+						<button class="button btn[Design.DesignSelection,ButtonStyle]"><span>[_Add to Cart]</span></button>
+					</div>
+					[:ProductListItemAddTo]
+				</div>
+			</div>
+			]
+		</li>
+		]
+	</ul>
+	]
+</div>

@@ -1,0 +1,37 @@
+/*
+*	(default left nav) Renders default left navigation menu.
+*/
+/** -------------------------------------------------------------------
+Name:              DefaultLeftNav
+Location:          /Html/Category/Content/SideCategoryNavigationMenuVariation/DefaultLeftNav.html
+Created By:        Leslie Canete
+Created At:        13-Okt-2014 18:44 (rename header and side blocks)
+Last modified By:  Aris Catan
+Last modified At:  27-Okt-2014 13:01 (updates on adding comments)
+Called from:       SideCategoryNavigationBlock 	
+--------------------------------------------------------------------**/
+
+
+<div class="left-category-menu">
+	<ul class="level-0">
+		[Website.LeftMenuSorted=
+			<li class="[?MenuOption.HasChildren|Yes=has-dropdown|No=[?MenuOption.MenuOptionType|Category=has-dropdown]] ">
+				<a class="[?MenuOption.IsCurrent|same= current|different=|parent=current]" href="[MenuOption.FullUrl]" >[MenuOption.Name]</a>
+				[?MenuOption.HasChildren|Yes=
+					<ul class="dropdown">
+						[MenuOption.TopMenuChildrenSorted=
+								[?MenuOption.InTopMenu|Yes=
+									<li class="[?MenuOption.HasChildren|Yes=has-dropdown]">
+										<a href="[MenuOption.FullUrl]" class="[?MenuOption.IsCurrent|same= current|different=|parent= current]">
+											<span class="[?MenuOption.IsCurrent|same= current|different=|parent= current]">[MenuOption.Name]</span>
+											[?MenuOption.HasChildren|Yes=<span class="toggle">+</span>]
+										</a>
+									</li>
+								]
+						]
+					</ul>
+				]
+			</li>
+		]
+	</ul>
+</div>

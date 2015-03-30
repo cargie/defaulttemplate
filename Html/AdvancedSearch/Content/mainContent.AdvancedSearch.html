@@ -1,0 +1,70 @@
+/*
+*	
+*		renders the main content of the AdvanceSearchPage.  This dislays the 
+*		advance search otions where user can opt to choose.
+*/
+/** -------------------------------------------------------------------
+Name:              mainContent.AdvancedSearch
+Location:          /Html/AdvancedSearch/Content/mainContent.AdvancedSearch.html
+Created By:        Leslie Canete
+Created At:        06-Okt-2014 18:55 (relocation first 15 models)
+Last modified By:  Seth Malaki
+Last modified At:  20-Okt-2014 19:10 (updates on adding comments)
+Called from:       AdvancedSearchPage 	
+Possible call:    1Column.CmsPage 	1Column 	2ColumnsLeft.CmsPage 	2ColumnsLeft 	2ColumnsRight.CmsPage 	2ColumnsRight 	3Columns.CmsPage 	3Columns 	CompareProductsPage 	
+Calling blocks:    AdvancedSearchFields 	
+--------------------------------------------------------------------**/
+<div class="col-main">
+	<div class="page-title">
+		<h2>[_Catalog Advanced Search]</h2>
+	</div>
+	<form action="" method="get" id="form-validate">
+		<div class="fieldset advanced-search">
+			<h3 class="legend">[_Search Settings]</h3>
+			<ul class="form-list" id="advanced-search-list">
+				[Website.IterateAttributesForAdvancedSearch=
+				<li class="">
+					[:AdvancedSearchFields?Attribute.CatalogInputType]
+				</li>
+				]
+			</ul>
+			<div class="buttons-set">
+				<button type="button" title="[_Search]" onclick="submitSearch();" class="button btn[Design.DesignSelectionName,ButtonStyle]"><span><span>[_Search]</span></span></button>
+			</div>
+		</div>
+		<script type="text/javascript">
+			[Website.IterateAttributesForAdvancedSearch=
+				var searched_val='[UserInput.AdvancedSearchValue,[Attribute.AttributeCode]]';
+					var elem=jQuery('#[Attribute.AttributeCode]');
+					if (elem.parent().hasClass('input-range')){
+						elem.val(searched_val.split('-')\[0\]);
+						elem.next('input').val(searched_val.split('-')\[1\]);
+					}else
+						elem.val(searched_val);
+			]
+			function submitSearch(){
+				var str="";
+				jQuery('#form-validate *').filter(':input').each(function(){
+					var key=jQuery(this).attr('name');
+					if (key){
+						if (jQuery(this).parent().hasClass('input-range')){
+							if (jQuery(this).index() == 0){
+								var from= jQuery(this).val();
+								var to=jQuery(this).next('input').val();
+								(to) ? (val= from ? from +"-"+ to : 1 +"-"+ to) : (val= from); 
+								(val) ? (str=str+key+"/"+val+"/"): "";
+							}
+						}else{
+							var val=jQuery(this).val();
+							(val) ? (str=str+key+"/"+val+"/") :"";
+						}
+					}
+				});
+				if (str){
+					window.location.href="[Website.GetUrl,AdvancedSearch]/"+str;
+				}
+			}
+		</script>
+	</form>
+</div>
+

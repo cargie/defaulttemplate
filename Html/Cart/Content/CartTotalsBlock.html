@@ -1,0 +1,151 @@
+/*
+*		renders the shopping cart totals information and taxes.
+*
+*/
+/** -------------------------------------------------------------------
+Name:              CartTotalsBlock
+Location:          /Html/Cart/Content/CartTotalsBlock.html
+Created By:        Leslie Canete
+Created At:        07-Okt-2014 16:54 (move to and rename ShoppingCartBlocks to Cart)
+Last modified By:  Seth Malaki
+Last modified At:  21-Okt-2014 17:09 (myupdates on addingComments)
+Called from:       mainContent.Cart 	
+Calling blocks:    CartCheckoutButtonBlock 	
+--------------------------------------------------------------------**/
+
+
+<div class="shopping-cart-totals">
+	
+	<table class="">
+		<colgroup>
+			<col width="200">
+			<col width="150">
+		</colgroup>
+		<tbody class="total-title">
+			<tr>	
+                <td class="a-right">
+	    	          <strong>Sub total</strong>
+		        </td>
+				<td class="a-right">
+	    		      <span class="total-price">[ShoppingCart.BasePrice]</span>
+				</td>
+			</tr>
+		 	[ShoppingCart.Update]
+			   [?ShoppingCart.HasDiscounts
+					|yes=
+					<tr>
+			    	<td class="a-right">
+					<strong>Discounts:</strong>
+		            <span class="total-price">
+		           [ShoppingCart.Discounts=[ShoppingCartDiscount.Id][ShoppingCartDiscount.Name][ShoppingCartDiscount.Amount]([ShoppingCartDiscount.AmountText]) ]
+		            </span>                     
+	                   </td>
+			    	   <td class="a-right">
+				          <span class="total-price">[ShoppingCart.TotalDiscounts]</span>
+					  </td>
+					</tr>
+				]
+				<tr>
+		    			<td class="a-right">
+						<strong>Shipping Costs:</strong>
+					</td>
+		    			<td class="a-right">
+						<span class="total-price">[ShoppingCart.ShippingCosts]</span>
+					</td>
+				</tr>
+				[?ShoppingCart.PaymentCostAvaiable
+				|yes=<tr>
+		    			<td class="a-right">
+						<strong>[_Payment Cost]</strong>
+					    </td>
+		    			<td class="a-right">
+						<span class="total-price">[ShoppingCart.PaymentCost]</span>
+					   </td>
+				</tr>
+				]
+				[?ShoppingCart.HasTaxes
+					|yes=
+
+				  		[?ShoppingCart.AllTaxesIncluded
+
+			  		|yes=
+					      <tr>
+						        <td class="a-right"><strong>[_Tax]</strong></td>
+						        <td class="a-right">
+							     <span class="total-price">[ShoppingCart.TotalTax]</span>
+						        </td>
+					      </tr>
+					      <tr>
+						        <td class="a-right"><strong>[_Subtotal (Excl. Tax)]</strong></td>
+						        <td class="a-right">
+							     <span class="total-price">[ShoppingCart.TotalExclTax]</span>
+						        </td>
+					      </tr>
+					      <tr>
+						        <td class="a-right"><strong>[_Subtotal (Incl. Tax)]</strong></td>
+						        <td class="a-right">
+							    <span class="total-price">[ShoppingCart.TotalInclTax]</span>
+						        </td>
+					      </tr>
+			     	|no=
+						  <tr>
+				    	    <td class="a-right">
+							   <strong>Taxes:</strong> [ShoppingCart.TaxAndCosts= [ShoppingCartTaxAndCost.Id] [ShoppingCartTaxAndCost.Name]  [ShoppingCartTaxAndCost.Amount]%  [ShoppingCartTaxAndCost.Value][ShoppingCart.CurrentTaxIncluded|yes=inclusive btw|no=exclusive btw]
+		                         ]
+		    				</td>
+				    		<td class="a-right">
+								<span class="total-price">[ShoppingCart.TotalTax]</span>
+							</td>
+						  </tr>
+                    	]
+				]	
+			            <tr>
+					    	<td class="a-right">
+								<strong>Total (Not Included Taxes)</strong>
+							</td>
+					    	<td class="a-right">
+								<span class="total-price">[ShoppingCart.TotalNotIncludedTaxes]</span>
+						    </td>
+						</tr>
+						<tr>
+						      <td class="a-right"><strong>[_Subtotal (Excl. Tax)]</strong></td>
+						      <td class="a-right">
+							     <span class="total-price">[ShoppingCart.TotalExclTax]</span>
+						      </td>
+					    </tr>
+						<tr>
+				    		<td class="a-right">
+							<strong>[_Total]</strong>
+							</td>
+				    		<td class="a-right">
+							<span class="total-price">[ShoppingCart.SubTotal]</span>
+							</td>
+						</tr>
+					    <tr>
+					        	<td class="a-right"><strong>[_Grand Total (Incl. Tax)]</strong></td>
+						        <td class="a-right">
+							              <span class="total-price">[ShoppingCart.TotalInclTax]</span>
+						        </td>
+					    </tr>																						
+		</tbody>
+		<tfoot class="grand-total">
+			<tr>
+				<td colspan="2" class="a-right">
+					<div class="checkout-button-bottom">
+					[:CartCheckoutButtonBlock]
+					</div>
+				</td>
+			</tr>
+		</tfoot>
+   </table>
+</div>
+
+<style type="text/css">
+	.total-title tr td{
+		font-size: 13px;
+	}
+	tfoot.grand-total tr td{
+		font-size: 13px;
+	}
+</style>
+

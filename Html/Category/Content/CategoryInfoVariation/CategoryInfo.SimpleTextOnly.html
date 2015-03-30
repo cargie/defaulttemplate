@@ -1,0 +1,18 @@
+[?Category.HasChildren|yes=
+	<div class="subcategory-block large-12 simple-text-only">
+		<p>[_Sub Categories]</p>
+		<div class="category-grid">
+				[Category.ChildCategories=
+					<div class="item">
+						<div class="category-title in-block">
+							<a href="[Website.GetUrl,Category,[Category.Id]]" alt="[Category.Name]">
+								<h5>
+									[Category.Name]
+								</h5>
+							</a>
+						</div>
+					</div>
+				]
+		</div>
+	</div>
+]

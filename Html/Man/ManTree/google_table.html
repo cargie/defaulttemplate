@@ -1,0 +1,210 @@
+<script type="text/javascript">
+	availableFilters=\["All","Admin","Catalog","Cart","Customer","Config","Design","Extensions","Faq","Financials","Forum","Newsletter","Order","Promotions","Reviews","SurveyPoll"\];
+	
+	google.load("visualization", "1", {packages:["orgchart"]});
+	//google.setOnLoadCallback(drawChart);
+	function drawChart() {
+		//var controller='[Url.Controller]';
+		var controller = jQuery("#filter-selector").val();
+		if (controller!='All'){
+			jQuery('#filter-selector').val(controller);
+			var x=1;
+			var parentscopes=Array();
+			[Man.Children,Website,[Url.Controller]=
+				if (jQuery.inArray('[Man.ScopeName]',parentscopes)===-1){
+					var data = new google.visualization.DataTable();
+					data.addColumn('string', 'Name');
+					data.addColumn('string', 'Manager');
+					data.addColumn('string', 'ToolTip');
+					var scopename='[Man.Scopename]';
+					parentscopes.push(scopename);
+					var scopes=Array();
+					scopes.push(scopename);
+					data.addRows(\\[
+						\\[{v:'[Man.ScopeName]', f:'[Man.ScopeName]'+'<div style="display:none;color:red; font-style:italic"></div>'}, '', ''\\],
+					\\]);
+					[?Man.ScopeHasChildren
+					|Yes=	
+						[Man.Children=
+							if (scopename!="[Man.ScopeName]"){
+								data.addRows(\\\\[
+									\\\\[{v:scopename+'[Man.ScopeName]', f:'[Man.ScopeName]'+'<div style="display:none;color:red; font-style:italic"></div>'}, scopename, ''\\\\],
+								\\\\]);
+							}
+							var newscope=scopename+'[Man.ScopeName]';
+							scopes.push(newscope);
+							[:ManChildTablesBlock2,newscope]
+								
+						]
+					]
+					jQuery("#main_content").append("<h5>"+scopename+"</h5>");
+					jQuery("#main_content").append("<div id='chart_div"+x+"'></div>");
+					var chart = new google.visualization.OrgChart(document.getElementById('chart_div'+x));
+					chart.draw(data, {allowHtml:true,allowCollapse:true,size: 'medium'});
+					x++;
+					//console.log(scopes);
+				}
+			]
+			
+		}else{
+			
+			var parenttables=Array();
+			parenttables=\["Website", "Design","Country","PaymentProcessor","ShippingProcessor","Currency","Language","Right","DomainRule"\]
+			for (var i = 0; i < parenttables.length; i = i + 1){
+				var data = new google.visualization.DataTable();
+				data.addColumn('string', 'Name');
+				data.addColumn('string', 'Manager');
+				data.addColumn('string', 'ToolTip');
+		
+				var parentscope=parenttables[i];
+				switch (parentscope) {
+					case 'Website':
+						var scopes=Array();
+						data.addRows(\[
+							\[{v:parentscope, f:parentscope+'<div style="display:none;color:red; font-style:italic"></div>'}, '', ''\],
+						\]);
+						[Man.Children,Website=
+							[:ManChildTablesBlock1]
+						]
+			
+						jQuery("#main_content").append("<h5>"+parenttables\[i\]+"</h5>");
+						jQuery("#main_content").append("<div id='chart_div"+i+"'></div>");
+						var chart = new google.visualization.OrgChart(document.getElementById('chart_div'+i));
+						chart.draw(data, {allowHtml:true,allowCollapse:true,size: 'medium'});
+					
+						break;
+					case 'Design':
+					
+						var scopes=Array();
+						data.addRows(\[
+							\[{v:parentscope, f:parentscope+'<div style="display:none;color:red; font-style:italic"></div>'}, '', ''\],
+						\]);
+						[Man.Children,Design=
+							[:ManChildTablesBlock1]
+						]
+			
+						jQuery("#main_content").append("<h5>"+parenttables\[i\]+"</h5>");
+						jQuery("#main_content").append("<div id='chart_div"+i+"'></div>");
+						var chart = new google.visualization.OrgChart(document.getElementById('chart_div'+i));
+						chart.draw(data, {allowHtml:true,allowCollapse:true,size: 'medium'});
+						break;
+					case 'Country':
+					
+						var scopes=Array();
+						data.addRows(\[
+							\[{v:parentscope, f:parentscope+'<div style="display:none;color:red; font-style:italic"></div>'}, '', ''\],
+						\]);
+						[Man.Children,Country=
+							[:ManChildTablesBlock1]
+						]
+			
+						jQuery("#main_content").append("<h5>"+parenttables\[i\]+"</h5>");
+						jQuery("#main_content").append("<div id='chart_div"+i+"'></div>");
+						var chart = new google.visualization.OrgChart(document.getElementById('chart_div'+i));
+						chart.draw(data, {allowHtml:true,allowCollapse:true,size: 'medium'});
+						break;
+					case 'PaymentProcessor':
+					
+						var scopes=Array();
+						data.addRows(\[
+							\[{v:parentscope, f:parentscope+'<div style="display:none;color:red; font-style:italic"></div>'}, '', ''\],
+						\]);
+						[Man.Children,PaymentProcessor=
+							[:ManChildTablesBlock1]
+						]
+			
+						jQuery("#main_content").append("<h5>"+parenttables\[i\]+"</h5>");
+						jQuery("#main_content").append("<div id='chart_div"+i+"'></div>");
+						var chart = new google.visualization.OrgChart(document.getElementById('chart_div'+i));
+						chart.draw(data, {allowHtml:true,allowCollapse:true,size: 'medium'});
+						break;
+					case 'ShippingProcessor':
+					
+						var scopes=Array();
+						data.addRows(\[
+							\[{v:parentscope, f:parentscope+'<div style="display:none;color:red; font-style:italic"></div>'}, '', ''\],
+						\]);
+						[Man.Children,ShippingProcessor=
+							[:ManChildTablesBlock1]
+						]
+						jQuery("#main_content").append("<h5>"+parenttables\[i\]+"</h5>");
+						jQuery("#main_content").append("<div id='chart_div"+i+"'></div>");
+						var chart = new google.visualization.OrgChart(document.getElementById('chart_div'+i));
+						chart.draw(data, {allowHtml:true,allowCollapse:true,size: 'medium'});
+						break;
+					case 'Currency':
+					
+						var scopes=Array();
+						data.addRows(\[
+							\[{v:parentscope, f:parentscope+'<div style="display:none;color:red; font-style:italic"></div>'}, '', ''\],
+						\]);
+						[Man.Children,Currency=
+							[:ManChildTablesBlock1]
+						]
+			
+						jQuery("#main_content").append("<h5>"+parenttables\[i\]+"</h5>");
+						jQuery("#main_content").append("<div id='chart_div"+i+"'></div>");
+						var chart = new google.visualization.OrgChart(document.getElementById('chart_div'+i));
+						chart.draw(data, {allowHtml:true,allowCollapse:true,size: 'medium'});
+						break;
+					case 'Language':
+					
+						var scopes=Array();
+						data.addRows(\[
+							\[{v:parentscope, f:parentscope+'<div style="display:none;color:red; font-style:italic"></div>'}, '', ''\],
+						\]);
+						[Man.Children,Language=
+							[:ManChildTablesBlock1]
+						]
+			
+						jQuery("#main_content").append("<h5>"+parenttables\[i\]+"</h5>");
+						jQuery("#main_content").append("<div id='chart_div"+i+"'></div>");
+						var chart = new google.visualization.OrgChart(document.getElementById('chart_div'+i));
+						chart.draw(data, {allowHtml:true,allowCollapse:true,size: 'medium'});
+						break;
+					case 'Right':
+					
+						var scopes=Array();
+						data.addRows(\[
+							\[{v:parentscope, f:parentscope+'<div style="display:none;color:red; font-style:italic"></div>'}, '', ''\],
+						\]);
+						[Man.Children,Right=
+							[:ManChildTablesBlock1]
+						]
+			
+						jQuery("#main_content").append("<h5>"+parenttables\[i\]+"</h5>");
+						jQuery("#main_content").append("<div id='chart_div"+i+"'></div>");
+						var chart = new google.visualization.OrgChart(document.getElementById('chart_div'+i));
+						chart.draw(data, {allowHtml:true,allowCollapse:true,size: 'medium'});
+						break;
+					case 'DomainRule':
+					
+						var scopes=Array();
+						data.addRows(\[
+							\[{v:parentscope, f:parentscope+'<div style="display:none;color:red; font-style:italic"></div>'}, '', ''\],
+						\]);
+						[Man.Children,DomainRule=
+							[:ManChildTablesBlock1]
+						]
+			
+						jQuery("#main_content").append("<h5>"+parenttables\[i\]+"</h5>");
+						jQuery("#main_content").append("<div id='chart_div"+i+"'></div>");
+						var chart = new google.visualization.OrgChart(document.getElementById('chart_div'+i));
+						chart.draw(data, {allowHtml:true,allowCollapse:true,size: 'medium'});
+						break;
+				}
+			
+			}
+		} //end if - filter
+		
+	}
+	
+	function filtertable(table){
+		window.location.href="[Website.GetUrl,Man,Tables/]"+table;
+	}
+	jQuery(document).ready(function(){
+		for (i=0; i < availableFilters.length; i++){
+			jQuery('#filter-selector').append('<option value="'+availableFilters[i]+'">'+availableFilters[i]+'</option>');
+		}
+	});
+</script>

@@ -1,0 +1,18 @@
+
+/*
+*	Renders a block containing promoheader image block.
+*/
+
+<div class="position[PromoHeaderBlock.ButtonPosition]">
+	<!-- check if there is desc for image -->	
+	<div class="imagetext"><span class="">[PromoHeaderBlock.ImageText]</span></div>
+	<!-- end check -->
+	
+	[?PromoHeaderBlock.HasButtonText
+	|Yes=
+		<div class="dynamic-button-text"><button class="" title="[PromoHeaderBlock.ButtonUrl]" onclick="window.location='[PromoHeaderBlock.ButtonUrl]'"><span class="btn-red"><span>[PromoHeaderBlock.ButtonText] </span></span></button> </div>
+	]
+	
+</div>
+
+

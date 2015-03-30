@@ -1,0 +1,29 @@
+<div class="text-left">
+	<h5>
+	Sample code:
+	</h5>
+	<span>Rendering enabled FAQ category</span><br/>
+<pre class="panel">
+\[Website.FaqCategoriesSorted=
+	\[?FaqCategory.Enabled|Yes=
+		\[FaqCategory.CategoryName\]
+	\]
+\]
+</pre>
+
+<span>Rendering enabled FAQ list question with answer:</span><br/>
+<pre class="panel">
+\[Website.FaqCategoriesSorted=
+	\[?FaqCategory.Enabled|Yes=
+		\[FaqCategory.CategoryName\]
+		\[FaqCategory.QuestionsSorted=
+			\[?Faq.Enabled|Yes=
+				\[Faq.Question\]
+				\[Faq.Answer\]
+			\]
+		\]
+	\]
+\]
+</pre>
+</div>
+

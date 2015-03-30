@@ -1,0 +1,24 @@
+/*
+*		renders a single type of AdvanceSearchFields attributes for advance search.  
+*		Displays a list of Shipping method in a dropdown.
+*/
+/** -------------------------------------------------------------------
+Name:              AdvancedSearchFields.ShippingMethodList
+Location:          /Html/AdvancedSearch/Content/AdvancedSearchFields/AdvancedSearchFields.ShippingMethodList.html
+Created By:        Leslie Canete
+Created At:        07-Okt-2014 16:27 (category, checkout general)
+Last modified By:  Seth Malaki
+Last modified At:  20-Okt-2014 19:10 (updates on adding comments)
+Possible call:    mainContent.AdvancedSearch 	
+--------------------------------------------------------------------**/
+
+
+<label for="[Attribute.AttributeCode]">[Attribute.Title]</label>
+<div class="input-box">
+	<select id="[Attribute.AttributeCode]" name="[Attribute.AttributeCode]" class="select">
+	<option value="">--Please select--</opton>
+		[Website.ShippingMethods=
+			<option value="[ShippingMethod.Name]">[ShippingMethod.Name]</opton>
+		]
+	</select>
+</div>

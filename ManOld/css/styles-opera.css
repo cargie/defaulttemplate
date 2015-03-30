@@ -1,0 +1,31 @@
+html, body { margin: 0; padding: 0; text-align: center; font-family: tahoma;}
+
+.top_orange { margin: 0; padding: 0; height: 2px; background-color: #e5550e;}
+#content_container { position: absolute; top: 0;  margin: 0 auto; padding: 0; width: 100%;}
+.logo_container { position: relative; margin: 0 auto; padding: 0; width: 1000px; height: 97px; text-align: left;}
+.logo { position: relative; display: inline-block; *display:inline; zoom:1; margin: 0; padding: 0; width: 167px; height: 97px; background-color: #4e4e4e; box-shadow: 0 0 5px -1px;}
+.logo img { margin: 0; padding: 12px; text-align: center;}
+.logo_text { position: relative; display: inline-block; margin: 0; padding: 0; width: 300px; vertical-align: super; }
+.logo_text p { font-size: 20px; font-weight: bold; color: #4e4e4e; margin: 0; padding-left: 12px; }
+
+#divider { position: relative; margin: 0 auto; padding: 0; margin-top: 26px; background-color: #e3e3e3; width: 1024px; height: 18px; border-radius: 6px;}
+
+#body_container { position: relative; margin: 0 auto; padding: 0; margin-top: 26px; width: 1024px; }
+#left_column { position: relative; margin: 0; padding: 0; display: inline-block; *display:inline; zoom:1; width: 250px; height: 450px; border-radius: 8px; background-color: #eeeeee;}
+.left_menu { position: relative; margin: 24px 10px; padding-left: 26px; text-align: left;}
+.left_menu ul, li { list-style-type: disk; margin: 7px 8px; padding: 0;}
+.left_menu p { font-size: 14px; font-weight: bold; text-align: left;}
+.left_menu a{ font-size: 12px; color: #000; text-decoration: none;}
+.left_menu a:hover {  color: #e5550e; text-decoration: none;}
+.left_menu a:visited { color: #484fe4; }
+
+#main_content { position: relative; margin: 0; padding: 0; display: inline-block; *display:inline; zoom:1; width: 760px; vertical-align:top;}
+.title { position: relative; margin: 10px; padding: 0; width: 700px; text-align: left;}
+.title p { font-size: 24px; font-weight: bold; color: #181818; margin: 0; padding: 0;}
+.content_divider { position: relative; margin: 0 auto; padding: 0; margin-top: 12px; background-color: #a3a2a2; width: 748px; height: 3px; }
+.description { position: relative; margin: 22px 10px; padding: 0; width: 730px; text-align: left; }
+.description p { font-size: 12px; color: #505050; margin: 0; padding: 0;}
+
+#footer { position: relative; margin-top: 20px; padding: 1px 148px; height: 55px; background-color: #e5550e; vertical-align: middle;}
+#footer p { position: relative; margin: 10px; padding: 10px 10px; width: 332px; font-size: 12px; color: #fff; text-align: left; background-color: #292929; border-radius: 6px; box-shadow: 0 0 3px 0 #000000;}
+

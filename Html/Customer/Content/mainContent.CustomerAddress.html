@@ -1,0 +1,80 @@
+/*
+*		Renders the main content information of the CustomerAddressPage.
+*							
+*/
+
+<div class="my-account">
+	<div class="page-title title-buttons">
+		<h2>[_Address Book]</h2>
+		<button onclick="window.location='[Website.GetUrl,Customer,AddressNew]';" class="button btn[Design.DesignSelectionName,ButtonStyle]" title="[_Add New Address]" type="button"><span><span>[_Add New Address]</span></span></button>
+	</div>
+	<div class="fieldset">
+		<div class="col2-set addresses-list">
+		    <div class="col-1 addresses-primary in-block">
+			<h3>[_Default Addresses]</h3>
+			<ol>
+				    <li class="item">
+				<h4>[_Default Billing Address]</h4>
+				[Customer.DefaultInvoiceAddress=<address>
+					[Address.FirstName] [Address.LastName]<br>
+					[Address.StreetName]<br>
+					[Address.City],  [Address.PostalCode]<br>
+					[Address.State] [Address.Country=[Country.Name]]<br>
+					T: [Address.TelNumber]
+				</address>
+				<p><a href="[Website.GetUrl,Customer,AddressEdit/[Address.Id]]">[_Change Billing Address]</a></p>
+				]
+
+			   </li>
+
+				    <li class="item">
+				<h4>[_Default Shipping Address]</h4>
+				[Customer.DefaultShippingAddress=<address>
+					[Address.FirstName] [Address.LastName]<br>
+					[Address.StreetName]<br>
+					[Address.City],  [Address.PostalCode]<br>
+					[Address.State] [Address.Country=[Country.Name]]<br>
+					T: [Address.TelNumber]
+				</address>
+				<p><a href="[Website.GetUrl,Customer,AddressEdit/[Address.Id]]">[_Change Shipping Address]</a></p>
+				]
+			
+			    </li>
+				</ol>
+		    </div>
+		    <div class="col-2 addresses-additional in-block">
+			<h3>[_Additional Address Entries]</h3>
+			[?Customer.NumberOfAddresses
+			|more=
+				<ol>
+					[Customer.Addresses=
+						[?Address.Type
+						|billing=
+						|shipping=
+						|both=
+						|other=
+						<li class="item"><address>
+							[Address.FirstName] [Address.LastName]<br>
+							[Address.StreetName]<br>
+							[Address.City],  [Address.PostalCode]<br>
+							[Address.State] [Address.Country=[Country.Name]]<br>
+							T: [Address.TelNumber]
+						</address>
+						<span class="span2"><a href="[Website.GetUrl,Customer,AddressEdit/[Address.Id]]">[_Edit Address]</a></span>
+						<button onclick="setLocationAjax('[Website.GetUrl,magento,RemoveAddress]','[Url.FullUrl]',true,[Address.Id] );" value="Remove Address" type="button" class="button btn[Design.DesignSelectionName,ButtonStyle]"><span><span>[_Remove Address]</span></span></button>
+						</li>
+						]
+					]
+				</ol>
+			|=
+				<div class="item empty">
+					<p>[_You have no additional address entries in your address book.]</p>
+				</div>
+			]
+		    </div>
+		</div>
+		<div class="buttons-set">
+		    <p class="back-link"><a href="#"><small>« </small>[_Back]</a></p>
+		</div>
+	</div>
+</div>

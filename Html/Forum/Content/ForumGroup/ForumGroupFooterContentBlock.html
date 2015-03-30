@@ -1,0 +1,65 @@
+/*
+*		Renders the footer content of the certain thread list. 
+*
+*/
+
+<div class="fdata-footer">
+	<ul class="fdata-f">
+		<li class="tag-details">[_TAGS]<ul class="tag-list"><li class="tag">[Thread.Tags] </li></ul>
+		</li>
+		<li id="likes_of_this_thread_[Thread.ThreadTextId]" class="tag-likes [?Thread.Status|Deleted=f-right]">
+			[_%1 like this | %2 dislike this, [Thread.NrLikes], [Thread.NrDislikes]]
+		</li>
+		<li class="sep">|</li>
+		<li class="tag-like-icon">
+			<ul  class="tag-like-icon-container">
+				[?Thread.Status|DeletedByAdmin=|DeletedByUser=|Deleted=|=
+					[?Thread.AlreadyLiked|Yes=
+						|No=
+						<li>
+							<a thread_id="[Thread.ThreadTextId]" class="like" href="[Website.GetUrl,forum,like/[Thread.ThreadTextId]]">
+								<span class="t_icon">&nbsp;</span>
+							</a>
+						</li>
+					]
+				]
+				[?Thread.Status|DeletedByAdmin=|DeletedByUser=|Deleted=|=
+						[?ForumGroup.AllowDislikes|Yes=
+							[?Thread.AlreadyLiked|Yes=
+								|No=
+								<li>
+									<a thread_id="[Thread.ThreadTextId]" class="unlike" href="[Website.GetUrl,forum,dislike/[Thread.ThreadTextId]]">
+										<span class="t_icon">&nbsp;</span>
+									</a>
+								</li>
+							]
+						]
+				]
+				[?Thread.Status|DeletedByAdmin=|DeletedByUser=|Deleted=|=
+					<li>
+						<a thread_id="[Thread.ThreadTextId]" class="report" href="#"><span class="t_icon">&nbsp;</span></a>
+						<div class="report-popup">
+							<div class="report-type" onclick="ForumPost.reportAs(this,[Thread.ThreadTextId],'Discrimination')">[_Discrimination]</div>
+							<div class="report-type" onclick="ForumPost.reportAs(this,[Thread.ThreadTextId],'Stupidity')">[_Stupidity]</div>
+							<div class="report-type" onclick="ForumPost.reportAs(this,[Thread.ThreadTextId],'Hate')">[_Hate]</div>
+							<div class="report-type" onclick="ForumPost.reportAs(this,[Thread.ThreadTextId],'Hate')">[_Pornography]</div>
+							<div class="report-type" onclick="ForumPost.reportAs(this,[Thread.ThreadTextId],'Spam')">[_Spam]</div>
+							<div class="report-type" onclick="ForumPost.reportAs(this,[Thread.ThreadTextId],'Trolling')">[_Trolling]</div>
+							<div class="report-type" onclick="ForumPost.reportAs(this,[Thread.ThreadTextId],'Crime')">[_Crime]</div>
+							<div class="report-type" onclick="ForumPost.reportAs(this,[Thread.ThreadTextId],'IllegalActivities')">[_Illegal Activities]</div>
+							<div class="report-type" onclick="ForumPost.reportAs(this,[Thread.ThreadTextId],'CommercialPromotions')">[_Commercial Promotions]</div>
+							<div class="report-type" onclick="ForumPost.reportAs(this,[Thread.ThreadTextId],'Annoying')">[_Annoying]</div>
+							<div class="report-type" onclick="ForumPost.reportAs(this,[Thread.ThreadTextId],'RudeLanguage')">[_Rude Language]</div>
+						</div>
+					</li>
+				]
+			</ul>
+		</li>
+		<li class="sep">|</li>
+		[?Thread.Status|DeletedByAdmin=|DeletedByUser=|Deleted=|=
+			<li class="tag-create">
+				<a href="[Website.GetUrl,forum,thread/[Thread.Id]/reply]">[_Post a reply]</a>
+			</li>
+		]
+	</ul>
+</div>

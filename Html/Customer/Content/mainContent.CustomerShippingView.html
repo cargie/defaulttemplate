@@ -1,0 +1,54 @@
+/*
+*		Renders the main content detailed information of the CustomerShippingViewPage.
+*							
+*/
+
+<div class="content-my-account">
+	
+	<div class="page-title">
+		<h2>[Shipping.ShippingNumber] - [Shipping.Status]</h2>
+	</div>
+
+	<div class="order-info-con">
+		<!--<?php echo $this->getStatusHistoryRssUrl($_order) ?>-->
+	
+		<h3 class="order-label in-block">[_Order Number] : [Shipping.OrderNumber] </h3>
+
+		<p class="order-date in-block">[_Shipping Date] : [Shipping.ShippingDate] </p>
+	
+	
+		<div class="order-items-con">
+			<table class="data-table">
+			    <thead>
+				<tr>
+				    <th class="a-left" >[_Product Name]</th>
+				    <th class="a-right" width="15%">[_SKU]</th>
+				    <th class="a-center" width="15%">[_Price]</th>
+				    <th class="a-center" width="15%">[_Qty]</th>
+				    <th class="a-right" width="20%">[_Subtotal]</th>
+				</tr>
+			    </thead>
+			    <tbody>
+				[Shipping.Item=
+				<tr>
+	  		            <td>[ShippingItem.OrderItem=[OrderItem.Name]]<br></td>
+				    <td class="a-right">[ShippingItem.OrderItem=[OrderItem.Sku]]</td>
+				    <td class="a-center">[ShippingItem.OrderItem=[OrderItem.PriceEach]]</td>
+				    <td class="a-center">[ShippingItem.OrderItem=[OrderItem.Quantity]]</td>
+				    <td class="a-right">[ShippingItem.OrderItem=[OrderItem.Price]]</td>
+				</tr>
+				
+				]
+				 
+			    </tbody>
+			    <tfoot>
+			
+			    </tfoot>
+			</table>
+			<div class="buttons-set">
+				<p class="back-link"><a href="[Website.GetUrl,Customer,[Url.MVC4]/[Url.MVC5]]"><small>« </small>[_Back]</a></p>
+			</div>
+		</div>
+	
+	</div>
+</div>

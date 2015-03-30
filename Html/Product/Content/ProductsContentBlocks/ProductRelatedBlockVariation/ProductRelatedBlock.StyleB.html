@@ -1,0 +1,80 @@
+/*
+*	Renders a block containing list of related products.
+*
+*/
+
+[?Product.HasRelatedProducts|yes=
+<div class="block-related styleb">
+	<div class="block-title">
+		<h2>[_RELATED PRODUCTS]</h2>
+	</div>
+	<p class="block-subtitle">[_Check items to add to the cart or]&nbsp;<a href="#" onclick="selectAllRelated(this);">[_Select all]</a></p>
+	<ul class="products-grid" id="block-related">
+		[Product.RelatedProducts,4= 
+			<li class="item in-block">
+				[?Product.ProductType|Configurable=|=<div style="float:right">
+				<label class="checkbox" for="related-checkbox[Product.Id]"></label><input type="checkbox" class="related-checkbox" id="related-checkbox[Product.Id]" name="related_products\[\]" value="[Product.Id]"></div>]
+				<div class="item-wrapper">
+					<a href="[Website.GetUrl,Product,[Product.Id]]"><h3 class="product-name">[Product.Name]</h3></a>
+					<div class="product-image">
+					   <a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]"><img src="/[Product.ThumbnailImage=[ProductImage.ImageUrl,140,150]]" alt="[Product.Name]"/></a>
+					</div>
+					<div class="product-details">
+						[:ProductPriceBlock?Product.Sale]
+						<div class="ratings">
+							[:ProductRating.StyleB]
+						</div>
+					</div>
+				</div>
+			</li>
+		]
+	</ul>
+</div>
+<script type="text/javascript">
+	
+	jQuery('.related-checkbox').change(function(){
+		addRelatedToProduct();
+	});
+
+	var relatedProductsCheckFlag = false;
+	function selectAllRelated(txt){
+		if (relatedProductsCheckFlag == false) {
+			jQuery('.related-checkbox').each(function(){
+				jQuery(this).attr('checked','checked');
+			});
+			relatedProductsCheckFlag = true;
+			jQuery(txt).html("unselect all");
+		} else {
+			jQuery('.related-checkbox').each(function(){
+				jQuery(this).removeAttr('checked');
+			});
+			relatedProductsCheckFlag = false;
+			jQuery(txt).html("select all");
+		}
+		addRelatedToProduct();
+	}
+	function addRelatedToProduct(){
+		var checkboxes = jQuery('.related-checkbox');
+		var values = \[\];
+		for(var i=0;i<checkboxes.length;i++){
+			var custom_check=jQuery(checkboxes\[i\]).siblings('label.checkbox');
+			if (jQuery(checkboxes\[i\]).prop('checked')) {
+				values.push(jQuery(checkboxes\[i\]).val()); 
+				if (!custom_check.hasClass('active')){
+					custom_check.addClass('active');
+				}
+			}else{
+				if (custom_check.hasClass('active')){
+					custom_check.removeClass('active');
+				}
+			}
+		}
+		if(jQuery('#related-products-field')){
+			jQuery('#related-products-field').val(values.join(','));
+		}
+		
+	}
+	
+	
+</script>
+]

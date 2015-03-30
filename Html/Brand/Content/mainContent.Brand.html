@@ -1,0 +1,29 @@
+/*
+*		renders the main content of the BrandPage.  This dislays the 
+*		list of brands information.	
+*
+*/
+/** -------------------------------------------------------------------
+Name:              mainContent.Brand
+Location:          /Html/Brand/Content/mainContent.Brand.html
+Created By:        Leslie Canete
+Created At:        06-Okt-2014 18:55 (relocation first 15 models)
+Last modified By:  Leslie Canete
+Last modified At:  21-Okt-2014 17:04 (Merge branch 'updatevariation')
+Possible call:    1Column.CmsPage 	1Column 	2ColumnsLeft.CmsPage 	2ColumnsLeft 	2ColumnsRight.CmsPage 	2ColumnsRight 	3Columns.CmsPage 	3Columns 	CompareProductsPage 	
+Calling blocks:    CategoryListLayout 	toolbar 	
+--------------------------------------------------------------------**/
+
+
+<div class="category-view">
+	<div class="brand-title">
+		<div class="brand-image in-block"><a href="[Brand.WwwLink]" target="_blank"><img src="/[Brand.LogoSmall]"></a></div>
+		<div class="brand-details in-block">
+			<h2>[Brand.Name]</h2>
+			<p>[Brand.Description]</p>
+		</div>
+	</div>
+	[?Filter.Empty|no=[:toolbar]]
+	[:CategoryListLayout]
+	[?Filter.Empty|no=|yes=<p class='no-results'>[_There are no products matching the selection.]</p>]
+</div>

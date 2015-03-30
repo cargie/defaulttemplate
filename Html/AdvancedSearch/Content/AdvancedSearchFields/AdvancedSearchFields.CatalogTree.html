@@ -1,0 +1,46 @@
+/*
+*		renders a single type of AdvanceSearchFields attributes for advance search.  
+*		This type displays a catalog tree data in the select option.
+*/
+/** -------------------------------------------------------------------
+Name:              AdvancedSearchFields.CatalogTree
+Location:          /Html/AdvancedSearch/Content/AdvancedSearchFields/AdvancedSearchFields.CatalogTree.html
+Created By:        Leslie Canete
+Created At:        07-Okt-2014 16:27 (category, checkout general)
+Last modified By:  Seth Malaki
+Last modified At:  20-Okt-2014 19:10 (updates on adding comments)
+Possible call:    mainContent.AdvancedSearch 	
+Calling blocks:    CatalogTreeCategorySub 	
+--------------------------------------------------------------------**/
+
+
+<label for="[Attribute.AttributeCode]">[Attribute.Title]</label>
+<div class="input-box">
+	<select class="categorytree" id="[Attribute.AttributeCode]" name="[Attribute.AttributeCode]">
+		<option class="" value="">--[_Select]--</option>
+		[Website.TopCategories=
+			<option class="root" value="[Category.Name]">[Category.Name]</option>[:CatalogTreeCategorySub]
+		]
+	</select>
+	<script type="text/javascript">
+		jQuery(document).ready(function(){
+			jQuery(".categorytree .level-2").each(function(){
+				var html = jQuery(this).html();
+				jQuery(this).html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+html)
+			});
+			jQuery(".categorytree .level-3").each(function(){
+				var html = jQuery(this).html();
+				jQuery(this).html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+html)
+			});
+			jQuery(".categorytree .level-4").each(function(){
+				var html = jQuery(this).html();
+				jQuery(this).html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+html)
+			});
+			jQuery(".categorytree .level-5").each(function(){
+				var html = jQuery(this).html();
+				jQuery(this).html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+html)
+			});
+		});
+	</script>
+</div>
+

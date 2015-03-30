@@ -1,0 +1,31 @@
+/*
+*		Renders the store currency switcher.
+* search bar left, logo right
+*/
+
+<div class="row header-container" style="" id="header_type_c">
+	<div class="large-12 header">
+		<div class="header-top">
+			<div class="large-6 columns">[:HeaderTopNavigationLinksBlock]</div>
+			<div class="large-6 columns a-right">
+				<div class="in-block">[:headerlanguageswitcherblock]</div>
+				<div class="in-block">[:headercurrencyswitcherblock]</div>
+			</div>
+		</div>
+		<div class="header-bottom">
+			<div class="large-5 columns searchbar">[:HeaderMiniSearchBlock]</div>
+			<div class="large-2 columns cartblock">[:HeaderCartBlock]</div>
+			<div class="large-5 columns a-center">
+				[?DesignLayout.CheckHeader,[Url.Model],HeaderLogoBlock|Yes=[:HeaderLogoBlock]]
+			</div>
+		</div>
+		
+	</div>
+	
+	<div class="large-12 columns">
+		[:HeaderMainMenuBlock]
+	</div>
+</div>
+
+[:SubmitAsPostVar]
+

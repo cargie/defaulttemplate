@@ -1,0 +1,26 @@
+/*
+*	Renders a block containing promoheader slider.
+*/
+
+[?PromoHeaderSlider.Enabled|Yes=
+<div id="slide-image">
+	[?PromoHeaderBlock.HasImage|Yes=<img src="/[PromoHeaderSlider.Image]"/>	]
+		<!---<div class="slide-details-con [PromoHeaderSlider.TextPosition]">	-->
+			<!-- check if there is slider desc */-->
+				<div class="slide-text [PromoHeaderSlider.TextPosition]">
+					<span class="">
+						[PromoHeaderSlider.Text]
+					</span>
+				</div>	
+			<!-- end check -->
+			[?PromoHeaderBlock.HasButtonText
+			|Yes=
+				<div class="dynamic-button-text [PromoHeaderSlider.ButtonPosition]"><button class="position[PromoHeaderSlider.ButtonPosition]" onclick="window.location='[PromoHeaderSlider.ButtonUrl]'" title="[PromoHeaderSlider.ButtonUrl]"><span class="btn-red"><span>[PromoHeaderSlider.ButtonText] </span></span></a> 
+				</div>
+			]
+		<!---</div>-->
+	
+</div>
+]	
+
+

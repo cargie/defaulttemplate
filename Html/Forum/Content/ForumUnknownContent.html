@@ -1,0 +1,47 @@
+/*
+*		Renders a page for forum unknown content.
+*
+*/
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>[Website.Name] | [_Home]</title>
+	[:Head]
+	[:ForumHead]
+</head>
+<body class="forum-home">
+	<div class="row header-container" style="">
+		<div class="logo small-8 columns" style="">
+			<a href="[Website.GetUrl,forum]"><img src="[File:/images/logo.png]"></a>
+		</div>
+		<div class="large-4 right">
+			[:ForumLoginBlock]
+			[:ForumSearchBlock]
+		</div>
+		<div class="forum-tabs-container">
+			<ul class="forum-tabs">
+				<li class="ftab "><a href="[Website.GetUrl,forum]">[_Forum]</a></li>
+				<li class="ftab "><a href="[Website.GetUrl,forum,members]">[_Members]</a></li>
+			</ul>
+		</div>
+		<div class="back-to-site"><a href="[Website.GetUrl,home]">[_Back to Demoshop] &nbsp;<img src="[File:/css/forum/images/backtodemoshop_button.png]"/></a></div>
+	</div>
+	<div class="one-column">
+		[:Breadcrumb]
+		<div class="main-container">
+			<div class="main ">
+				<ul class="messages">
+					<li class="forum-error-msg">[_This subject of the forum is not or no longer available. Please see the current subjects at]</li>
+					<li>
+						[_Click here] <a href="[Website.GetUrl,forum]">[_Homepage]</a>
+					</li>
+				</ul>
+				
+			</div>
+		</div>
+	</div>
+	[:ForumFooter]
+</body>
+</html>
+

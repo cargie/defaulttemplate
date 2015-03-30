@@ -1,0 +1,53 @@
+/*
+*	Variation 2ProductsInARow of ( ProductListItemStyleC ) Renders the listings of products of the current category.
+*	Can be list as Grid type or List type.
+*/
+<div class="item-wrapper styleC"  id="prd[Product.Id]" >
+	<div class="wrapper">
+		
+		<div class="product-image in-block">
+			<a href="[Website.GetUrl,Product,[Product.Id]]" title="[Product.Name]"><img alt="[Product.Name]" width="155px" src="/[Product.SmallImage=[ProductImage.ImageUrl,205,220]]"></a>
+		</div>
+       <div class="product-details in-block">
+	   <div class="product-title in-block"><a href="[Website.GetUrl,Product,[Product.Id]]"><h2 class="product-name">[Product.Name]</h2></a></div>
+		<div class="ratings in-block">
+		   <div class="ratings-styleC">
+	         <span class="rating-percentage">[Product.Ranking]%</span>
+	       </div>
+	    </div>
+		<div class="price-block in-block">[:ProductPriceBlock?Product.Sale]</div>
+		<div class="attributes-con">[:ProductListItemAttributeColor.StyleC]</div>
+       <!--Bottom block-->
+        <div class="bottom-wrapper"> 
+           <div class="bottom-con">
+			<div class="add-to-cart in-block">
+				<button class="button btn-stylec" onclick="actionCart('product_addtocart_form','[Website.GetUrl,magento,AddToCart]','[UserInput.DefaultUrlPart]',true,'[SimpleProduct.Id]','[Website.GetUrl,Cart]',jQuery('#conf-attributes[Product.Id]').find('select').serialize()+'&qty=[Product.MinInShoppingCart]')" class="button btn-cart" title="[_Add to Cart]" type="button"><span>Add to Cart</span></button>
+			</div>
+			<div class="details in-block">
+				<button class="button btn-stylec_details"><span>Details</span></button>
+			</div>
+     </div>
+    </div>
+
+       <!--end of bottom block-->
+	   </div>
+
+    <div class="bottom-wrapper">
+	  	<div class="ratings in-block">
+	                     <p class="rating-links">
+		                        <a href="">[Product.NumberOfReviews] Review(s)</a>
+		                           <span class="separator">|</span>
+		                        <a href="">Add</a>
+		                           <span class="separator">|</span>
+		                        <a href="">Rate</a>
+	                     </p>
+	   </div>
+         <div class="in-block">
+	   		[:ProductAddTo]
+	      </div>
+	</div>
+</div>
+		
+
+</div>
+

@@ -1,0 +1,15 @@
+/*
+*		Renders a variation of links for header shopping cart information.
+*
+*/
+
+<a href="[Website.GetUrl,Cart]" class="incra-dropdown-toggle">[_My Cart]</a>
+<div class="cart-container incra-dropdown-menu cartpop-up-stylea" style="display:none">
+[?ShoppingCart.Empty
+|CartFilled=
+	[:HeaderCartBlockStyleAContent]
+|CartEmpty=
+	[:HeaderCartBlockEmptyContent]
+]
+</div>
+

@@ -1,0 +1,42 @@
+<div class="checkout-onepage">
+	<div class="page-title border-bottom-large orange">
+		<h2>[_Checkout]</h2>
+	</div>
+	<div id="checkoutSteps" class="opc accordion checkout-steps">
+	
+		[?Customer.LoggedIn|Guest=
+			[:CheckoutOnepageMethodBlock,1]
+			[:BillingInformationBlock,2]
+			[:ShippingInformationBlock,3]
+			[:ShippingMethodBlock,4]
+			[:PaymentMethodBlock,5]
+			[:OrderReviewBlock,6]
+		|LoggedIn=
+			[:BillingInformationBlock,1]
+			[:ShippingInformationBlock,2]
+			[:ShippingMethodBlock,3]
+			[:PaymentMethodBlock,4]
+			[:OrderReviewBlock,5]
+		]
+	</div>
+</div>
+<script type="text/javascript">
+	var checkout = new OnePageCheckOut();
+	checkout.method_url = '[Website.GetUrl,CheckOut,saveMethod]';
+	checkout.country_config_url = "[Website.GetUrl,CheckOut,countryconfig]";
+	[?Customer.LoggedIn|LoggedIn=checkout.gotoSection('billing');]
+
+	jQuery(document).ready(function(){
+	jQuery(".checkout-onepage .checkout-block.allow .title .label h5").live('click',function(){
+			var step_block = jQuery(this).parent().parent().parent();
+			var steps_to = step_block.attr("id");
+			switch(steps_to){
+				case 'opc-billing'			: {		checkout.gotoSection('billing'); 			}break;
+				case 'opc-shipping-info'	: {		checkout.gotoSection('shipping'); 			}break;
+				case 'opc-shipping-method'	: {		checkout.gotoSection('shipping_method'); 	}break;
+				case 'opc-payment-method'	: {		checkout.gotoSection('payment'); 			}break;
+			}
+			console.log(steps_to);	
+		});
+	});
+</script>

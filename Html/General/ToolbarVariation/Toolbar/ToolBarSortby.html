@@ -1,0 +1,19 @@
+/*
+*		Renders Toolbar dropdown sorter.  This provides a control to sort the product listings.
+*
+*/
+
+<label>[_Sort By:]</label>
+<select id="sorter" class="select-small" onchange="selectaction('[Website.GetUrl,Ajax,Update]','[UserInput.DefaultUrlPart]','Page/[UserInput.PageFrom]/[UserInput.PageNrOn]/'+this.value+'/[UserInput.PageAscending]/[UserInput.FilterUrl]');" >
+	<option value="Position">[_Position]</option>
+	<option value="Name">[_Name]</option>
+	<option value="Price">[_Price]</option>
+	<option value="HighestPrice">[_Highest Price]</option>
+	<option value="FeaturedPosition">[_Featured Position]</option>
+	<option value="MostViewed">[_Most Viewed]</option>
+	<option value="MostBought">[_Most Bought]</option>
+	<option value="Ranking">[_Ranking]</option>
+	<option value="WebsiteViewTime">[_Website View Time]</option>
+	<option value="SessionViewTime">[_Session View Time]</option>
+	<option value="Interesting">[_Interesting]</option>
+</select>

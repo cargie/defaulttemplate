@@ -1,0 +1,23 @@
+/*
+*		renders a variation style of breadcrumb
+*
+*/
+/** -------------------------------------------------------------------
+Name:              Breadcrumb.StyleC
+Location:          /Html/General/BreadcrumbVariation/Breadcrumb.StyleC.html
+Created By:        Leslie Canete
+Created At:        07-Okt-2014 19:02 (General, Customer, Compare)
+Last modified By:  Seth Malaki
+Last modified At:  22-Okt-2014 18:28 (myupdates in adding comments)
+Possible call:    1Column.CmsPage 	1Column 	2ColumnsLeft.CmsPage 	2ColumnsLeft.Customer 	2ColumnsLeft.ReviewList 	2ColumnsLeft.ReviewView 	2ColumnsLeft 	2ColumnsRight.CmsPage 	2ColumnsRight 	3Columns.CmsPage 	3Columns.Customer 	3Columns 	AdvancedSearchPage 	AdvancedSearchResultsPage 	CustomerConfirmationPage 	ForumGroupPage 	ForumMembers 	ForumPage 	ForumRightViolationPage 	ForumSearchResults 	ForumThreadAdd 	ForumThreadPage 	ForumUnknownContent 	LoginPage 	TagPageAll 	
+--------------------------------------------------------------------**/
+
+
+<div class="b-con style-c">
+	<ul>
+	[Website.Breadcrumbs=
+		[?BreadCrumb.IsLast|No=<li class="in-block"><a href="[BreadCrumb.Url]">[BreadCrumb.Name]</a></li>
+		|Yes=<li class="last in-block">[BreadCrumb.Name]</li>]
+	]
+	</ul>
+</div>

@@ -1,0 +1,61 @@
+/*
+*	Renders the main content of the ReviewListPage.
+*
+*/
+
+<div class="product-page">
+	<div class="product-essential">
+		<form id="product_addtocart_form">
+		[:ProductMediaBlock] <!-- contains design variation lightbox - to be changed to image plugin -->
+		[:ProductPage?Product.ProductType]
+				</form>
+	</div>
+	<div class="product-info">
+
+		<div class="product-reviews">
+			[:ProductReviewBlock]
+		</div>
+
+	</div>
+</div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+	/*$('a[href^="#"]').on('click',function (e) {
+	    e.preventDefault();
+
+	    var target = this.hash,
+	    $target = jQuery(target);
+
+	    jQuery('html, body').stop().animate({
+	        'scrollTop': $target.offset().top
+	    }, 900, 'swing', function () {
+	        window.location.hash = target;
+	    });
+	});*/
+
+/*$(".read").on("click", function( e ) {
+    
+    e.preventDefault();
+
+    $("body, html").animate({ 
+        scrollTop: $( $(this).attr('href') ).offset().top 
+    }, 900);
+    
+});
+$(".write").on("click", function( e ) {
+    
+    e.preventDefault();
+
+    $("body, html").animate({ 
+        scrollTop: $( $(this).attr('href') ).offset().top 
+    }, 900);
+    
+});*/
+jQuery('#read').click(function(){
+    var jump = $(this).attr('href');
+    var new_position = $('#'+jump).offset();
+    window.scrollTo(new_position.left,new_position.top);
+    return false;
+});
+});
+</script>

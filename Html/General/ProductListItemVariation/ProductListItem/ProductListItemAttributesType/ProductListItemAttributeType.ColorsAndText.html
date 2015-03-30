@@ -1,0 +1,15 @@
+/*
+*	(type ColorsAndText of ProductListItemAttribute) Renders product list item attribute type.  This displays colors and text.
+*/
+
+<ul class="color-plp" id="[Attribute.Id][Product.Id]">
+ [Product.ConfigurableChildProducts,[Attribute.AdminTitle]=
+	<li>
+		<div id="[AttributeOption.Admin]" class="links-nav block-swatches border-light [?UserInput.ConfigurableAttributeValueValid,[Attribute.AdminTitle],[AttributeOption.Admin]|yes=selected]" style="background-color:[AttributeOption.Color];">
+			<div class="overlay-style"></div>
+		</div>
+	</li>
+]
+</ul>
+
+

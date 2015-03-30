@@ -1,0 +1,11 @@
+/*
+*	Renders a block containing add to wishlist and add to compare links.
+*
+*/
+
+<ul class="add-to-links">
+	<li>
+		<a  href="javascript:setLocationAjaxAction('product_addtocart_form','[Website.GetUrl,Magento,AddToWishlist]','[Website.GetUrl,Product,[Product.Id]]',true,'[SimpleProduct.Id]',jQuery('#product_addtocart_form').serialize(),'[Website.GetUrl,WishList]'); " class="link-wishlist">[_Add to WishList]
+		</a></li>
+	<li><span class="separator">|</span> <a href="javascript:setLocationAjaxAction('product_addtocart_form','[Website.GetUrl,Magento,AddToCompare]','[Website.GetUrl,Product,[Product.Id]]',true,'[SimpleProduct.Id]',jQuery('#product_addtocart_form').serialize(),'[Website.GetUrl,Compare]');" class="link-compare">[_Add to Compare]</a></li>
+</ul>

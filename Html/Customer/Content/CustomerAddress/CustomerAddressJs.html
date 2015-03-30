@@ -1,0 +1,99 @@
+<script type="text/javascript">
+var all_availablecountries =
+\[[Website.AvailableCountries=
+	[CountryGroup.Countries=
+	       {
+		"country_id"      :       [Country.Id],
+		"country_name"    :       "[Country.Name]",
+		"states"        :"[Country.States={ 'state_id': [State.Id], 'state_name': \"[State.Name]\"},]",
+	       },
+	]
+]\];
+
+all_availablecountries.forEach(function(el){
+       var temp = eval('\['+el.states+'\]');
+       el.states = temp;
+});
+
+jQuery(document).ready(function(){
+	addressByCountry(jQuery('#country-address').val());
+})
+function loadRegions(countryid){
+
+	all_availablecountries.forEach(function(data){
+		if (data\['country_id'\]==countryid){
+			data\['states'\].forEach(function(states){
+				jQuery("#region_id").append('<option value="'+states.state_id+'">'+states.state_name+'</option>');
+			});
+		}
+	});
+
+}
+var addressByCountry=function(val){	
+	var url='[Website.GetUrl,ajax,block/CustomerAddressCountryConfiguration/country/]'+val;
+	jQuery.ajax(url,{	
+		type: "GET",  
+		dataType: "html",
+		success: function(data, textStatus, jqXHR){
+			JSON.stringify(eval("(" + data + ")"));
+			(country.showpostal=="Yes") ? jQuery('#postal_field').show(): jQuery('#postal_field').hide();
+			if (country.postalrequired=="No"){
+				jQuery('#postal_field').find('label').removeClass('required');
+				jQuery('#postal_field').find('input').removeClass('required');
+				jQuery('#postal_field').find('em').html('');
+			}else{
+				jQuery('#postal_field').find('label').addClass('required');
+				jQuery('#postal_field').find('input').addClass('required');
+				jQuery('#postal_field').find('em').html('*');
+			}
+			if (country.showpostal=="Yes" && country.showpostalbeforeplace=="Yes"){
+				var postal_html=jQuery('#postal_field').detach();
+				jQuery('#street_field').prepend(postal_html);
+			}
+			(country.showmiddlename=="Yes") ? jQuery('#middlename_field').show(): jQuery('#middlename_field').hide();
+			(country.showregion=="Yes")? jQuery('#region_field').show(): jQuery('#region_field').hide();
+			(country.showtitle=="Yes") ? jQuery('#title_field').show(): jQuery('#title_field').hide();
+			(country.showaddress2=="Yes") ? jQuery('#address2_field').show() : jQuery('#address2_field').hide();
+			(country.showhousenumberext=="Yes") ? jQuery('#housenumberext_field').show() : jQuery('#housenumberext_field').hide();
+			(country.showhousenumberseparate=="Yes") ? jQuery('#housenumber_field').show() : jQuery('#housenumber_field').hide();
+		},
+		error: function(jqXHR, textStatus, errorThrown)
+		{
+			jQuery("#loading").remove();
+			alert("The request was not completed successfuly.");
+
+		}
+	});
+	loadRegions(val);
+	/*
+	if (val==153){	
+		var adressnlblock=''+
+		'<div class="fields">'+
+			'<div class="fieldname">'+
+				'<label class="required" for="street"><em>*</em>[_Street] </label>'+
+				'<div class="input-box"><input type="text" class="input-text required" id="street" title="Street Address" value="[Address.StreetName]" name="street1"></div>'+
+			'</div>'+
+			'<div class="fieldname">'+
+				'<label class="required" for="house_number"><em>*</em>[_Nr] </label>'+
+				'<div class="input-box"><input type="text" class="input-text required" id="house_number" size="10" title="House Number" value="[Address.HouseNumber]" name="house_number"></div>'+
+			'</div>'+
+			'<div class="fieldname">'+
+				'<label class="required" for="house_number_ext"><em>*</em>[_Ext.]</label>'+
+				'<div class="input-box"><input type="text" class="input-text required" id="house_number_ext" size="10" title="House Number Extension" value="[Address.HouseNUmberExtention]" name="house_number_ext"></div>'+
+			'</div>'+
+		'</div>'+
+		'<div class="fields">'+
+			'<div class="fieldname">'+
+				'<label class="required" for="postcode"><em>*</em>[_Zip/Postal Code]</label>'+
+				'<div class="input-box "><input type="text" class="input-text validate-zip-international required" id="postcode" title="Zip/Postal Code" value="[Address.PostalCode]" name="postcode"></div>'+
+			'</div>'+
+			'<div class="fieldname">'+
+				'<label class="required" for="city"><em>*</em>[_City]</label>'+
+				'<div class="input-box"><input type="text" id="city" class="input-text required" title="City" value="[Address.City]" name="city"></div>'+
+			'</div>'+
+		'</div>';
+		jQuery("#address-con").html(adressnlblock);
+	}*/
+	
+};
+</script>

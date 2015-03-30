@@ -1,0 +1,27 @@
+/*
+*		Renders the main menu links data.
+*
+*/
+
+<div class="default-main-menu clearfix">
+	<ul>
+		[Website.TopMenuSorted=
+			<li class="[?MenuOption.HasChildren|Yes=has-dropdown|No=[?MenuOption.MenuOptionType|Category=has-dropdown]] ">
+				<a class="[?MenuOption.IsCurrent|same= current|different=|parent=current]" href="[MenuOption.FullUrl]" >[MenuOption.Name] </a>
+					<ul class="dropdown">
+						[MenuOption.TopMenuChildrenSorted=
+								[?MenuOption.InTopMenu|Yes=
+									<li class="[?MenuOption.HasChildren|Yes=has-dropdown]">
+										<a href="[MenuOption.FullUrl]" class="[?MenuOption.IsCurrent|same= current|different=|parent= current]">
+											<span class="[?MenuOption.IsCurrent|same= current|different=|parent= current]">[MenuOption.Name]</span>
+											[?MenuOption.HasChildren|Yes=<span class="toggle">+</span>]
+										</a>
+										[:HeaderMainMenuLinksSub]
+									</li>
+								]
+						]
+					</ul>
+			</li>
+		]
+	</ul>
+</div>

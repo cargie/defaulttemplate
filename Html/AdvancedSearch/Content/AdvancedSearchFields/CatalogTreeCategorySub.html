@@ -1,0 +1,21 @@
+/*
+*		renders the sub category options of the CatalogTreeCategory.
+*
+*/
+/** -------------------------------------------------------------------
+Name:              CatalogTreeCategorySub
+Location:          /Html/AdvancedSearch/Content/AdvancedSearchFields/CatalogTreeCategorySub.html
+Created By:        Leslie Canete
+Created At:        07-Okt-2014 16:27 (category, checkout general)
+Last modified By:  Seth Malaki
+Last modified At:  20-Okt-2014 19:31 (myupdates adding comment)
+Called from:       AdvancedSearchFields.CatalogTree 	
+Calling unknown:   RendererCategorySub 	
+--------------------------------------------------------------------**/
+
+
+[Category.ChildCategories=
+	<option class="level-[Category.Level]" value="[Category.Name]">[Category.Name]</option>
+	[:RendererCategorySub]
+]
+

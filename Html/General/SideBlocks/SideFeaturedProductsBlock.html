@@ -1,0 +1,32 @@
+/*
+*		Renders a block that contains list of featured products.
+*
+*/
+
+<div class="block">
+	<div class="title">
+		<h2>[_FEATURED PRODUCTS]</h2>
+	</div>
+	<div class="block-content">
+		[Website.FeaturedProducts,1,1,'Name',Ascending]
+		[?Filter.Empty|no=
+			[Filter.Products=
+				<div class="product-image in-block">
+					<a class="pull-left" title="[Product.Name]" href="[Website.GetUrl,Product,[Product.Id]]">
+					  <img src="/[Product.ThumbnailImage=[ProductImage.ImageUrl,100,125]]" width="70px">
+					</a>
+				</div>
+				<div class="product-details in-block">
+					<a class="pull-left" title="[Product.Name]" href="[Website.GetUrl,Product,[Product.Id]]">
+						<h4 class="product-title">[Product.Name]</h4>
+					</a>
+					<div class="price-box"><span class="price">[:PriceBlock?Product.Sale]</span></div>
+	
+				</div>
+			]
+		
+		|=
+		<p>[_No record/s]</p>
+		]
+	</div>
+</div>

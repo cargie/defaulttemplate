@@ -1,0 +1,53 @@
+/*
+*		Renders a mini side cart of the current customer.
+*
+*/
+
+<div class="block">
+	<div class="title">
+		<h2>[_MY CART]</h2>
+	</div>
+	<div class="block-content">
+		[?ShoppingCart.Empty
+		|CartFilled=
+			<div class="cart-items-block">
+				<div class="summary">
+					<p class="amount">[_There is/are <strong>%1</strong> items in your shopping cart., [ShoppingCart.NrItems]]</p>
+					<p class="subtotal">[_CART SUBTOTAL:] <strong>[ShoppingCart.TotalExclTax]</strong><br>
+					(<strong>[ShoppingCart.TotalInclTax]</strong> Incl. Tax)</p>
+				</div>
+				<div class="actions">
+					<button type="button" title="[_Checkout]" class="button btn[Design.DesignSelectionName,ButtonStyle]" onclick="setLocation('[Website.GetUrl,CheckOut,OnePage]')"><span><span>[_Checkout]</span></span></button>
+				</div>
+				<h2>[_Recently Added Item(s)]</h2>
+				<div>
+				<ul class="media-list">
+				[ShoppingCart.RecentlyAddedItems,2=
+					<li class="media">
+						<div class="mini-product-image in-block">
+							<a href="[Website.GetUrl,Product,[Product.Id]]">
+							  <img class="img-polaroid" width="50" title="[Product.Name]" src="/[Product.ThumbnailImage=[ProductImage.ImageUrl,100,100]]">
+							</a>
+							
+						</div>
+						<div class="product-details in-block">
+							<span class="product-title"><a href="[Website.GetUrl,Product,[Product.Id]]">[Product.Name]</a></span>
+							
+							<p>[ShoppingCartItem.Quantity] x [_Excl. Tax:] <br> [ShoppingCartItem.PriceEach]<br>
+							[_Incl. Tax:] [Product.TotalPrice]
+							</p>
+
+						</div>
+						<img class="img-remove" src="[File:/images/btn_remove.gif]" title="remove" onclick="setLocationAjax('[Website.GetUrl,Magento,RemoveFromCart]','[Url.FullUrl]',true,[ShoppingCartItem.Id]);"/>
+							
+				  	</li>
+				  ]
+				</ul>
+				</div>
+				
+			</div>
+		|CartEmpty=<p>[_You have no item/s in your cart]</p>
+		]
+		
+	</div>
+</div>

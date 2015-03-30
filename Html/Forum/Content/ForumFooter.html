@@ -1,0 +1,48 @@
+/*
+*		Renders the forum footer information.  This displays links, totals, social icons.
+*
+*/
+
+<div class="row forum-footer">
+	<hr style="border-color: #CCC;border-width: 1px 0 0;"/>
+	<div class="data-totals">[_2039 Totals]<div style="width:100px;display:inline-block;"></div>[_5 Total Members]</div>
+	<div class="social-icon">
+		<a href="#" class="fb" onmouseover="hoverSocialIcon(this,'fb')" onmouseout="hoverSocialIcon2(this,'fb')"><img src="[File:/css/forum/images/fb.png]"/></a>
+		<a href="#" class="twitter" onmouseover="hoverSocialIcon(this,'twitter')" onmouseout="hoverSocialIcon2(this,'twitter')"><img src="[File:/css/forum/images/twitter.png]"/></a>
+	</div>
+</div>
+<div class="absolute-footer">
+	<div class="row">
+		<ul class="footer-links">
+			<li>[_SiteMap]</li>
+			<li>[_About Us]</li>
+			<li>[_Contact Us]</li>
+			<li>[_Privacy Policy]</li>
+		</ul>
+		
+		<div class="copyright">[_Copyright] &copy; [Configuration.DesignCopyright]</div>
+	</div>
+</div>
+<script type="text/javascript">
+	function hoverSocialIcon(obj,icon){
+		var src = jQuery(obj).find('img').attr('src');
+		console.log(src);
+		if(icon== 'fb'){
+			src.replace('fb.png','facebook_hover.png');
+		}
+		if(icon == 'twitter'){
+			src.replace('twitter.png','twitter_hover.png');
+		}
+		jQuery(obj).find('img').attr('src',src);
+	}
+	function hoverSocialIcon2(obj,icon){
+		var src = jQuery(obj).find('img').attr('src');
+		if(icon== 'fb'){
+				src.replace('facebook_hover.png','fb.png');
+			}
+		if(icon == 'twitter'){
+				src.replace('twitter_hover.png','twitter.png');
+			}
+		jQuery(obj).find('img').attr('src',src);
+	}
+</script>
